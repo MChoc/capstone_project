@@ -13,4 +13,4 @@ class Category(models.Model):
 
 
 class Menu(models.Model):
-    pass
+    name = models.CharField(max_length=200)
