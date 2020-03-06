@@ -19,7 +19,7 @@ class CategorySerializer(serializers.HyperlinkedModelSerializer):
     food_items = serializers.HyperlinkedRelatedField(
         many=True,
         read_only=True,
-        view_name='food_item-detail'
+        view_name='fooditem-detail'
     )
 
     class Meta:
