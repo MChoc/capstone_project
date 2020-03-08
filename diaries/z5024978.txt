@@ -1,0 +1,17 @@
+Week 1:
+
+* Formed groups
+* Chose project and decided on roles within project
+* set up jira
+
+Week 2:
+
+* Started work on proposal draft
+* Created initial user / epic stories
+
+Week 3:
+
+* Completed proposal
+* Decided on languages and frameworks to use
+* Finalised list of epics and user stories
+* Put up user and epic stories on jira
