@@ -5,7 +5,7 @@ Setup
 * install python3.8
 * create a virtual environment
 * recommend virtualenv
-  * virtualenv --python=python3.8
+  * virtualenv --python=python3.8 .venv
 * activate the new environment and install requirements
   * pip install -r requirements.txt
 
