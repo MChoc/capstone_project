@@ -11,6 +11,7 @@ Setup
 
 To migrate an app
 * ./manage.py makemigrations app_name
+  * app_name would be the different apps e.g. users or menu folder
 
 To create/update the database based on migrations
 * ./manage.py migrate
