@@ -9,6 +9,10 @@ class Menu(models.Model):
 
 
 class Category(models.Model):
+
+    class Meta:
+        verbose_name_plural = 'categories'
+
     name = models.CharField(max_length=200)
     menu = models.ForeignKey(
         Menu,

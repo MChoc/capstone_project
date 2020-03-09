@@ -12,7 +12,7 @@ class MenuSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = models.Menu
-        fields = ['id', 'categories']
+        fields = ['id', 'url', 'name', 'categories']
 
 
 class CategorySerializer(serializers.HyperlinkedModelSerializer):
@@ -24,10 +24,10 @@ class CategorySerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = models.Category
-        fields = ['id', 'name', 'food_items']
+        fields = ['id', 'url', 'menu', 'name', 'food_items']
 
 
 class FoodItemSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = models.FoodItem
-        fields = ['id', 'name', 'price']
+        fields = ['id', 'url', 'category', 'name', 'price']
