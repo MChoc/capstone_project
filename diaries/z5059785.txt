@@ -1,0 +1,8 @@
+Week 1
+We formed our group and chose to do the waiter project. We set up our Jira page and I was assigned Scrum Master for the team. Over the next week we will each do individual research on possible solutions to our problem and write out our requirements more specifically to compare and collate next week.
+
+Week 2
+As a group we discussed the scope and complexity of our project. We decided to have a draft proposal ready for the next tutorial and I will be working on the ‘Existing Systems and Drawbacks’ section as well as contributing to the ‘epics’ section along with the rest of the group. We had a meeting through the week to work on the ‘epics’ section together. In this meeting we selected one each to complete by the next lesson. I also created wire-frames of the UI for the proposal.
+
+Week 3
+We went through our draft proposal, received feedback from our tutor and refined our epics. As a group we made a plan to finish the proposal for Sunday. Next lesson we will aim to demo epic 1, the login system. I will be working on the front-end with Angus and researching the best frameworks to use for the project.
