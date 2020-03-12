@@ -5,9 +5,9 @@ from . import views
 
 
 router = routers.DefaultRouter()
-router.register(r'users', views.UserViewSet)
+router.register(r'accounts', views.UserViewSet)
 
-app_name = 'users'
+app_name = 'accounts'
 urlpatterns = [
     path('', include((router.urls, app_name))),
 ]
