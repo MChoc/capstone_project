@@ -6,7 +6,10 @@ Setup
 * create a virtual environment
 * recommend virtualenv
   * virtualenv --python=python3.8 .venv
-* activate the new environment and install requirements
+* activate the new environment
+  * cd into the folder where .venv sits
+  * run `. .venv/bin/activate`
+* install requirements
   * pip install -r requirements.txt
 
 To migrate an app
