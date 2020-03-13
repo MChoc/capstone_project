@@ -14,3 +14,9 @@ We went through our draft proposal, received feedback from our tutor and refined
 As a group we made a plan to finish the proposal for Sunday.
 Next lesson we will aim to demo epic 1, the login system.
 I will be working on the front-end with Angus and researching the best frameworks to use for the project.
+
+Week 4
+In class we showed our progress to our tutor and discussed our proposal.
+Updated Jira to create all the requirements for our first sprint.
+By Sunday we hope to have the login page working.
+I will be working on the homepage and login page front end.
