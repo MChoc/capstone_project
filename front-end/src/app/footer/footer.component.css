@@ -1,0 +1,16 @@
+.footer {
+    width: 100%;
+    background-color: #abc2ba;
+    text-align: left;
+    height: 55px;
+    bottom: 0;
+    display: flex;
+}
+
+a {
+    color: #352728;
+    padding: 15px;
+}
+.activated {
+    color: #90694a;
+}
