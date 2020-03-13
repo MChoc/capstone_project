@@ -5,12 +5,13 @@
     height: 55px;
     bottom: 0;
     display: flex;
+    position: absolute;
 }
 
 a {
     color: #352728;
     padding: 15px;
 }
-.activated {
+a .activated {
     color: #90694a;
 }
