@@ -20,3 +20,4 @@ In class we showed our progress to our tutor and discussed our proposal.
 Updated Jira to create all the requirements for our first sprint.
 By Sunday we hope to have the login page working.
 I will be working on the homepage and login page front end.
+
