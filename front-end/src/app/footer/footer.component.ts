@@ -6,6 +6,7 @@ import { Router, NavigationEnd } from '@angular/router'
   templateUrl: './footer.component.html',
   styleUrls: ['./footer.component.css']
 })
+
 export class FooterComponent implements OnInit {
 
   currentUrl: string;

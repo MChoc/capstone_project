@@ -5,7 +5,9 @@
     width: 50%;
     margin: auto;
     padding: 25px;
-    position: unset;
+    position: relative;
+    top: 150px;
+    box-shadow: 10px 10px 15px grey;
 }
 
 input[type=text], [type=password] {
@@ -16,15 +18,22 @@ input[type=text], [type=password] {
     border: 1px solid #fcf7fb;
     border-radius: 4px;
     box-sizing: border-box;
+    outline: none;
   }
 
 button[type=submit] {
     width: 30%;
     background-color: #352728    ;
     color: #fcf7fb;
-    margin: 10px;
     padding: 10px;
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    outline: none;
+    width: 100%;
+    margin: 10px 0;
+  }
+
+  button[type=submit]:hover {
+    background-color: #352728e0;
   }
