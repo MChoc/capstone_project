@@ -26,7 +26,11 @@ Week 3
 Week 4
 ======
 
-* 
+* Implemented a default view to visualise the API return results
+* Discussed proposal and updated the tutor on the progress of the application
+* Created subtasks within the user stories
+* Began looking into login and implementing user logins to protect the API
+  * Options included session authentication and token authentication
 
 
 ======
