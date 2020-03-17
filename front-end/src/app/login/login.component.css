@@ -37,3 +37,8 @@ button[type=submit] {
   button[type=submit]:hover {
     background-color: #352728e0;
   }
+
+  .home {
+      font-size: small;
+      color:  #352728;
+  }

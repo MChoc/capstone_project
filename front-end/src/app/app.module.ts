@@ -21,7 +21,7 @@ import { KitchenHomeComponent } from './kitchen-home/kitchen-home.component';
     MenuComponent,
     WaiterHomeComponent,
     ManagementHomeComponent,
-    KitchenHomeComponent
+    KitchenHomeComponent,
   ],
   imports: [
     BrowserModule,

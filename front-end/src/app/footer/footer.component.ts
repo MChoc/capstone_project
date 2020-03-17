@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router'
 
 @Component({
@@ -14,6 +14,8 @@ export class FooterComponent implements OnInit {
   constructor(private router: Router) { 
     router.events.subscribe((_: NavigationEnd) => this.currentUrl = _.url)
   }
+
+  @Input() title:string="";
 
   ngOnInit(): void {
   }

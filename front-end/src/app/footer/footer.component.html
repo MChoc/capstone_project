@@ -1,13 +1,5 @@
 <div class = "footer">
-    <div *ngIf="currentUrl == '/'; then thenBlock else elseBlock"></div>
-    <ng-template #thenBlock>
-        <a routerLink = "login" [class.activated]="currentUrl == '/login'">
-        <i class="material-icons">person</i>
-        </a>
-    </ng-template>
-    <ng-template #elseBlock>
-        <a routerLink = "" [class.activated]="currentUrl == '/'">
-        <i class="material-icons">home</i>
-        </a>
-    </ng-template>
+    <a routerLink = "login" [class.activated]="currentUrl == '/login'">
+            <i class="material-icons">person</i>
+    </a>
 </div>
