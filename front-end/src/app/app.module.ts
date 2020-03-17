@@ -11,6 +11,7 @@ import { MenuComponent } from './menu/menu.component';
 import { WaiterHomeComponent } from './waiter-home/waiter-home.component';
 import { ManagementHomeComponent } from './management-home/management-home.component';
 import { KitchenHomeComponent } from './kitchen-home/kitchen-home.component';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { KitchenHomeComponent } from './kitchen-home/kitchen-home.component';
     WaiterHomeComponent,
     ManagementHomeComponent,
     KitchenHomeComponent,
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,
