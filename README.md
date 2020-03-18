@@ -39,5 +39,5 @@ localhost:5000/swagger
 * Swagger documentation of available endpoints
 * To authenticate:
     * login using the `/rest-auth/login/` endpoint
-    * Use copy the token provided
+    * Copy the token returned
     * Click on authorise on the top right of the page and under the 'Bearer  (apiKey)' section, enter 'Token [token]' where [token] is the copied token from the login.
