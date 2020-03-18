@@ -101,6 +101,10 @@ DATABASES = {
     }
 }
 
+AUTH_USER_MODEL = 'accounts.CustomUser'
+REST_AUTH_REGISTER_SERIALIZERS = {
+    'REGISTER_SERIALIZER': 'accounts.serializers.CustomRegisterSerializer',
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
@@ -153,10 +157,10 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 # Settings for allauth registration
+ACCOUNT_ADAPTER = 'accounts.adapter.CustomAccountAdapter'
 ACCOUNT_USERNAME_REQUIRED = True
 ACCOUNT_AUTHENTICATION_METHOD = 'username'
 ACCOUNT_EMAIL_REQUIRED = False
 ACCOUNT_EMAIL_VERIFICATION = "none"
-ACCOUNT_SIGNUP_FORM_CLASS = 'accounts.forms.SignupForm'
 
 SITE_ID = 1
