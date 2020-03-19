@@ -107,6 +107,7 @@ REST_AUTH_REGISTER_SERIALIZERS = {
 }
 
 REST_AUTH_SERIALIZERS = {
+    'USER_DETAILS_SERIALIZER': 'accounts.serializers.UserSerializer',
     'TOKEN_SERIALIZER': 'accounts.serializers.TokenSerializer',
 }
 
