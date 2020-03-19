@@ -7,3 +7,4 @@ from .models import CustomUser
 class UserViewSet(viewsets.ModelViewSet):
     queryset = CustomUser.objects.all()
     serializer_class = serializers.UserSerializer
+    http_method_names = ['get', 'delete']
