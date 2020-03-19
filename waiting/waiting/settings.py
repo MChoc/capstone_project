@@ -106,6 +106,10 @@ REST_AUTH_REGISTER_SERIALIZERS = {
     'REGISTER_SERIALIZER': 'accounts.serializers.CustomRegisterSerializer',
 }
 
+REST_AUTH_SERIALIZERS = {
+    'TOKEN_SERIALIZER': 'accounts.serializers.TokenSerializer',
+}
+
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
 

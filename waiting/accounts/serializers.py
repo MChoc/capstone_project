@@ -1,3 +1,4 @@
+from rest_auth.models import TokenModel
 from rest_auth.registration.serializers import RegisterSerializer
 from rest_framework import serializers
 
@@ -29,3 +30,14 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = CustomUser
         fields = ['url', 'username', 'first_name', 'last_name', 'user_type']
+
+
+class TokenSerializer(serializers.ModelSerializer):
+    '''
+    Custom token serializer to return user details with token
+    '''
+    user = UserSerializer(read_only=True)
+
+    class Meta:
+        model = TokenModel
+        fields = ('key', 'user')
