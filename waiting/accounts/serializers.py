@@ -29,7 +29,7 @@ class CustomRegisterSerializer(RegisterSerializer):
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = CustomUser
-        fields = ['url', 'username', 'first_name', 'last_name', 'user_type']
+        fields = ['username', 'first_name', 'last_name', 'user_type']
 
 
 class TokenSerializer(serializers.ModelSerializer):
