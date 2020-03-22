@@ -1,9 +1,9 @@
-<div class="login-form">
-    <h2>Staff Login</h2>
-    <form #userlogin = "ngForm" (ngSubmit) = "onClickSubmit(userlogin.value)">
-        <input type="text" placeholder="Employee ID" name="empID" required ngModel>
-        <input type="password" placeholder="Password" name="password" required ngModel>    
-        <button type="submit">Login</button>
-    </form>
-    <a class="home" routerLink = "">Return Home</a>
-</div>
+    <div class="login-form">
+        <h2>Staff Login</h2>
+        <form #userlogin = "ngForm" (ngSubmit) = "onClickSubmit(userlogin.value)">
+            <input type="text" placeholder="Employee ID" name="empID" required ngModel>
+            <input type="password" placeholder="Password" name="password" required ngModel>    
+            <button type="submit">Login</button>
+        </form>
+        <a class="home" routerLink = "">Return Home</a>
+    </div>
