@@ -1,19 +1,21 @@
 <div class="register-form">
     <h2>Add Staff Member</h2>
-    <form action="" method="post">
-        <input type="text" placeholder="First Name" name="fname" required>
-        <input type="text" placeholder="Last Name" name="lname" required>
-        <input type="text" placeholder="Employee ID" name="fname" required>
-        <input type="password" placeholder="Password" name="psw" required>
+    <form (ngSubmit)="registerUser()">
+        <input type="text" placeholder="First Name" [(ngModel)]="fname" name="fname" required>
+        <input type="text" placeholder="Last Name" [(ngModel)]="lname" name="lname" required>
+        <input type="text" [(ngModel)]="username" name="username" placeholder="username" required>
+        <input type="text" [(ngModel)]="password1" name="password1" placeholder="password" required>
+        <input type="text" [(ngModel)]="password2" name="password2" placeholder="Retype password" required>
+
         <span class="position"><p>Select Position:</p></span>
         <span class="position">
-            <select id="emplyeeType" required>
-                <option value="manager">Manager</option>
-                <option value="waiter">Waiter</option>
-                <option value="kitchen">Kitchen</option>
+            <select [(ngModel)]="employeeType" name="employeeType" required>
+                <option value="MANAGER">Manager</option>
+                <option value="WAITER">Waiter</option>
+                <option value="KITCHEN">Kitchen</option>
             </select>
         </span>
-        <button type="submit">Save</button>
+        <button type="submit">Register</button>
     </form>
 </div>
 

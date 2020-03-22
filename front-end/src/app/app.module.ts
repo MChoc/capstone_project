@@ -12,6 +12,7 @@ import { WaiterHomeComponent } from './waiter-home/waiter-home.component';
 import { ManagementHomeComponent } from './management-home/management-home.component';
 import { KitchenHomeComponent } from './kitchen-home/kitchen-home.component';
 import { RegisterComponent } from './register/register.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { RegisterComponent } from './register/register.component';
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
