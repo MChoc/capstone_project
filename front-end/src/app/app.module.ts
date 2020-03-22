@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -12,6 +13,7 @@ import { WaiterHomeComponent } from './waiter-home/waiter-home.component';
 import { ManagementHomeComponent } from './management-home/management-home.component';
 import { KitchenHomeComponent } from './kitchen-home/kitchen-home.component';
 import { RegisterComponent } from './register/register.component';
+import { StaffComponent } from './staff/staff.component';
 
 @NgModule({
   declarations: [
@@ -24,11 +26,13 @@ import { RegisterComponent } from './register/register.component';
     ManagementHomeComponent,
     KitchenHomeComponent,
     RegisterComponent,
+    StaffComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

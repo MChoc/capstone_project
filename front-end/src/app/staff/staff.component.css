@@ -1,0 +1,32 @@
+div {
+    width:  100%;
+}
+
+h2{
+    text-align: center;
+}
+
+.staff-list {
+    color: #352728;
+}
+
+.staff {
+    margin-left: 12.5%;
+    width: 75%;
+    border-color: #352728;
+    background-color: #fcf7fb;
+    height: 30px;
+}
+
+.addEmp {
+    width: 30%;
+    background-color: #352728;
+    color: #fcf7fb;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    outline: none;
+    margin-top: 10px;
+    margin-left: 35%;
+}

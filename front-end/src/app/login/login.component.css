@@ -23,7 +23,7 @@ input[type=text], [type=password] {
 
 button[type=submit] {
     width: 30%;
-    background-color: #352728    ;
+    background-color: #352728;
     color: #fcf7fb;
     padding: 10px;
     border: none;
