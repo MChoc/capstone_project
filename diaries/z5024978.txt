@@ -24,4 +24,9 @@ Week 4:
 * Implemented user registration through the api
 
 Week 5:
+* Implemented different user types on registration such as manager, kitchen staff and waitstaff
+* Added swagger documentation to document all api endpoints available and test them
+* Worked on integrating the front-end and back-end
+
+Week 6:
 * 
