@@ -1,10 +1,10 @@
-from . import serializers
-
-from django.contrib.auth.models import User
 from rest_framework import viewsets, permissions
+
+from . import serializers
+from .models import CustomUser
 
 
 class UserViewSet(viewsets.ModelViewSet):
-    queryset = User.objects.all()
+    queryset = CustomUser.objects.all()
     serializer_class = serializers.UserSerializer
-    permission_classes = (permissions.IsAuthenticated,)
+    http_method_names = ['get', 'delete']
