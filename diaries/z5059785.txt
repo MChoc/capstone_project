@@ -20,3 +20,8 @@ In class we showed our progress to our tutor and discussed our proposal.
 Updated Jira to create all the requirements for our first sprint.
 By Sunday we hope to have the login page working.
 I will be working on the homepage and login page front end.
+
+Week 5
+Last week we got a start on the login feature however we had trouble connecting the front and and backend through the API.
+In the next week I will work with Tripta to make this connection.
+I will also work on creating more pages for the front end.
