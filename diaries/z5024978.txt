@@ -15,3 +15,18 @@ Week 3:
 * Decided on languages and frameworks to use
 * Finalised list of epics and user stories
 * Put up user and epic stories on jira
+
+Week 4:
+* Discussed proposal and approach to problem with tutor and received feedback
+* Researched possible ways of implementing token based authorization. Possible methods were:
+  * JWT tokens, tokens that expire after a while
+  * Regular tokens that are static per user
+* Implemented user registration through the api
+
+Week 5:
+* Implemented different user types on registration such as manager, kitchen staff and waitstaff
+* Added swagger documentation to document all api endpoints available and test them
+* Worked on integrating the front-end and back-end
+
+Week 6:
+* 
