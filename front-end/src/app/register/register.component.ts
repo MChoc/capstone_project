@@ -35,6 +35,7 @@ export class RegisterComponent implements OnInit {
     this.http.post(this.url, post_data).toPromise().then(data => {
       console.log("rresponse!:");
       console.log(data);
+      console.log(data['key']);
     },
     error=> {
       // TODO: show error message on page!
