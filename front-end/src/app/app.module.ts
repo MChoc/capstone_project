@@ -14,6 +14,8 @@ import { ManagementHomeComponent } from './management-home/management-home.compo
 import { KitchenHomeComponent } from './kitchen-home/kitchen-home.component';
 import { RegisterComponent } from './register/register.component';
 import { StaffComponent } from './staff/staff.component';
+import { TokenInterceptorService } from './_services/token-interceptor.service';
+
 
 @NgModule({
   declarations: [
@@ -34,7 +36,9 @@ import { StaffComponent } from './staff/staff.component';
     AppRoutingModule,
     FormsModule
   ],
-  providers: [],
+  providers: [
+    TokenInterceptorService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

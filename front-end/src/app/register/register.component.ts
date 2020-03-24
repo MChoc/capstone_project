@@ -6,6 +6,7 @@ import { HttpClient } from '@angular/common/http';
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
+
 export class RegisterComponent implements OnInit {
 
   constructor(private http: HttpClient) { }
@@ -33,7 +34,7 @@ export class RegisterComponent implements OnInit {
     };
     console.log("request: " + post_data);
     this.http.post(this.url, post_data).toPromise().then(data => {
-      console.log("rresponse!:");
+      console.log("response!:");
       console.log(data);
       console.log(data['key']);
     },

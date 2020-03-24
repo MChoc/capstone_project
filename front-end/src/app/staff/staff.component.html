@@ -1,11 +1,16 @@
 <div>
     <h2>STAFF</h2>
     
-    <div class="staff-list">
-        <button class="staff">Staff 1</button>
-        <button class="staff">Staff 2</button>
-        <button class="staff">Staff 3</button>
-    </div>
+    <ul class="staff-list">
+        <li>user</li>
+        <li *ngFor="let user of users$">
+            {{ user.first_name }} {{ user.last_name }}
+            <ul>
+                <li>{{ user.username }}</li>
+                <li>{{ user.user_type }}</li>
+            </ul>
+        </li>
+    </ul>
 
     <button type="button" class="addEmp" onclick="window.location.href='/management/staff/register'">Add Employee</button>
 

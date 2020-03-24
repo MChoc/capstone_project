@@ -4,12 +4,14 @@ import { HttpClient } from '@angular/common/http';
 @Injectable({
   providedIn: 'root'
 })
-export class LoginService {
-  url = 'http://127.0.0.1:5000/rest-auth/login/';
+export class DataService {
 
+  private userList = 'http://127.0.0.1:5000/api/accounts/'
+  
   constructor(private http: HttpClient) { }
 
-  getLogin() {
-    return this.http.get(this.url);
+  getUsers() {
+    return this.http.get(this.userList)
   }
+
 }
