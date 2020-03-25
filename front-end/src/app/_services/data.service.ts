@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,13 @@ export class DataService {
   constructor(private http: HttpClient) { }
 
   getUsers() {
-    return this.http.get(this.userList)
+    let key = window.localStorage.getItem('key')
+    var header = {
+      headers: new HttpHeaders()
+        .set('Authorization', 'Token ' + key)
+    }
+    
+    return this.http.get(this.userList, header)
   }
 
 }
