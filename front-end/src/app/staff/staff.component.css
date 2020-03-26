@@ -33,10 +33,16 @@ h2{
     margin-left: 35%;
 }
 
-a {
+a, button {
     color: #352728;
     padding: 15px;
+    background-color: #fcf7fb;
+    border: none;
+    padding: 5px;
+    cursor: pointer;
+    outline: none;
 }
+
 a .activated {
     color: #90694a;
 }
