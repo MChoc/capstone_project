@@ -7,17 +7,17 @@
     float: left;
     width: 33.33%;
     text-align: center;
-    height: 55px;
+    height: 65px;
 }
 
 .column1 {
     text-align: left;
-    padding: 15px;
+    padding: 20px;
 }
 
 .column3 {
     text-align: right;
-    padding: 15px;
+    padding: 20px;
 }
 
 .row:after {
@@ -31,4 +31,12 @@ a {
 }
 .activated {
     color: #90694a;
+}
+
+i {
+    cursor: pointer;
+}
+
+i:hover {
+    color: #352728e0;
 }

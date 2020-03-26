@@ -3,9 +3,8 @@
     background-color: #abc2ba;
     text-align: left;
     height: 55px;
-    bottom: 0;
     display: flex;
-    position: absolute;
+
 }
 
 a {
@@ -15,3 +14,7 @@ a {
 a .activated {
     color: #90694a;
 }
+
+i:hover {
+    color: #352728e0;
+  }

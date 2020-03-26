@@ -1,11 +1,7 @@
-.login-form {
-    background-color: #d3b895;
-    border-radius: 15px;
+.register-form {
     text-align: center;
-    width: 50%;
+    width: 75%;
     margin: auto;
-    padding: 25px;
-    box-shadow: 10px 10px 15px grey;
 }
 
 input[type=text], [type=password] {
@@ -13,15 +9,23 @@ input[type=text], [type=password] {
     padding: 12px 20px;
     margin: 8px 0;
     display: inline-block;
-    border: 1px solid #fcf7fb;
+    border: 1px solid #352728;
     border-radius: 4px;
     box-sizing: border-box;
     outline: none;
+    background-color: #fcf7fb;
   }
+
+select {
+    width: 100%;
+    height: 40px;
+    background-color: #fcf7fb;
+    border: 1px solid #352728;
+}
 
 button[type=submit] {
     width: 30%;
-    background-color: #352728;
+    background-color: #352728    ;
     color: #fcf7fb;
     padding: 10px;
     border: none;
@@ -36,7 +40,13 @@ button[type=submit] {
     background-color: #352728e0;
   }
 
-  .home {
+  p {
+      text-align: left;
       font-size: small;
-      color:  #352728;
+  }
+
+  span.position {
+    margin: 8px 0;
+    display: inline-block;
+    width: 50%;
   }

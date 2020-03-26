@@ -1,0 +1,73 @@
+div {
+    width:  100%;
+}
+
+h2{
+    text-align: center;
+}
+
+.staff-list {
+    color: #352728;
+    list-style-type: none;
+}
+
+.staff {
+    margin-left: 8%;
+    width: 75%;
+    border: solid 1px;
+    border-color: #352728;
+    background-color: #fcf7fb;
+    padding: 10px;
+}
+
+.addEmp {
+    width: 30%;
+    background-color: #352728;
+    color: #fcf7fb;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    outline: none;
+    margin-top: 20px;
+    margin-left: 35%;
+}
+
+a, button {
+    color: #352728;
+    padding: 15px;
+    background-color: #fcf7fb;
+    border: none;
+    padding: 5px;
+    cursor: pointer;
+    outline: none;
+}
+
+a .activated {
+    color: #90694a;
+}
+
+i:hover {
+    color: #352728e0;
+}
+
+.column1 {
+    float: left;
+    width: 60%;
+}
+.column2 {
+    float: right;
+    width: 35%;
+    text-align: right;
+}
+  
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+ul, li{
+    margin: 0;
+    padding: 0;
+}
