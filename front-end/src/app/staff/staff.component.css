@@ -8,14 +8,17 @@ h2{
 
 .staff-list {
     color: #352728;
+    list-style-type: none;
+
 }
 
 .staff {
     margin-left: 12.5%;
     width: 75%;
+    border: solid 1px;
     border-color: #352728;
     background-color: #fcf7fb;
-    height: 30px;
+    padding: 10px;
 }
 
 .addEmp {
@@ -30,3 +33,30 @@ h2{
     margin-top: 20px;
     margin-left: 35%;
 }
+
+a {
+    color: #352728;
+    padding: 15px;
+}
+a .activated {
+    color: #90694a;
+}
+
+i:hover {
+    color: #352728e0;
+}
+
+.column1 {
+    float: left;
+    width: 75%;
+}
+.column2 {
+    float: left;
+    width: 25%;
+}
+  
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }

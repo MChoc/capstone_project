@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../_services/data.service';
 import { Observable } from 'rxjs';
+import { Router, NavigationEnd } from '@angular/router'
+
 
 
 @Component({
@@ -11,10 +13,16 @@ import { Observable } from 'rxjs';
 
 export class StaffComponent implements OnInit {
 
+  currentUrl: string;
+
   users$: Object;
   error: any;
 
-  constructor(private data : DataService) { }
+  constructor(
+    private data : DataService,
+    private router: Router) { 
+    router.events.subscribe((_: NavigationEnd) => this.currentUrl = _.url)
+  }
 
   ngOnInit(): void {
     this.data.getUsers().subscribe(
