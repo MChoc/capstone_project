@@ -7,10 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MenuComponent implements OnInit {
 
-  constructor() { 
-    console.log("GOT LOCALSTORAGE THING");
-    console.log(window.localStorage.getItem('key'));
-  }
+  constructor() { }
 
   ngOnInit(): void {
   }
