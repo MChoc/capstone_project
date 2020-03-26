@@ -1,9 +1,9 @@
     <div class="login-form">
         <h2>STAFF LOGIN</h2>
-        <form (ngSubmit)="loginUser()">
-            <input required type="text" [(ngModel)]="username" placeholder="Employee ID" name="username" ngModel>
-            <input required type="password" [(ngModel)]="password" placeholder="Password" name="password" ngModel>
-            <div class="error">{{ error }}</div>    
+        <form ngNativeValidate (ngSubmit)="loginUser()">
+            <input type="text" [(ngModel)]="username" placeholder="Employee ID" name="username" required>
+            <input type="password" [(ngModel)]="password" placeholder="Password" name="password" required>
+            <div class="error">{{ error }}</div>
             <button type="submit">LOGIN</button>
         </form>
         <a class="home" routerLink = "">Return Home</a>
