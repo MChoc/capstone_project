@@ -24,6 +24,9 @@ export class RegisterComponent implements OnInit {
   password1: string;
   password2: string;
   employeeType: string;
+  password1_error = '';
+  general_error = '';
+  username_error = '';
 
   url = 'http://127.0.0.1:5000/rest-auth/registration/';
 
@@ -44,10 +47,26 @@ export class RegisterComponent implements OnInit {
       this.router.navigate(['/management/staff']); 
     },
     error=> {
-      // TODO: show error message on page!
       console.log(error.error);
+      if (error.error['password1']) {
+        this.password1_error = error.error['password1'];
+      } else {
+        this.password1_error = '';
+      }
+
+      if (error.error['username']) {
+        this.username_error = error.error['username'];
+      } else {
+        this.username_error = '';
+      }
+
+      if (error.error['non_field_errors']) {
+        this.general_error = error.error['non_field_errors'];
+      } else {
+        this.general_error = '';
+      }
+
     });
   }
-
 
 }

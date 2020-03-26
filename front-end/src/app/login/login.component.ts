@@ -60,6 +60,8 @@ export class LoginComponent implements OnInit {
     error=> {
       if (error.error['non_field_errors']) {
         this.error = error.error['non_field_errors'];
+      } else {
+        this.error = '';
       }
     });
   }
