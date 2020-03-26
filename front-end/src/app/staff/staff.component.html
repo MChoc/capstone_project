@@ -3,12 +3,12 @@
     
     <ul class="staff-list">
         <li *ngFor="let user of users$" class="staff">
-            <b>{{ user.first_name }} {{ user.last_name }}</b>
+            <b>{{ user.username }}</b>
             <div class="row">
                 <div class="column1">
                     <ul class="staff-list">
-                        <li>Employee ID: {{ user.username }}</li>
-                        <li>User Type: {{ user.user_type }}</li>
+                        <li>{{ user.first_name }} {{ user.last_name }}</li>
+                        <li>{{ user.user_type }}</li>
                     </ul>
                 </div>
                 <div class="column2">

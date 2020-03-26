@@ -9,11 +9,10 @@ h2{
 .staff-list {
     color: #352728;
     list-style-type: none;
-
 }
 
 .staff {
-    margin-left: 12.5%;
+    margin-left: 8%;
     width: 75%;
     border: solid 1px;
     border-color: #352728;
@@ -48,15 +47,21 @@ i:hover {
 
 .column1 {
     float: left;
-    width: 75%;
+    width: 60%;
 }
 .column2 {
-    float: left;
-    width: 25%;
+    float: right;
+    width: 35%;
+    text-align: right;
 }
   
 .row:after {
     content: "";
     display: table;
     clear: both;
-  }
+}
+
+ul, li{
+    margin: 0;
+    padding: 0;
+}
