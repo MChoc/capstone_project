@@ -2,12 +2,24 @@
     <h2>STAFF</h2>
     
     <ul class="staff-list">
-        <li *ngFor="let user of users$">
-            {{ user.first_name }} {{ user.last_name }}
-            <ul>
-                <li>{{ user.username }}</li>
-                <li>{{ user.user_type }}</li>
-            </ul>
+        <li *ngFor="let user of users$" class="staff">
+            <b>{{ user.first_name }} {{ user.last_name }}</b>
+            <div class="row">
+                <div class="column1">
+                    <ul class="staff-list">
+                        <li>Employee ID: {{ user.username }}</li>
+                        <li>User Type: {{ user.user_type }}</li>
+                    </ul>
+                </div>
+                <div class="column2">
+                    <a routerLink = "edit" [class.activated]="currentUrl == '/management/staff'">
+                        <i class="material-icons">edit</i>
+                    </a>
+                    <a routerLink = "delete" [class.activated]="currentUrl == '/management/staff'">
+                        <i class="material-icons">delete</i>
+                    </a>
+                </div>
+              </div>
         </li>
     </ul>
 
