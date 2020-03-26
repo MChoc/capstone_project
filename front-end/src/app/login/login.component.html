@@ -2,7 +2,8 @@
         <h2>STAFF LOGIN</h2>
         <form (ngSubmit)="loginUser()">
             <input required type="text" [(ngModel)]="username" placeholder="Employee ID" name="username" ngModel>
-            <input required type="password" [(ngModel)]="password" placeholder="Password" name="password" ngModel>    
+            <input required type="password" [(ngModel)]="password" placeholder="Password" name="password" ngModel>
+            <div class="error">{{ error }}</div>    
             <button type="submit">LOGIN</button>
         </form>
         <a class="home" routerLink = "">Return Home</a>

@@ -7,6 +7,7 @@ import { KitchenHomeComponent } from './kitchen-home/kitchen-home.component';
 import { ManagementHomeComponent } from './management-home/management-home.component';
 import { RegisterComponent } from './register/register.component';
 import { StaffComponent } from './staff/staff.component';
+import { LogoutComponent } from './logout/logout.component';
 
 const routes: Routes = [
   {
@@ -16,6 +17,10 @@ const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent
+  },
+  {
+    path: 'logout',
+    component: LogoutComponent
   },
   {
     path: 'waiter',

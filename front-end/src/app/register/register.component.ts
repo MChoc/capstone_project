@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -9,7 +10,10 @@ import { HttpClient } from '@angular/common/http';
 
 export class RegisterComponent implements OnInit {
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient,
+    private router: Router
+    ) { }
 
   ngOnInit(): void {
   }
@@ -37,6 +41,7 @@ export class RegisterComponent implements OnInit {
       console.log("response!:");
       console.log(data);
       console.log(data['key']);
+      this.router.navigate(['/management/staff']); 
     },
     error=> {
       // TODO: show error message on page!
