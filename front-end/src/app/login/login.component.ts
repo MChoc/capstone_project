@@ -40,12 +40,9 @@ export class LoginComponent implements OnInit {
       username: this.username,
       password: this.password
     };
-    if(this.username = '') {
-      console.log('Plese enter username');
-    }
+
     this.http.post(this.url, post_data).toPromise().then(data => {
       //this.router.navigate([this.returnUrl]);
-      console.log(data['key']);
       window.localStorage.setItem('key', data['key']);
       window.localStorage.setItem('user_type', data['user']['user_type']);
       window.localStorage.setItem('session', 'true');
@@ -56,12 +53,14 @@ export class LoginComponent implements OnInit {
         this.router.navigate(['/waiter']);
       } else if(data['user']['user_type'] === 'KITCHEN') {
       this.router.navigate(['/kitchen']);
+      } else {
+        this.router.navigate(['/']); 
       }
     },
     error=> {
-      // TODO: show error message on page!
-      console.log(error.error);
-      this.error = error;    
+      if (error.error['non_field_errors']) {
+        this.error = error.error['non_field_errors'];
+      }
     });
   }
 
