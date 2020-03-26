@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router, ActivatedRoute } from '@angular/router';
-import { AuthenticationService } from '../_services/authentication.service';
-
 
 
 @Component({
@@ -22,7 +20,6 @@ export class LoginComponent implements OnInit {
     private http: HttpClient,
     private route: ActivatedRoute,
     private router: Router,
-    private authenticationService: AuthenticationService
     ) { }
 
   ngOnInit(){

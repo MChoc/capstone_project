@@ -14,7 +14,6 @@ import { ManagementHomeComponent } from './management-home/management-home.compo
 import { KitchenHomeComponent } from './kitchen-home/kitchen-home.component';
 import { RegisterComponent } from './register/register.component';
 import { StaffComponent } from './staff/staff.component';
-import { TokenInterceptorService } from './_services/token-interceptor.service';
 import { LogoutComponent } from './logout/logout.component';
 
 
@@ -39,7 +38,6 @@ import { LogoutComponent } from './logout/logout.component';
     FormsModule
   ],
   providers: [
-    TokenInterceptorService
   ],
   bootstrap: [AppComponent]
 })
