@@ -14,13 +14,15 @@ export class FooterComponent implements OnInit {
   loggedIn: boolean;
 
   constructor(private router: Router) { 
-    router.events.subscribe((_: NavigationEnd) => this.currentUrl = _.url)
-    if(localStorage.getItem('session') == 'true'){
-      this.loggedIn = true;
-      console.log('logged in');
-    } else {
-      this.loggedIn = false;
-    }
+    router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        if(localStorage.getItem('key')) {
+          this.loggedIn = true;
+        } else {
+          this.loggedIn = false;
+        }
+      }
+    });
   }
 
   @Input() title:string="";
