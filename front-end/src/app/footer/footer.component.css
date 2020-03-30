@@ -4,13 +4,13 @@
     text-align: left;
     height: 55px;
     display: flex;
-
 }
 
 a {
     color: #352728;
     padding: 15px;
 }
+
 a .activated {
     color: #90694a;
 }

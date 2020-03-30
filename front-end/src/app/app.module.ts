@@ -15,6 +15,7 @@ import { KitchenHomeComponent } from './kitchen-home/kitchen-home.component';
 import { RegisterComponent } from './register/register.component';
 import { StaffComponent } from './staff/staff.component';
 import { LogoutComponent } from './logout/logout.component';
+import { ManageMenuComponent } from './manage-menu/manage-menu.component';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { LogoutComponent } from './logout/logout.component';
     KitchenHomeComponent,
     RegisterComponent,
     StaffComponent,
-    LogoutComponent
+    LogoutComponent,
+    ManageMenuComponent
   ],
   imports: [
     BrowserModule,
