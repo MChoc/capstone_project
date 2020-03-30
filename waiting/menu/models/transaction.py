@@ -10,8 +10,3 @@ class Transaction(models.Model):
         on_delete=models.CASCADE,
         related_name='customer'
     )
-    employee = models.ForeignKey(
-        CustomUser,
-        on_delete=models.CASCADE,
-        related_name='employee'
-    )
