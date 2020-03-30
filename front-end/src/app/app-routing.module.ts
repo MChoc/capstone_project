@@ -8,6 +8,7 @@ import { ManagementHomeComponent } from './management-home/management-home.compo
 import { RegisterComponent } from './register/register.component';
 import { StaffComponent } from './staff/staff.component';
 import { LogoutComponent } from './logout/logout.component';
+import { UserEditComponent } from './user-edit/user-edit.component';
 
 const routes: Routes = [
   {
@@ -41,7 +42,11 @@ const routes: Routes = [
   {
     path: 'management/staff/register',
     component: RegisterComponent
-  }
+  },
+  {
+    path: 'management/staff/edit/:id',
+    component: UserEditComponent
+  },
 ];
 
 @NgModule({
