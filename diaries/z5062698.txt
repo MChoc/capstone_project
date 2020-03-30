@@ -37,14 +37,18 @@ Week 4
 Week 5
 ======
 
-* 
+* Login page was created but unable to connect with the backend
+* Created unit tests to run whenever we make changes (make sure nothing breaks)
+* Began discussion for designing the backend in more detail
 
 
 ======
 Week 6
 ======
 
-* 
+* Hosted sprint to finalise the issues with login and assign tasks to everyone
+* Created ER diagram which system will be modelled against
+* Implemented the models according to the ER diagram
 
 
 ======
