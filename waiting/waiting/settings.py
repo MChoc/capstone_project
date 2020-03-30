@@ -48,16 +48,17 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'rest_auth.registration',
     'corsheaders',
-    'menu.apps.MenuConfig',
+
     'accounts.apps.AccountsConfig',
+    'menu.apps.MenuConfig',
 ]
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework.authentication.TokenAuthentication',
+
     ),
     'DEFAULT_PERMISSION_CLASSES': [
-        'accounts.permissions.IsStaff',
+
     ]
 }
 
