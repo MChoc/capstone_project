@@ -25,3 +25,9 @@ Week 5
 Last week we got a start on the login feature however we had trouble connecting the front and and backend through the API.
 In the next week I will work with Tripta to make this connection.
 I will also work on creating more pages for the front end.
+
+Week 6
+Last week I worked with Tripta to connect the front wnd and back-end. We have made god progress but not managed to complete everything.
+By tomorrow we will finish this sprint and complete the login function.
+We will then move on to the next sprint which is the menu function (reading and editing the menu).
+Since we have now worked out the FE-BE connection, this next sprint should be much smoother than the last one.
