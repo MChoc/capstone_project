@@ -1,7 +1,8 @@
-import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+import { Router, ActivatedRoute } from '@angular/router';
+
 
 @Component({
   selector: 'app-user-edit',
@@ -33,7 +34,7 @@ export class UserEditComponent implements OnInit {
     })
   }
 
-  constructor(private _Activatedroute: ActivatedRoute, private http: HttpClient, ) { }
+  constructor(private _Activatedroute: ActivatedRoute, private http: HttpClient, private router: Router) { }
 
   ngOnInit(): void {
 
