@@ -43,3 +43,8 @@ p {
     margin-left:auto;
     margin-right:auto;
 }
+
+li, ul {
+    list-style: none;
+    padding-left: 0;
+}

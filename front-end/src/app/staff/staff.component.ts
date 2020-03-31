@@ -4,7 +4,6 @@ import { Observable } from 'rxjs';
 import { Router, NavigationEnd } from '@angular/router'
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-
 @Component({
   selector: 'app-staff',
   templateUrl: './staff.component.html',
