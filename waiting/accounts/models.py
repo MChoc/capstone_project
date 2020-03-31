@@ -13,3 +13,6 @@ class CustomUser(AbstractUser):
     last_name = models.CharField(max_length=30)
     # TODO: figure out how to create manager using `python manage.py createsuperuser`
     user_type = models.CharField(max_length=10, choices=USER_TYPE_CHOICES, default='MANAGER')
+
+    def __str__(self):
+        return self.username
