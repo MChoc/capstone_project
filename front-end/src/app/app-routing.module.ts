@@ -9,6 +9,9 @@ import { RegisterComponent } from './register/register.component';
 import { StaffComponent } from './staff/staff.component';
 import { LogoutComponent } from './logout/logout.component';
 import { ManageMenuComponent } from './manage-menu/manage-menu.component';
+import { AddItemComponent } from './add-item/add-item.component';
+import { CategoryComponent } from './category/category.component';
+import { ItemComponent } from './item/item.component';
 
 const routes: Routes = [
   {
@@ -46,7 +49,20 @@ const routes: Routes = [
   {
     path: 'management/menu',
     component: ManageMenuComponent
+  },
+  {
+    path: 'add/:id',
+    component: AddItemComponent
+  },
+  {
+    path: 'management/menu/category',
+    component: CategoryComponent
+  },
+  {
+    path: 'management/menu/item',
+    component: ItemComponent
   }
+
 ];
 
 @NgModule({

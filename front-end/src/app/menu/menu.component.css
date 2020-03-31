@@ -2,7 +2,11 @@ h2 {
     text-align: center;
 }
 
-h5 {
+h2 span {
+    background-color: #d3b895;
+}
+
+a {
     font-size:18px;
     font-family:"Segoe UI",Arial,sans-serif;
     font-weight:400;

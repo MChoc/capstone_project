@@ -3,7 +3,7 @@
  }
 
  h1{
-   font-size:32px
+   font-size:30px
 }
 
  h1,h2,h3,h4,h5,h6 {
@@ -24,7 +24,5 @@
   flex-grow: 1;
   position: relative;
   overflow-y: auto;
-  margin-top: 25px;
-  margin-bottom: 25px;
   padding: 25px;
 }
