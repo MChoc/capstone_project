@@ -1,5 +1,6 @@
 from accounts.models import CustomUser
 from menu.models.credit_card import CreditCard
+from menu.models.food_item import FoodItem
 
 from django.db import models
 
@@ -11,7 +12,7 @@ class Transaction(models.Model):
         on_delete=models.CASCADE,
         related_name='customer'
     )
-    food_items = models.ManyToManyfield(
+    food_items = models.ManyToManyField(
         FoodItem,
         through='TransactionFoodItem'
     )
