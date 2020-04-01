@@ -117,4 +117,23 @@ export class ManageMenuComponent implements OnInit {
         });
     }
 
+    name : string;
+
+    addCategory() {
+      let post_data = {
+        name: this.name,
+        menu: "http://localhost:5000/api/menus/1/"
+      };
+      let url = 'http://localhost:5000/api/categories/';
+      this.http.post(url, post_data).toPromise().then(data => {
+        console.log("response!:");
+        console.log(data);
+        console.log(data['key']);
+        window.location.reload();
+      },
+      error=> {
+        console.log(error.error);
+      });
+    }
+
   }

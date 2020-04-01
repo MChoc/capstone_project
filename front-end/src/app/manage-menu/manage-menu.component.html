@@ -77,6 +77,12 @@
         </li>
     </ul>
 
-    <button type="button" class="addCategory" onclick="window.location.href='/management/menu/category'">Add Category</button>
+    <div class="category-form">
+        <form ngNativeValidate (ngSubmit)="addCategory()">
+            <input type="text" [(ngModel)]="name" name="name" placeholder="Add Category" required>
+            <button type="submit" class="save">Save</button>
+        </form>
+    </div>
+
 
 </div>

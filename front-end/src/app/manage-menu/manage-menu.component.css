@@ -41,8 +41,7 @@ b {
     padding-bottom: 20px;
 }
 
-.addCategory {
-    width: 30%;
+.save {
     background-color: #352728;
     color: #fcf7fb;
     padding: 10px;
@@ -51,7 +50,18 @@ b {
     cursor: pointer;
     outline: none;
     margin-top: 20px;
-    margin-left: 35%;
+    margin-left: 10px;
+}
+
+input[type=text] {
+    background-color: #fcf7fb;
+    color: #352728;
+    padding: 10px;
+    border: solid 1px #352728;
+    border-radius: 4px;
+    outline: none;
+    margin-top: 20px;
+    margin-left: 8%;
 }
 
 a, button {
