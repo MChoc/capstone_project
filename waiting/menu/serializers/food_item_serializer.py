@@ -9,22 +9,10 @@ class FoodItemSerializer(serializers.HyperlinkedModelSerializer):
         read_only=True,
         view_name='tag-detail'
     )
-    transactions = serializers.HyperlinkedRelatedField(
-        many=True,
-        read_only=True,
-        view_name='transaction-detail'
-    )
 
     class Meta:
         model = FoodItem
         fields = [
-            'id',
-            'url',
-            'name',
-            'active',
-            'price',
-            'description',
-            'category',
-            'tags',
-            'transactions'
+            'id', 'url', 'name', 'active', 'price', 'description', 'category',
+            'tags'
         ]

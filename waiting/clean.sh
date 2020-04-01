@@ -7,3 +7,4 @@ rm db.sqlite3
 ./manage.py makemigrations accounts
 ./manage.py makemigrations menu
 ./manage.py migrate
+./manage.py shell < dummy_data.py
