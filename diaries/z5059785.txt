@@ -27,7 +27,13 @@ In the next week I will work with Tripta to make this connection.
 I will also work on creating more pages for the front end.
 
 Week 6
-Last week I worked with Tripta to connect the front wnd and back-end. We have made god progress but not managed to complete everything.
+Last week I worked with Tripta to connect the front wnd and back-end. We have made good progress but not managed to complete everything.
 By tomorrow we will finish this sprint and complete the login function.
 We will then move on to the next sprint which is the menu function (reading and editing the menu).
 Since we have now worked out the FE-BE connection, this next sprint should be much smoother than the last one.
+
+Week 7
+Last week we finally completed the login sprint and moved on to creating the menu.
+I will work on the manager editing and updating the menu and will have this done by friday.
+I also have some general style changes to make such as adding a back and home button to the header.
+We are a bit behind our sprint schedule and have 3 weeks to complete our project but now that we all have the hang of it I am confident we will get it done.
