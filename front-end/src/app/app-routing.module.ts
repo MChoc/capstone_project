@@ -51,6 +51,7 @@ const routes: Routes = [
     path: 'management/staff/edit/:id',
     component: UserEditComponent
   },
+  {
     path: 'management/menu',
     component: ManageMenuComponent
   },
