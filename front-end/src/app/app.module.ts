@@ -38,7 +38,7 @@ import { ItemEditComponent } from './item-edit/item-edit.component';
     RegisterComponent,
     StaffComponent,
     LogoutComponent,
-    UserEditComponent
+    UserEditComponent,
     ManageMenuComponent,
     AddItemComponent,
     CategoryComponent,
