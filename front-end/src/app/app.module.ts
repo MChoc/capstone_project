@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -15,6 +16,7 @@ import { KitchenHomeComponent } from './kitchen-home/kitchen-home.component';
 import { RegisterComponent } from './register/register.component';
 import { StaffComponent } from './staff/staff.component';
 import { LogoutComponent } from './logout/logout.component';
+import { UserEditComponent } from './user-edit/user-edit.component';
 
 
 @NgModule({
@@ -29,13 +31,15 @@ import { LogoutComponent } from './logout/logout.component';
     KitchenHomeComponent,
     RegisterComponent,
     StaffComponent,
-    LogoutComponent
+    LogoutComponent,
+    UserEditComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [
   ],
