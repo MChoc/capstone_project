@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router, ActivatedRoute } from '@angular/router';
 
 
@@ -26,7 +26,16 @@ export class UserEditComponent implements OnInit {
   onFormSubmit(): void {
     console.log(this.userEditForm.value);
     let url = 'http://127.0.0.1:5000/api/accounts/' + this.id + '/';
-    this.http.put(url, this.userEditForm.value).toPromise().then(data => {
+    
+    let key = window.localStorage.getItem('key');
+    let header = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'Authorization': 'Token ' + key
+      })
+    }
+    
+    this.http.put(url, this.userEditForm.value, header).toPromise().then(data => {
       this.router.navigate(['/management/staff']); 
     },
     error => {
@@ -47,7 +56,12 @@ export class UserEditComponent implements OnInit {
     });
 
     let url = 'http://127.0.0.1:5000/api/accounts/' + this.id + '/';
-    this.http.get(url).toPromise().then(data => {
+    let key = window.localStorage.getItem('key')
+    let header = {
+      headers: new HttpHeaders()
+        .set('Authorization', 'Token ' + key)
+    }
+    this.http.get(url, header).toPromise().then(data => {
       this.user = data;
       this.userEditForm.setValue({username: this.user['username'],
                                   first_name: this.user['first_name'],

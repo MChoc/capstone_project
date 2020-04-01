@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router, ActivatedRoute } from '@angular/router';
 import { DataService } from '../_services/data.service';
 
@@ -45,7 +45,14 @@ export class ItemComponent implements OnInit {
       category: 'http://127.0.0.1:5000/api/categories/' + this.id + '/'
     };
     console.log("request: " + post_data);
-    this.http.post(this.url, post_data).toPromise().then(data => {
+    let key = window.localStorage.getItem('key');
+    let header = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'Authorization': 'Token ' + key
+      })
+    }
+    this.http.post(this.url, post_data, header).toPromise().then(data => {
       console.log("response!:");
       console.log(data);
       this.router.navigate(['/management/menu']); 

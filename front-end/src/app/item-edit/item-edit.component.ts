@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormControl } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-item-edit',
@@ -25,9 +25,17 @@ export class ItemEditComponent implements OnInit {
   onFormSubmit(): void {
     console.log(this.itemEditForm.value);
     let url = 'http://127.0.0.1:5000/api/food_items/' + this.id + '/';
-    this.http.put(url, this.itemEditForm.value).toPromise().then(data => {
+    
+    let key = window.localStorage.getItem('key');
+    let header = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'Authorization': 'Token ' + key
+      })
+    }
+    
+    this.http.put(url, this.itemEditForm.value, header).toPromise().then(data => {
       this.router.navigate(['/management/menu']); 
-      this.success_message = 'Item updated successfully!'
     },
     error => {
       this.error_message = "An error occured. Item was not updated."

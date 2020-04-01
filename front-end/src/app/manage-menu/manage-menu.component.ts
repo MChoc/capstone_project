@@ -71,6 +71,7 @@ export class ManageMenuComponent implements OnInit {
 
     }
 
+
     archiveItem(id, name, price, desc, cat) {
       let input = {
         name: name,
@@ -80,7 +81,16 @@ export class ManageMenuComponent implements OnInit {
         category: cat,
       };
       let url = 'http://127.0.0.1:5000/api/food_items/' + id + '/';
-      this.http.patch(url, input).subscribe(
+      
+      let key = window.localStorage.getItem('key');
+      let header = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'Authorization': 'Token ' + key
+      })
+      }
+
+      this.http.patch(url, input, header).subscribe(
         (val) => {
           window.location.reload();  
           console.log("PATCH call successful value returned in body", 
@@ -94,6 +104,7 @@ export class ManageMenuComponent implements OnInit {
         });
     }
   
+
     unarchiveItem(id, name, price, desc, cat) {
       let input = {
         name: name,
@@ -103,7 +114,16 @@ export class ManageMenuComponent implements OnInit {
         category: cat,
       };
       let url = 'http://127.0.0.1:5000/api/food_items/' + id + '/';
-      this.http.patch(url, input).subscribe(
+      
+      let key = window.localStorage.getItem('key');
+      let header = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'Authorization': 'Token ' + key
+      })
+      }
+      
+      this.http.patch(url, input, header).subscribe(
         (val) => {
           window.location.reload();
           console.log("PATCH call successful value returned in body", 
@@ -117,6 +137,7 @@ export class ManageMenuComponent implements OnInit {
         });
     }
 
+    
     name : string;
 
     addCategory() {
@@ -124,8 +145,17 @@ export class ManageMenuComponent implements OnInit {
         name: this.name,
         menu: "http://localhost:5000/api/menus/1/"
       };
+      
+      let key = window.localStorage.getItem('key')
+      let header = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'Authorization': 'Token ' + key
+        })
+      }
+      
       let url = 'http://localhost:5000/api/categories/';
-      this.http.post(url, post_data).toPromise().then(data => {
+      this.http.post(url, post_data, header).toPromise().then(data => {
         console.log("response!:");
         console.log(data);
         console.log(data['key']);

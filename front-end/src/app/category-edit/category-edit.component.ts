@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { FormGroup, FormControl } from '@angular/forms';
 
 @Component({
@@ -22,7 +22,16 @@ export class CategoryEditComponent implements OnInit {
   onFormSubmit(): void {
     console.log(this.categoryEditForm.value);
     let url = 'http://127.0.0.1:5000/api/categories/' + this.id + '/';
-    this.http.patch(url, this.categoryEditForm.value).toPromise().then(data => {
+    
+    let key = window.localStorage.getItem('key');
+    let header = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'Authorization': 'Token ' + key
+      })
+    }
+    
+    this.http.patch(url, this.categoryEditForm.value, header).toPromise().then(data => {
       this.router.navigate(['/management/menu']); 
     },
     error => {
