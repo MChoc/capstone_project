@@ -26,7 +26,7 @@ export class ItemComponent implements OnInit {
     ),
     this._Activatedroute.paramMap.subscribe(params => { 
       this.id = params.get('id');
-  });
+    });
   }
 
   name: string;

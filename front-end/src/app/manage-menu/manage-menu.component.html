@@ -9,7 +9,7 @@
                     <b>{{ category.name }}</b>
                 </div>
                 <div class="column2">
-                    <a routerLink = "edit" [class.activated]="currentUrl == '/management/menu'">
+                    <a [routerLink] = "['edit-category', category.id]" [class.activated]="currentUrl == '/management/menu'">
                         <i class="material-icons">edit</i>
                     </a>
                     <button (click)="archiveCategory( category.id )" class="archive">
@@ -30,7 +30,7 @@
                                 <p>${{ item.price }}</p>
                             </div>
                             <div class="column2">
-                                <a routerLink = "edit" [class.activated]="currentUrl == '/management/menu'">
+                                <a [routerLink] = "['edit-item', item.id]" [class.activated]="currentUrl == '/management/menu'">
                                     <i class="material-icons">edit</i>
                                 </a>
                                 <button (click)="archiveItem( item.id, item.name, item.price, item.description, item.category )" class="archive">
@@ -55,7 +55,7 @@
                                 <p>${{ item.price }}</p>
                             </div>
                             <div class="column2">
-                                <a routerLink = "edit" [class.activated]="currentUrl == '/management/menu'">
+                                <a [routerLink] = "['edit-item', item.id]" [class.activated]="currentUrl == '/management/menu'">
                                     <i class="material-icons">edit</i>
                                 </a>
                                 <button (click)="unarchiveItem( item.id, item.name, item.price, item.description, item.category )" class="archive">
@@ -73,7 +73,7 @@
 
 
             </div>
-            <a [routerLink] = "['item', category.id]" [class.activated]="currentUrl == '/management/menu'">Add Item</a>
+            <a [routerLink] = "['add-item', category.id]" [class.activated]="currentUrl == '/management/menu'">Add Item</a>
         </li>
     </ul>
 

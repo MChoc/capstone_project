@@ -1,1 +1,19 @@
-<p>category-edit works!</p>
+<div class="edit-form">
+    
+    <h2>EDIT CATEGORY DETAILS</h2>
+
+    <form ngNativeValidate [formGroup]="categoryEditForm" (ngSubmit)="onFormSubmit()">
+        <div [formGroup]="categoryEditForm" class="element">
+            <label>Category Name </label>
+            <input type="text" formControlName="name" required>
+        </div>
+
+        <button type="submit">Save</button>
+        
+        <div class="back">
+            <a href="management/menu">Cancel</a>
+        </div>
+    
+    </form>
+
+</div>

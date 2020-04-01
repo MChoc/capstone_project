@@ -27,14 +27,18 @@ export class UserEditComponent implements OnInit {
     console.log(this.userEditForm.value);
     let url = 'http://127.0.0.1:5000/api/accounts/' + this.id + '/';
     this.http.put(url, this.userEditForm.value).toPromise().then(data => {
-      this.success_message = 'User updated successfully!'
+      this.router.navigate(['/management/staff']); 
     },
     error => {
       this.error_message = "An error occured. User was not updated."
     })
   }
 
-  constructor(private _Activatedroute: ActivatedRoute, private http: HttpClient, private router: Router) { }
+  constructor(
+    private _Activatedroute: ActivatedRoute, 
+    private http: HttpClient, 
+    private router: Router
+    ) { }
 
   ngOnInit(): void {
 
