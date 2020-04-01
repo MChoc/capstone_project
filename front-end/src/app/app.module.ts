@@ -17,6 +17,12 @@ import { RegisterComponent } from './register/register.component';
 import { StaffComponent } from './staff/staff.component';
 import { LogoutComponent } from './logout/logout.component';
 import { UserEditComponent } from './user-edit/user-edit.component';
+import { ManageMenuComponent } from './manage-menu/manage-menu.component';
+import { AddItemComponent } from './add-item/add-item.component';
+import { CategoryComponent } from './category/category.component';
+import { CategoryEditComponent } from './category-edit/category-edit.component';
+import { ItemComponent } from './item/item.component';
+import { ItemEditComponent } from './item-edit/item-edit.component';
 
 
 @NgModule({
@@ -33,6 +39,12 @@ import { UserEditComponent } from './user-edit/user-edit.component';
     StaffComponent,
     LogoutComponent,
     UserEditComponent
+    ManageMenuComponent,
+    AddItemComponent,
+    CategoryComponent,
+    CategoryEditComponent,
+    ItemComponent,
+    ItemEditComponent
   ],
   imports: [
     BrowserModule,

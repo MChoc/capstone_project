@@ -1,6 +1,6 @@
 <div class = "footer">
     <div *ngIf="loggedIn; else elseBlock">
-        <a routerLink = "logout" [class.activated]="currentUrl == '/logout'">
+        <a class= "logout" routerLink = "logout" [class.activated]="currentUrl == '/logout'">
             <i class="material-icons">exit_to_app</i>
         </a>
     </div>

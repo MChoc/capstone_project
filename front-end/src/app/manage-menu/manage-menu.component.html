@@ -1,0 +1,46 @@
+<div>
+    
+    <h2>MENU</h2>
+    
+    <ul class="category-list">
+        <li *ngFor="let category of categories$" class="category">
+            <div class="row">
+                <div class="column1">
+                    <b>{{ category.name }}</b>
+                </div>
+                <div class="column2">
+                    <a routerLink = "edit" [class.activated]="currentUrl == '/management/menu'">
+                        <i class="material-icons">edit</i>
+                    </a>
+                    <button (click)="deleteCategory( category.id )" class="delete">
+                        <i class="material-icons">delete</i>
+                    </button>
+                </div>
+            </div>
+            <div class="items">
+                <ul *ngFor="let item of items$" class="item">
+                    <div *ngIf="category.url === item.category">
+                        <div class="row">
+                            <div class="column1">
+                                {{ item.name }}
+                                <p>{{ item.price }}</p>
+                            </div>
+                            <div class="column2">
+                                <a routerLink = "edit" [class.activated]="currentUrl == '/management/menu'">
+                                    <i class="material-icons">edit</i>
+                                </a>
+                                <button (click)="deleteItem( item.id )" class="delete">
+                                    <i class="material-icons">delete</i>
+                                </button>
+                            </div>
+                        </div>
+                    </div> 
+                </ul>
+            </div>
+            <a href="management/menu/item">Add Item</a>
+        </li>
+    </ul>
+
+    <button type="button" class="addCategory" onclick="window.location.href='/management/menu/category'">Add Category</button>
+
+</div>

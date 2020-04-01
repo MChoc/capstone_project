@@ -1,5 +1,9 @@
 .home {
     font-size: small;
     color:  #352728;
+}
+
+div {
     text-align: center;
+    margin: auto;
 }
