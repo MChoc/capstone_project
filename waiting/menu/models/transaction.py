@@ -1,4 +1,5 @@
 from accounts.models import CustomUser
+from menu.models.credit_card import CreditCard
 
 from django.db import models
 
@@ -10,3 +11,4 @@ class Transaction(models.Model):
         on_delete=models.CASCADE,
         related_name='customer'
     )
+    credit_card = models.ForeignKey(CreditCard, on_delete=models.CASCADE)
