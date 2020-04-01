@@ -11,4 +11,8 @@ class Transaction(models.Model):
         on_delete=models.CASCADE,
         related_name='customer'
     )
+    food_items = models.ManyToManyfield(
+        FoodItem,
+        through='TransactionFoodItem'
+    )
     credit_card = models.ForeignKey(CreditCard, on_delete=models.CASCADE)

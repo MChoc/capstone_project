@@ -17,10 +17,6 @@ class FoodItem(models.Model):
         on_delete=models.CASCADE
     )
     tags = models.ManyToManyField(Tag)
-    transactions = models.ManyToManyField(
-        Transaction,
-        through='TransactionFoodItem'
-    )
 
     def __str__(self):
         return self.name
