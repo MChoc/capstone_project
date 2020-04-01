@@ -8,6 +8,7 @@ import { ManagementHomeComponent } from './management-home/management-home.compo
 import { RegisterComponent } from './register/register.component';
 import { StaffComponent } from './staff/staff.component';
 import { LogoutComponent } from './logout/logout.component';
+import { UserEditComponent } from './user-edit/user-edit.component';
 import { ManageMenuComponent } from './manage-menu/manage-menu.component';
 import { AddItemComponent } from './add-item/add-item.component';
 import { CategoryComponent } from './category/category.component';
@@ -47,6 +48,9 @@ const routes: Routes = [
     component: RegisterComponent
   },
   {
+    path: 'management/staff/edit/:id',
+    component: UserEditComponent
+  },
     path: 'management/menu',
     component: ManageMenuComponent
   },

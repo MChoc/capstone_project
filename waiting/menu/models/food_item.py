@@ -10,6 +10,7 @@ class FoodItem(models.Model):
     name = models.CharField(max_length=200)
     active = models.BooleanField(default=True)
     price = models.DecimalField(max_digits=6, decimal_places=2)
+    description = models.CharField(max_length=2048)
     category = models.ForeignKey(
         Category,
         related_name='food_items',

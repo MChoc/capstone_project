@@ -9,11 +9,10 @@
                     <ul class="staff-list">
                         <li>{{ user.first_name }} {{ user.last_name }}</li>
                         <li>{{ user.user_type }}</li>
-                        <li>{{ user.id }}</li>
                     </ul>
                 </div>
                 <div class="column2">
-                    <a routerLink = "edit" [class.activated]="currentUrl == '/management/staff'">
+                    <a [routerLink] = "['edit', user.id]" [class.activated]="currentUrl == '/management/staff'">
                         <i class="material-icons">edit</i>
                     </a>
                     <button (click)="deleteUser( user.id )" class="delete">

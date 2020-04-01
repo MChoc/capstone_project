@@ -23,6 +23,7 @@ class FoodItemSerializer(serializers.HyperlinkedModelSerializer):
             'name',
             'active',
             'price',
+            'description',
             'category',
             'tags',
             'transactions'
