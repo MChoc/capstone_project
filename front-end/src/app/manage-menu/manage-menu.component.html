@@ -23,7 +23,8 @@
                         <div class="row">
                             <div class="column1">
                                 {{ item.name }}
-                                <p>{{ item.price }}</p>
+                                <p>{{ item.description }}</p>
+                                <p>${{ item.price }}</p>
                             </div>
                             <div class="column2">
                                 <a routerLink = "edit" [class.activated]="currentUrl == '/management/menu'">
