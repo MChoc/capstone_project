@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router'
+import {Location} from '@angular/common';
+
 
 @Component({
   selector: 'app-header',
@@ -9,12 +11,48 @@ import { Router, NavigationEnd } from '@angular/router'
 export class HeaderComponent implements OnInit {
 
   currentUrl: string;
+  loggedIn: boolean;
+  userType: string;
 
-  constructor(private router: Router) { 
-    router.events.subscribe((_: NavigationEnd) => this.currentUrl = _.url)
+  constructor(
+    private router: Router,
+    private _location: Location
+    ) { 
+    router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        if(localStorage.getItem('key')) {
+          this.loggedIn = true;
+          console.log('Logged In');
+          let user = JSON.parse(localStorage.getItem('user'));
+          this.userType = user['user_type'];
+          console.log('User type: ' + this.userType);
+        } else {
+          this.loggedIn = false;
+        }
+      }
+    });
   }
 
+  @Input() title:string="";
+
   ngOnInit(): void {
+  }
+
+
+  homePage() {
+    if(this.userType === 'MANAGER') {
+      this.router.navigate(['/management']);
+    } else if(this.userType === 'WAITER') {
+      this.router.navigate(['/waiter']);
+    } else if(this.userType === 'KITCHEN') {
+      this.router.navigate(['/kitchen']);
+    } else {
+      this.router.navigate(['/']); 
+    }
+  }
+
+  goBack() {
+    this._location.back();
   }
 
 }
