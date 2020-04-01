@@ -73,7 +73,7 @@
 
 
             </div>
-            <a href="management/menu/item">Add Item</a>
+            <a [routerLink] = "['item', category.id]" [class.activated]="currentUrl == '/management/menu'">Add Item</a>
         </li>
     </ul>
 

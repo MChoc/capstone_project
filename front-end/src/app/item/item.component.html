@@ -1,1 +1,20 @@
-<p>item works!</p>
+<div class="register-form">
+    <h2>ADD MENU ITEM</h2>
+    <form ngNativeValidate (ngSubmit)="addItem()">
+        <input type="text" [(ngModel)]="name" name="name" placeholder="Item Name" required>
+        <input type="text" [(ngModel)]="description" name="description" placeholder="Item Description" required>
+        <input type="number" [(ngModel)]="price" name="price" min="1" placeholder="Price" required>        
+
+        <!-- 
+        <span><p>Is this item a drink?</p></span>
+        <span>
+            <select [(ngModel)]="itemType" name="itemType" required>
+                <option value="YES">Yes</option>
+                <option value="NO">No</option>
+            </select>
+        </span>
+        -->
+        
+        <button type="submit">Save</button>
+    </form>
+</div>

@@ -64,7 +64,7 @@ const routes: Routes = [
     component: CategoryComponent
   },
   {
-    path: 'management/menu/item',
+    path: 'management/menu/item/:id',
     component: ItemComponent
   }
 
