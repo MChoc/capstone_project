@@ -111,3 +111,26 @@ ul, li{
 p {
     font-size: small;
 }
+
+.archived-category-list {
+    color: grey;
+    margin-top: 40px;
+}
+
+.archived-category {
+    margin-left: 8%;
+    width: 75%;
+    background-color: #fcf7fb;
+    padding: 20px;
+    border: solid 1px grey;
+    margin-top: 40px;
+    margin-bottom: 10px;
+}
+
+.archived-category-list p {
+    color: grey;
+}
+
+.pad {
+    margin-left: 8%;
+}

@@ -67,19 +67,66 @@ export class ManageMenuComponent implements OnInit {
       });   
     }
 
-    archiveCategory(id) {
 
+
+    archiveCategory(id) {
+      let input = { active: false };
+      let url = 'http://127.0.0.1:5000/api/categories/' + id + '/';
+      
+      let key = window.localStorage.getItem('key');
+      let header = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'Authorization': 'Token ' + key
+      })
+      }
+
+      this.http.patch(url, input, header).subscribe(
+        (val) => {
+          window.location.reload();  
+          console.log("PATCH call successful value returned in body", 
+                        val);
+        },
+        response => {
+            console.log("PATCH call in error", response);
+        },
+        () => {
+            console.log("The PATCH observable is now completed.");
+        });
     }
 
 
-    archiveItem(id, name, price, desc, cat) {
-      let input = {
-        name: name,
-        active: false,
-        price: price,
-        description: desc,
-        category: cat,
-      };
+
+    unarchiveCategory(id) {
+      let input = { active: true };
+      let url = 'http://127.0.0.1:5000/api/categories/' + id + '/';
+      
+      let key = window.localStorage.getItem('key');
+      let header = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'Authorization': 'Token ' + key
+      })
+      }
+      
+      this.http.patch(url, input, header).subscribe(
+        (val) => {
+          window.location.reload();
+          console.log("PATCH call successful value returned in body", 
+                        val);
+        },
+        response => {
+            console.log("PATCH call in error", response);
+        },
+        () => {
+            console.log("The PATCH observable is now completed.");
+        });
+    }
+
+
+
+    archiveItem(id) {
+      let input = { active: false };
       let url = 'http://127.0.0.1:5000/api/food_items/' + id + '/';
       
       let key = window.localStorage.getItem('key');
@@ -105,14 +152,8 @@ export class ManageMenuComponent implements OnInit {
     }
   
 
-    unarchiveItem(id, name, price, desc, cat) {
-      let input = {
-        name: name,
-        active: true,
-        price: price,
-        description: desc,
-        category: cat,
-      };
+    unarchiveItem(id) {
+      let input = { active: true };
       let url = 'http://127.0.0.1:5000/api/food_items/' + id + '/';
       
       let key = window.localStorage.getItem('key');
