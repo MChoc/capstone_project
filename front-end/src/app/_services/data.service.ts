@@ -43,4 +43,13 @@ export class DataService {
     return this.http.get(this.itemList, header)
   }
 
+
+  getCustomerCategories() {
+    return this.http.get(this.categoryList)
+  }
+
+  getCustomerItems() {
+    return this.http.get(this.itemList)
+  }
+
 }

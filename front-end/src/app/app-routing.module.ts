@@ -13,6 +13,8 @@ import { ManageMenuComponent } from './manage-menu/manage-menu.component';
 import { AddItemComponent } from './add-item/add-item.component';
 import { CategoryComponent } from './category/category.component';
 import { ItemComponent } from './item/item.component';
+import { ItemEditComponent } from './item-edit/item-edit.component';
+import { CategoryEditComponent } from './category-edit/category-edit.component';
 
 const routes: Routes = [
   {
@@ -64,10 +66,17 @@ const routes: Routes = [
     component: CategoryComponent
   },
   {
-    path: 'management/menu/item',
+    path: 'management/menu/add-item/:id',
     component: ItemComponent
+  },
+  {
+    path: 'management/menu/edit-item/:id',
+    component: ItemEditComponent
+  },
+  {
+    path: 'management/menu/edit-category/:id',
+    component: CategoryEditComponent
   }
-
 ];
 
 @NgModule({

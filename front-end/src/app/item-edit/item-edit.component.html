@@ -1,1 +1,37 @@
-<p>item-edit works!</p>
+<div class="edit-form">
+    
+    <h2>EDIT ITEM DETAILS</h2>
+
+    <form ngNativeValidate [formGroup]="itemEditForm" (ngSubmit)="onFormSubmit()">
+        <div [formGroup]="itemEditForm" class="element">
+            <label>Item Name </label>
+            <input type="text" formControlName="name" required>
+        </div>
+        <div [formGroup]="itemEditForm" class="element">
+            <label>Description </label>
+            <input type="text" formControlName="description" required>
+        </div>
+        <div [formGroup]="itemEditForm" class="element">
+            <label>Price </label>
+            <input type="number" min="1" step="0.01" formControlName="price" required>
+        </div>
+        
+        <!-- <div [formGroup]="itemEditForm" class="element">
+            <label>User Type </label>
+            <select formControlName="user_type" required>
+                <option value="MANAGER">Manager</option>
+                <option value="WAITER">Waiter</option>
+                <option value="KITCHEN">Kitchen</option>
+            </select>
+        </div>
+         -->
+
+        <button type="submit">Save</button>
+        
+        <div class="back">
+            <a href="management/menu">Cancel</a>
+        </div>
+    
+    </form>
+
+</div>
