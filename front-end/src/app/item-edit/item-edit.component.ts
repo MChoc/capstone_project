@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormControl } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { DataService } from '../_services/data.service';
 
 @Component({
   selector: 'app-item-edit',
@@ -12,6 +13,8 @@ export class ItemEditComponent implements OnInit {
 
   id: string;
   item: Object;
+  categories$: Object;
+  
   success_message = '';
   error_message = '';
 
@@ -45,10 +48,14 @@ export class ItemEditComponent implements OnInit {
   constructor(
     private _Activatedroute: ActivatedRoute, 
     private http: HttpClient, 
-    private router: Router
+    private router: Router,
+    private data : DataService
   ) { }
 
   ngOnInit(): void {
+    this.data.getCategories().subscribe(
+      data => this.categories$ = data,
+    ),
     this._Activatedroute.paramMap.subscribe(params => { 
       this.id = params.get('id');
     });
