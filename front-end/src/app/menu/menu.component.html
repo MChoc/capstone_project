@@ -10,7 +10,7 @@
           <div class="w3-container menu w3-padding-48 w3-card" >
               <ul *ngFor="let item of items$" class="item">
                 <div *ngIf="category.url === item.category">
-                  <a [routerLink] = "['add', item.name]" [class.activated]="currentUrl == ''">{{ item.name }}</a>
+                  <a [routerLink] = "['add', item.id]" [class.activated]="currentUrl == ''">{{ item.name }}</a>
                   <p>{{ item.description }}</p> 
                   <p>${{ item.price }}</p>
                 </div> 
