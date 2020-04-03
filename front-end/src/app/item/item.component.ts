@@ -32,7 +32,7 @@ export class ItemComponent implements OnInit {
   name: string;
   description: string;
   price: number;
-  drink: string;
+  itemType: string;
 
   url = 'http://127.0.0.1:5000/api/food_items/';
 
@@ -55,6 +55,18 @@ export class ItemComponent implements OnInit {
     this.http.post(this.url, post_data, header).toPromise().then(data => {
       console.log("response!:");
       console.log(data);
+      console.log("URL =" + data['url']);
+      if(this.itemType === 'YES') {
+        let drink_data = {
+          food_item : data['url'],
+        };
+        let drinkURL = 'http://127.0.0.1:5000/api/drinks/';
+        this.http.post(drinkURL, drink_data, header).toPromise().then(data => {
+        },
+        error=>{
+          console.log(error.error);
+        });
+      }
       this.router.navigate(['/management/menu']); 
     },
     error=> {
