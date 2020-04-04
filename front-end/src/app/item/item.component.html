@@ -5,7 +5,6 @@
         <input type="text" [(ngModel)]="description" name="description" placeholder="Item Description" required>
         <input type="number" [(ngModel)]="price" name="price" min="1" step="0.01" placeholder="Price" required>        
 
-        <!-- 
         <span><p>Is this item a drink?</p></span>
         <span>
             <select [(ngModel)]="itemType" name="itemType" required>
@@ -13,13 +12,12 @@
                 <option value="NO">No</option>
             </select>
         </span>
-        -->
         
         <button type="submit">Save</button>
        
         <div class="back">
             <a href="management/menu">Cancel</a>
         </div>
-        
+
     </form>
 </div>

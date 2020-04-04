@@ -15,16 +15,18 @@
             <label>Price </label>
             <input type="number" min="1" step="0.01" formControlName="price" required>
         </div>
-        
-        <!-- <div [formGroup]="itemEditForm" class="element">
-            <label>User Type </label>
-            <select formControlName="user_type" required>
-                <option value="MANAGER">Manager</option>
-                <option value="WAITER">Waiter</option>
-                <option value="KITCHEN">Kitchen</option>
+
+        <div [formGroup]="itemEditForm" class="element">
+            <label>Category </label>
+            <select formControlName="category" required>
+                 
+                    <option *ngFor="let category of categories$" value="{{ category.url }}">
+                        {{ category.name }}
+                    </option>
+                
             </select>
         </div>
-         -->
+        
 
         <button type="submit">Save</button>
         
