@@ -8,6 +8,7 @@ from menu.models.tag import Tag
 from menu.models.transaction import Transaction
 from menu.models.transaction_food_item import TransactionFoodItem
 from menu.models.assistance import Assistance
+from menu.models.credit_card import CreditCard
 
 from django.contrib import admin
 
@@ -22,3 +23,4 @@ admin.site.register(Tag)
 admin.site.register(Transaction)
 admin.site.register(TransactionFoodItem)
 admin.site.register(Assistance)
+admin.site.register(CreditCard)
