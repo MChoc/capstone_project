@@ -24,7 +24,13 @@ export class CartService {
     return this.items;
   }
 
-  // TODO: add remove from cart!
+  removeFromCart(item) {
+    const index: number = this.items.indexOf(item);
+    if (index !== -1) {
+      this.items.splice(index, 1);
+    }
+    window.sessionStorage.setItem('cart_items', JSON.stringify(this.items));
+  }
 
   constructor() { 
     let cart_items = window.sessionStorage.getItem('cart_items');

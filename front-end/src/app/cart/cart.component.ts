@@ -8,7 +8,8 @@ import { CartService } from '../cart.service';
 })
 export class CartComponent implements OnInit {
 
-  items;
+  items = [];
+  total_price = 0;
 
   constructor(
     private cartService: CartService,
@@ -16,7 +17,15 @@ export class CartComponent implements OnInit {
 
   ngOnInit(): void {
     this.items = this.cartService.getItems();
-    console.log("CART ITEMS: " + this.items);
+    this.items.sort((a,b) => a.name.localeCompare(b.name));
+    for(let item of this.items) {
+      this.total_price += parseFloat(item.price);
+    }
+  }
+
+  deleteFromCart(item): void {
+    this.cartService.removeFromCart(item);
+    window.location.reload();
   }
 
 }
