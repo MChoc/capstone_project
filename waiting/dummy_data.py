@@ -67,7 +67,7 @@ print("Created admin")
 # Populate table with managers
 managers = []
 for i in range(1,5):
-    manager = get_user_model().objects.create(
+    manager = get_user_model().objects.create_superuser(
         username='Manager' + str(i),
         password='Manager' + str(i),
         first_name='Manager' + str(i),
@@ -80,7 +80,7 @@ for i in range(1,5):
 # Populate table with customers
 customers = []
 for i in range(0,10):
-    customer = get_user_model().objects.create(
+    customer = get_user_model().objects.create_user(
         username='Customer' + str(i),
         password='Customer' + str(i),
         first_name='Customer' + str(i),
@@ -93,7 +93,7 @@ for i in range(0,10):
 # Populate table with kitchen staff
 kitchens = []
 for i in range(0,10):
-    kitchen = get_user_model().objects.create(
+    kitchen = get_user_model().objects.create_user(
         username='Kitchen' + str(i),
         password='Kitchen' + str(i),
         first_name='Kitchen' + str(i),
@@ -106,7 +106,7 @@ for i in range(0,10):
 # Populate table with waiters
 waiters = []
 for i in range(0,10):
-    waiter = get_user_model().objects.create(
+    waiter = get_user_model().objects.create_user(
         username='Waiter' + str(i),
         password='Waiter' + str(i),
         first_name='Waiter' + str(i),
