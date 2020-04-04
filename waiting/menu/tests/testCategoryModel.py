@@ -1,4 +1,6 @@
-from menu import models, serializers
+from menu.models.menu import Menu
+from menu.models.category import Category
+from menu.serializers.category_serializer import CategorySerializer
 
 from django.contrib.auth.models import User
 from rest_framework import status
@@ -10,27 +12,13 @@ from rest_framework.test import APITestCase, APIRequestFactory
 class TestFoodItemModel(APITestCase):
     @classmethod
     def setUpTestData(cls):
-        menu = models.Menu.objects.create(
-            name='Waiting Cafe'
-        )
-
-        category = models.Category.objects.create(
-            name='Drinks',
-            menu=menu
-        )
-
-        food_item = models.FoodItem.objects.create(
-            name='Cappuccino',
-            price=5.00,
-            category=category
-        )
-
-        user = User.objects.create_user('user', '', 'user')
+        fixtures = ['initial_db.json']
 
     def setUp(self):
         login_url = '/rest-auth/login/'
-        content = {'username': 'user', 'password': 'user'}
+        content = {'username': 'Customer1', 'password': 'Customer1'}
         response = self.client.post(login_url, data=content, format='json')
+        print(response)
         self.client.credentials(HTTP_AUTHORIZATION='Token ' + response.data['key'])
 
     def tearDown(self):
@@ -42,11 +30,11 @@ class TestFoodItemModel(APITestCase):
         factory = APIRequestFactory()
         request = factory.post(url)
         
-        food_items = models.Category.objects.all()
+        food_items = Category.objects.all()
         serializer_context = {
             'request': Request(request)
         }
-        serializer = serializers.CategorySerializer(
+        serializer = CategorySerializer(
             food_items,
             context=serializer_context,
             many=True
