@@ -18,13 +18,12 @@ export class CartComponent implements OnInit {
   ngOnInit(): void {
     this.items = this.cartService.getItems();
     this.items.sort((a,b) => a.name.localeCompare(b.name));
-    for(let item of this.items) {
-      this.total_price += parseFloat(item.price);
-    }
+    this.total_price = this.cartService.getTotalPrice();
   }
 
   deleteFromCart(item): void {
     this.cartService.removeFromCart(item);
+    this.total_price = this.cartService.getTotalPrice();
     window.location.reload();
   }
 

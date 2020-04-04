@@ -7,8 +7,10 @@ export class CartService {
   
   items = [];
 
-  addToCart(product) {
-    this.items.push(product);
+  addToCart(product, quantity) {
+    for(var i = 0; i < quantity; i++) {
+      this.items.push(product);
+    }
     console.log("ITEM ADDED TO CART:");
     console.log(this.items);
     window.sessionStorage.setItem('cart_items', JSON.stringify(this.items));
@@ -30,6 +32,16 @@ export class CartService {
       this.items.splice(index, 1);
     }
     window.sessionStorage.setItem('cart_items', JSON.stringify(this.items));
+  }
+
+  getTotalPrice() {
+
+    let total_price = 0.0;
+    for(let item of this.items) {
+      total_price += parseFloat(item.price);
+    }
+
+    return total_price;
   }
 
   constructor() { 
