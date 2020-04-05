@@ -41,6 +41,14 @@ button[type=submit] {
     background-color: #352728e0;
   }
 
+  .back {
+    text-align: center;
+  }
+
+  a {
+    color: #352728 ; 
+  }
+
   p {
       text-align: left;
       font-size: small;

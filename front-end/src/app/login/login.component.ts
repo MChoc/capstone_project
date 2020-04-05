@@ -41,7 +41,7 @@ export class LoginComponent implements OnInit {
     this.http.post(this.url, post_data).toPromise().then(data => {
       //this.router.navigate([this.returnUrl]);
       window.localStorage.setItem('key', data['key']);
-      window.localStorage.setItem('user', data['user']);
+      window.localStorage.setItem('user', JSON.stringify(data['user']));
       console.log('logged in');
       if(data['user']['user_type'] === 'MANAGER') {
         this.router.navigate(['/management']);
