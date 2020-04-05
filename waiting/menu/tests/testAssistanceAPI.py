@@ -14,7 +14,7 @@ from rest_framework.test import APITestCase, APIRequestFactory
 
 class TestCategoryModel(APITestCase):
     """
-    Testing the Menu model and its API returns
+    Testing the Assistance model and its API returns
 
     FYI
         GET: LIST/RETRIEVE

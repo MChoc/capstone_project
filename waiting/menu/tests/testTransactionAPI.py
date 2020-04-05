@@ -1,18 +1,23 @@
+import datetime
+import pytz
+
 from collections import OrderedDict
 
-from menu.models.category import Menu
-from menu.serializers.menu_serializer import MenuSerializer
+from menu.models.credit_card import CreditCard
+from menu.models.transaction import Transaction
+from menu.serializers.transaction_serializer import TransactionSerializer
 
 from django.contrib.auth import get_user_model
 
 from rest_framework import status
+from rest_framework.reverse import reverse
 from rest_framework.request import Request
 from rest_framework.test import APITestCase, APIRequestFactory
 
 
-class TestCategoryModel(APITestCase):
+class TestTransactionModel(APITestCase):
     """
-    Testing the Menu model and its API returns
+    Testing the Transaction model and its API returns
 
     FYI
         GET: LIST/RETRIEVE
@@ -58,15 +63,15 @@ class TestCategoryModel(APITestCase):
         GET data is same as database data.
     """
     def test_list(self):
-        url = '/api/menus/'
+        url = '/api/transaction/'
         factory = APIRequestFactory()
         request = factory.post(url)
         
-        objs = Menu.objects.all()
+        objs = Transaction.objects.all()
         serializer_context = {
             'request': Request(request),
         }
-        serializer = MenuSerializer(
+        serializer = TransactionSerializer(
             objs,
             context=serializer_context,
             many=True,
@@ -87,23 +92,31 @@ class TestCategoryModel(APITestCase):
         Object exists in database.
     """
     def test_create(self):
-        url = '/api/menus/'
+        url = '/api/transaction/'
         factory = APIRequestFactory()
         request = factory.post(url)
         
-        init_count = Menu.objects.count()
+        init_count = Transaction.objects.count()
 
         body = {
-            'name': 'Test Name',
-            'active': True,
+            'customer': reverse(
+                'customuser-detail',
+                args=[get_user_model().objects.get(username='Customer1').pk,],
+                request=request,
+            ),
+            'credit_card': reverse(
+                'creditcard-detail',
+                args=[CreditCard.objects.get(id=1).pk,],
+                request=request,
+            ),
         }
         response = self.client.post(url, body, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 
-        post_count = Menu.objects.count()
+        post_count = Transaction.objects.count()
         self.assertEqual(post_count, init_count+1)
 
-        post_obj = Menu.objects.get(name='Test Name')
+        post_obj = Transaction.objects.get(id=post_count)
         self.assertIsNotNone(post_obj)
 
     """
@@ -115,15 +128,15 @@ class TestCategoryModel(APITestCase):
         GET data is same as in database.
     """
     def test_retrieve(self):
-        url = '/api/menus/1/'
+        url = '/api/transaction/1/'
         factory = APIRequestFactory()
         request = factory.post(url)
         
-        obj = [Menu.objects.get(id=1),]
+        obj = [Transaction.objects.get(id=1),]
         serializer_context = {
             'request': Request(request),
         }
-        serializer = MenuSerializer(
+        serializer = TransactionSerializer(
             obj,
             context=serializer_context,
             many=True,
@@ -143,18 +156,30 @@ class TestCategoryModel(APITestCase):
         All fields have been changed and content is correct.
     """
     def test_update(self):
-        url = '/api/menus/1/'
+        url = '/api/transaction/1/'
+        factory = APIRequestFactory()
+        request = factory.post(url)
         
+        customer = get_user_model().objects.get(username='Customer1')
+        credit_card = CreditCard.objects.get(id=1)
         body = {
-            'name': 'Test Change',
-            'active': False,
+            'customer': reverse(
+                'customuser-detail',
+                args=[customer.pk,],
+                request=request,
+            ),
+            'credit_card': reverse(
+                'creditcard-detail',
+                args=[credit_card.pk,],
+                request=request,
+            ),
         }
         response = self.client.put(url, body, format='json')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
-        obj = Menu.objects.get(id=1)
-        self.assertEqual(obj.name, 'Test Change')
-        self.assertFalse(obj.active)
+        obj = Transaction.objects.get(id=1)
+        self.assertEqual(obj.customer, customer)
+        self.assertEqual(obj.credit_card, credit_card)
 
     """
     Testing UPDATE (partial)
@@ -165,18 +190,23 @@ class TestCategoryModel(APITestCase):
         Correct field/s have been changed and content correct.
     """
     def test_partial_update(self):
-        url = '/api/menus/1/'
+        url = '/api/transaction/1/'
         factory = APIRequestFactory()
         request = factory.post(url)
 
+        credit_card = CreditCard.objects.get(id=2)
         body = {
-            'name': 'Test Name',
+            'credit_card': reverse(
+                'creditcard-detail',
+                args=[credit_card.pk,],
+                request=request,
+            ),
         }
         response = self.client.patch(url, body, format='json')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
-        obj = Menu.objects.get(id=1)
-        self.assertEqual(obj.name, 'Test Name')
+        obj = Transaction.objects.get(id=1)
+        self.assertEqual(obj.credit_card, credit_card)
 
     """
     Testing DESTROY
@@ -187,8 +217,8 @@ class TestCategoryModel(APITestCase):
         Correct object has been deleted from database.
     """
     def test_destroy(self):
-        url = '/api/menus/1/'
+        url = '/api/transaction/1/'
 
         response = self.client.delete(url)
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
-        self.assertRaises(Menu.DoesNotExist, Menu.objects.get, id=1)
+        self.assertRaises(Transaction.DoesNotExist, Transaction.objects.get, id=1)

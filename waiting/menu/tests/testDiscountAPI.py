@@ -1,18 +1,19 @@
 from collections import OrderedDict
 
-from menu.models.category import Menu
-from menu.serializers.menu_serializer import MenuSerializer
+from menu.models.discount import Discount
+from menu.serializers.discount_serializer import DiscountSerializer
 
 from django.contrib.auth import get_user_model
 
 from rest_framework import status
+from rest_framework.reverse import reverse
 from rest_framework.request import Request
 from rest_framework.test import APITestCase, APIRequestFactory
 
 
-class TestCategoryModel(APITestCase):
+class TestDiscountModel(APITestCase):
     """
-    Testing the Menu model and its API returns
+    Testing the Discount model and its API returns
 
     FYI
         GET: LIST/RETRIEVE
@@ -58,15 +59,15 @@ class TestCategoryModel(APITestCase):
         GET data is same as database data.
     """
     def test_list(self):
-        url = '/api/menus/'
+        url = '/api/discounts/'
         factory = APIRequestFactory()
         request = factory.post(url)
         
-        objs = Menu.objects.all()
+        objs = Discount.objects.all()
         serializer_context = {
             'request': Request(request),
         }
-        serializer = MenuSerializer(
+        serializer = DiscountSerializer(
             objs,
             context=serializer_context,
             many=True,
@@ -87,23 +88,23 @@ class TestCategoryModel(APITestCase):
         Object exists in database.
     """
     def test_create(self):
-        url = '/api/menus/'
+        url = '/api/discounts/'
         factory = APIRequestFactory()
         request = factory.post(url)
         
-        init_count = Menu.objects.count()
+        init_count = Discount.objects.count()
 
         body = {
             'name': 'Test Name',
-            'active': True,
+            'amount': 10,
         }
         response = self.client.post(url, body, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 
-        post_count = Menu.objects.count()
+        post_count = Discount.objects.count()
         self.assertEqual(post_count, init_count+1)
 
-        post_obj = Menu.objects.get(name='Test Name')
+        post_obj = Discount.objects.get(name='Test Name')
         self.assertIsNotNone(post_obj)
 
     """
@@ -115,15 +116,15 @@ class TestCategoryModel(APITestCase):
         GET data is same as in database.
     """
     def test_retrieve(self):
-        url = '/api/menus/1/'
+        url = '/api/discounts/1/'
         factory = APIRequestFactory()
         request = factory.post(url)
         
-        obj = [Menu.objects.get(id=1),]
+        obj = [Discount.objects.get(id=1),]
         serializer_context = {
             'request': Request(request),
         }
-        serializer = MenuSerializer(
+        serializer = DiscountSerializer(
             obj,
             context=serializer_context,
             many=True,
@@ -143,18 +144,20 @@ class TestCategoryModel(APITestCase):
         All fields have been changed and content is correct.
     """
     def test_update(self):
-        url = '/api/menus/1/'
+        url = '/api/discounts/1/'
         
         body = {
             'name': 'Test Change',
-            'active': False,
+            'amount': 20,
+            'discount': 'DOLLAR',
         }
         response = self.client.put(url, body, format='json')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
-        obj = Menu.objects.get(id=1)
+        obj = Discount.objects.get(id=1)
         self.assertEqual(obj.name, 'Test Change')
-        self.assertFalse(obj.active)
+        self.assertEqual(obj.amount, 20)
+        # TODO: self.assertEqual(obj.discount, 'DOLLAR')
 
     """
     Testing UPDATE (partial)
@@ -165,7 +168,7 @@ class TestCategoryModel(APITestCase):
         Correct field/s have been changed and content correct.
     """
     def test_partial_update(self):
-        url = '/api/menus/1/'
+        url = '/api/discounts/1/'
         factory = APIRequestFactory()
         request = factory.post(url)
 
@@ -175,7 +178,7 @@ class TestCategoryModel(APITestCase):
         response = self.client.patch(url, body, format='json')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
-        obj = Menu.objects.get(id=1)
+        obj = Discount.objects.get(id=1)
         self.assertEqual(obj.name, 'Test Name')
 
     """
@@ -187,8 +190,8 @@ class TestCategoryModel(APITestCase):
         Correct object has been deleted from database.
     """
     def test_destroy(self):
-        url = '/api/menus/1/'
+        url = '/api/discounts/1/'
 
         response = self.client.delete(url)
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
-        self.assertRaises(Menu.DoesNotExist, Menu.objects.get, id=1)
+        self.assertRaises(Discount.DoesNotExist, Discount.objects.get, id=1)

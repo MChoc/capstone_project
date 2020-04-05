@@ -14,7 +14,7 @@ from rest_framework.test import APITestCase, APIRequestFactory
 
 class TestCategoryModel(APITestCase):
     """
-    Testing the Menu model and its API returns
+    Testing the Category model and its API returns
 
     FYI
         GET: LIST/RETRIEVE
@@ -158,11 +158,7 @@ class TestCategoryModel(APITestCase):
         body = {
             'name': 'Test Change',
             'active': False,
-            'menu': reverse(
-                'menu-detail',
-                args=[menu.pk,],
-                request=request,
-            ),
+            'menu': reverse('menu-detail', args=[menu.pk,], request=request),
         }
         response = self.client.put(url, body, format='json')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
@@ -182,17 +178,15 @@ class TestCategoryModel(APITestCase):
     """
     def test_partial_update(self):
         url = '/api/categories/1/'
-        factory = APIRequestFactory()
-        request = factory.post(url)
 
         body = {
-            'name': 'Test Name',
+            'name': 'Test Change',
         }
         response = self.client.patch(url, body, format='json')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
         obj = Category.objects.get(id=1)
-        self.assertEqual(obj.name, 'Test Name')
+        self.assertEqual(obj.name, 'Test Change')
 
     """
     Testing DESTROY
