@@ -23,7 +23,11 @@ export class CartComponent implements OnInit {
 
   deleteFromCart(item): void {
     this.cartService.removeFromCart(item);
-    this.total_price = this.cartService.getTotalPrice();
+    window.location.reload();
+  }
+
+  clearCart(): void {
+    this.cartService.clearCart();
     window.location.reload();
   }
 
