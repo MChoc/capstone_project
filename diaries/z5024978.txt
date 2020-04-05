@@ -29,4 +29,9 @@ Week 5:
 * Worked on integrating the front-end and back-end
 
 Week 6:
-* 
+* Implemented user editing by managers.
+
+Week 7:
+* Worked on customers adding items to a cart from the menu.
+  * customers can add items to their cart, remove items from their cart, and clear their entire cart.
+* Still need to work on adding drinks and extras to the cart.
