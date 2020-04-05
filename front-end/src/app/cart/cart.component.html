@@ -5,7 +5,7 @@
     <td>Price</td>
     <td>Remove</td>
     <tr *ngFor="let item of items">
-        <td>{{ item.name }}</td>
+        <td><a href="/add/{{ item.id }}">{{ item.name }}</a></td>
         <td>{{ item.price }}</td>
         <td>
             <button (click)="deleteFromCart(item)" class="delete">
