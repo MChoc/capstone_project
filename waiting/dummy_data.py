@@ -168,3 +168,14 @@ for i in range(0,5):
         'discount': discounts[i]
     })
     print(f"Created {transaction}")
+
+assistances = []
+for i in range(0,5):
+    assistance = Assistance.objects.create(
+        transaction=transactions[i],
+        waiter=waiters[i],
+        problem='Problem ' + str(i),
+        notes='Notes ' + str(i),
+    )
+    assistances.append(assistance)
+    print(f'Created {assistance}')
