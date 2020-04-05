@@ -22,13 +22,26 @@ b {
     margin-bottom: 10px;
 }
 
-.row {
+.row, .row2 {
     display: flex;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
 }
 
-.addCategory {
-    width: 30%;
+.row2 {
+    color: grey;
+    padding-top: 20px;
+}
+
+.row2 p, .line p{
+    color: grey;
+}
+
+.line {
+    border-top: solid 1px grey;
+    padding-bottom: 20px;
+}
+
+.save {
     background-color: #352728;
     color: #fcf7fb;
     padding: 10px;
@@ -37,7 +50,18 @@ b {
     cursor: pointer;
     outline: none;
     margin-top: 20px;
-    margin-left: 35%;
+    margin-left: 10px;
+}
+
+input[type=text] {
+    background-color: #fcf7fb;
+    color: #352728;
+    padding: 10px;
+    border: solid 1px #352728;
+    border-radius: 4px;
+    outline: none;
+    margin-top: 20px;
+    margin-left: 8%;
 }
 
 a, button {
@@ -86,5 +110,27 @@ ul, li{
 
 p {
     font-size: small;
+}
+
+.archived-category-list {
     color: grey;
+    margin-top: 40px;
+}
+
+.archived-category {
+    margin-left: 8%;
+    width: 75%;
+    background-color: #fcf7fb;
+    padding: 20px;
+    border: solid 1px grey;
+    margin-top: 40px;
+    margin-bottom: 10px;
+}
+
+.archived-category-list p {
+    color: grey;
+}
+
+.pad {
+    margin-left: 8%;
 }
