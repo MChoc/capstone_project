@@ -9,7 +9,7 @@ import { CartService } from '../cart.service';
 export class CartComponent implements OnInit {
 
   items = [];
-  total_price = 0;
+  total_price: string;
 
   constructor(
     private cartService: CartService,

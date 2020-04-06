@@ -41,7 +41,7 @@ export class CartService {
       total_price += parseFloat(item.price);
     }
 
-    return total_price;
+    return total_price.toFixed(2);
   }
 
   constructor() { 
