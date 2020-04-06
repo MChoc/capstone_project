@@ -1,1 +1,38 @@
-<p>checkout works!</p>
+<h2>Checkout</h2>
+Total price: ${{ total_price }}
+<br/>
+<a href="cart">Back to Cart</a>
+<br/><br/>
+<form ngNativeValidate [formGroup]="checkoutForm" (ngSubmit)="onFormSubmit()">
+    <div class="error">{{ error_message }}</div>
+    <div [formGroup]="checkoutForm">
+        <label>Card Number</label>
+        <input type="text" formControlName="card_number" required>
+    </div>
+    <div [formGroup]="checkoutForm">
+        <label>Expiry Month</label>
+        <select formControlName="expiry_month" required>
+            <option value="1">January</option>
+            <option value="2">February</option>
+            <option value="3">March</option>
+            <option value="4">April</option>
+            <option value="5">May</option>
+            <option value="6">June</option>
+            <option value="7">July</option>
+            <option value="8">August</option>
+            <option value="9">September</option>
+            <option value="10">October</option>
+            <option value="11">November</option>
+            <option value="12">December</option>
+        </select>
+    </div>
+    <div [formGroup]="checkoutForm">
+        <label>Expiry Year</label>
+        <input type="text" formControlName="expiry_year" required>
+    </div>
+    <div [formGroup]="checkoutForm">
+        <label>cvs</label>
+        <input type="text" formControlName="cvs" required>
+    </div>
+    <button type="submit">Place Order Now</button>
+</form>

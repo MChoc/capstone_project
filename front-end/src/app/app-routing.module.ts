@@ -16,6 +16,7 @@ import { ItemComponent } from './item/item.component';
 import { ItemEditComponent } from './item-edit/item-edit.component';
 import { CategoryEditComponent } from './category-edit/category-edit.component';
 import { CartComponent } from './cart/cart.component';
+import {CheckoutComponent} from './checkout/checkout.component';
 
 const routes: Routes = [
   {
@@ -81,6 +82,10 @@ const routes: Routes = [
   {
     path: 'cart',
     component: CartComponent
+  },
+  {
+    path:'checkout',
+    component: CheckoutComponent
   },
 ];
 
