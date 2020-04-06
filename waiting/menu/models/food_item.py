@@ -15,6 +15,7 @@ class FoodItem(models.Model):
         related_name='food_items',
         on_delete=models.CASCADE
     )
+    extras = models.ManyToManyField(Extra)
     tags = models.ManyToManyField(Tag)
 
     def __str__(self):
