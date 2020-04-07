@@ -30,6 +30,31 @@ export class ManageMenuComponent implements OnInit {
       ),
       this.data.getItems().subscribe(
         data => this.items$ = data,
+      ),
+      this.data.getMenus().subscribe(
+        data => {
+          console.log(data['length']);
+          if (data['length'] === 0) {
+            let post_data = {
+              name: 'MENU',
+            };
+            let key = window.localStorage.getItem('key')
+            let header = {
+            headers: new HttpHeaders({
+              'Content-Type':  'application/json',
+              'Authorization': 'Token ' + key
+              })
+            }
+            let url = 'http://localhost:5000/api/menus/';
+            this.http.post(url, post_data, header).toPromise().then(data => {
+              window.localStorage.setItem('menu', data['id']);
+              window.location.reload();
+            },
+            error=> {
+              console.log(error.error);
+            });
+          }
+        }
       )
     }
   
@@ -182,9 +207,10 @@ export class ManageMenuComponent implements OnInit {
     name : string;
 
     addCategory() {
+      let menu = window.localStorage.getItem('menu');
       let post_data = {
         name: this.name,
-        menu: "http://localhost:5000/api/menus/1/"
+        menu: "http://localhost:5000/api/menus/" + menu + "/"
       };
       
       let key = window.localStorage.getItem('key')
