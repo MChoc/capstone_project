@@ -11,12 +11,12 @@ class CreditCardViewSet(viewsets.ModelViewSet):
     queryset = CreditCard.objects.all()
     serializer_class = CreditCardSerializer
 
-    """
-    An extra action that validates the incoming credit card data and checks
-        if it exists in the database.
-    """
     @action(detail=False, methods=['POST'])
     def validate(self, request, *args, **kwargs):
+        """
+        An extra action that validates the incoming credit card data and checks
+            if it exists in the database.
+        """
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
 
