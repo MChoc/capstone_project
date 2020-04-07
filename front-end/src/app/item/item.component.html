@@ -2,23 +2,43 @@
     <h2>ADD MENU ITEM</h2>
     <form ngNativeValidate (ngSubmit)="addItem()">
         <input type="text" [(ngModel)]="name" name="name" placeholder="Item Name" required>
-        <input type="text" [(ngModel)]="description" name="description" placeholder="Item Description" >
-        <input type="number" [(ngModel)]="price" name="price" min="0" step="0.01" placeholder="Price" required>        
+        <input type="text" [(ngModel)]="description" name="description" placeholder="Item Description" >        
 
-        <span><p>Does this item come in different sizes?</p></span>
+        
+
+        <input type="number" [(ngModel)]="price" name="price" min="0" step="0.01" placeholder="Price (Regular / Small)" required>
+        <span><p>Optional:</p></span>
+        <span>
+        <input type="number" [(ngModel)]="priceMedium" name="priceMedium" min="0" step="0.01" placeholder="Price (Medium)" >
+        </span>
+        <span><p>Optional:</p></span>
+        <span>
+        <input type="number" [(ngModel)]="priceLarge" name="priceLarge" min="0" step="0.01" placeholder="Price (Large)" >
+        </span>
+
+        <!-- <span><p>This item is available in different sizes</p></span>
         <span>
             <select [(ngModel)]="itemSize" name="itemSize" required>
                 <option value="NO">No</option>
-                <option value="SL">Yes (Small / Large)</option>
-                <option value="SML">Yes (Small / Medium / Large)</option>
+                <option value="YES">Yes (Small / Medium / Large)</option>
             </select>
-        </span>
+        </span> -->
 
         <span><p>Does this item come with optional extras?</p></span>
         <span>
-            <ul *ngFor="let extra of extras$" class="extras">
-                <input type="checkbox" value="{{extra.id}}">{{extra.name}} (${{extra.price}})<br>
-            </ul>
+            <!-- <ng-multiselect-dropdown
+                name="extra"
+                [placeholder]="Select Extras"
+                [data]="extras"
+                formControlName="extra"
+                [disabled]="disabled"
+                [settings]="dropdownSettings"
+                (onSelect)="onItemSelect($event)">
+            </ng-multiselect-dropdown> -->
+            
+            <!-- <div *ngFor="let extra of extras$">
+                <input type="checkbox" [formControl]="extras"> {{extra.name}} (${{extra.price}})<br>
+            </div> -->
         </span>
         
         <button type="submit">Save</button>
@@ -29,3 +49,4 @@
 
     </form>
 </div>
+
