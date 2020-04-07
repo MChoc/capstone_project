@@ -12,7 +12,7 @@
 
         <div class="items">
             <ul *ngFor="let extra of extras$" class="item">
-                <!-- <div *ngIf="extra.active"> -->
+                <div *ngIf="extra.active">
                     <div class="row">
                         
                         <div class="column1">
@@ -24,22 +24,22 @@
                             <a [routerLink] = "['edit-extra', extra.id]" [class.activated]="currentUrl == '/management/menu'">
                                 <i class="material-icons">edit</i>
                             </a>
-                            <!--<button (click)="archiveItem( item.id )" class="archive">
+                            <button (click)="archiveExtra( extra.id )" class="archive">
                                 <i class="material-icons">archive</i>
-                            </button> -->
+                            </button>
                             <button (click)="deleteExtra( extra.id )" class="delete">
                                 <i class="material-icons">delete</i>
                             </button>
                         </div>
                     
                     </div>
-                <!-- </div>  -->
+                </div>
             </ul>
 
             <div class="line">
                 <p>Archived Extras:</p>
                 <ul *ngFor="let extra of extras$" class="item">
-                    <!-- <div *ngIf="!extra.active"> -->
+                    <div *ngIf="!extra.active">
                         <div class="row2">
                         
                             <div class="column1">
@@ -51,16 +51,16 @@
                                 <a [routerLink] = "['edit-extra', extra.id]" [class.activated]="currentUrl == '/management/menu'">
                                     <i class="material-icons">edit</i>
                                 </a>
-                                <!--<button (click)="unarchiveItem( item.id )" class="archive">
+                                <button (click)="unarchiveExtra( extra.id )" class="archive">
                                     <i class="material-icons">add</i>
-                                </button>-->
+                                </button>
                                 <button (click)="deleteExtra( extra.id )" class="delete">
                                     <i class="material-icons">delete</i>
                                 </button>
                             </div>
                     
                         </div>
-                    <!-- </div>  -->
+                    </div>
                 </ul>
             </div>
             <a [routerLink] = "['add-extra']" [class.activated]="currentUrl == '/management/menu'">Add Extra</a>
