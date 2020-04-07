@@ -1,5 +1,3 @@
-from menu.models.food_item import FoodItem
-
 from django.db import models
 
 
