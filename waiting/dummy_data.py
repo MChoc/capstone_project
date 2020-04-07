@@ -2,7 +2,6 @@ from menu.models.menu import Menu
 from menu.models.category import Category
 from menu.models.food_item import FoodItem
 from menu.models.discount import Discount
-from menu.models.drink import Drink
 from menu.models.extra import Extra
 from menu.models.tag import Tag
 from menu.models.transaction import Transaction
@@ -18,10 +17,9 @@ from django.contrib.auth import get_user_model
 menu = Menu.objects.create(name='Waiting Cafe')
 print(f"Created {menu}")
 
-# Create categories and food items/drinks
+# Create categories and food items
 categories = []
 food_items = []
-drinks = []
 for i in range(0,10):
     category = Category.objects.create(
         name='Category ' + str(1),
@@ -43,12 +41,9 @@ for i in range(0,10):
                 name='Food item ' + str(i-5),
                 price='10.00', # TODO: use rand
                 description='Test description ' + str(i-5),
-                category=category
+                category=category,
+                size='LARGE'
             )
-            drink_item = Drink.objects.create(
-                    food_item=food_item,
-                    size='LARGE' # TODO: use rand
-                )
         food_items.append(food_item)
         print(f"Created {food_item}")
 
