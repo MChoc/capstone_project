@@ -4,6 +4,11 @@ from rest_framework import serializers
 
 
 class FoodItemSerializer(serializers.HyperlinkedModelSerializer):
+    extras = serializers.HyperlinkedRelatedField(
+        many=True,
+        read_only=True,
+        view_name='extra-detail'
+    )
     tags = serializers.HyperlinkedRelatedField(
         many=True,
         read_only=True,
@@ -14,5 +19,5 @@ class FoodItemSerializer(serializers.HyperlinkedModelSerializer):
         model = FoodItem
         fields = [
             'id', 'url', 'name', 'active', 'price', 'description', 'category',
-            'tags'
+            'extras', 'tags', 'size',
         ]

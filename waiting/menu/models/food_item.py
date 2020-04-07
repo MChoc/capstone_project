@@ -15,7 +15,21 @@ class FoodItem(models.Model):
         related_name='food_items',
         on_delete=models.CASCADE
     )
+    extras = models.ManyToManyField(Extra)
     tags = models.ManyToManyField(Tag)
+
+    SIZE_CHOICES = (
+        ('LARGE', 'L'),
+        ('MEDIUM', 'M'),
+        ('SMALL', 'S')
+    )
+    size = models.CharField(
+        max_length=8,
+        choices=SIZE_CHOICES,
+        default=None,
+        null=True,
+        blank=True
+    )
 
     def __str__(self):
         return self.name
