@@ -10,7 +10,7 @@ from menu.views.tag_viewset import TagViewSet
 from menu.views.transaction_viewset import TransactionViewSet
 from menu.views.transaction_food_item_viewset import TransactionFoodItemViewSet
 from menu.views.assistance_viewset import AssistanceViewSet
-from menu.views.credit_card_viewset import CreditCardViewSet
+from menu.views.credit_card_viewset import CreditCardViewSet, CreditCardValidateView
 
 
 router = routers.DefaultRouter()
@@ -27,5 +27,5 @@ router.register(r'credit_cards', CreditCardViewSet)
 
 app_name = 'menu'
 urlpatterns = [
-    path('', include((router.urls, app_name)))
+    path('credit_cards_validate/', CreditCardValidateView.as_view())
 ]
