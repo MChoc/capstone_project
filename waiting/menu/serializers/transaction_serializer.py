@@ -12,4 +12,5 @@ class TransactionSerializer(serializers.HyperlinkedModelSerializer):
     
     class Meta:
         model = Transaction
-        fields = ['id', 'url', 'date', 'customer', 'credit_card', 'food_items']
+        fields = ['id', 'url', 'active', 'date', 'customer', 'credit_card',
+                  'food_items']

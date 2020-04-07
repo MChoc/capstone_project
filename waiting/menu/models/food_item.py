@@ -26,7 +26,9 @@ class FoodItem(models.Model):
     size = models.CharField(
         max_length=8,
         choices=SIZE_CHOICES,
-        default='MEDIUM'
+        default=None,
+        null=True,
+        blank=True
     )
 
     def __str__(self):
