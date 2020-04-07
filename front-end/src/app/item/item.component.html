@@ -13,6 +13,13 @@
                 <option value="SML">Yes (Small / Medium / Large)</option>
             </select>
         </span>
+
+        <span><p>Does this item come with optional extras?</p></span>
+        <span>
+            <ul *ngFor="let extra of extras$" class="extras">
+                <input type="checkbox" value="{{extra.id}}">{{extra.name}} (${{extra.price}})<br>
+            </ul>
+        </span>
         
         <button type="submit">Save</button>
        

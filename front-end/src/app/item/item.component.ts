@@ -11,6 +11,8 @@ import { DataService } from '../_services/data.service';
 export class ItemComponent implements OnInit {
 
   categories$: Object;
+  extras$: Object;
+
   id: string;
 
   constructor(
@@ -23,6 +25,9 @@ export class ItemComponent implements OnInit {
   ngOnInit(): void {
     this.data.getCategories().subscribe(
       data => this.categories$ = data,
+    ),
+    this.data.getExtras().subscribe(
+      data => this.extras$ = data,
     ),
     this._Activatedroute.paramMap.subscribe(params => { 
       this.id = params.get('id');
