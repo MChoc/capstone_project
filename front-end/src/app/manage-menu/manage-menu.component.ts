@@ -60,6 +60,25 @@ export class ManageMenuComponent implements OnInit {
         }
       )
     }
+
+
+    deleteExtra(id) {
+      let key = window.localStorage.getItem('key')
+      let header = {
+        headers: new HttpHeaders()
+          .set('Authorization', 'Token ' + key)
+      }
+      let url = 'http://127.0.0.1:5000/api/extra/' + id + '/';
+      this.http.delete(url, header).toPromise().then(data => {
+        console.log("deleted");
+        window.location.reload();
+      },
+      error => {
+        console.log("not deleted!")
+        console.log(error.error);
+      });   
+    }
+
   
     deleteCategory(id) {
       let key = window.localStorage.getItem('key')

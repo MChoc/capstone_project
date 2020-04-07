@@ -116,10 +116,10 @@
                             </a>
                             <button (click)="archiveItem( item.id )" class="archive">
                                 <i class="material-icons">archive</i>
-                            </button>
-                            <button (click)="deleteItem( item.id )" class="delete">
-                                <i class="material-icons">delete</i>
                             </button> -->
+                            <button (click)="deleteExtra( extra.id )" class="delete">
+                                <i class="material-icons">delete</i>
+                            </button>
                         </div>
                     
                     </div>
@@ -137,17 +137,17 @@
                                 <p>${{ extra.price }}</p>
                             </div>
                         
-                            <!-- <div class="column2">
-                                <a [routerLink] = "['edit-item', item.id]" [class.activated]="currentUrl == '/management/menu'">
+                            <div class="column2">
+                                <!--<a [routerLink] = "['edit-item', item.id]" [class.activated]="currentUrl == '/management/menu'">
                                     <i class="material-icons">edit</i>
                                 </a>
                                 <button (click)="unarchiveItem( item.id )" class="archive">
                                     <i class="material-icons">add</i>
-                                </button>
-                                <button (click)="deleteItem( item.id )" class="delete">
+                                </button>-->
+                                <button (click)="deleteExtra( extra.id )" class="delete">
                                     <i class="material-icons">delete</i>
                                 </button>
-                            </div> -->
+                            </div>
                     
                         </div>
                     <!-- </div>  -->
