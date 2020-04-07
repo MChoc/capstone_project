@@ -26,6 +26,4 @@ router.register(r'assistance', AssistanceViewSet)
 router.register(r'credit_cards', CreditCardViewSet)
 
 app_name = 'menu'
-urlpatterns = [
-    path('', include((router.urls, app_name)))
-]
+urlpatterns = []
