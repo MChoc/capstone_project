@@ -32,17 +32,27 @@ export class ItemComponent implements OnInit {
   name: string;
   description: string;
   price: number;
-  itemType: string;
+  itemSize: string;
+  size: string;
 
   url = 'http://127.0.0.1:5000/api/food_items/';
 
   addItem() {
+    if(this.itemSize === 'SL') {
+      //this.size = 'SMALL';
+    } else if (this.itemSize === 'SML') {
+      //this.size = 'SMALL, MEDIUM';
+    } else {
+      this.size = null;
+    }
+
     let post_data = {
       name: this.name,
       active: true,
       price: this.price,
       description: this.description,
-      category: 'http://127.0.0.1:5000/api/categories/' + this.id + '/'
+      category: 'http://127.0.0.1:5000/api/categories/' + this.id + '/',
+      size: this.size
     };
     console.log("request: " + post_data);
     let key = window.localStorage.getItem('key');
@@ -53,20 +63,6 @@ export class ItemComponent implements OnInit {
       })
     }
     this.http.post(this.url, post_data, header).toPromise().then(data => {
-      console.log("response!:");
-      console.log(data);
-      console.log("URL =" + data['url']);
-      if(this.itemType === 'YES') {
-        let drink_data = {
-          food_item : data['url'],
-        };
-        let drinkURL = 'http://127.0.0.1:5000/api/drinks/';
-        this.http.post(drinkURL, drink_data, header).toPromise().then(data => {
-        },
-        error=>{
-          console.log(error.error);
-        });
-      }
       this.router.navigate(['/management/menu']); 
     },
     error=> {

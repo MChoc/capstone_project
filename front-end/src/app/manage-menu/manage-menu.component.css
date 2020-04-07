@@ -12,7 +12,7 @@ b {
     list-style-type: none;
 }
 
-.category {
+.category, .extras {
     margin-left: 8%;
     width: 75%;
     background-color: #fcf7fb;

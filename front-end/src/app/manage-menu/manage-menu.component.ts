@@ -13,6 +13,7 @@ export class ManageMenuComponent implements OnInit {
 
     currentUrl: string;
   
+    extras$: Object;
     categories$: Object;
     items$: Object;
     error: any;
@@ -25,7 +26,9 @@ export class ManageMenuComponent implements OnInit {
     }
   
     ngOnInit(): void {
-      this.data.getCategories().subscribe(
+      this.data.getExtras().subscribe(
+        data => this.extras$ = data,
+      ),this.data.getCategories().subscribe(
         data => this.categories$ = data,
       ),
       this.data.getItems().subscribe(
