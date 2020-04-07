@@ -27,6 +27,4 @@ router.register(r'credit_cards', CreditCardViewSet)
 
 
 app_name = 'menu'
-urlpatterns = [
-    path('credit_cards_validate/', CreditCardCheckView.as_view())
-]
+urlpatterns = []
