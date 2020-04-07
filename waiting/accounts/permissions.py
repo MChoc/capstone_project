@@ -23,13 +23,24 @@ class LoggedInOrValidateOnly(permissions.BasePermission):
 
     def has_permission(self, request, view):
 
-        print(f"action is {view.action}")
-
         if view.action == "validate":
             return True
 
         # extra condition to allow adding to this database
         if request.user.is_anonymous is False and request.user.user_type == 'MANAGER':
+            return True
+
+        return False
+
+
+class AdminOrPostOnly(permissions.BasePermission):
+
+    def has_permission(self, request, view):
+        if request.method == "POST":
+            return True
+
+        if request.user.is_anonymous is False and request.user.user_type == 'MANAGER':
+            return True
             return True
 
         return False

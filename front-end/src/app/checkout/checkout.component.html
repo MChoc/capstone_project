@@ -5,6 +5,7 @@ Total price: ${{ total_price }}
 <br/><br/>
 <form ngNativeValidate [formGroup]="checkoutForm" (ngSubmit)="onFormSubmit()">
     <div class="error">{{ error_message }}</div>
+    <div class="success">{{ success_message }}</div>
     <div [formGroup]="checkoutForm">
         <label>Card Number</label>
         <input type="text" formControlName="card_number" required>
@@ -31,8 +32,8 @@ Total price: ${{ total_price }}
         <input type="text" formControlName="expiry_year" required>
     </div>
     <div [formGroup]="checkoutForm">
-        <label>cvs</label>
-        <input type="text" formControlName="cvs" required>
+        <label>CVC</label>
+        <input type="text" formControlName="cvc" required>
     </div>
     <button type="submit">Place Order Now</button>
 </form>
