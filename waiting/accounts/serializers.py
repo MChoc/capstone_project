@@ -15,21 +15,23 @@ class CustomRegisterSerializer(RegisterSerializer):
         required=True,
         max_length=30,
     )
-
     user_type = serializers.ChoiceField(choices=CustomUser.USER_TYPE_CHOICES)
+    active = serializers.BooleanField(default=True)
 
     def get_cleaned_data(self):
         data_dict = super().get_cleaned_data()
         data_dict['first_name'] = self.validated_data.get('first_name', '')
         data_dict['last_name'] = self.validated_data.get('last_name', '')
         data_dict['user_type'] = self.validated_data.get('user_type', '')
+        data_dict['active'] = self.validated_data.get('active', '')
         return data_dict
 
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = CustomUser
-        fields = ['username', 'id', 'first_name', 'last_name', 'user_type']
+        fields = ['username', 'id', 'first_name', 'last_name', 'active',
+                  'user_type']
 
 
 class TokenSerializer(serializers.ModelSerializer):
