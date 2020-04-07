@@ -55,7 +55,10 @@ Week 6
 Week 7
 ======
 
-* 
+* Completed login sprint
+* Implemented edits to the backend database design based on team discussion and
+  conclusions
+* Created unit testing to test the all the API's
 
 
 ======
