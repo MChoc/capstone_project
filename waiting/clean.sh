@@ -8,3 +8,4 @@ rm db.sqlite3
 ./manage.py makemigrations menu
 ./manage.py migrate
 ./manage.py shell < dummy_data.py
+./manage.py dumpdata > menu/fixtures/dump.json
