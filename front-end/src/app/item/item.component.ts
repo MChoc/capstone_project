@@ -17,13 +17,18 @@ export class ItemComponent implements OnInit {
 
   id: string;
 
+  
+
+
   myForm: FormGroup;
     disabled = false;
     ShowFilter = false;
     limitSelection = false;
     extras: any = [];
-    selectedItems: any = [];
-    dropdownSettings: any = {};
+
+    dropdownList = [];
+    selectedItems = [];
+    dropdownSettings = {};
   
   constructor(
     private http: HttpClient,
@@ -40,20 +45,38 @@ export class ItemComponent implements OnInit {
       data => this.categories$ = data,
     ),
     this.data.getExtras().subscribe(
-      data => this.extras = data,
+      data => this.extras$ = data,
     ),
     this._Activatedroute.paramMap.subscribe(params => { 
       this.id = params.get('id');
     }),
+    this.dropdownList = [
+      { item_id: 1, item_text: 'Mumbai' },
+      { item_id: 2, item_text: 'Bangaluru' },
+      { item_id: 3, item_text: 'Pune' },
+      { item_id: 4, item_text: 'Navsari' },
+      { item_id: 5, item_text: 'New Delhi' }
+    ],
+    this.selectedItems = [
+      { item_id: 3, item_text: 'Pune' },
+      { item_id: 4, item_text: 'Navsari' }
+    ];
     this.dropdownSettings = {
       singleSelection: false,
-      idField: 'url'
-    }
-    ;
+      idField: 'item_id',
+      textField: 'item_text',
+      selectAllText: 'Select All',
+      unSelectAllText: 'UnSelect All',
+      itemsShowLimit: 3,
+      allowSearchFilter: true
+    };
   }
 
   onItemSelect(item: any) {
-    console.log('onItemSelect', item);
+    console.log(item);
+  }
+  onSelectAll(items: any) {
+    console.log(items);
   }
 
   name: string;

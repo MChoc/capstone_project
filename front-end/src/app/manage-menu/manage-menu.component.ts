@@ -17,6 +17,7 @@ export class ManageMenuComponent implements OnInit {
     categories$: Object;
     items$: Object;
     error: any;
+    menu: string;
     
     constructor(
       private http: HttpClient,
@@ -51,11 +52,15 @@ export class ManageMenuComponent implements OnInit {
             let url = 'http://localhost:5000/api/menus/';
             this.http.post(url, post_data, header).toPromise().then(data => {
               window.localStorage.setItem('menu', data['id']);
+              this.menu = window.localStorage.getItem('menu');
               window.location.reload();
             },
             error=> {
               console.log(error.error);
             });
+          } else {
+            console.log('menu =', data['id']);
+            this.menu = '1';
           }
         }
       )
@@ -282,10 +287,9 @@ export class ManageMenuComponent implements OnInit {
     name : string;
 
     addCategory() {
-      let menu = window.localStorage.getItem('menu');
       let post_data = {
         name: this.name,
-        menu: "http://localhost:5000/api/menus/" + menu + "/"
+        menu: "http://localhost:5000/api/menus/" + this.menu + "/"
       };
       
       let key = window.localStorage.getItem('key')
