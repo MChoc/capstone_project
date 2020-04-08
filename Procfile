@@ -1,1 +1,1 @@
-web: gunicorn waiting.wsgi --chdir /waiting --log-file -
+web: gunicorn --pythonpath waiting waiting.wsgi --log-file -
