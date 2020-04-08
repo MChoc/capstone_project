@@ -25,7 +25,7 @@ import { ItemComponent } from './item/item.component';
 import { ItemEditComponent } from './item-edit/item-edit.component';
 import { ExtraComponent } from './extra/extra.component';
 import { ExtraEditComponent } from './extra-edit/extra-edit.component';
-import {NgMultiSelectDropDownModule} from 'ng-multiselect-dropdown';
+//import {NgMultiSelectDropDownModule} from 'ng-multiselect-dropdown';
 
 @NgModule({
   declarations: [
@@ -56,7 +56,7 @@ import {NgMultiSelectDropDownModule} from 'ng-multiselect-dropdown';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    NgMultiSelectDropDownModule.forRoot()
+    //NgMultiSelectDropDownModule.forRoot()
   ],
   providers: [
   ],
