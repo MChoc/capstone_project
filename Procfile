@@ -1,1 +1,1 @@
-web: python waiting/manage.py runserver 0.0.0.0:$PORT
+web: gunicorn waiting/waiting.wsgi --log-file -
