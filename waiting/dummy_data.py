@@ -39,7 +39,7 @@ for i in range(0,10):
             )
         else:
             food_item = FoodItem.objects.create(
-                name='Food item ' + str(i-5),
+                name='Drink ' + str(i-5),
                 price='10.00', # TODO: use rand
                 description='Test description ' + str(i-5),
                 category=category,
@@ -52,7 +52,7 @@ for i in range(0,10):
             extra = Extra.objects.create(
                 name='Extra ' + str(i),
                 price=i,
-                category=category,
+                category=category
             )
             extras.append(extra)
             print(f"Created {extra}")
