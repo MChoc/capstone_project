@@ -5,11 +5,13 @@ from rest_framework.decorators import action
 from rest_framework.views import APIView
 from rest_framework import viewsets
 from rest_framework.response import Response
+from accounts.permissions import LoggedInOrValidateOnly
 
 
 class CreditCardViewSet(viewsets.ModelViewSet):
     queryset = CreditCard.objects.all()
     serializer_class = CreditCardSerializer
+    permission_classes = [LoggedInOrValidateOnly]
 
     @action(detail=False, methods=['POST'])
     def validate(self, request, *args, **kwargs):
@@ -21,7 +23,7 @@ class CreditCardViewSet(viewsets.ModelViewSet):
         serializer.is_valid(raise_exception=True)
 
         try:
-            CreditCard.objects.get(
+            card = CreditCard.objects.get(
                 number=request.data['number'],
                 expiry_month=request.data['expiry_month'],
                 expiry_year=request.data['expiry_year'],
@@ -29,5 +31,5 @@ class CreditCardViewSet(viewsets.ModelViewSet):
             )
         except CreditCard.DoesNotExist:
             return Response({'validated': False})
-        
-        return Response({'validated': True})
+
+        return Response({'validated': True, 'id': card.id})
