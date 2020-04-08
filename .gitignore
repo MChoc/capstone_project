@@ -3,5 +3,5 @@
 .vscode/
 **/db.sqlite3
 todo
-waiting/accounts/migrations/00*
-waiting/menu/migrations/00*
+waiting/accounts/migrations/
+waiting/menu/migrations/
