@@ -4,3 +4,5 @@ venv/
 .vscode/
 **/db.sqlite3
 todo
+waiting/accounts/migrations/00*
+waiting/menu/migrations/00*

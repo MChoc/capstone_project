@@ -1,0 +1,24 @@
+<h3>Cart</h3>
+
+<button (click)="clearCart()">Clear cart</button>
+
+<table>
+    <td>Item</td>
+    <td>Price</td>
+    <td>Remove</td>
+    <tr *ngFor="let item of items">
+        <td><a href="/add/{{ item.id }}">{{ item.name }}</a></td>
+        <td>{{ item.price }}</td>
+        <td>
+            <button (click)="deleteFromCart(item)" class="delete">
+                <i class="material-icons">delete</i>
+            </button>
+        </td>
+    </tr>
+
+</table>
+<br/>
+<div>Total: {{ total_price }}</div>
+<a href="/checkout">Checkout</a>
+<br/>
+<a href="/">Back to Menu</a>

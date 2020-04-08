@@ -65,6 +65,11 @@ export class DataService {
     return this.http.get(this.itemList, header)
   }
 
+  getItem(id: string) {
+    let url = this.itemList + id + '/';
+    return this.http.get(url);
+  }
+
 
   getCustomerCategories() {
     return this.http.get(this.categoryList)

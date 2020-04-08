@@ -26,6 +26,9 @@ import { ItemEditComponent } from './item-edit/item-edit.component';
 import { ExtraComponent } from './extra/extra.component';
 import { ExtraEditComponent } from './extra-edit/extra-edit.component';
 // import {NgMultiSelectDropDownModule} from 'ng-multiselect-dropdown';
+import { CartComponent } from './cart/cart.component';
+import { CheckoutComponent } from './checkout/checkout.component';
+
 
 @NgModule({
   declarations: [
@@ -48,7 +51,9 @@ import { ExtraEditComponent } from './extra-edit/extra-edit.component';
     ItemComponent,
     ItemEditComponent,
     ExtraComponent,
-    ExtraEditComponent
+    ExtraEditComponent,
+    CartComponent,
+    CheckoutComponent
   ],
   imports: [
     BrowserModule,
