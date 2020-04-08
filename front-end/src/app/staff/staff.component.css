@@ -14,8 +14,8 @@ h2{
 .staff {
     margin-left: 8%;
     width: 75%;
-    border: solid 1px;
-    border-color: #352728;
+    border-bottom: solid 0.5px; 
+    border-color: #35272842;
     background-color: #fcf7fb;
     padding: 10px;
 }
