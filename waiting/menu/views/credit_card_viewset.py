@@ -21,7 +21,7 @@ class CreditCardViewSet(viewsets.ModelViewSet):
         serializer.is_valid(raise_exception=True)
 
         try:
-            CreditCard.objects.get(
+            credit_card = CreditCard.objects.get(
                 number=request.data['number'],
                 expiry_month=request.data['expiry_month'],
                 expiry_year=request.data['expiry_year'],
@@ -29,5 +29,11 @@ class CreditCardViewSet(viewsets.ModelViewSet):
             )
         except CreditCard.DoesNotExist:
             return Response({'validated': False})
+
+        response = CreditCardSerializer(
+            credit_card,
+            context=self.get_serializer_context()
+        ).data
+        response['validated'] = True
         
-        return Response({'validated': True})
+        return Response(response)
