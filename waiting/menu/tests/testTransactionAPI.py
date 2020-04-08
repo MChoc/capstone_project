@@ -163,6 +163,7 @@ class TestTransactionModel(APITestCase):
         customer = get_user_model().objects.get(username='Customer1')
         credit_card = CreditCard.objects.get(id=1)
         body = {
+            'active': False,
             'customer': reverse(
                 'customuser-detail',
                 args=[customer.pk,],
@@ -178,6 +179,7 @@ class TestTransactionModel(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
         obj = Transaction.objects.get(id=1)
+        self.assertFalse(obj.active)
         self.assertEqual(obj.customer, customer)
         self.assertEqual(obj.credit_card, credit_card)
 

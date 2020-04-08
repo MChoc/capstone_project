@@ -59,7 +59,7 @@ class TestCreditCardModel(APITestCase):
         GET data is same as database data.
     """
     def test_list(self):
-        url = '/api/credit_card/'
+        url = '/api/credit_cards/'
         factory = APIRequestFactory()
         request = factory.post(url)
         
@@ -88,7 +88,7 @@ class TestCreditCardModel(APITestCase):
         Object exists in database.
     """
     def test_create(self):
-        url = '/api/credit_card/'
+        url = '/api/credit_cards/'
         
         init_count = CreditCard.objects.count()
 
@@ -116,7 +116,7 @@ class TestCreditCardModel(APITestCase):
         GET data is same as in database.
     """
     def test_retrieve(self):
-        url = '/api/credit_card/1/'
+        url = '/api/credit_cards/1/'
         factory = APIRequestFactory()
         request = factory.post(url)
         
@@ -144,7 +144,7 @@ class TestCreditCardModel(APITestCase):
         All fields have been changed and content is correct.
     """
     def test_update(self):
-        url = '/api/credit_card/1/'
+        url = '/api/credit_cards/1/'
         
         body = {
             'number': 1234123412341238,
@@ -170,7 +170,7 @@ class TestCreditCardModel(APITestCase):
         Correct field/s have been changed and content correct.
     """
     def test_partial_update(self):
-        url = '/api/credit_card/1/'
+        url = '/api/credit_cards/1/'
 
         body = {
             'number': 1234123412341238,
@@ -190,7 +190,7 @@ class TestCreditCardModel(APITestCase):
         Correct object has been deleted from database.
     """
     def test_destroy(self):
-        url = '/api/credit_card/1/'
+        url = '/api/credit_cards/1/'
 
         response = self.client.delete(url)
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)

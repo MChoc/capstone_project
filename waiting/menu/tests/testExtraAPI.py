@@ -147,6 +147,7 @@ class TestExtraModel(APITestCase):
         body = {
             'name': 'Test Change',
             'price': '20.00',
+            'active': False,
         }
         response = self.client.put(url, body, format='json')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
@@ -154,6 +155,7 @@ class TestExtraModel(APITestCase):
         obj = Extra.objects.get(id=1)
         self.assertEqual(obj.name, 'Test Change')
         self.assertEqual(obj.price, 20)
+        self.assertFalse(obj.active)
 
     """
     Testing UPDATE (partial)
