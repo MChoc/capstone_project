@@ -29,5 +29,5 @@ class CreditCardViewSet(viewsets.ModelViewSet):
             )
         except CreditCard.DoesNotExist:
             return Response({'validated': False})
-        
+
         return Response({'validated': True})

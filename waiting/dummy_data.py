@@ -17,9 +17,10 @@ from django.contrib.auth import get_user_model
 menu = Menu.objects.create(name='Waiting Cafe')
 print(f"Created {menu}")
 
-# Create categories and food items
+# Create categories and food items and extras
 categories = []
 food_items = []
+extras = []
 for i in range(0,10):
     category = Category.objects.create(
         name='Category ' + str(1),
@@ -46,6 +47,15 @@ for i in range(0,10):
             )
         food_items.append(food_item)
         print(f"Created {food_item}")
+
+        for i in range(0,10):
+            extra = Extra.objects.create(
+                name='Extra ' + str(i),
+                price=i,
+                category=category,
+            )
+            extras.append(extra)
+            print(f"Created {extra}")
 
 # TODO: use rand to add tags to items
 tags = []
@@ -122,16 +132,6 @@ for i in range(0,5):
     )
     discounts.append(discount)
     print(f"Created {discount}")
-
-# TODO: Create extras
-extras = []
-for i in range(0,10):
-    extra = Extra.objects.create(
-        name='Extra ' + str(i),
-        price=i
-    )
-    extras.append(extra)
-    print(f"Created {extra}")
 
 # Create credit cards
 credit_cards = []
