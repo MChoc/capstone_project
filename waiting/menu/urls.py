@@ -10,7 +10,7 @@ from menu.views.tag_viewset import TagViewSet
 from menu.views.transaction_viewset import TransactionViewSet
 from menu.views.transaction_food_item_viewset import TransactionFoodItemViewSet
 from menu.views.assistance_viewset import AssistanceViewSet
-from menu.views.credit_card_viewset import CreditCardViewSet, CreditCardCheckView
+from menu.views.credit_card_viewset import CreditCardViewSet
 
 
 router = routers.DefaultRouter()
