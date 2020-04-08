@@ -48,7 +48,7 @@ for i in range(0,10):
         food_items.append(food_item)
         print(f"Created {food_item}")
 
-        for i in range(0,10):
+        for i in range(0,5):
             extra = Extra.objects.create(
                 name='Extra ' + str(i),
                 price=i,
