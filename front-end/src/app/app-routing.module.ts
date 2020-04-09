@@ -15,6 +15,7 @@ import { ItemComponent } from './item/item.component';
 import { ItemEditComponent } from './item-edit/item-edit.component';
 import { CategoryEditComponent } from './category-edit/category-edit.component';
 import { CategoryManageComponent } from './category-manage/category-manage.component';
+import { ExtraComponent } from './extra/extra.component';
 
 
 const routes: Routes = [
@@ -77,6 +78,10 @@ const routes: Routes = [
   {
     path: 'management/menu/category/:id/edit-item/:id',
     component: ItemEditComponent
+  },
+  {
+    path: 'management/menu/category/:id/add-extra/:id',
+    component: ExtraComponent
   }
 ];
 

@@ -23,6 +23,7 @@ import { CategoryEditComponent } from './category-edit/category-edit.component';
 import { ItemComponent } from './item/item.component';
 import { ItemEditComponent } from './item-edit/item-edit.component';
 import { CategoryManageComponent } from './category-manage/category-manage.component';
+import { ExtraComponent } from './extra/extra.component';
 
 
 @NgModule({
@@ -44,7 +45,8 @@ import { CategoryManageComponent } from './category-manage/category-manage.compo
     CategoryEditComponent,
     ItemComponent,
     ItemEditComponent,
-    CategoryManageComponent
+    CategoryManageComponent,
+    ExtraComponent
   ],
   imports: [
     BrowserModule,
