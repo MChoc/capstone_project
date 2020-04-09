@@ -13,7 +13,6 @@ export class ManageMenuComponent implements OnInit {
 
     currentUrl: string;
   
-    extras$: Object;
     categories$: Object;
     error: any;
     menu: string;
@@ -27,51 +26,10 @@ export class ManageMenuComponent implements OnInit {
     }
   
     ngOnInit(): void {
-      this.data.getExtras().subscribe(
-        data => this.extras$ = data,
-      ),this.data.getCategories().subscribe(
+      this.data.getCategories().subscribe(
         data => this.categories$ = data,
       )
     }
-
-
-    deleteExtra(id) {
-      let key = window.localStorage.getItem('key')
-      let header = {
-        headers: new HttpHeaders()
-          .set('Authorization', 'Token ' + key)
-      }
-      let url = 'http://127.0.0.1:5000/api/extra/' + id + '/';
-      this.http.delete(url, header).toPromise().then(data => {
-        console.log("deleted");
-        window.location.reload();
-      },
-      error => {
-        console.log("not deleted!")
-        console.log(error.error);
-      });   
-    }
-
-  
-    deleteCategory(id) {
-      let key = window.localStorage.getItem('key')
-      let header = {
-        headers: new HttpHeaders()
-          .set('Authorization', 'Token ' + key)
-      }
-      let url = 'http://127.0.0.1:5000/api/categories/' + id + '/';
-      this.http.delete(url, header).toPromise().then(data => {
-        console.log("deleted");
-        window.location.reload();
-      },
-      error => {
-        console.log("not deleted!")
-        console.log(error.error);
-      });  
-    } 
-    
-    
-
 
 
     archiveCategory(id) {

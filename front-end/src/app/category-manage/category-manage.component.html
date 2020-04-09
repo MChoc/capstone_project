@@ -74,7 +74,7 @@
         <h2>Extras</h2>
 
         <div class="item-list">
-            <!-- <ul *ngFor="let extra of extras$" >
+            <ul *ngFor="let extra of extras$" >
                 <div *ngIf="catUrl === extra.category && extra.active" class="item">
                     <div class="row">
                 
@@ -83,7 +83,7 @@
                             <p>${{ extra.price }}</p>
                         </div>
                 
-                        <div class="column2">
+                        <!-- <div class="column2">
                             <a [routerLink] = "['edit-item', item.id]" [class.activated]="currentUrl == '/management/menu/category'">
                                 <i class="material-icons">edit</i>
                             </a> 
@@ -93,11 +93,11 @@
                             <button (click)="deleteItem( item.id )" class="delete">
                                 <i class="material-icons">delete</i>
                             </button>
-                        </div>
+                        </div> -->
             
                     </div>
                 </div>
-            </ul> -->
+            </ul>
         </div>
     
         <div class="archived-item-list">
