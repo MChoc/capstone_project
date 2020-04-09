@@ -1,12 +1,12 @@
 <div class = "header">
     <div class="column">
         <div class="column1">
-          <div *ngIf="loggedIn; else elseBlock">
+          <div *ngIf="loggedIn; else elseBlock1">
             <button (click)="goBack()">
                 <i class="material-icons">arrow_back_ios</i>
             </button>
           </div>
-          <ng-template #elseBlock>
+          <ng-template #elseBlock1>
             <a routerLink = "" [class.activated]="currentUrl == '/'">
                 <i class="material-icons">help</i>
             </a>
@@ -20,12 +20,12 @@
       </div>
       <div class="column">
         <div class="column3">
-          <div *ngIf="loggedIn; else elseBlock">
+          <div *ngIf="loggedIn; else elseBlock2">
             <button (click)="homePage()">
                 <i class="material-icons">home</i>
             </button>
           </div>
-          <ng-template #elseBlock>
+          <ng-template #elseBlock2>
             <a routerLink = "" [class.activated]="currentUrl == '/'">
                 <i class="material-icons">shopping_basket</i>
             </a>

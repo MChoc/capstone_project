@@ -30,3 +30,7 @@
 button:focus {
   outline:0;
 }
+
+i:hover, a:hover {
+  color: #35272880;
+}
