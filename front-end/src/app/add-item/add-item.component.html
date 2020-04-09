@@ -5,13 +5,12 @@
     <p>${{ item.price }}</p>
     <form [formGroup]="orderForm">
       <div [formGroup]="orderForm" class="element">
-        <button (click)="decrementQuantity()">-</button>
-        <input type="text" formControlName="quantity">
-        <button (click)="incrementQuantity()">+</button>
+        <input type="number" min="1" max="15" formControlName="quantity">
       </div>
     </form>
     <button (click)="addToCart(item)">Add to cart</button>
     <div class="success_message">{{ success_message }}</div>
+    <div class="error_message">{{ error_message }}</div>
   </div>
   <a href="/cart">View Cart</a>
   <br/>

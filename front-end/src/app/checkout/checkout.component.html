@@ -8,7 +8,7 @@ Total price: ${{ total_price }}
     <div class="success">{{ success_message }}</div>
     <div [formGroup]="checkoutForm">
         <label>Card Number</label>
-        <input type="text" formControlName="card_number" required>
+        <input type="number" formControlName="card_number" required>
     </div>
     <div [formGroup]="checkoutForm">
         <label>Expiry Month</label>
@@ -29,11 +29,11 @@ Total price: ${{ total_price }}
     </div>
     <div [formGroup]="checkoutForm">
         <label>Expiry Year</label>
-        <input type="text" formControlName="expiry_year" required>
+        <input type="number" formControlName="expiry_year" required>
     </div>
     <div [formGroup]="checkoutForm">
         <label>CVC</label>
-        <input type="text" formControlName="cvc" required>
+        <input type="number" formControlName="cvc" required>
     </div>
     <button type="submit">Place Order Now</button>
 </form>
