@@ -58,7 +58,9 @@ ul {
     color: grey;
 }
 
-.archived-item a, .archived-item button, .archived-item, .archived-item p {
+.archived-item a, .archived-item button, .archived-item, .archived-item p,
+.archived-extra a, .archived-extra button, .archived-extra, .archived-extra p 
+{
     color: grey;
 }
 

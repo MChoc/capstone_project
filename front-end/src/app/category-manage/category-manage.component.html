@@ -86,10 +86,10 @@
                         <div class="column2">
                             <!-- <a [routerLink] = "['edit-extra', extra.id]" [class.activated]="currentUrl == '/management/menu/category'">
                                 <i class="material-icons">edit</i>
-                            </a> 
+                            </a> -->
                             <button (click)="archiveExtra( extra.id )" class="archive">
                                 <i class="material-icons">archive</i>
-                            </button> -->
+                            </button> 
                             <button (click)="deleteExtra( extra.id )" class="delete">
                                 <i class="material-icons">delete</i>
                             </button>
@@ -102,7 +102,7 @@
     
         <div class="archived-item-list">
             <p class="pad">Archived Extras:</p>
-            <!-- <ul *ngFor="let extra of extras$">
+            <ul *ngFor="let extra of extras$">
                 <div *ngIf="catUrl === extra.category && !extra.active"  class="archived-extra">
                     <div class="row">
                 
@@ -112,20 +112,20 @@
                         </div>
                 
                         <div class="column2">
-                            <a [routerLink] = "['edit-item', item.id]" [class.activated]="currentUrl == '/management/menu/category'">
+                            <!--<a [routerLink] = "['edit-item', item.id]" [class.activated]="currentUrl == '/management/menu/category'">
                                 <i class="material-icons">edit</i>
-                            </a>
-                            <button (click)="unarchiveItem( item.id )" class="archive">
+                            </a>-->
+                            <button (click)="unarchiveExtra( extra.id )" class="archive">
                                 <i class="material-icons">add</i>
                             </button>
-                            <button (click)="deleteItem( item.id )" class="delete">
+                            <button (click)="deleteExtra( extra.id )" class="delete">
                                 <i class="material-icons">delete</i>
                             </button>
                         </div>
             
                     </div>
                 </div> 
-            </ul> -->
+            </ul>
         </div>
 
         <div class="add">
