@@ -1,17 +1,25 @@
 <div class="register-form">
     <h2>ADD MENU ITEM</h2>
+    <p style="text-align: center;"> Category: {{catName}}</p>
     <form ngNativeValidate (ngSubmit)="addItem()">
         <input type="text" [(ngModel)]="name" name="name" placeholder="Item Name" required>
         <input type="text" [(ngModel)]="description" name="description" placeholder="Item Description" required>
-        <input type="number" [(ngModel)]="price" name="price" min="1" step="0.01" placeholder="Price" required>        
+                
 
-        <span><p>Is this item a drink?</p></span>
-        <span>
-            <select [(ngModel)]="itemType" name="itemType" required>
-                <option value="YES">Yes</option>
-                <option value="NO">No</option>
-            </select>
-        </span>
+        <p>
+            Available in different sizes
+            <input type="checkbox" (click)="sizes()" cless="checkbox">
+        </p>
+
+        <div *ngIf="noClicked">
+            <input type="number" [(ngModel)]="price" name="price" min="0" step="0.01" placeholder="Price" required>
+        </div>
+        <div *ngIf="yesClicked">
+            <input type="number" [(ngModel)]="priceSmall" name="price" min="0" step="0.01" placeholder="Price (Small)" required>
+            <input type="number" [(ngModel)]="priceMedium" name="price" min="0" step="0.01" placeholder="Price (Medium)" required>
+            <input type="number" [(ngModel)]="priceLarge" name="price" min="0" step="0.01" placeholder="Price (Large)" required>
+        </div>
+
         
         <button type="submit">Save</button>
        

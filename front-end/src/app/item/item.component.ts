@@ -12,6 +12,8 @@ export class ItemComponent implements OnInit {
 
   categories$: Object;
   id: string;
+  category: Object;
+  catName: string;
 
   constructor(
     private http: HttpClient,
@@ -27,24 +29,26 @@ export class ItemComponent implements OnInit {
     this._Activatedroute.paramMap.subscribe(params => { 
       this.id = params.get('id');
     });
+    let url = 'http://127.0.0.1:5000/api/categories/' + this.id + '/';
+    this.http.get(url).toPromise().then(data => {
+      this.category = data;
+      this.catName = data['name'];
+    },
+    error => {
+      console.log("ERROR!")
+      console.log(error.error);
+    })
   }
 
   name: string;
   description: string;
   price: number;
-  itemType: string;
-
+  priceSmall: number;
+  priceMedium: number;
+  priceLarge: number;
   url = 'http://127.0.0.1:5000/api/food_items/';
 
   addItem() {
-    let post_data = {
-      name: this.name,
-      active: true,
-      price: this.price,
-      description: this.description,
-      category: 'http://127.0.0.1:5000/api/categories/' + this.id + '/'
-    };
-    console.log("request: " + post_data);
     let key = window.localStorage.getItem('key');
     let header = {
       headers: new HttpHeaders({
@@ -52,26 +56,78 @@ export class ItemComponent implements OnInit {
         'Authorization': 'Token ' + key
       })
     }
-    this.http.post(this.url, post_data, header).toPromise().then(data => {
-      console.log("response!:");
-      console.log(data);
-      console.log("URL =" + data['url']);
-      if(this.itemType === 'YES') {
-        let drink_data = {
-          food_item : data['url'],
-        };
-        let drinkURL = 'http://127.0.0.1:5000/api/drinks/';
-        this.http.post(drinkURL, drink_data, header).toPromise().then(data => {
-        },
-        error=>{
-          console.log(error.error);
-        });
-      }
-      this.router.navigate(['/management/menu']); 
-    },
-    error=> {
-      console.log(error.error);
-    });
+  
+    
+    if(this.noClicked) {
+      let post_data = {
+        name: this.name,
+        active: true,
+        price: this.price,
+        description: this.description,
+        category: 'http://127.0.0.1:5000/api/categories/' + this.id + '/'
+      };
+      this.http.post(this.url, post_data, header).toPromise().then(data => {
+        console.log(data);
+        this.router.navigate(['/management/menu/category/'+ this.id]); 
+      },
+      error=> {
+        console.log(error.error);
+      });
+    } else {
+      //small
+      let post_data = {
+        name: this.name,
+        active: true,
+        price: this.priceSmall,
+        size: 'SMALL',
+        description: this.description,
+        category: 'http://127.0.0.1:5000/api/categories/' + this.id + '/'
+      };
+      this.http.post(this.url, post_data, header).toPromise().then(data => {
+        console.log(data);
+      },
+      error=> {
+        console.log(error.error);
+      });
+      //medium
+      post_data = {
+        name: this.name,
+        active: true,
+        price: this.priceMedium,
+        size: 'MEDIUM',
+        description: this.description,
+        category: 'http://127.0.0.1:5000/api/categories/' + this.id + '/'
+      };
+      this.http.post(this.url, post_data, header).toPromise().then(data => {
+        console.log(data);
+      },
+      error=> {
+        console.log(error.error);
+      });
+      //large
+      post_data = {
+        name: this.name,
+        active: true,
+        price: this.priceLarge,
+        size: 'LARGE',
+        description: this.description,
+        category: 'http://127.0.0.1:5000/api/categories/' + this.id + '/'
+      };
+      this.http.post(this.url, post_data, header).toPromise().then(data => {
+        console.log(data);
+        this.router.navigate(['/management/menu/category/'+ this.id]); 
+      },
+      error=> {
+        console.log(error.error);
+      });
+    }
+  }
+
+  noClicked = true;
+  yesClicked = false;
+  sizes(){
+    this.noClicked = !this.noClicked;
+    this.yesClicked = !this.yesClicked;
   }
 
 }
