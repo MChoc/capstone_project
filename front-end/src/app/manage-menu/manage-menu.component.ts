@@ -86,63 +86,6 @@ export class ManageMenuComponent implements OnInit {
         });
     }
 
-
-
-    
-
-    archiveExtra(id) {
-      let input = { active: false };
-      let url = 'http://127.0.0.1:5000/api/extra/' + id + '/';
-      
-      let key = window.localStorage.getItem('key');
-      let header = {
-      headers: new HttpHeaders({
-        'Content-Type':  'application/json',
-        'Authorization': 'Token ' + key
-      })
-      }
-
-      this.http.patch(url, input, header).subscribe(
-        (val) => {
-          window.location.reload();  
-          console.log("PATCH call successful value returned in body", 
-                        val);
-        },
-        response => {
-            console.log("PATCH call in error", response);
-        },
-        () => {
-            console.log("The PATCH observable is now completed.");
-        });
-    }
-  
-
-    unarchiveExtra(id) {
-      let input = { active: true };
-      let url = 'http://127.0.0.1:5000/api/extra/' + id + '/';
-      
-      let key = window.localStorage.getItem('key');
-      let header = {
-      headers: new HttpHeaders({
-        'Content-Type':  'application/json',
-        'Authorization': 'Token ' + key
-      })
-      }
-      
-      this.http.patch(url, input, header).subscribe(
-        (val) => {
-          window.location.reload();
-          console.log("PATCH call successful value returned in body", 
-                        val);
-        },
-        response => {
-            console.log("PATCH call in error", response);
-        },
-        () => {
-            console.log("The PATCH observable is now completed.");
-        });
-    }
-
     
     name : string;
 
