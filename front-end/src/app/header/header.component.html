@@ -1,35 +1,35 @@
 <div class = "header">
-    <div class="column">
-        <div class="column1">
-          <div *ngIf="loggedIn; else elseBlock1">
-            <button (click)="goBack()">
-                <i class="material-icons">arrow_back_ios</i>
-            </button>
-          </div>
-          <ng-template #elseBlock1>
-            <a routerLink = "" [class.activated]="currentUrl == '/'">
-                <i class="material-icons">help</i>
-            </a>
-          </ng-template>
-        </div>
+  <div class="column">
+    <div class="column1">
+      <div *ngIf="loggedIn; else elseBlock1">
+        <button (click)="goBack()">
+          <i class="material-icons">arrow_back_ios</i>
+        </button>
       </div>
-      <div class="column">
-        <div class="column2">
-          <a href=''><h1>CAFE</h1></a> 
-        </div>
+      <ng-template #elseBlock1>
+        <a routerLink = "" [class.activated]="currentUrl == '/'">
+          <i class="material-icons">help</i>
+        </a>
+      </ng-template>
+    </div>
+  </div>
+  <div class="column">
+    <div class="column2">
+      <a href=''><h1>CAFE</h1></a> 
+    </div>
+  </div>
+  <div class="column">
+    <div class="column3">
+      <div *ngIf="loggedIn; else elseBlock2">
+        <button (click)="homePage()">
+          <i class="material-icons">home</i>
+        </button>
       </div>
-      <div class="column">
-        <div class="column3">
-          <div *ngIf="loggedIn; else elseBlock2">
-            <button (click)="homePage()">
-                <i class="material-icons">home</i>
-            </button>
-          </div>
-          <ng-template #elseBlock2>
-            <a routerLink = "" [class.activated]="currentUrl == '/'">
-                <i class="material-icons">shopping_basket</i>
-            </a>
-          </ng-template>
-        </div>
-      </div>
+      <ng-template #elseBlock2>
+        <a routerLink = "" [class.activated]="currentUrl == '/'">
+          <i class="material-icons">shopping_cart</i>
+        </a>
+      </ng-template>
+    </div>
+  </div>
 </div>

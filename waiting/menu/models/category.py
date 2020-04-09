@@ -8,8 +8,8 @@ class Category(models.Model):
     active = models.BooleanField(default=True)
     menu = models.ForeignKey(
         Menu,
-        related_name='categories',
-        on_delete=models.CASCADE
+        on_delete=models.CASCADE,
+        related_name='categories'
     )
     
     class Meta:

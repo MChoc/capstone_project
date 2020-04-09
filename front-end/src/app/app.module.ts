@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ɵNgSelectMultipleOption } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -22,6 +22,8 @@ import { AddItemComponent } from './add-item/add-item.component';
 import { CategoryEditComponent } from './category-edit/category-edit.component';
 import { ItemComponent } from './item/item.component';
 import { ItemEditComponent } from './item-edit/item-edit.component';
+import { CartComponent } from './cart/cart.component';
+import { CheckoutComponent } from './checkout/checkout.component';
 import { CategoryManageComponent } from './category-manage/category-manage.component';
 import { ExtraComponent } from './extra/extra.component';
 
@@ -45,6 +47,8 @@ import { ExtraComponent } from './extra/extra.component';
     CategoryEditComponent,
     ItemComponent,
     ItemEditComponent,
+    CartComponent,
+    CheckoutComponent
     CategoryManageComponent,
     ExtraComponent
   ],
@@ -54,6 +58,7 @@ import { ExtraComponent } from './extra/extra.component';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+    // NgMultiSelectDropDownModule.forRoot()
   ],
   providers: [
   ],

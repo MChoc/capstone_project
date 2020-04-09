@@ -8,6 +8,7 @@ import { DataService } from '../_services/data.service';
   templateUrl: './extra.component.html',
   styleUrls: ['./extra.component.css']
 })
+
 export class ExtraComponent implements OnInit {
 
   categories$: Object;

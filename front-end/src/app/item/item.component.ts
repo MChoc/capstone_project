@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router, ActivatedRoute } from '@angular/router';
 import { DataService } from '../_services/data.service';
+import { FormBuilder, FormGroup, FormArray, FormControl } from '@angular/forms';
+
 
 @Component({
   selector: 'app-item',
@@ -11,20 +13,41 @@ import { DataService } from '../_services/data.service';
 export class ItemComponent implements OnInit {
 
   categories$: Object;
+  extras$: Object;
+
   id: string;
   category: Object;
   catName: string;
 
+  
+
+
+  myForm: FormGroup;
+    disabled = false;
+    ShowFilter = false;
+    limitSelection = false;
+    extras: any = [];
+
+    dropdownList = [];
+    selectedItems = [];
+    dropdownSettings = {};
+  
   constructor(
     private http: HttpClient,
     private router: Router,
     private data : DataService,
-    private _Activatedroute: ActivatedRoute
-    ) { }
+    private _Activatedroute: ActivatedRoute,
+    private formBuilder: FormBuilder
+    ) { 
+      
+    }
 
   ngOnInit(): void {
     this.data.getCategories().subscribe(
       data => this.categories$ = data,
+    ),
+    this.data.getExtras().subscribe(
+      data => this.extras$ = data,
     ),
     this._Activatedroute.paramMap.subscribe(params => { 
       this.id = params.get('id');
@@ -48,6 +71,7 @@ export class ItemComponent implements OnInit {
   priceLarge: number;
   url = 'http://127.0.0.1:5000/api/food_items/';
 
+
   addItem() {
     let key = window.localStorage.getItem('key');
     let header = {
@@ -55,9 +79,7 @@ export class ItemComponent implements OnInit {
         'Content-Type':  'application/json',
         'Authorization': 'Token ' + key
       })
-    }
-  
-    
+    }    
     if(this.noClicked) {
       let post_data = {
         name: this.name,
@@ -133,5 +155,6 @@ export class ItemComponent implements OnInit {
   back() {
     this.router.navigate(['/management/menu/category/' + this.id]);
   }
+
 
 }
