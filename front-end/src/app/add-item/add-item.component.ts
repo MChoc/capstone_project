@@ -54,7 +54,7 @@ export class AddItemComponent implements OnInit {
     }
 
     this.cartService.addToCart(item, quantity);
-    this.success_message = "Item added to cart!";
+    this.success_message = "Item added to order!";
   }
 
 }
