@@ -1,6 +1,7 @@
 <div class="register-form">
     <h2>ADD MENU ITEM</h2>
-    <p style="text-align: center;"> Category: {{catName}}</p>
+    <h5> Category: {{catName}}</h5>
+
     <form ngNativeValidate (ngSubmit)="addItem()">
         <input type="text" [(ngModel)]="name" name="name" placeholder="Item Name" required>
         <input type="text" [(ngModel)]="description" name="description" placeholder="Item Description" required>
@@ -23,9 +24,7 @@
         
         <button type="submit">Save</button>
        
-        <div class="back">
-            <a href="management/menu">Cancel</a>
-        </div>
+        <button type="button" (click)="back()">Cancel</button>
 
     </form>
 </div>

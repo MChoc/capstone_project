@@ -130,4 +130,8 @@ export class ItemComponent implements OnInit {
     this.yesClicked = !this.yesClicked;
   }
 
+  back() {
+    this.router.navigate(['/management/menu/category/' + this.id]);
+  }
+
 }
