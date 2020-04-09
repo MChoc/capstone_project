@@ -12,19 +12,20 @@ b {
     list-style-type: none;
 }
 
-.category {
+.category, .extras {
     margin-left: 8%;
     width: 75%;
-    background-color: #fcf7fb;
     padding: 20px;
-    border: solid 1px #352728;
+    border: solid .5px #352728;
     margin-top: 40px;
     margin-bottom: 10px;
+    border-radius: 10px;
+    /* box-shadow: 5px 5px 20px grey; */
 }
 
 .row, .row2 {
     display: flex;
-    margin-bottom: 30px;
+    margin-bottom: 5px;
 }
 
 .row2 {
@@ -122,9 +123,10 @@ p {
     width: 75%;
     background-color: #fcf7fb;
     padding: 20px;
-    border: solid 1px grey;
+    border: solid 0.5px grey;
     margin-top: 40px;
     margin-bottom: 10px;
+    border-radius: 10px;
 }
 
 .archived-category-list p {

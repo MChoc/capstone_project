@@ -5,11 +5,13 @@ from rest_framework.decorators import action
 from rest_framework.views import APIView
 from rest_framework import viewsets
 from rest_framework.response import Response
+from accounts.permissions import LoggedInOrValidateOnly
 
 
 class CreditCardViewSet(viewsets.ModelViewSet):
     queryset = CreditCard.objects.all()
     serializer_class = CreditCardSerializer
+    permission_classes = [LoggedInOrValidateOnly]
 
     @action(detail=False, methods=['POST'])
     def validate(self, request, *args, **kwargs):

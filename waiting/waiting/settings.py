@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
+import django_heroku
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -176,3 +177,5 @@ SITE_ID = 1
 CORS_ORIGIN_WHITELIST = (
     'http://localhost:4200',
 )
+
+django_heroku.settings(locals())

@@ -15,6 +15,10 @@ import { CategoryComponent } from './category/category.component';
 import { ItemComponent } from './item/item.component';
 import { ItemEditComponent } from './item-edit/item-edit.component';
 import { CategoryEditComponent } from './category-edit/category-edit.component';
+import { ExtraComponent } from './extra/extra.component';
+import { ExtraEditComponent } from './extra-edit/extra-edit.component';
+import { CartComponent } from './cart/cart.component';
+import {CheckoutComponent} from './checkout/checkout.component';
 
 const routes: Routes = [
   {
@@ -76,7 +80,23 @@ const routes: Routes = [
   {
     path: 'management/menu/edit-category/:id',
     component: CategoryEditComponent
-  }
+  },
+  {
+    path: 'management/menu/add-extra',
+    component: ExtraComponent
+  },
+  {
+    path: 'management/menu/edit-extra/:id',
+    component: ExtraEditComponent
+  },
+  {
+    path: 'cart',
+    component: CartComponent
+  },
+  {
+    path:'checkout',
+    component: CheckoutComponent
+  },
 ];
 
 @NgModule({

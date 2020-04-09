@@ -58,9 +58,4 @@ button[type=submit] {
     margin: 8px 0;
     display: inline-block;
     width: 50%;
-    vertical-align: top;
-  }
-  .extras {
-    text-align: left;
-    list-style: none;
   }
