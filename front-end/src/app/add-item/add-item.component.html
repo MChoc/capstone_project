@@ -3,6 +3,7 @@
     {{ item.name }}
     <p>{{ item.description }}</p>
     <p>${{ item.price }}</p>
+    <p>{{ item.size }}</p>
     <form [formGroup]="orderForm">
       <div [formGroup]="orderForm" class="element">
         <input type="number" min="1" max="15" formControlName="quantity">
