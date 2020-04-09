@@ -48,14 +48,13 @@ for i in range(0,10):
         food_items.append(food_item)
         print(f"Created {food_item}")
 
-        for i in range(0,5):
-            extra = Extra.objects.create(
-                name='Extra ' + str(i),
-                price=i,
-                category=category
-            )
-            extras.append(extra)
-            print(f"Created {extra}")
+        extra = Extra.objects.create(
+            name='Extra ' + str(i),
+            price=i,
+            category=category
+        )
+        extras.append(extra)
+        print(f"Created {extra}")
 
 # TODO: use rand to add tags to items
 tags = []
@@ -84,7 +83,7 @@ for i in range(1,5):
 
 # Populate table with customers
 customers = []
-for i in range(0,10):
+for i in range(0,5):
     customer = get_user_model().objects.create_user(
         username='Customer' + str(i),
         password='Customer' + str(i),
@@ -97,7 +96,7 @@ for i in range(0,10):
 
 # Populate table with kitchen staff
 kitchens = []
-for i in range(0,10):
+for i in range(0,5):
     kitchen = get_user_model().objects.create_user(
         username='Kitchen' + str(i),
         password='Kitchen' + str(i),
@@ -110,7 +109,7 @@ for i in range(0,10):
 
 # Populate table with waiters
 waiters = []
-for i in range(0,10):
+for i in range(0,5):
     waiter = get_user_model().objects.create_user(
         username='Waiter' + str(i),
         password='Waiter' + str(i),

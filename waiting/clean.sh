@@ -8,5 +8,5 @@ python manage.py makemigrations accounts
 python manage.py makemigrations menu
 python manage.py migrate
 python manage.py shell < dummy_data.py
-python manage.py dumpdata > ../dump.json
+python manage.py dumpdata > ../database.json
 python manage.py dumpdata > menu/fixtures/dump.json
