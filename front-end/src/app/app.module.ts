@@ -48,7 +48,7 @@ import { ExtraComponent } from './extra/extra.component';
     ItemComponent,
     ItemEditComponent,
     CartComponent,
-    CheckoutComponent
+    CheckoutComponent,
     CategoryManageComponent,
     ExtraComponent
   ],

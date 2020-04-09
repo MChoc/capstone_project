@@ -88,6 +88,7 @@ const routes: Routes = [
     path:'checkout',
     component: CheckoutComponent
   },
+  {
     path: 'management/menu/category/:id/add-extra/:id',
     component: ExtraComponent
   }
