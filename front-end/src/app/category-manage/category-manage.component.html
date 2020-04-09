@@ -1,40 +1,52 @@
-<div> {{catName}}
-    <ul *ngFor="let item of items$" class="item">
-        <div *ngIf="catUrl === item.category && item.active">
-            <div class="row">
-            
-                <div class="column1">
-                    {{ item.name }}
-                    <p>{{ item.description }}</p>
-                    <p>${{ item.price }}</p>
-                </div>
-            
-                <div class="column2">
-                    <a [routerLink] = "['edit-item', item.id]" [class.activated]="currentUrl == '/management/menu/category'">
-                        <i class="material-icons">edit</i>
-                    </a>
-                    <button (click)="archiveItem( item.id )" class="archive">
-                        <i class="material-icons">archive</i>
-                    </button>
-                    <button (click)="deleteItem( item.id )" class="delete">
-                        <i class="material-icons">delete</i>
-                    </button>
-                </div>
-        
-            </div>
-        </div>
-    </ul>
-
-    <div class="line">
-        <p>Archived Items:</p>
-        <ul *ngFor="let item of items$" class="item">
-            <div *ngIf="catUrl === item.category && !item.active">
-                <div class="row2">
+<div> 
+    
+    <div class="category">
+        <h2>
+            {{catName}}
+            <a [routerLink] = "['edit-category', catId]" [class.activated]="currentUrl == '/management/menu/category'">
+                <i class="material-icons">edit</i>
+            </a>
+        </h2>
+    </div>
+    
+    <div class="item-list">
+        <ul *ngFor="let item of items$" >
+            <div *ngIf="catUrl === item.category && item.active" class="item">
+                <div class="row">
             
                     <div class="column1">
                         {{ item.name }}
                         <p>{{ item.description }}</p>
-                        <p>${{ item.price }}</p>
+                        <p>{{ item.size }} ${{ item.price }}</p>
+                    </div>
+            
+                    <div class="column2">
+                        <a [routerLink] = "['edit-item', item.id]" [class.activated]="currentUrl == '/management/menu/category'">
+                            <i class="material-icons">edit</i>
+                        </a>
+                        <button (click)="archiveItem( item.id )" class="archive">
+                            <i class="material-icons">archive</i>
+                        </button>
+                        <button (click)="deleteItem( item.id )" class="delete">
+                            <i class="material-icons">delete</i>
+                        </button>
+                    </div>
+        
+                </div>
+            </div>
+        </ul>
+    </div>
+
+    <div class="archived-item-list">
+        <p class="pad">Archived Items:</p>
+        <ul *ngFor="let item of items$">
+            <div *ngIf="catUrl === item.category && !item.active"  class="archived-item">
+                <div class="row">
+            
+                    <div class="column1">
+                        {{ item.name }}
+                        <p>{{ item.description }}</p>
+                        <p>{{ item.size }} ${{ item.price }}</p>
                     </div>
             
                     <div class="column2">
@@ -54,7 +66,12 @@
         </ul>
     </div>
     
+    <div class="add">
+        <a [routerLink] = "['add-item', catId]" [class.activated]="currentUrl == '/management/menu/category'">Add Item</a>
+    </div> 
+
+    <div class="extras">
+        <h2>Extras</h2>
+    </div>
 
 </div> 
-
-<a [routerLink] = "['add-item', catId]" [class.activated]="currentUrl == '/management/menu/category'">Add Item</a> 

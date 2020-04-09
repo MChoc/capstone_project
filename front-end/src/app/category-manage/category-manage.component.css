@@ -1,0 +1,78 @@
+h2{
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+a, button {
+    color: #352728;
+    padding: 0 5px;
+    background-color: #fcf7fb;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    text-decoration: none;
+}
+
+.item, .archived-item {
+    width: 300px;
+    margin: auto;
+    margin-top: 20px;
+    padding: 20px;
+    border-bottom: solid .5px #35272862;
+}
+
+.column1 {
+    float: left;
+    width: 50%;
+}
+
+.column2 {
+    float: right;
+    width: 50%;
+    text-align: right;
+    margin: auto;
+}
+
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.pad {
+    text-align: center;
+    padding-top: 20px;
+    color: grey;
+}
+
+.archived-item a, .archived-item button, .archived-item, .archived-item p {
+    color: grey;
+}
+
+.add {
+    text-align: center;
+    margin: auto;
+    padding-top: 30px;
+}
+
+.add a {
+    background-color: #352728;
+    color: #fcf7fb;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    outline: none;
+    margin-top: 20px;
+    margin-left: 10px;
+    font-size: small;
+}
+
+.extras {
+    margin: auto;
+    width: 350px;
+    margin-top: 50px;
+    border: solid 0.5px #352728;
+    border-radius: 10px;
+    height: 50px;
+}

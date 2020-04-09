@@ -67,7 +67,7 @@ const routes: Routes = [
     component: CategoryManageComponent
   },
   {
-    path: 'management/menu/edit-category/:id',
+    path: 'management/menu/category/:id/edit-category/:id',
     component: CategoryEditComponent
   },
   {
