@@ -22,6 +22,17 @@ export class StaffComponent implements OnInit {
     private http: HttpClient,
     private data : DataService,
     private router: Router) { 
+
+    let loggedOn = window.localStorage.getItem('user');
+
+    if(!loggedOn || JSON.parse(loggedOn)['user_type'] != 'MANAGER') {
+      this.router.navigate(['**']);
+    }
+
+    if(loggedOn) {
+      this.currentUser = JSON.parse(loggedOn)['id'];
+    }
+
     router.events.subscribe((_: NavigationEnd) => this.currentUrl = _.url)
   }
 
@@ -29,10 +40,6 @@ export class StaffComponent implements OnInit {
     this.data.getUsers().subscribe(
       data => this.users$ = data,
     )
-    let loggedOnUser = window.localStorage.getItem('user');
-    if(loggedOnUser) {
-      this.currentUser = JSON.parse(loggedOnUser)['id'];
-    }
   }
 
   url : string;
