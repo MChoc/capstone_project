@@ -11,10 +11,11 @@ import { LogoutComponent } from './logout/logout.component';
 import { UserEditComponent } from './user-edit/user-edit.component';
 import { ManageMenuComponent } from './manage-menu/manage-menu.component';
 import { AddItemComponent } from './add-item/add-item.component';
-import { CategoryComponent } from './category/category.component';
 import { ItemComponent } from './item/item.component';
 import { ItemEditComponent } from './item-edit/item-edit.component';
 import { CategoryEditComponent } from './category-edit/category-edit.component';
+import { CategoryManageComponent } from './category-manage/category-manage.component';
+
 
 const routes: Routes = [
   {
@@ -62,20 +63,20 @@ const routes: Routes = [
     component: AddItemComponent
   },
   {
-    path: 'management/menu/category',
-    component: CategoryComponent
-  },
-  {
-    path: 'management/menu/add-item/:id',
-    component: ItemComponent
-  },
-  {
-    path: 'management/menu/edit-item/:id',
-    component: ItemEditComponent
+    path: 'management/menu/category/:id',
+    component: CategoryManageComponent
   },
   {
     path: 'management/menu/edit-category/:id',
     component: CategoryEditComponent
+  },
+  {
+    path: 'management/menu/category/:id/add-item/:id',
+    component: ItemComponent
+  },
+  {
+    path: 'management/menu/category/:id/edit-item/:id',
+    component: ItemEditComponent
   }
 ];
 
