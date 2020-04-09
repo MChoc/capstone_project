@@ -1,3 +1,2 @@
-python manage.py migrate
-python manage.py shell < waiting/dummp_data.py
-python manage.py dumpdata > dump.json
+python waiting/manage.py migrate
+python waiting/manage.py loaddata dump.json
