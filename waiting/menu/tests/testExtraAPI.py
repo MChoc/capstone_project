@@ -1,5 +1,6 @@
 from collections import OrderedDict
 
+from menu.models.category import Category
 from menu.models.extra import Extra
 from menu.serializers.extra_serializer import ExtraSerializer
 
@@ -89,12 +90,20 @@ class TestExtraModel(APITestCase):
     """
     def test_create(self):
         url = '/api/extra/'
+        factory = APIRequestFactory()
+        request = factory.post(url)
         
         init_count = Extra.objects.count()
 
+        category = Category.objects.get(id=1)
         body = {
             'name': 'Test Name',
             'price': '10.00',
+            'category': reverse(
+                'category-detail',
+                args=[category.pk,],
+                request=request,
+            ),
         }
         response = self.client.post(url, body, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
@@ -143,11 +152,19 @@ class TestExtraModel(APITestCase):
     """
     def test_update(self):
         url = '/api/extra/1/'
+        factory = APIRequestFactory()
+        request = factory.post(url)
         
+        category = Category.objects.get(id=2)
         body = {
             'name': 'Test Change',
             'price': '20.00',
             'active': False,
+            'category': reverse(
+                'category-detail',
+                args=[category.pk,],
+                request=request,
+            ),
         }
         response = self.client.put(url, body, format='json')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
@@ -156,6 +173,7 @@ class TestExtraModel(APITestCase):
         self.assertEqual(obj.name, 'Test Change')
         self.assertEqual(obj.price, 20)
         self.assertFalse(obj.active)
+        self.assertEqual(obj.category, category)
 
     """
     Testing UPDATE (partial)

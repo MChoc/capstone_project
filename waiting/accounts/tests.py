@@ -87,14 +87,12 @@ class TestCustomUserModel(APITestCase):
     """
     def test_create(self):
         url = '/api/accounts/'
-        factory = APIRequestFactory()
-        request = factory.post(url)
         
         init_count = CustomUser.objects.count()
 
         body = {
-            'username': 'Test username',
-            'password': 'Test password',
+            'username': 'Testusername',
+            'password': 'Testpassword',
             'first_name': 'Test first name',
             'last_name': 'Test last name',
             'user_type': 'MANAGER',
@@ -105,7 +103,7 @@ class TestCustomUserModel(APITestCase):
         post_count = CustomUser.objects.count()
         self.assertEqual(post_count, init_count+1)
 
-        post_obj = CustomUser.objects.get(name='Test Name')
+        post_obj = CustomUser.objects.get(username='Testusername')
         self.assertIsNotNone(post_obj)
 
     """
@@ -146,31 +144,23 @@ class TestCustomUserModel(APITestCase):
     """
     def test_update(self):
         url = '/api/accounts/1/'
-        factory = APIRequestFactory()
-        request = factory.post(url)
         
-        category = Category.objects.get(id=1)
         body = {
-            'name': 'Test Change',
-            'active': False,
-            'price': '10.00',
-            'description': 'Test Change',
-            'category': reverse(
-                'category-detail',
-                args=[category.pk,],
-                request=request,
-            ),
-            'size': 'Test Change',
+            'username': 'Testusernamechange',
+            'password': 'Testpasswordchange',
+            'first_name': 'Test first name change',
+            'last_name': 'Test last name change',
+            'user_type': 'WAITER',
         }
         response = self.client.put(url, body, format='json')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
         obj = CustomUser.objects.get(id=1)
-        self.assertEqual(obj.name, 'Test Change')
-        self.assertFalse(obj.active)
-        self.assertEqual(obj.description, 'Test Change')
-        self.assertEqual(obj.category, category)
-        self.assertEqual(obj.size, 'Test Change')
+        self.assertEqual(obj.username, 'Testusernamechange')
+        self.assertEqual(obj.password, 'pbkdf2_sha256$180000$y2LOKGu2VOkC$qfQ6G97klvy1ilv2ijfKlW+lIRiMMVj8xqH883p6bIw=')
+        self.assertEqual(obj.first_name, 'Test first name change')
+        self.assertEqual(obj.last_name, 'Test last name change')
+        self.assertEqual(obj.user_type, 'WAITER')
 
     """
     Testing UPDATE (partial)
@@ -184,13 +174,13 @@ class TestCustomUserModel(APITestCase):
         url = '/api/accounts/1/'
 
         body = {
-            'username': 'Test Change',
+            'active': False,
         }
         response = self.client.patch(url, body, format='json')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
         obj = CustomUser.objects.get(id=1)
-        self.assertEqual(obj.username, 'Test Change')
+        self.assertFalse(obj.active)
 
     """
     Testing DESTROY

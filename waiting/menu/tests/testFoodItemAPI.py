@@ -156,7 +156,7 @@ class TestFoodItemModel(APITestCase):
         factory = APIRequestFactory()
         request = factory.post(url)
         
-        category = Category.objects.get(id=1)
+        category = Category.objects.get(id=2)
         body = {
             'name': 'Test Change',
             'active': False,
@@ -167,7 +167,7 @@ class TestFoodItemModel(APITestCase):
                 args=[category.pk,],
                 request=request,
             ),
-            'size': 'Test Change',
+            'size': 'SMALL',
         }
         response = self.client.put(url, body, format='json')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
@@ -177,7 +177,7 @@ class TestFoodItemModel(APITestCase):
         self.assertFalse(obj.active)
         self.assertEqual(obj.description, 'Test Change')
         self.assertEqual(obj.category, category)
-        self.assertEqual(obj.size, 'Test Change')
+        self.assertEqual(obj.size, 'SMALL')
 
     """
     Testing UPDATE (partial)
