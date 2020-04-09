@@ -48,14 +48,13 @@ for i in range(0,10):
         food_items.append(food_item)
         print(f"Created {food_item}")
 
-        for i in range(0,10):
-            extra = Extra.objects.create(
-                name='Extra ' + str(i),
-                price=i,
-                category=category
-            )
-            extras.append(extra)
-            print(f"Created {extra}")
+        extra = Extra.objects.create(
+            name='Extra ' + str(i),
+            price=i,
+            category=category
+        )
+        extras.append(extra)
+        print(f"Created {extra}")
 
 # TODO: use rand to add tags to items
 tags = []
