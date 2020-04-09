@@ -10,6 +10,8 @@ export class DataService {
   private userList = 'http://127.0.0.1:5000/api/accounts/'
   private categoryList = 'http://127.0.0.1:5000/api/categories/'
   private itemList = 'http://127.0.0.1:5000/api/food_items/'
+  private extraList = 'http://127.0.0.1:5000/api/extra/'
+
 
   constructor(private http: HttpClient) { }
 
@@ -51,6 +53,16 @@ export class DataService {
     }
 
     return this.http.get(this.itemList, header)
+  }
+
+  getExtras() {
+    let key = window.localStorage.getItem('key')
+    var header = {
+      headers: new HttpHeaders()
+        .set('Authorization', 'Token ' + key)
+    }
+
+    return this.http.get(this.extraList, header)
   }
 
 

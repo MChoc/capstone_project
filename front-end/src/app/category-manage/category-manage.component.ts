@@ -15,6 +15,7 @@ export class CategoryManageComponent implements OnInit {
   
   category$: Object;
   items$: Object;
+  extras$: Object;
   catName: string;
   catUrl: string;
   catId: string;
@@ -43,6 +44,9 @@ export class CategoryManageComponent implements OnInit {
     ),
     this.data.getItems().subscribe(
       data => this.items$ = data,
+    ),
+    this.data.getExtras().subscribe(
+      data => this.extras$ = data,
     )
   }
 
@@ -114,6 +118,27 @@ export class CategoryManageComponent implements OnInit {
       () => {
           console.log("The PATCH observable is now completed.");
       });
+  }
+
+  deleteCategory(id) {
+    let key = window.localStorage.getItem('key')
+    let header = {
+      headers: new HttpHeaders()
+        .set('Authorization', 'Token ' + key)
+    }
+    let url = 'http://127.0.0.1:5000/api/categories/' + id + '/';
+    this.http.delete(url, header).toPromise().then(data => {
+      console.log("deleted");
+      this.router.navigate(['/management/menu']);
+    },
+    error => {
+      console.log("not deleted!")
+      console.log(error.error);
+    });  
+  } 
+
+  back() {
+    this.router.navigate(['/management/menu']);
   }
 
 }

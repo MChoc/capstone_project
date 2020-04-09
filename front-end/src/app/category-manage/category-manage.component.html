@@ -72,9 +72,71 @@
 
     <div class="extras">
         <h2>Extras</h2>
+
+        <div class="item-list">
+            <!-- <ul *ngFor="let extra of extras$" >
+                <div *ngIf="catUrl === extra.category && extra.active" class="item">
+                    <div class="row">
+                
+                        <div class="column1">
+                            {{ extra.name }}
+                            <p>${{ extra.price }}</p>
+                        </div>
+                
+                        <div class="column2">
+                            <a [routerLink] = "['edit-item', item.id]" [class.activated]="currentUrl == '/management/menu/category'">
+                                <i class="material-icons">edit</i>
+                            </a> 
+                            <button (click)="archiveItem( item.id )" class="archive">
+                                <i class="material-icons">archive</i>
+                            </button>
+                            <button (click)="deleteItem( item.id )" class="delete">
+                                <i class="material-icons">delete</i>
+                            </button>
+                        </div>
+            
+                    </div>
+                </div>
+            </ul> -->
+        </div>
+    
+        <div class="archived-item-list">
+            <p class="pad">Archived Extras:</p>
+            <!-- <ul *ngFor="let extra of extras$">
+                <div *ngIf="catUrl === extra.category && !extra.active"  class="archived-item">
+                    <div class="row">
+                
+                        <div class="column1">
+                            {{ extra.name }}
+                            <p>${{ extra.price }}</p>
+                        </div>
+                
+                        <div class="column2">
+                            <a [routerLink] = "['edit-item', item.id]" [class.activated]="currentUrl == '/management/menu/category'">
+                                <i class="material-icons">edit</i>
+                            </a>
+                            <button (click)="unarchiveItem( item.id )" class="archive">
+                                <i class="material-icons">add</i>
+                            </button>
+                            <button (click)="deleteItem( item.id )" class="delete">
+                                <i class="material-icons">delete</i>
+                            </button>
+                        </div>
+            
+                    </div>
+                </div> 
+            </ul> -->
+        </div>
+
         <div class="add">
             <a [routerLink] = "['add-extra', catId]" [class.activated]="currentUrl == '/management/menu/category'">Add Extra</a>
         </div> 
+
+    </div>
+
+    <div class="buttons">
+        <button (click)="back()">Back to Categories</button>
+        <button type="button" (click)="deleteCategory( catId )" > Delete Category</button>
     </div>
 
 </div> 

@@ -49,7 +49,7 @@ a, button {
     color: grey;
 }
 
-.add {
+.add, .buttons {
     text-align: center;
     margin: auto;
     padding-top: 30px;
@@ -80,3 +80,17 @@ a, button {
 p {
     font-size: small;
 }
+
+button[type=button] {
+    background-color: #fcf7fb;
+    color: red;
+    padding: 10px;
+    outline: none;
+    margin-top: 30px;
+    text-decoration: underline;
+}
+
+.deleteCategory{
+    background-color: red;
+}
+
