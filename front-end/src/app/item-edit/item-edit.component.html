@@ -1,6 +1,7 @@
 <div class="edit-form">
     
-    <h2>EDIT ITEM DETAILS</h2>
+    <h2>Edit: {{itemName}}</h2>
+    <h5>{{itemSize}}</h5>
 
     <form ngNativeValidate [formGroup]="itemEditForm" (ngSubmit)="onFormSubmit()">
         <div [formGroup]="itemEditForm" class="element">
@@ -30,9 +31,7 @@
 
         <button type="submit">Save</button>
         
-        <div class="back">
-            <a href="management/menu">Cancel</a>
-        </div>
+        <button type="button" (click)="back()">Cancel</button>
     
     </form>
 

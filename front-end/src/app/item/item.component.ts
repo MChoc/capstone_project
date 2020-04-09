@@ -16,6 +16,8 @@ export class ItemComponent implements OnInit {
   extras$: Object;
 
   id: string;
+  category: Object;
+  catName: string;
 
   
 
@@ -49,183 +51,109 @@ export class ItemComponent implements OnInit {
     ),
     this._Activatedroute.paramMap.subscribe(params => { 
       this.id = params.get('id');
-    }),
-    this.dropdownList = [
-      { item_id: 1, item_text: 'Mumbai' },
-      { item_id: 2, item_text: 'Bangaluru' },
-      { item_id: 3, item_text: 'Pune' },
-      { item_id: 4, item_text: 'Navsari' },
-      { item_id: 5, item_text: 'New Delhi' }
-    ],
-    this.selectedItems = [
-      { item_id: 3, item_text: 'Pune' },
-      { item_id: 4, item_text: 'Navsari' }
-    ];
-    this.dropdownSettings = {
-      singleSelection: false,
-      idField: 'item_id',
-      textField: 'item_text',
-      selectAllText: 'Select All',
-      unSelectAllText: 'UnSelect All',
-      itemsShowLimit: 3,
-      allowSearchFilter: true
-    };
-  }
-
-  onItemSelect(item: any) {
-    console.log(item);
-  }
-  onSelectAll(items: any) {
-    console.log(items);
+    });
+    let url = 'http://127.0.0.1:5000/api/categories/' + this.id + '/';
+    this.http.get(url).toPromise().then(data => {
+      this.category = data;
+      this.catName = data['name'];
+    },
+    error => {
+      console.log("ERROR!")
+      console.log(error.error);
+    })
   }
 
   name: string;
   description: string;
   price: number;
-  priceMedium: number = null;
-  priceLarge: number = null;
-  size: string;
-
+  priceSmall: number;
+  priceMedium: number;
+  priceLarge: number;
   url = 'http://127.0.0.1:5000/api/food_items/';
 
 
   addItem() {
-    
     let key = window.localStorage.getItem('key');
     let header = {
       headers: new HttpHeaders({
         'Content-Type':  'application/json',
         'Authorization': 'Token ' + key
       })
-    }
-
-    if(this.priceMedium === null && this.priceLarge === null) {
-      //no sizes
-      console.log('Regular');
+    }    
+    if(this.noClicked) {
       let post_data = {
         name: this.name,
         active: true,
         price: this.price,
         description: this.description,
-        category: 'http://127.0.0.1:5000/api/categories/' + this.id + '/',
+        category: 'http://127.0.0.1:5000/api/categories/' + this.id + '/'
       };
       this.http.post(this.url, post_data, header).toPromise().then(data => {
-      this.router.navigate(['/management/menu']); 
+        console.log(data);
+        this.router.navigate(['/management/menu/category/'+ this.id]); 
       },
       error=> {
         console.log(error.error);
       });
-    } else if (this.priceMedium !== null && this.priceLarge === null) {
-      //small and medium
-      console.log('Small and Medium');
+    } else {
+      //small
       let post_data = {
         name: this.name,
         active: true,
-        price: this.price,
+        price: this.priceSmall,
+        size: 'SMALL',
         description: this.description,
-        category: 'http://127.0.0.1:5000/api/categories/' + this.id + '/',
-        size: 'SMALL'
+        category: 'http://127.0.0.1:5000/api/categories/' + this.id + '/'
       };
       this.http.post(this.url, post_data, header).toPromise().then(data => {
-        //this.router.navigate(['/management/menu']); 
+        console.log(data);
       },
       error=> {
         console.log(error.error);
       });
+      //medium
       post_data = {
         name: this.name,
         active: true,
         price: this.priceMedium,
+        size: 'MEDIUM',
         description: this.description,
-        category: 'http://127.0.0.1:5000/api/categories/' + this.id + '/',
-        size: 'MEDIUM'
+        category: 'http://127.0.0.1:5000/api/categories/' + this.id + '/'
       };
       this.http.post(this.url, post_data, header).toPromise().then(data => {
-        this.router.navigate(['/management/menu']); 
+        console.log(data);
       },
       error=> {
         console.log(error.error);
       });
-    } else if (this.priceMedium === null && this.priceLarge !== null) {
-      //small and large
-      console.log('small and large');
-      let post_data = {
-        name: this.name,
-        active: true,
-        price: this.price,
-        description: this.description,
-        category: 'http://127.0.0.1:5000/api/categories/' + this.id + '/',
-        size: 'SMALL'
-      };
-      this.http.post(this.url, post_data, header).toPromise().then(data => {
-        //this.router.navigate(['/management/menu']); 
-      },
-      error=> {
-        console.log(error.error);
-      });
+      //large
       post_data = {
         name: this.name,
         active: true,
         price: this.priceLarge,
+        size: 'LARGE',
         description: this.description,
-        category: 'http://127.0.0.1:5000/api/categories/' + this.id + '/',
-        size: 'LARGE'
+        category: 'http://127.0.0.1:5000/api/categories/' + this.id + '/'
       };
       this.http.post(this.url, post_data, header).toPromise().then(data => {
-        this.router.navigate(['/management/menu']); 
-      },
-      error=> {
-        console.log(error.error);
-      });
-    } else if (this.priceMedium !== null && this.priceLarge !== null) {
-      //small medium and large
-      console.log('small medium large');
-      console.log(this.priceMedium);
-
-      let post_data = {
-        name: this.name,
-        active: true,
-        price: this.price,
-        description: this.description,
-        category: 'http://127.0.0.1:5000/api/categories/' + this.id + '/',
-        size: 'SMALL'
-      };
-      this.http.post(this.url, post_data, header).toPromise().then(data => {
-        //this.router.navigate(['/management/menu']); 
-      },
-      error=> {
-        console.log(error.error);
-      });
-      post_data = {
-        name: this.name,
-        active: true,
-        price: this.priceMedium,
-        description: this.description,
-        category: 'http://127.0.0.1:5000/api/categories/' + this.id + '/',
-        size: 'MEDIUM'
-      };
-      this.http.post(this.url, post_data, header).toPromise().then(data => {
-        this.router.navigate(['/management/menu']); 
-      },
-      error=> {
-        console.log(error.error);
-      });
-      post_data = {
-        name: this.name,
-        active: true,
-        price: this.priceLarge,
-        description: this.description,
-        category: 'http://127.0.0.1:5000/api/categories/' + this.id + '/',
-        size: 'LARGE'
-      };
-      this.http.post(this.url, post_data, header).toPromise().then(data => {
-        this.router.navigate(['/management/menu']); 
+        console.log(data);
+        this.router.navigate(['/management/menu/category/'+ this.id]); 
       },
       error=> {
         console.log(error.error);
       });
     }
+  }
 
+  noClicked = true;
+  yesClicked = false;
+  sizes(){
+    this.noClicked = !this.noClicked;
+    this.yesClicked = !this.yesClicked;
+  }
+
+  back() {
+    this.router.navigate(['/management/menu/category/' + this.id]);
   }
 
 

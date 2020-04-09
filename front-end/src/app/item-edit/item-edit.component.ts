@@ -3,6 +3,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormControl } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { DataService } from '../_services/data.service';
+import {Location} from '@angular/common';
+
 
 @Component({
   selector: 'app-item-edit',
@@ -13,6 +15,8 @@ export class ItemEditComponent implements OnInit {
 
   id: string;
   item: Object;
+  itemName: string;
+  itemSize: string;
   categories$: Object;
   
   success_message = '';
@@ -38,7 +42,7 @@ export class ItemEditComponent implements OnInit {
     }
     
     this.http.put(url, this.itemEditForm.value, header).toPromise().then(data => {
-      this.router.navigate(['/management/menu']); 
+      this._location.back(); 
     },
     error => {
       this.error_message = "An error occured. Item was not updated."
@@ -49,7 +53,8 @@ export class ItemEditComponent implements OnInit {
     private _Activatedroute: ActivatedRoute, 
     private http: HttpClient, 
     private router: Router,
-    private data : DataService
+    private data : DataService,
+    private _location: Location
   ) { }
 
   ngOnInit(): void {
@@ -62,6 +67,8 @@ export class ItemEditComponent implements OnInit {
     let url = 'http://127.0.0.1:5000/api/food_items/' + this.id + '/';
     this.http.get(url).toPromise().then(data => {
       this.item = data;
+      this.itemName = data['name'];
+      this.itemSize = data['size'];
       this.itemEditForm.setValue({name: this.item['name'],
                                   description: this.item['description'],
                                   price: this.item['price'],
@@ -72,6 +79,10 @@ export class ItemEditComponent implements OnInit {
       console.log("ERROR!")
       console.log(error.error);
     })
+  }
+
+  back() {
+    this._location.back(); 
   }
 
 }

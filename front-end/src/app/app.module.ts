@@ -19,15 +19,13 @@ import { LogoutComponent } from './logout/logout.component';
 import { UserEditComponent } from './user-edit/user-edit.component';
 import { ManageMenuComponent } from './manage-menu/manage-menu.component';
 import { AddItemComponent } from './add-item/add-item.component';
-import { CategoryComponent } from './category/category.component';
 import { CategoryEditComponent } from './category-edit/category-edit.component';
 import { ItemComponent } from './item/item.component';
 import { ItemEditComponent } from './item-edit/item-edit.component';
-import { ExtraComponent } from './extra/extra.component';
-import { ExtraEditComponent } from './extra-edit/extra-edit.component';
-// import {NgMultiSelectDropDownModule} from 'ng-multiselect-dropdown';
 import { CartComponent } from './cart/cart.component';
 import { CheckoutComponent } from './checkout/checkout.component';
+import { CategoryManageComponent } from './category-manage/category-manage.component';
+import { ExtraComponent } from './extra/extra.component';
 
 
 @NgModule({
@@ -46,14 +44,13 @@ import { CheckoutComponent } from './checkout/checkout.component';
     UserEditComponent,
     ManageMenuComponent,
     AddItemComponent,
-    CategoryComponent,
     CategoryEditComponent,
     ItemComponent,
     ItemEditComponent,
-    ExtraComponent,
-    ExtraEditComponent,
     CartComponent,
     CheckoutComponent
+    CategoryManageComponent,
+    ExtraComponent
   ],
   imports: [
     BrowserModule,

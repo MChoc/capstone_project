@@ -11,14 +11,13 @@ import { LogoutComponent } from './logout/logout.component';
 import { UserEditComponent } from './user-edit/user-edit.component';
 import { ManageMenuComponent } from './manage-menu/manage-menu.component';
 import { AddItemComponent } from './add-item/add-item.component';
-import { CategoryComponent } from './category/category.component';
 import { ItemComponent } from './item/item.component';
 import { ItemEditComponent } from './item-edit/item-edit.component';
 import { CategoryEditComponent } from './category-edit/category-edit.component';
-import { ExtraComponent } from './extra/extra.component';
-import { ExtraEditComponent } from './extra-edit/extra-edit.component';
 import { CartComponent } from './cart/cart.component';
 import {CheckoutComponent} from './checkout/checkout.component';
+import { CategoryManageComponent } from './category-manage/category-manage.component';
+import { ExtraComponent } from './extra/extra.component';
 
 const routes: Routes = [
   {
@@ -66,28 +65,20 @@ const routes: Routes = [
     component: AddItemComponent
   },
   {
-    path: 'management/menu/category',
-    component: CategoryComponent
+    path: 'management/menu/category/:id',
+    component: CategoryManageComponent
   },
   {
-    path: 'management/menu/add-item/:id',
-    component: ItemComponent
-  },
-  {
-    path: 'management/menu/edit-item/:id',
-    component: ItemEditComponent
-  },
-  {
-    path: 'management/menu/edit-category/:id',
+    path: 'management/menu/category/:id/edit-category/:id',
     component: CategoryEditComponent
   },
   {
-    path: 'management/menu/add-extra',
-    component: ExtraComponent
+    path: 'management/menu/category/:id/add-item/:id',
+    component: ItemComponent
   },
   {
-    path: 'management/menu/edit-extra/:id',
-    component: ExtraEditComponent
+    path: 'management/menu/category/:id/edit-item/:id',
+    component: ItemEditComponent
   },
   {
     path: 'cart',
@@ -97,6 +88,9 @@ const routes: Routes = [
     path:'checkout',
     component: CheckoutComponent
   },
+    path: 'management/menu/category/:id/add-extra/:id',
+    component: ExtraComponent
+  }
 ];
 
 @NgModule({

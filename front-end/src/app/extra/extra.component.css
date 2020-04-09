@@ -1,6 +1,6 @@
 .register-form {
     text-align: center;
-    width: 75%;
+    width: 300px;
     margin: auto;
 }
 
@@ -35,27 +35,35 @@ button[type=submit] {
     outline: none;
     width: 100%;
     margin: 10px 0;
-  }
+}
 
-  button[type=submit]:hover {
+button[type=submit]:hover {
     background-color: #352728e0;
-  }
+}
 
-  .back {
+.back {
     text-align: center;
-  }
+}
 
-  a {
+a {
     color: #352728 ; 
-  }
+}
 
-  p {
+p {
       text-align: left;
       font-size: small;
-  }
+}
 
-  span {
-    margin: 8px 0;
-    display: inline-block;
-    width: 50%;
-  }
+h5 {
+  text-align: center;
+}
+
+button[type=button] {
+  background-color: #fcf7fb    ;
+  color: #352728;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  width: 100%;
+  text-decoration: underline;
+}

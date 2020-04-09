@@ -13,7 +13,7 @@ a, button {
     text-decoration: none;
 }
 
-.category, .archived-category {
+.item, .archived-item {
     width: 300px;
     margin: auto;
     margin-top: 20px;
@@ -23,12 +23,12 @@ a, button {
 
 .column1 {
     float: left;
-    width: 75%;
+    width: 50%;
 }
 
 .column2 {
     float: right;
-    width: 25%;
+    width: 50%;
     text-align: right;
     margin: auto;
 }
@@ -45,27 +45,17 @@ a, button {
     color: grey;
 }
 
-.archived-category a, .archived-category button {
+.archived-item a, .archived-item button, .archived-item, .archived-item p {
     color: grey;
 }
 
-.category-form {
+.add, .buttons {
     text-align: center;
-    width: 300px;
     margin: auto;
+    padding-top: 30px;
 }
 
-input[type=text] {
-    background-color: #fcf7fb;
-    color: #352728;
-    padding: 10px;
-    border: solid 1px #352728;
-    border-radius: 4px;
-    outline: none;
-    margin-top: 30px;
-}
-
-.save {
+.add a {
     background-color: #352728;
     color: #fcf7fb;
     padding: 10px;
@@ -75,4 +65,32 @@ input[type=text] {
     outline: none;
     margin-top: 20px;
     margin-left: 10px;
+    font-size: small;
 }
+
+.extras {
+    margin: auto;
+    width: 350px;
+    margin-top: 50px;
+    border: solid 0.5px #352728;
+    border-radius: 10px;
+    padding-bottom: 30px;
+}
+
+p {
+    font-size: small;
+}
+
+button[type=button] {
+    background-color: #fcf7fb;
+    color: red;
+    padding: 10px;
+    outline: none;
+    margin-top: 30px;
+    text-decoration: underline;
+}
+
+.deleteCategory{
+    background-color: red;
+}
+
