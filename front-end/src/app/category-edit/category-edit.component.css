@@ -11,7 +11,7 @@ h2{
 
 .edit-form {
     text-align: left;
-    width: 75%;
+    width: 300px;
     margin: auto;
 }
 
@@ -55,23 +55,12 @@ button[type=submit]:hover {
     background-color: #352728e0;
 }
 
-.back {
-    text-align: center;
-}
-
-a {
-    color: #352728 ;
-}
-
-input[type=text]:disabled {
-    border: 0;
-    padding: 0;
-    width: 50%;
-    font-size: large;
-    font-weight: bold;
+button[type=button] {
+    background-color: #fcf7fb    ;
     color: #352728;
-}
-
-.element {
-    margin-top: 20px;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    width: 100%;
+    text-decoration: underline;
 }

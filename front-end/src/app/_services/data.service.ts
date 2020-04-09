@@ -55,6 +55,16 @@ export class DataService {
     return this.http.get(this.categoryList, header)
   }
 
+  getCategory(id) {
+    let key = window.localStorage.getItem('key')
+    var header = {
+      headers: new HttpHeaders()
+        .set('Authorization', 'Token ' + key)
+    }
+    let url = this.categoryList + id + '/'
+    return this.http.get(url, header)
+  }
+
   getItems() {
     let key = window.localStorage.getItem('key')
     var header = {
