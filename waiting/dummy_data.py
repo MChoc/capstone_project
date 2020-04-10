@@ -23,7 +23,7 @@ food_items = []
 extras = []
 for i in range(0,10):
     category = Category.objects.create(
-        name='Category ' + str(1),
+        name='Category ' + str(i+1),
         menu=menu
     )
     categories.append(category)
