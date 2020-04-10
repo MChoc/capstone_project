@@ -12,4 +12,4 @@ class TransactionFoodItem(models.Model):
 
     discount = models.ForeignKey(Discount, on_delete=models.CASCADE)
     extras = models.ManyToManyField(Extra)
-    description = models.CharField(max_length=1024, null=True, blank=True)
+    request = models.CharField(max_length=1024, null=True, blank=True)
