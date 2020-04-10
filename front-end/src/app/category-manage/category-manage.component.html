@@ -74,8 +74,8 @@
         <h2>Extras</h2>
 
         <div class="item-list">
-            <!-- <ul *ngFor="let extra of extras$" >
-                <div *ngIf="catUrl === extra.category && extra.active" class="item">
+            <ul *ngFor="let extra of extras$">
+                <div *ngIf="catUrl === extra.category && extra.active" class="extra">
                     <div class="row">
                 
                         <div class="column1">
@@ -84,26 +84,26 @@
                         </div>
                 
                         <div class="column2">
-                            <a [routerLink] = "['edit-item', item.id]" [class.activated]="currentUrl == '/management/menu/category'">
+                            <a [routerLink] = "['edit-extra', extra.id]" [class.activated]="currentUrl == '/management/menu/category'">
                                 <i class="material-icons">edit</i>
-                            </a> 
-                            <button (click)="archiveItem( item.id )" class="archive">
+                            </a>
+                            <button (click)="archiveExtra( extra.id )" class="archive">
                                 <i class="material-icons">archive</i>
-                            </button>
-                            <button (click)="deleteItem( item.id )" class="delete">
+                            </button> 
+                            <button (click)="deleteExtra( extra.id )" class="delete">
                                 <i class="material-icons">delete</i>
                             </button>
                         </div>
             
                     </div>
                 </div>
-            </ul> -->
+            </ul>
         </div>
     
         <div class="archived-item-list">
             <p class="pad">Archived Extras:</p>
-            <!-- <ul *ngFor="let extra of extras$">
-                <div *ngIf="catUrl === extra.category && !extra.active"  class="archived-item">
+            <ul *ngFor="let extra of extras$">
+                <div *ngIf="catUrl === extra.category && !extra.active"  class="archived-extra">
                     <div class="row">
                 
                         <div class="column1">
@@ -112,20 +112,20 @@
                         </div>
                 
                         <div class="column2">
-                            <a [routerLink] = "['edit-item', item.id]" [class.activated]="currentUrl == '/management/menu/category'">
+                            <a [routerLink] = "['edit-extra', extra.id]" [class.activated]="currentUrl == '/management/menu/category'">
                                 <i class="material-icons">edit</i>
                             </a>
-                            <button (click)="unarchiveItem( item.id )" class="archive">
+                            <button (click)="unarchiveExtra( extra.id )" class="archive">
                                 <i class="material-icons">add</i>
                             </button>
-                            <button (click)="deleteItem( item.id )" class="delete">
+                            <button (click)="deleteExtra( extra.id )" class="delete">
                                 <i class="material-icons">delete</i>
                             </button>
                         </div>
             
                     </div>
                 </div> 
-            </ul> -->
+            </ul>
         </div>
 
         <div class="add">

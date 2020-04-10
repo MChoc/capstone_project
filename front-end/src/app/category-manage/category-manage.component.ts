@@ -100,7 +100,6 @@ export class CategoryManageComponent implements OnInit {
       });
   }
 
-
   unarchiveItem(id) {
     let input = { active: true };
     let url = 'http://127.0.0.1:5000/api/food_items/' + id + '/';
@@ -126,6 +125,77 @@ export class CategoryManageComponent implements OnInit {
           console.log("The PATCH observable is now completed.");
       });
   }
+
+  deleteExtra(id) {
+    let key = window.localStorage.getItem('key')
+    let header = {
+      headers: new HttpHeaders()
+        .set('Authorization', 'Token ' + key)
+    }
+    let url = 'http://127.0.0.1:5000/api/extra/' + id + '/';
+    this.http.delete(url, header).toPromise().then(data => {
+      console.log("deleted");
+      window.location.reload();
+    },
+    error => {
+      console.log("not deleted!")
+      console.log(error.error);
+    });   
+  }
+
+  archiveExtra(id) {
+    let input = { active: false };
+    let url = 'http://127.0.0.1:5000/api/extra/' + id + '/';
+      
+    let key = window.localStorage.getItem('key');
+    let header = {
+    headers: new HttpHeaders({
+      'Content-Type':  'application/json',
+      'Authorization': 'Token ' + key
+    })
+    }
+
+    this.http.patch(url, input, header).subscribe(
+      (val) => {
+        window.location.reload();  
+        console.log("PATCH call successful value returned in body", 
+                      val);
+      },
+      response => {
+          console.log("PATCH call in error", response);
+      },
+      () => {
+          console.log("The PATCH observable is now completed.");
+      });
+  }
+  
+
+  unarchiveExtra(id) {
+    let input = { active: true };
+    let url = 'http://127.0.0.1:5000/api/extra/' + id + '/';
+      
+    let key = window.localStorage.getItem('key');
+    let header = {
+    headers: new HttpHeaders({
+      'Content-Type':  'application/json',
+      'Authorization': 'Token ' + key
+    })
+    }
+      
+    this.http.patch(url, input, header).subscribe(
+      (val) => {
+        window.location.reload();
+        console.log("PATCH call successful value returned in body", 
+                      val);
+      },
+      response => {
+          console.log("PATCH call in error", response);
+      },
+      () => {
+          console.log("The PATCH observable is now completed.");
+      });
+  }
+
 
   deleteCategory(id) {
     let key = window.localStorage.getItem('key')

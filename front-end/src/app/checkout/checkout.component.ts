@@ -79,6 +79,8 @@ export class CheckoutComponent implements OnInit {
       console.log('Transaction Created!');
       this.processFoodItemTransaction(data['url']);
       this.success_message = "Your order has been placed! Your transaction number is " + data['id'];
+      // Remove everything from cart once order has been placed
+      this.cartService.clearCart();
     },
     error => {
       console.error(error);

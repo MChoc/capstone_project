@@ -1,10 +1,10 @@
 <div class="edit-form">
     
-    <h2>EDIT EXTRA DETAILS</h2>
+    <h2>Edit: {{extraName}}</h2>
 
     <form ngNativeValidate [formGroup]="extraEditForm" (ngSubmit)="onFormSubmit()">
         <div [formGroup]="extraEditForm" class="element">
-            <label>Name </label>
+            <label>Extra Name </label>
             <input type="text" formControlName="name" required>
         </div>
         <div [formGroup]="extraEditForm" class="element">
@@ -12,11 +12,21 @@
             <input type="number" min="0" step="0.01" formControlName="price" required>
         </div>
 
+        <div [formGroup]="extraEditForm" class="element">
+            <label>Category </label>
+            <select formControlName="category" required>
+                 
+                    <option *ngFor="let category of categories$" value="{{ category.url }}">
+                        {{ category.name }}
+                    </option>
+                
+            </select>
+        </div>
+        
+
         <button type="submit">Save</button>
         
-        <div class="back">
-            <a href="management/menu">Cancel</a>
-        </div>
+        <button type="button" (click)="back()">Cancel</button>
     
     </form>
 

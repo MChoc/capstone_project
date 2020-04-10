@@ -51,7 +51,6 @@ export class DataService {
       headers: new HttpHeaders()
         .set('Authorization', 'Token ' + key)
     }
-
     return this.http.get(this.categoryList, header)
   }
 
