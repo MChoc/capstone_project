@@ -36,13 +36,7 @@ export class DataService {
   }
 
   getExtras() {
-    let key = window.localStorage.getItem('key')
-    var header = {
-      headers: new HttpHeaders()
-        .set('Authorization', 'Token ' + key)
-    }
-
-    return this.http.get(this.extraList, header)
+    return this.http.get<any[]>(this.extraList);
   }
 
   getCategories() {
