@@ -29,6 +29,7 @@ import { ExtraComponent } from './extra/extra.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { ExtraEditComponent } from './extra-edit/extra-edit.component';
 import { OrderSuccessComponent } from './order-success/order-success.component';
+import { AssistanceComponent } from './assistance/assistance.component';
 
 
 @NgModule({
@@ -56,7 +57,8 @@ import { OrderSuccessComponent } from './order-success/order-success.component';
     ExtraComponent,
     PageNotFoundComponent,
     ExtraEditComponent,
-    OrderSuccessComponent
+    OrderSuccessComponent,
+    AssistanceComponent
   ],
   imports: [
     BrowserModule,
