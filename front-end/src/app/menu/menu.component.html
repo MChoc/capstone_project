@@ -4,17 +4,48 @@
       <h2 class="w3-center"><span>THE MENU</span></h2>
     
         <li *ngFor="let category of categories$" class="category">
-          <div class="w3-row w3-center w3-card w3-padding">
-            <div class="w3-col s6 tablink">{{ category.name }}</div>
-          </div>
-          <div class="w3-container menu w3-padding-48 w3-card" >
-              <ul *ngFor="let item of items$" class="item">
-                <div *ngIf="category.url === item.category">
-                  <a [routerLink] = "['add', item.id]" [class.activated]="currentUrl == ''">{{ item.name }}</a>
-                  <p>{{ item.description }}</p> 
-                  <p>${{ item.price }}</p>
-                </div> 
-              </ul>
+          <div *ngIf="category.active">
+            <div class="w3-row w3-center w3-card w3-padding">
+              <div class="w3-col s6 tablink">{{ category.name }}</div>
+            </div>
+            <div class="w3-container menu w3-padding-48 w3-card" >
+                <ul *ngFor="let item of items$">
+                  <div *ngIf="category.url === item.category && item.active" class="item">
+                    <div class="row">
+                
+                      <div class="column1">
+                        <h4 style="font-weight: bold;">{{ item.name }}</h4>
+                        <p>{{ item.description }}</p> 
+                        <p>{{ item.size }} ${{ item.price }}</p>
+                      </div>
+            
+                      <div class="column2">
+                          <a [routerLink] = "['add', item.id]" [class.activated]="currentUrl == ''">
+                              <i class="material-icons">add</i>
+                          </a>
+                      </div>
+                    </div>
+                  </div> 
+                </ul>
+                <p style="text-align: center;">Sides and Extras</p>
+                <ul *ngFor="let extra of extras$">
+                  <div *ngIf="category.url === extra.category && extra.active" class="extra">
+                    <div class="row">
+                
+                      <div class="column1">
+                        <b>{{ extra.name }}</b><br>
+                        ${{ extra.price }}
+                      </div>
+            
+                      <div class="column2a">
+                        <a [routerLink] = "['add', extra.id]" [class.activated]="currentUrl == ''">
+                          <i class="material-icons">add</i>
+                        </a>
+                      </div>
+                    </div>
+                  </div> 
+                </ul>
+            </div>
           </div>
         </li> 
     </div>
