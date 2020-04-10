@@ -43,11 +43,12 @@ export class CheckoutComponent implements OnInit {
       'expiry_year': this.checkoutForm.value['expiry_year'],
       'cvs': this.checkoutForm.value['cvc']
     }
-    let validate_url = 'http://127.0.0.1:5000/api/credit_cards/validate/'
+
+    let validate_url = 'http://127.0.0.1:5000/api/credit_cards_validate/'
     this.http.post(validate_url, card_data).toPromise().then(data => {
       console.log(data);
       if (data['validated'] == true) {
-        this.processTransaction(data['id']);
+        this.processTransaction(data['url']);
         this.error_message = "";
       } else {
         this.error_message = "Invalid card details";
@@ -59,10 +60,9 @@ export class CheckoutComponent implements OnInit {
 
   }
 
-  processTransaction(card_id) {
+  processTransaction(card_url) {
 
     // TODO: maybe create a service for this?
-    let card_url = "http://127.0.0.1:5000/api/credit_cards/" + card_id + "/";
     let food_items = [];
 
     for (let item of this.items) {
@@ -91,16 +91,23 @@ export class CheckoutComponent implements OnInit {
 
   processFoodItemTransaction(transaction_url) {
     let foodItemTransactionUrl = "http://127.0.0.1:5000/api/transaction_food_item/";
-    // TODO: get this discount url from somewhere! AND GET EXTRAS WORKING!
+    // TODO: get this discount url from somewhere!
     let discountUrl = "http://127.0.0.1:5000/api/discounts/1/";
+
     for (let item of this.items) {
+      let extras = [];
+      for (let extra of item['extras']) {
+        extras.push(extra['url']);
+      }
+
       let foodItemData = {
         'food_item': item['url'],
         'transaction': transaction_url,
         'discount': discountUrl,
-        'extras': []
+        'extras': extras,
+        'request': item['request']
       }
-      console.log(foodItemData);
+      // console.log(foodItemData);
       this.http.post(foodItemTransactionUrl, foodItemData).toPromise().then(data => {
         console.log("transaction created!");
         console.log(data);
