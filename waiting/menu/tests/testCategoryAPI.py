@@ -1,7 +1,10 @@
 from collections import OrderedDict
 
-from accounts.models import CustomUser
-from accounts.serializers import UserSerializer
+from menu.models.category import Category
+from menu.models.category import Menu
+from menu.serializers.category_serializer import CategorySerializer
+
+from django.contrib.auth import get_user_model
 
 from rest_framework import status
 from rest_framework.reverse import reverse
@@ -9,9 +12,9 @@ from rest_framework.request import Request
 from rest_framework.test import APITestCase, APIRequestFactory
 
 
-class TestCustomUserModel(APITestCase):
+class TestCategoryModel(APITestCase):
     """
-    Testing the CustomUser model and its API returns
+    Testing the Category model and its API returns
 
     FYI
         GET: LIST/RETRIEVE
@@ -57,15 +60,15 @@ class TestCustomUserModel(APITestCase):
         GET data is same as database data.
     """
     def test_list(self):
-        url = '/api/accounts/'
+        url = '/api/categories/'
         factory = APIRequestFactory()
         request = factory.post(url)
         
-        objs = CustomUser.objects.all()
+        objs = Category.objects.all()
         serializer_context = {
             'request': Request(request),
         }
-        serializer = UserSerializer(
+        serializer = CategorySerializer(
             objs,
             context=serializer_context,
             many=True,
@@ -86,24 +89,28 @@ class TestCustomUserModel(APITestCase):
         Object exists in database.
     """
     def test_create(self):
-        url = '/api/accounts/'
+        url = '/api/categories/'
+        factory = APIRequestFactory()
+        request = factory.post(url)
         
-        init_count = CustomUser.objects.count()
+        init_count = Category.objects.count()
 
         body = {
-            'username': 'Testusername',
-            'password': 'Testpassword',
-            'first_name': 'Test first name',
-            'last_name': 'Test last name',
-            'user_type': 'MANAGER',
+            'name': 'Test Name',
+            'active': True,
+            'menu': reverse(
+                'menu-detail',
+                args=[Menu.objects.get(id=1).pk],
+                request=request,
+            ),
         }
         response = self.client.post(url, body, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 
-        post_count = CustomUser.objects.count()
+        post_count = Category.objects.count()
         self.assertEqual(post_count, init_count+1)
 
-        post_obj = CustomUser.objects.get(username='Testusername')
+        post_obj = Category.objects.get(name='Test Name')
         self.assertIsNotNone(post_obj)
 
     """
@@ -115,15 +122,15 @@ class TestCustomUserModel(APITestCase):
         GET data is same as in database.
     """
     def test_retrieve(self):
-        url = '/api/accounts/1/'
+        url = '/api/categories/1/'
         factory = APIRequestFactory()
         request = factory.post(url)
         
-        obj = [CustomUser.objects.get(id=1),]
+        obj = [Category.objects.get(id=1),]
         serializer_context = {
             'request': Request(request),
         }
-        serializer = UserSerializer(
+        serializer = CategorySerializer(
             obj,
             context=serializer_context,
             many=True,
@@ -143,24 +150,23 @@ class TestCustomUserModel(APITestCase):
         All fields have been changed and content is correct.
     """
     def test_update(self):
-        url = '/api/accounts/1/'
+        url = '/api/categories/1/'
+        factory = APIRequestFactory()
+        request = factory.post(url)
         
+        menu = Menu.objects.create(name='Test Menu')
         body = {
-            'username': 'Testusernamechange',
-            'password': 'Testpasswordchange',
-            'first_name': 'Test first name change',
-            'last_name': 'Test last name change',
-            'user_type': 'WAITER',
+            'name': 'Test Change',
+            'active': False,
+            'menu': reverse('menu-detail', args=[menu.pk,], request=request),
         }
         response = self.client.put(url, body, format='json')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
-        obj = CustomUser.objects.get(id=1)
-        self.assertEqual(obj.username, 'Testusernamechange')
-        self.assertEqual(obj.password, 'pbkdf2_sha256$180000$y2LOKGu2VOkC$qfQ6G97klvy1ilv2ijfKlW+lIRiMMVj8xqH883p6bIw=')
-        self.assertEqual(obj.first_name, 'Test first name change')
-        self.assertEqual(obj.last_name, 'Test last name change')
-        self.assertEqual(obj.user_type, 'WAITER')
+        obj = Category.objects.get(id=1)
+        self.assertEqual(obj.name, 'Test Change')
+        self.assertFalse(obj.active)
+        self.assertEqual(obj.menu, menu)
 
     """
     Testing UPDATE (partial)
@@ -171,16 +177,16 @@ class TestCustomUserModel(APITestCase):
         Correct field/s have been changed and content correct.
     """
     def test_partial_update(self):
-        url = '/api/accounts/1/'
+        url = '/api/categories/1/'
 
         body = {
-            'active': False,
+            'name': 'Test Change',
         }
         response = self.client.patch(url, body, format='json')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
-        obj = CustomUser.objects.get(id=1)
-        self.assertFalse(obj.active)
+        obj = Category.objects.get(id=1)
+        self.assertEqual(obj.name, 'Test Change')
 
     """
     Testing DESTROY
@@ -191,8 +197,8 @@ class TestCustomUserModel(APITestCase):
         Correct object has been deleted from database.
     """
     def test_destroy(self):
-        url = '/api/accounts/1/'
+        url = '/api/categories/1/'
 
         response = self.client.delete(url)
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
-        self.assertRaises(CustomUser.DoesNotExist, CustomUser.objects.get, id=1)
+        self.assertRaises(Category.DoesNotExist, Category.objects.get, id=1)
