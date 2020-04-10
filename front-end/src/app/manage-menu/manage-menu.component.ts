@@ -13,7 +13,6 @@ export class ManageMenuComponent implements OnInit {
 
     currentUrl: string;
   
-    extras$: Object;
     categories$: Object;
     error: any;
     menu: string;
@@ -27,51 +26,10 @@ export class ManageMenuComponent implements OnInit {
     }
   
     ngOnInit(): void {
-      this.data.getExtras().subscribe(
-        data => this.extras$ = data,
-      ),this.data.getCategories().subscribe(
+      this.data.getCategories().subscribe(
         data => this.categories$ = data,
       )
     }
-
-
-    deleteExtra(id) {
-      let key = window.localStorage.getItem('key')
-      let header = {
-        headers: new HttpHeaders()
-          .set('Authorization', 'Token ' + key)
-      }
-      let url = 'http://127.0.0.1:5000/api/extra/' + id + '/';
-      this.http.delete(url, header).toPromise().then(data => {
-        console.log("deleted");
-        window.location.reload();
-      },
-      error => {
-        console.log("not deleted!")
-        console.log(error.error);
-      });   
-    }
-
-  
-    deleteCategory(id) {
-      let key = window.localStorage.getItem('key')
-      let header = {
-        headers: new HttpHeaders()
-          .set('Authorization', 'Token ' + key)
-      }
-      let url = 'http://127.0.0.1:5000/api/categories/' + id + '/';
-      this.http.delete(url, header).toPromise().then(data => {
-        console.log("deleted");
-        window.location.reload();
-      },
-      error => {
-        console.log("not deleted!")
-        console.log(error.error);
-      });  
-    } 
-    
-    
-
 
 
     archiveCategory(id) {
@@ -105,63 +63,6 @@ export class ManageMenuComponent implements OnInit {
     unarchiveCategory(id) {
       let input = { active: true };
       let url = 'http://127.0.0.1:5000/api/categories/' + id + '/';
-      
-      let key = window.localStorage.getItem('key');
-      let header = {
-      headers: new HttpHeaders({
-        'Content-Type':  'application/json',
-        'Authorization': 'Token ' + key
-      })
-      }
-      
-      this.http.patch(url, input, header).subscribe(
-        (val) => {
-          window.location.reload();
-          console.log("PATCH call successful value returned in body", 
-                        val);
-        },
-        response => {
-            console.log("PATCH call in error", response);
-        },
-        () => {
-            console.log("The PATCH observable is now completed.");
-        });
-    }
-
-
-
-    
-
-    archiveExtra(id) {
-      let input = { active: false };
-      let url = 'http://127.0.0.1:5000/api/extra/' + id + '/';
-      
-      let key = window.localStorage.getItem('key');
-      let header = {
-      headers: new HttpHeaders({
-        'Content-Type':  'application/json',
-        'Authorization': 'Token ' + key
-      })
-      }
-
-      this.http.patch(url, input, header).subscribe(
-        (val) => {
-          window.location.reload();  
-          console.log("PATCH call successful value returned in body", 
-                        val);
-        },
-        response => {
-            console.log("PATCH call in error", response);
-        },
-        () => {
-            console.log("The PATCH observable is now completed.");
-        });
-    }
-  
-
-    unarchiveExtra(id) {
-      let input = { active: true };
-      let url = 'http://127.0.0.1:5000/api/extra/' + id + '/';
       
       let key = window.localStorage.getItem('key');
       let header = {

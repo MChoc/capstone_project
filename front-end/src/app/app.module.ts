@@ -26,6 +26,7 @@ import { CartComponent } from './cart/cart.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { CategoryManageComponent } from './category-manage/category-manage.component';
 import { ExtraComponent } from './extra/extra.component';
+import { ExtraEditComponent } from './extra-edit/extra-edit.component';
 
 
 @NgModule({
@@ -50,7 +51,8 @@ import { ExtraComponent } from './extra/extra.component';
     CartComponent,
     CheckoutComponent,
     CategoryManageComponent,
-    ExtraComponent
+    ExtraComponent,
+    ExtraEditComponent
   ],
   imports: [
     BrowserModule,

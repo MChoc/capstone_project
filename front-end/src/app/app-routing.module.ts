@@ -18,6 +18,7 @@ import { CartComponent } from './cart/cart.component';
 import {CheckoutComponent} from './checkout/checkout.component';
 import { CategoryManageComponent } from './category-manage/category-manage.component';
 import { ExtraComponent } from './extra/extra.component';
+import { ExtraEditComponent } from './extra-edit/extra-edit.component';
 
 const routes: Routes = [
   {
@@ -91,6 +92,10 @@ const routes: Routes = [
   {
     path: 'management/menu/category/:id/add-extra/:id',
     component: ExtraComponent
+  },
+  {
+    path: 'management/menu/category/:id/edit-extra/:id',
+    component: ExtraEditComponent
   }
 ];
 

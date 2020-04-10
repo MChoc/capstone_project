@@ -13,6 +13,11 @@ a, button {
     text-decoration: none;
 }
 
+ul {
+    list-style: none;
+    padding-left: 0;
+}
+
 .item, .archived-item {
     width: 300px;
     margin: auto;
@@ -20,6 +25,14 @@ a, button {
     padding: 20px;
     border-bottom: solid .5px #35272862;
 }
+
+.extra, .archived-extra {
+    width: 300px;
+    margin: auto;
+    margin-top: 20px;
+    padding: 20px;
+}
+
 
 .column1 {
     float: left;
@@ -45,7 +58,9 @@ a, button {
     color: grey;
 }
 
-.archived-item a, .archived-item button, .archived-item, .archived-item p {
+.archived-item a, .archived-item button, .archived-item, .archived-item p,
+.archived-extra a, .archived-extra button, .archived-extra, .archived-extra p 
+{
     color: grey;
 }
 
