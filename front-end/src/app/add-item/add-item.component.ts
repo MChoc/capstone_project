@@ -60,7 +60,6 @@ export class AddItemComponent implements OnInit {
       this.error_message = '';
     }
 
-
     let cart_item = {
       'id': item.id,
       'name': item.name,

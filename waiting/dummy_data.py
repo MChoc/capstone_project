@@ -39,7 +39,7 @@ for i in range(0,10):
             )
         else:
             food_item = FoodItem.objects.create(
-                name='Drink ' + str(i-5),
+                name='Drink ' + str(i-4),
                 price='10.00', # TODO: use rand
                 description='Test description ' + str(i-5),
                 category=category,
@@ -70,7 +70,7 @@ print("Created admin")
 
 # Populate table with managers
 managers = []
-for i in range(1,5):
+for i in range(0,5):
     manager = get_user_model().objects.create_superuser(
         username='Manager' + str(i+1),
         password='Manager' + str(i+1),
