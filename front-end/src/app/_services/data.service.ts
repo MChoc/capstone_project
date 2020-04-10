@@ -88,4 +88,8 @@ export class DataService {
     return this.http.get(this.itemList)
   }
 
+  getCustomerExtras() {
+    return this.http.get(this.extraList)
+  }
+
 }
