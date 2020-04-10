@@ -54,7 +54,7 @@ export class AddItemComponent implements OnInit {
     }
 
     this.cartService.addToCart(item, quantity);
-    this.router.navigate(['/']); 
+    this.router.navigate(['/cart']); 
   }
 
 }
