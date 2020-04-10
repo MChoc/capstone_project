@@ -17,6 +17,7 @@ export class AddItemComponent implements OnInit {
   item: any = {};
   // item: Object;
   success_message = '';
+  error_message = '';
 
   orderForm = new FormGroup({
     quantity: new FormControl(1),
@@ -41,28 +42,19 @@ export class AddItemComponent implements OnInit {
 
   // https://angular.io/start/start-data Amazing tutorial for creating carts
   addToCart(item) {
-    console.log("ADDING TO CART!");
     let quantity = this.orderForm.controls['quantity'].value;
-    this.cartService.addToCart(item, quantity);
-    this.success_message = "Item added to cart!";
-  }
-
-  incrementQuantity() {
-    let cur_quantity = this.orderForm.controls['quantity'].value;
-    // TODO: check if 15 is a reasonable limit
-    if (cur_quantity >= 15) {
+    if (quantity > 15) {
+      this.error_message = "Maximum quantity is 15, please reduce your quantity and try again.";
       return;
+    } else if(quantity < 1) {
+      this.error_message = "Minimum quantity is 1. Please increase your quantity and try again.";
+      return;
+    } else {
+      this.error_message = '';
     }
-    this.orderForm.patchValue({'quantity': cur_quantity + 1});
-  }
 
-  decrementQuantity() {
-    let cur_quantity = this.orderForm.controls['quantity'].value;
-    // min order count is 1
-    if (cur_quantity == 1) {
-      return;  
-    }
-    this.orderForm.patchValue({'quantity': cur_quantity - 1});
+    this.cartService.addToCart(item, quantity);
+    this.success_message = "Item added to order!";
   }
 
 }
