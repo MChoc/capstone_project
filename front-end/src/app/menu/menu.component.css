@@ -6,6 +6,10 @@ h2 span {
     background-color: #d3b895;
 }
 
+h3 {
+    font-weight: bold;
+}
+
 a {
     font-size:18px;
     font-family:"Segoe UI",Arial,sans-serif;
@@ -22,6 +26,8 @@ p {
     box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
     padding: 15px;
     min-height: 20px;
+    width: 75%;
+    margin: auto;
 }
 
 .w3-center{
@@ -51,4 +57,39 @@ p {
 li, ul {
     list-style: none;
     padding-left: 0;
+}
+
+.column1 {
+    float: left;
+    width: 75%;
+}
+
+.column2 {
+    float: right;
+    width: 25%;
+    text-align: right;
+    padding-top: 55px;
+}
+
+.column2a {
+    float: right;
+    width: 25%;
+    text-align: right;
+}
+
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.item {
+    margin: auto;
+    padding: 20px;
+    border-bottom: solid .5px #35272862;
+}
+
+.extra {
+    margin: auto;
+    padding: 10px 20px;
 }
