@@ -23,6 +23,8 @@ import { CategoryComponent } from './category/category.component';
 import { CategoryEditComponent } from './category-edit/category-edit.component';
 import { ItemComponent } from './item/item.component';
 import { ItemEditComponent } from './item-edit/item-edit.component';
+import { FilterPipe } from './shared/filter.pipe';
+
 
 
 @NgModule({
@@ -44,7 +46,8 @@ import { ItemEditComponent } from './item-edit/item-edit.component';
     CategoryComponent,
     CategoryEditComponent,
     ItemComponent,
-    ItemEditComponent
+    ItemEditComponent,
+    FilterPipe
   ],
   imports: [
     BrowserModule,

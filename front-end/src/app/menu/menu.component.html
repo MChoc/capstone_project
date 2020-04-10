@@ -1,14 +1,24 @@
+
 <div class="w3-container" id="menu">
     <div class="w3-content" style="max-width:700px">
    
       <h2 class="w3-center"><span>THE MENU</span></h2>
+
+      <!-- <form id="filter">
+        <label>Search: </label>
+        <input type="text" [(ngModel)]="term" name="term">
+      </form> -->
+      <div>
+        <input type="text" [(ngModel)]="searchname">
+      </div>
+      
     
         <li *ngFor="let category of categories$" class="category">
           <div class="w3-row w3-center w3-card w3-padding">
             <div class="w3-col s6 tablink">{{ category.name }}</div>
           </div>
           <div class="w3-container menu w3-padding-48 w3-card" >
-              <ul *ngFor="let item of items$" class="item">
+              <ul *ngFor="let item of items$ | filter:searchname" class="item">
                 <div *ngIf="category.url === item.category">
                   <a [routerLink] = "['add', item.name]" [class.activated]="currentUrl == ''">{{ item.name }}</a>
                   <p class="w3-text-grey">{{ item.price }}</p>
