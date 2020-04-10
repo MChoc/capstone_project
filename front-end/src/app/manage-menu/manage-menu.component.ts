@@ -16,12 +16,19 @@ export class ManageMenuComponent implements OnInit {
     categories$: Object;
     error: any;
     menu: string;
-    
+
     constructor(
       private http: HttpClient,
       private data : DataService,
       private router: Router
-      ) { 
+      ) {
+
+      let loggedOn = window.localStorage.getItem('user');
+
+      if(!loggedOn || JSON.parse(loggedOn)['user_type'] != 'MANAGER') {
+        this.router.navigate(['**']);
+      }
+
       router.events.subscribe((_: NavigationEnd) => this.currentUrl = _.url)
     }
   

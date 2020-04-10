@@ -26,8 +26,15 @@ export class CategoryManageComponent implements OnInit {
     private http: HttpClient,
     private data : DataService,
     private router: Router
-    ) { 
-    router.events.subscribe((_: NavigationEnd) => this.currentUrl = _.url)
+    ) {
+
+      let loggedOn = window.localStorage.getItem('user');
+
+      if(!loggedOn || JSON.parse(loggedOn)['user_type'] != 'MANAGER') {
+        this.router.navigate(['**']);
+      }
+
+      router.events.subscribe((_: NavigationEnd) => this.currentUrl = _.url)
     }
 
   ngOnInit(): void {

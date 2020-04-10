@@ -26,6 +26,7 @@ import { CartComponent } from './cart/cart.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { CategoryManageComponent } from './category-manage/category-manage.component';
 import { ExtraComponent } from './extra/extra.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { ExtraEditComponent } from './extra-edit/extra-edit.component';
 
 
@@ -52,6 +53,7 @@ import { ExtraEditComponent } from './extra-edit/extra-edit.component';
     CheckoutComponent,
     CategoryManageComponent,
     ExtraComponent,
+    PageNotFoundComponent,
     ExtraEditComponent
   ],
   imports: [
