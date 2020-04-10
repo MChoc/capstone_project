@@ -1,27 +1,31 @@
 from menu.models.credit_card import CreditCard
 from menu.serializers.credit_card_serializer import CreditCardSerializer
 
-from rest_framework.decorators import action
-from rest_framework.views import APIView
-from rest_framework import viewsets
+from rest_framework.viewsets import ModelViewSet
 from rest_framework.response import Response
 from accounts.permissions import LoggedInOrValidateOnly
 
 
-class CreditCardViewSet(viewsets.ModelViewSet):
+class CreditCardViewSet(ModelViewSet):
     queryset = CreditCard.objects.all()
     serializer_class = CreditCardSerializer
     permission_classes = [LoggedInOrValidateOnly]
 
-    @action(detail=False, methods=['POST'])
-    def validate(self, request, *args, **kwargs):
-        """
-        An extra action that validates the incoming credit card data and checks
-            if it exists in the database.
-        """
-        serializer = self.get_serializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
 
+class ValidateViewSet(ModelViewSet):
+    """
+    View to validate credit card information.
+    """
+    queryset = CreditCard.objects.all()
+    serializer_class = CreditCardSerializer
+    permission_classes = [LoggedInOrValidateOnly]
+    http_method_names = [u'post']
+
+    def create(self, request, format=None):
+        """
+        Return whether credit was validated or not and if so, return the credit
+            card object.
+        """
         try:
             credit_card = CreditCard.objects.get(
                 number=request.data['number'],
