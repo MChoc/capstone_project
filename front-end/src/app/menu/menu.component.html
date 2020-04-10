@@ -14,7 +14,7 @@
                     <div class="row">
                 
                       <div class="column1">
-                        <h3>{{ item.name }}</h3>
+                        <h4 style="font-weight: bold;">{{ item.name }}</h4>
                         <p>{{ item.description }}</p> 
                         <p>{{ item.size }} ${{ item.price }}</p>
                       </div>
@@ -27,7 +27,7 @@
                     </div>
                   </div> 
                 </ul>
-                <h2>Sides and Extras</h2>
+                <p style="text-align: center;">Sides and Extras</p>
                 <ul *ngFor="let extra of extras$">
                   <div *ngIf="category.url === extra.category && extra.active" class="extra">
                     <div class="row">
