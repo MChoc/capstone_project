@@ -26,25 +26,17 @@ button[type=button] {
     cursor: pointer;
     outline: none;
     width: 100%;
-    margin: 28px 0 20px 0;
+    margin: 20px;
 }
 
 .add-item {
-    text-align: left;
+    text-align: center;
     width: 300px;
     margin: auto;
 }
 
-#cart-ref {
-    float: left;
-}
-
-#menu-ref {
-    float: right;
-}
-
 input[type=text], [type=number] {
-    width: 100%;
+    width: 75px;
     padding: 12px 20px;
     margin: 8px 0;
     border: 1px solid #352728;
@@ -53,4 +45,17 @@ input[type=text], [type=number] {
     outline: none;
     background-color: #fcf7fb;
     color: #352728;
+}
+
+.details {
+    padding-top: 15px;
+}
+
+.back {
+    float: left;
+    padding-left: 35px;
+}
+
+.cart {
+    float: right;
 }
