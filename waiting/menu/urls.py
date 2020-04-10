@@ -25,5 +25,6 @@ router.register(r'transaction_food_item', TransactionFoodItemViewSet)
 router.register(r'assistance', AssistanceViewSet)
 router.register(r'credit_cards', CreditCardViewSet)
 
+
 app_name = 'menu'
 urlpatterns = []
