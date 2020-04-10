@@ -1,4 +1,4 @@
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, ControlContainer } from '@angular/forms';
 
@@ -27,7 +27,7 @@ export class AddItemComponent implements OnInit {
     private _Activatedroute: ActivatedRoute,
     private cartService: CartService,
     private data : DataService,
-
+    private router: Router
   ) { 
     this._Activatedroute.paramMap.subscribe(params => {
       this.id = params.get('id');
@@ -54,7 +54,7 @@ export class AddItemComponent implements OnInit {
     }
 
     this.cartService.addToCart(item, quantity);
-    this.success_message = "Item added to order!";
+    this.router.navigate(['/']); 
   }
 
 }

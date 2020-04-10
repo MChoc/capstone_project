@@ -42,3 +42,11 @@ input[type=text], [type=number], select {
   background-color: #fcf7fb;
   color: #352728;
 }
+
+.back {
+  background-color: #fcf7fb;
+  color: #352728;
+  text-decoration: underline;
+  padding: 0;
+  margin-top: 0;
+}

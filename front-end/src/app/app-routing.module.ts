@@ -20,6 +20,7 @@ import { CategoryManageComponent } from './category-manage/category-manage.compo
 import { ExtraComponent } from './extra/extra.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { ExtraEditComponent } from './extra-edit/extra-edit.component';
+import { OrderSuccessComponent } from './order-success/order-success.component';
 
 const routes: Routes = [
   {
@@ -97,6 +98,10 @@ const routes: Routes = [
   {
     path: 'management/menu/category/:id/edit-extra/:id',
     component: ExtraEditComponent
+  },
+  {
+    path: 'order-details/:id',
+    component: OrderSuccessComponent
   },
   { 
     path: '**', 

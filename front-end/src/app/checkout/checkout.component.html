@@ -1,6 +1,6 @@
 <div class="checkout-form">
 <h2>Checkout</h2>
-    <h4>Total price: ${{ total_price }}</h4>
+    <h4>TOTAL: ${{ total_price }}</h4>
     <br/>
     <form ngNativeValidate [formGroup]="checkoutForm" (ngSubmit)="onFormSubmit()">
         <div class="error">{{ error_message }}</div>
@@ -35,6 +35,6 @@
             <input type="number" formControlName="cvc" required>
         </div>
         <button type="submit">Place Order Now</button>
-        <button type="button" class="side-button" onclick="window.location.href = '/cart';">Back to Cart</button>
+        <button type="button" class="back" onclick="window.location.href = '/cart';">Back to Cart</button>
     </form>
 </div>

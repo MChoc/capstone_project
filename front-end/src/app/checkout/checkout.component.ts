@@ -3,6 +3,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { CartService } from '../cart.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-checkout',
@@ -26,6 +27,7 @@ export class CheckoutComponent implements OnInit {
   constructor(
     private cartService: CartService,
     private http: HttpClient, 
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -78,9 +80,9 @@ export class CheckoutComponent implements OnInit {
     this.http.post(transaction_url, transaction_data).toPromise().then(data => {
       console.log('Transaction Created!');
       this.processFoodItemTransaction(data['url']);
-      this.success_message = "Your order has been placed! Your transaction number is " + data['id'];
       // Remove everything from cart once order has been placed
       this.cartService.clearCart();
+      this.router.navigate(['/management/menu/order-details/'+ data['id']]); 
     },
     error => {
       console.error(error);
