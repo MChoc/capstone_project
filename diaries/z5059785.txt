@@ -37,3 +37,14 @@ Last week we finally completed the login sprint and moved on to creating the men
 I will work on the manager editing and updating the menu and will have this done by friday.
 I also have some general style changes to make such as adding a back and home button to the header.
 We are a bit behind our sprint schedule and have 3 weeks to complete our project but now that we all have the hang of it I am confident we will get it done.
+
+Week 8
+We almost completed the entire menu sprint in the last week.
+In the front end, I worked on the manager creating and managing the menu and Tripta worked on the customer ordering system.
+We just have a few final touches to finish in the next few days before this sprint is done.
+We have changed the ways that 'extra' food items relate to the menu as our original plan was too complex and messy to implement.
+Instead of extra's being assigned to different menu items in a many-to-many relationship, we will now have extra items associated with a category so they will work very similar to normal food items.
+I need to work on that change and also help Tripta with the styling of her section.
+I have also been helping Leonard and Angus learn the front end so they can help contribute as well.
+After thise jobs are complete on friday, we will merge all of the changes from this sprint and move on to the next one.
+For the next sprint, we will create the notifications that are passed between different staff types (food is ordered, food is ready, customer assitance etc).
