@@ -16,7 +16,6 @@ export class MenuComponent implements OnInit {
 
   categories$: Object;
   items$: Object;
-  extras$: Object;
   error: any;
   
   constructor(
@@ -32,9 +31,6 @@ export class MenuComponent implements OnInit {
     ),
     this.data.getCustomerItems().subscribe(
       data => this.items$ = data,
-    ),
-    this.data.getCustomerExtras().subscribe(
-      data => this.extras$ = data,
     )
   }
 
