@@ -22,7 +22,7 @@ from rest_framework import routers
 from rest_framework import permissions
 
 from menu.urls import router as menu_router
-from users.urls import router as users_router
+from accounts.urls import router as users_router
 
 schema_view = get_schema_view(
    openapi.Info(
