@@ -15,11 +15,9 @@
                     <a [routerLink] = "['edit', user.id]" [class.activated]="currentUrl == '/management/staff'">
                         <i class="material-icons">edit</i>
                     </a>
-                    <ng-container *ngIf="user.id != currentUser">
-                        <button (click)="deleteUser( user.id )" class="delete">
-                            <i class="material-icons">delete</i>
-                        </button>
-                    </ng-container>
+                    <button (click)="deleteUser( user.id )" class="delete">
+                        <i class="material-icons">delete</i>
+                    </button>
                 </div>
             </div>
         </li>

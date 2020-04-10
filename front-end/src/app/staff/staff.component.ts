@@ -13,7 +13,6 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 export class StaffComponent implements OnInit {
 
   currentUrl: string;
-  currentUser = null;
 
   users$: Object;
   error: any;
@@ -46,25 +45,20 @@ export class StaffComponent implements OnInit {
   username : string;
 
   deleteUser(id) {
-    if(id == this.currentUser) {
-      return;
-    }
-
-    let input = { active: false };
     let key = window.localStorage.getItem('key')
     let header = {
       headers: new HttpHeaders()
         .set('Authorization', 'Token ' + key)
     }
     let url = 'http://127.0.0.1:5000/api/accounts/' + id + '/';
-    this.http.patch(url, input, header).toPromise().then(data => {
+    this.http.delete(url, header).toPromise().then(data => {
       console.log("deleted");
       window.location.reload();
     },
     error => {
       console.log("not deleted!")
       console.log(error.error);
-    }); 
+    });   
   }
 
 }
