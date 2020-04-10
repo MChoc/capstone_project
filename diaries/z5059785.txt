@@ -47,4 +47,4 @@ Instead of extra's being assigned to different menu items in a many-to-many rela
 I need to work on that change and also help Tripta with the styling of her section.
 I have also been helping Leonard and Angus learn the front end so they can help contribute as well.
 After thise jobs are complete on friday, we will merge all of the changes from this sprint and move on to the next one.
-For the next sprint, we will create the notifications that are passed between different staff types (food is ordered, food is ready, customer assitance etc).
+For the next sprint, we will create the notifications that are passed between different staff types (food is ordered, food is ready, customer assistance etc).
