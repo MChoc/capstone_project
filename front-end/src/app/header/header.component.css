@@ -1,0 +1,50 @@
+* {
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+}
+  
+.column {
+    background-color: #abc2ba;
+    float: left;
+    width: 33.33%;
+    text-align: center;
+    height: 65px;
+}
+
+.column1 {
+    text-align: left;
+    padding: 20px;
+}
+
+.column3 {
+    text-align: right;
+    padding: 20px;
+}
+
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+a, button {
+    color: #352728;
+}
+
+button {
+    background-color: #abc2ba;
+    border: none;
+    
+}
+
+.activated {
+    color: #90694a;
+}
+
+i {
+    cursor: pointer;
+}
+

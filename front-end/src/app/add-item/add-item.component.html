@@ -1,0 +1,22 @@
+<div class="add-item">
+  <div *ngIf="item">
+      <h2>{{ item.name }}</h2>
+      <p>{{ item.description }}</p>
+      <p>Price: ${{ item.price }}</p>
+      <ng-container *ngIf="item.size">
+        <p>Size: {{ item.size }}</p>
+      </ng-container>
+      <form [formGroup]="orderForm">
+        <div [formGroup]="orderForm" class="element">
+          <label>Quantity:</label>
+          <input type="number" min="1" max="15" formControlName="quantity">
+        </div>
+      </form>
+      <br/>
+      <button type="button" (click)="addToCart(item)">Add to order</button>
+      <div class="success_message">{{ success_message }}</div>
+      <div class="error_message">{{ error_message }}</div>
+    <a id="cart-ref" href="/cart">View Order</a>
+    <a id="menu-ref" href="/">Back to Menu</a>
+  </div>
+</div>

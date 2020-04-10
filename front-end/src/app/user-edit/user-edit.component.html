@@ -1,0 +1,31 @@
+<div class="edit-form">
+    <h2>EDIT STAFF DETAILS</h2>
+
+    <form ngNativeValidate [formGroup]="userEditForm" (ngSubmit)="onFormSubmit()">
+        <div class="error">{{ error_message }}</div>
+        <div [formGroup]="userEditForm" class="element">
+            <label>Username: </label>
+            <input class="read-only" type="text" disabled="disabled" formControlName="username" readonly>
+        </div>
+        <div [formGroup]="userEditForm" class="element">
+            <label>First Name </label>
+            <input type="text" formControlName="first_name" required>
+        </div>
+        <div [formGroup]="userEditForm" class="element">
+            <label>Last Name </label>
+            <input type="text" formControlName="last_name" required>
+        </div>
+        <div [formGroup]="userEditForm" class="element">
+            <label>User Type </label>
+            <select formControlName="user_type" required>
+                <option value="MANAGER">Manager</option>
+                <option value="WAITER">Waiter</option>
+                <option value="KITCHEN">Kitchen</option>
+            </select>
+        </div>
+        <button type="submit">Save</button>
+        <div class="back">
+            <a href="management/staff">Cancel</a>
+        </div>
+    </form>
+</div>

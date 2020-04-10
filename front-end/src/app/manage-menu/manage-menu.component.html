@@ -1,0 +1,56 @@
+<div>
+
+    <h2>CATEGORIES</h2>
+
+    <div class="category-list">
+        <ul *ngFor="let category of categories$" >
+            <div *ngIf="category.active" class="category">
+                <div class="row">
+                    <div class="column1">
+                        <a [routerLink] = "['category', category.id]" [class.activated]="currentUrl == '/management/menu'">
+                            {{ category.name }}
+                        </a>
+                    </div>
+                    <div class="column2">
+                        <a [routerLink] = "['category', category.id]" [class.activated]="currentUrl == '/management/menu'">
+                            <i class="material-icons">edit</i>
+                        </a>
+                        <button (click)="archiveCategory( category.id )" class="archive">
+                            <i class="material-icons">archive</i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </ul>
+    </div>
+    <div class="archived-category-list">
+        <p class="pad">Archived Categories</p>
+        <ul *ngFor="let category of categories$">
+            <div *ngIf="!category.active" class="archived-category">
+                <div class="row">
+                    <div class="column1">
+                        <a [routerLink] = "['category', category.id]" [class.activated]="currentUrl == '/management/menu'">
+                            {{ category.name }}
+                        </a>
+                    </div>
+                    <div class="column2">
+                        <a [routerLink] = "['category', category.id]" [class.activated]="currentUrl == '/management/menu'">
+                            <i class="material-icons">edit</i>
+                        </a>
+                        <button (click)="unarchiveCategory( category.id )" class="archive">
+                            <i class="material-icons">add</i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </ul>
+    </div>
+
+    <div class="category-form">
+        <form ngNativeValidate (ngSubmit)="addCategory()">
+            <input type="text" [(ngModel)]="name" name="name" placeholder="Add Category" required>
+            <button type="submit" class="save">Save</button>
+        </form>
+    </div>
+
+</div>

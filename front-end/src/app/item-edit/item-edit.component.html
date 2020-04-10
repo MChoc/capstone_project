@@ -1,0 +1,38 @@
+<div class="edit-form">
+    
+    <h2>Edit: {{itemName}}</h2>
+    <h5>{{itemSize}}</h5>
+
+    <form ngNativeValidate [formGroup]="itemEditForm" (ngSubmit)="onFormSubmit()">
+        <div [formGroup]="itemEditForm" class="element">
+            <label>Item Name </label>
+            <input type="text" formControlName="name" required>
+        </div>
+        <div [formGroup]="itemEditForm" class="element">
+            <label>Description </label>
+            <input type="text" formControlName="description">
+        </div>
+        <div [formGroup]="itemEditForm" class="element">
+            <label>Price </label>
+            <input type="number" min="0" step="0.01" formControlName="price" required>
+        </div>
+
+        <div [formGroup]="itemEditForm" class="element">
+            <label>Category </label>
+            <select formControlName="category" required>
+                 
+                    <option *ngFor="let category of categories$" value="{{ category.url }}">
+                        {{ category.name }}
+                    </option>
+                
+            </select>
+        </div>
+        
+
+        <button type="submit">Save</button>
+        
+        <button type="button" (click)="back()">Cancel</button>
+    
+    </form>
+
+</div>

@@ -1,0 +1,12 @@
+<div class = "footer">
+    <div *ngIf="loggedIn; else elseBlock">
+        <a class= "logout" routerLink = "logout" [class.activated]="currentUrl == '/logout'">
+            <i class="material-icons">exit_to_app</i>
+        </a>
+    </div>
+    <ng-template #elseBlock>
+        <a routerLink = "login" [class.activated]="currentUrl == '/login'">
+            <i class="material-icons">person</i>
+        </a>
+    </ng-template>
+</div>

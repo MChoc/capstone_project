@@ -1,9 +1,9 @@
-from . import serializers
+from rest_framework import viewsets, permissions
 
-from django.contrib.auth.models import User
-from rest_framework import viewsets
+from . import serializers
+from .models import CustomUser
 
 
 class UserViewSet(viewsets.ModelViewSet):
-    queryset = User.objects.all()
+    queryset = CustomUser.objects.all()
     serializer_class = serializers.UserSerializer
