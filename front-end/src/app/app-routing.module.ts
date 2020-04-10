@@ -63,7 +63,7 @@ const routes: Routes = [
     component: ManageMenuComponent
   },
   {
-    path: 'add/:id',
+    path: 'add/:id_item/:id_extra',
     component: AddItemComponent
   },
   {

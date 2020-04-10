@@ -11,8 +11,7 @@ export class CartService {
     for(var i = 0; i < quantity; i++) {
       this.items.push(product);
     }
-    console.log("ITEM ADDED TO CART:");
-    console.log(this.items);
+
     window.sessionStorage.setItem('cart_items', JSON.stringify(this.items));
   }
 

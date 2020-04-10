@@ -12,7 +12,6 @@ import { DataService } from '../_services/data.service';
 })
 export class AddItemComponent implements OnInit {
 
-  id: string;
   // TODO: apparently "any" is discouraged.
   item: any = {};
   // item: Object;
@@ -30,11 +29,20 @@ export class AddItemComponent implements OnInit {
 
   ) { 
     this._Activatedroute.paramMap.subscribe(params => {
-      this.id = params.get('id');
-      this.data.getItem(this.id).toPromise().then(data => {
-        this.item = data;
-      })
-    })    
+
+      let foodID = params.get('id_item');
+      let extraID = params.get('id_extra');
+
+      if(foodID != 'null') {
+        this.data.getItem(foodID).toPromise().then(data => {
+          this.item = data;
+        })
+      } else {
+        this.data.getExtra(extraID).toPromise().then(data => {
+          this.item = data;
+        })
+      }
+    })
   }
 
   ngOnInit(): void {

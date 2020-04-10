@@ -79,6 +79,10 @@ export class DataService {
     return this.http.get(url);
   }
 
+  getExtra(id: string) {
+    let url = this.extraList + id + '/';
+    return this.http.get(url);
+  }
 
   getCustomerCategories() {
     return this.http.get(this.categoryList)
