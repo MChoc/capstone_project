@@ -28,6 +28,7 @@ import { CategoryManageComponent } from './category-manage/category-manage.compo
 import { ExtraComponent } from './extra/extra.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { ExtraEditComponent } from './extra-edit/extra-edit.component';
+import { OrderSuccessComponent } from './order-success/order-success.component';
 
 
 @NgModule({
@@ -54,7 +55,8 @@ import { ExtraEditComponent } from './extra-edit/extra-edit.component';
     CategoryManageComponent,
     ExtraComponent,
     PageNotFoundComponent,
-    ExtraEditComponent
+    ExtraEditComponent,
+    OrderSuccessComponent
   ],
   imports: [
     BrowserModule,
