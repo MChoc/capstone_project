@@ -17,6 +17,7 @@ export class DataService {
   private itemList = 'http://127.0.0.1:5000/api/food_items/';
   private transactionList = 'http://127.0.0.1:5000/api/transaction/';
   private transactionFoodItemList = 'http://127.0.0.1:5000/api/transaction_food_item/';
+  private requestList = 'http://127.0.0.1:5000/api/assistance/';
 
   constructor(private http: HttpClient) { }
 
@@ -77,5 +78,21 @@ export class DataService {
 
     return this.http.get<TransactionFoodItem[]>(this.transactionFoodItemList, header);
   }
+
+
+    getRequests() {
+      let key = window.localStorage.getItem('key')
+      var header = {
+        headers: new HttpHeaders()
+          .set('Authorization', 'Token ' + key)
+      }
+  
+      return this.http.get(this.requestList, header)
+    }
+  
+    getRequest(id: string) {
+      let url = this.requestList + id + '/';
+      return this.http.get(url);
+    }
 
 }
