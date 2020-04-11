@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
 import {Transaction} from "../models/transaction.model";
 import {Observable} from "rxjs/internal/Observable";
+import { TransactionFoodItem } from '../models/transaction-food-item.model';
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +16,7 @@ export class DataService {
   private categoryList = 'http://127.0.0.1:5000/api/categories/';
   private itemList = 'http://127.0.0.1:5000/api/food_items/';
   private transactionList = 'http://127.0.0.1:5000/api/transaction/';
+  private transactionFoodItemList = 'http://127.0.0.1:5000/api/transaction_food_item/';
 
   constructor(private http: HttpClient) { }
 
@@ -64,6 +66,16 @@ export class DataService {
     }
 
     return this.http.get<Transaction[]>(this.transactionList, header);
+  }
+
+  getTransactionFoodItems(): Observable<TransactionFoodItem[]> {
+    let key = window.localStorage.getItem('key')
+    var header = {
+      headers: new HttpHeaders()
+        .set('Authorization', 'Token ' + key)
+    }
+
+    return this.http.get<TransactionFoodItem[]>(this.transactionFoodItemList, header);
   }
 
 }

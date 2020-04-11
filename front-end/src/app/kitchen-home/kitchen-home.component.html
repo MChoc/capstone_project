@@ -1,5 +1,17 @@
 <div class="kitchen-home">
+    <h2>Pending Orders</h2>
     <div *ngFor="let transaction of transactions">
-        {{ transaction.url }}
+        <div *ngIf="transaction.active && ! transaction.prepared">
+            Order number:{{ transaction.id }} <br>
+            <div *ngFor="let fe of transactionFoodItems">
+                <div *ngIf="fe.transaction == transaction.url">
+                    {{ fe.food_item }}<br>
+                    {{ fe.extras }}<br>
+                    Request: {{fe.request }}<br>
+                    <button (click)="cooked(transaction.id)">Done</button>
+                    <br><br>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
