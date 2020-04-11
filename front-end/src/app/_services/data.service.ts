@@ -63,4 +63,9 @@ export class DataService {
     return this.http.get(this.requestList, header)
   }
 
+  getRequest(id: string) {
+    let url = this.requestList + id + '/';
+    return this.http.get(url);
+  }
+
 }
