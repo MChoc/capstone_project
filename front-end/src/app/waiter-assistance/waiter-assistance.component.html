@@ -1,4 +1,14 @@
-<p>waiter-assistance {{ id }} works!</p>
+<div class="request">
+    <h1>Customer Request</h1>
+    <button class="number">No. {{ request_id }}</button>
+    <p><b>Customer issue description:</b></p>
+    <p>{{ request_problem }}</p>
+    <form ngNativeValidate [formGroup]="editAssistanceForm" (ngSubmit)="onFormSubmit()">
+        <div [formGroup]="editAssistanceForm">
+            <textarea formControlName="notes" rows="5" placeholder="Notes" required></textarea>
+        </div>
+        <button type="submit" class="resolve">Resolve Issue</button>
+        <button (click)="back()" class="back">Back to Categories</button>
+    </form>
+</div>
 
-Assistance request no. {{ request_id }}
-Problem: {{ request_problem }}
