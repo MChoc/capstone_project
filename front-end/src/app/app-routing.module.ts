@@ -24,6 +24,7 @@ import { OrderSuccessComponent } from './order-success/order-success.component';
 import { AssistanceComponent } from './assistance/assistance.component';
 import { AssistanceIdComponent } from './assistance-id/assistance-id.component';
 import { WaiterAssistanceComponent } from './waiter-assistance/waiter-assistance.component';
+import { WaiterOrderComponent } from './waiter-order/waiter-order.component';
 
 
 const routes: Routes = [
@@ -118,6 +119,10 @@ const routes: Routes = [
   {
     path: 'waiter/request/:id',
     component: WaiterAssistanceComponent
+  },
+  {
+    path: 'waiter/pickup/:id',
+    component: WaiterOrderComponent
   },
   { 
     path: '**', 

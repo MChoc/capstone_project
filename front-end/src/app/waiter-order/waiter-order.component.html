@@ -1,0 +1,8 @@
+<div class="pickup">
+    <div *ngIf="transaction$">
+        <h1>Customer Order</h1>
+        <button class="number">No. {{ transaction$.id }}</button>
+        <button (click)="pickup()" class="resolve">Picked Up</button>
+        <button (click)="back()" class="back">Back to Categories</button>
+    </div>
+</div>

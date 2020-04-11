@@ -57,7 +57,7 @@ export class WaiterHomeComponent implements OnInit {
   }
 
   pickupOrder(id) {
-    alert("Picking up " + id);
+    this.router.navigate(['/waiter/pickup/'+ id]);
   }
 
 }

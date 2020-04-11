@@ -69,6 +69,17 @@ export class DataService {
     return this.http.get<Transaction[]>(this.transactionList, header);
   }
 
+  getTransaction(id): Observable<Transaction> {
+    let url = 'http://127.0.0.1:5000/api/transaction/' + id + '/';
+    let key = window.localStorage.getItem('key')
+    var header = {
+      headers: new HttpHeaders()
+        .set('Authorization', 'Token ' + key)
+    }
+
+    return this.http.get<Transaction>(url, header);
+  }
+
   getTransactionFoodItems(): Observable<TransactionFoodItem[]> {
     let key = window.localStorage.getItem('key')
     var header = {
