@@ -147,7 +147,6 @@ class TestCustomUserModel(APITestCase):
         
         body = {
             'username': 'Testusernamechange',
-            'password': 'Testpasswordchange',
             'first_name': 'Test first name change',
             'last_name': 'Test last name change',
             'user_type': 'WAITER',
@@ -157,7 +156,6 @@ class TestCustomUserModel(APITestCase):
 
         obj = CustomUser.objects.get(id=1)
         self.assertEqual(obj.username, 'Testusernamechange')
-        self.assertEqual(obj.password, 'pbkdf2_sha256$180000$y2LOKGu2VOkC$qfQ6G97klvy1ilv2ijfKlW+lIRiMMVj8xqH883p6bIw=')
         self.assertEqual(obj.first_name, 'Test first name change')
         self.assertEqual(obj.last_name, 'Test last name change')
         self.assertEqual(obj.user_type, 'WAITER')

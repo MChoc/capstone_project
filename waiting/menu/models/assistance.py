@@ -5,7 +5,12 @@ from django.db import models
 
 
 class Assistance(models.Model):
-    transaction = models.ForeignKey(Transaction, on_delete=models.CASCADE)
+    transaction = models.ForeignKey(
+        Transaction,
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True
+    )
     waiter = models.ForeignKey(
         CustomUser,
         on_delete=models.CASCADE,
