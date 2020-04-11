@@ -94,6 +94,11 @@ export class DataService {
   }
 
   getRequests() {
+    let key = window.localStorage.getItem('key')
+    var header = {
+      headers: new HttpHeaders()
+        .set('Authorization', 'Token ' + key)
+    }
     return this.http.get(this.requestList)
   }
 }
