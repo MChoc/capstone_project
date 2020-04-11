@@ -41,6 +41,5 @@ class AdminOrPostOnly(permissions.BasePermission):
 
         if request.user.is_anonymous is False and request.user.user_type == 'MANAGER':
             return True
-            return True
 
         return False
