@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {interval} from "rxjs/internal/observable/interval";
 import {startWith, switchMap} from "rxjs/operators";
+import { Router } from '@angular/router';
 
 import { DataService } from '../_services/data.service';
 import { Transaction } from "../models/transaction.model";
@@ -22,8 +23,15 @@ export class KitchenHomeComponent implements OnInit {
 
   constructor(
     private data : DataService,
-    private http: HttpClient
+    private http: HttpClient,
+    private router: Router
   ) { 
+    let loggedOn = window.localStorage.getItem('user');
+
+    if(!loggedOn || JSON.parse(loggedOn)['user_type'] != 'KITCHEN') {
+      this.router.navigate(['**']);
+    }
+
     this.data.getItems().subscribe(res => {
       this.food_items = res;
     })

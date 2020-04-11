@@ -8,3 +8,13 @@
         </div>
     </li>
 </div>
+<div class="assistance-requests">
+    <h2>Order Pickups</h2>
+    <li *ngFor="let transaction of transactions$">
+        <div *ngIf="transaction.active && transaction.prepared"  class="requests">
+            <button type=[button] class="assistance" (click)="pickupOrder( transaction.id )">
+                Order no. {{ transaction.id }}
+            </button>
+        </div>
+    </li>
+</div>
