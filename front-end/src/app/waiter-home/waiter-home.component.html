@@ -1,8 +1,10 @@
 <div class="assistance-requests">
+    <h2>Assistance Requests</h2>
     <li *ngFor="let request of requests$">
         <div *ngIf="!request.resolved"  class="requests">
-            {{ request.id }}
-            {{ request.problem }}
+            <button type=[button] class="assistance">
+                Request no. {{ request.id }}
+            </button>
         </div>
     </li>
 </div>
