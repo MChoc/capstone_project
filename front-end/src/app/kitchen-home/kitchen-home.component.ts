@@ -18,7 +18,8 @@ export class KitchenHomeComponent implements OnInit {
 
   transactions: Transaction[];
   transactionFoodItems: TransactionFoodItem[];
-  food_items = []
+  foodItems = []
+  extras = []
 
 
   constructor(
@@ -33,7 +34,11 @@ export class KitchenHomeComponent implements OnInit {
     }
 
     this.data.getItems().subscribe(res => {
-      this.food_items = res;
+      this.foodItems = res;
+    })
+
+    this.data.getExtras().subscribe(res => {
+      this.extras = res;
     })
   }
 
@@ -69,17 +74,29 @@ export class KitchenHomeComponent implements OnInit {
     }
     let input = { prepared: true };
     this.http.patch(url, input, header).subscribe(res => {
-      console.log(res);
       window.location.reload();
     })
   }
 
-  // public getFoodItemName(url: string): string{
-  //   for(let item in this.food_items) {
-  //     if (item['url'] === url) {
-  //       return item['name'];
-  //     }
-  //   }
-  // }
+  public getFoodItemName(url: string): string{
+
+    for(let item of this.foodItems) {
+      if (item['url'] === url) {
+        return item['name'];
+      }
+    }
+    return 'Not found'
+  }
+
+  public getExtraNames(urls: string[]): string[]{
+
+    let names: string[] = [];
+    for(let extra of this.extras){
+      if ( urls.indexOf(extra['url']) !== -1) {
+        names.push(extra['name']);
+      }
+    }
+    return names
+  }
 
 }
