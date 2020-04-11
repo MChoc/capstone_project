@@ -12,6 +12,7 @@ export class DataService {
   private extraList = 'http://127.0.0.1:5000/api/extra/'
   private categoryList = 'http://127.0.0.1:5000/api/categories/'
   private itemList = 'http://127.0.0.1:5000/api/food_items/'
+  private requestList = 'http://127.0.0.1:5000/api/assistance/'
 
   constructor(private http: HttpClient) { }
 
@@ -92,4 +93,7 @@ export class DataService {
     return this.http.get(this.extraList)
   }
 
+  getRequests() {
+    return this.http.get(this.requestList)
+  }
 }
