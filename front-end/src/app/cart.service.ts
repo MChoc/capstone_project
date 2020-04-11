@@ -5,14 +5,23 @@ import { Injectable, ɵConsole } from '@angular/core';
 })
 export class CartService {
   
+  // item object structure
+  // cart_item = {
+  //   'id': string,
+  //   'name': string,
+  //   'price': string,
+  //   'url': string,
+  //   'extras': [],
+  //   'request': string
+  // }
+
   items = [];
 
   addToCart(product, quantity) {
     for(var i = 0; i < quantity; i++) {
       this.items.push(product);
     }
-    console.log("ITEM ADDED TO CART:");
-    console.log(this.items);
+
     window.sessionStorage.setItem('cart_items', JSON.stringify(this.items));
   }
 
@@ -39,6 +48,11 @@ export class CartService {
     let total_price = 0.0;
     for(let item of this.items) {
       total_price += parseFloat(item.price);
+      if(item.extras) {
+        for (let extra of item.extras) {
+          total_price += parseFloat(extra.price);
+        }
+      }
     }
 
     return total_price.toFixed(2);

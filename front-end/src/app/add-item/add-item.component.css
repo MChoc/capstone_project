@@ -36,7 +36,7 @@ button[type=button] {
 }
 
 input[type=text], [type=number] {
-    width: 75px;
+    /* width: 75px; */
     padding: 12px 20px;
     margin: 8px 0;
     border: 1px solid #352728;
@@ -45,6 +45,10 @@ input[type=text], [type=number] {
     outline: none;
     background-color: #fcf7fb;
     color: #352728;
+}
+
+.request {
+    width: 100%;
 }
 
 .details {

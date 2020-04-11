@@ -20,4 +20,4 @@ class Transaction(models.Model):
         through='TransactionFoodItem'
     )
     credit_card = models.ForeignKey(CreditCard, on_delete=models.CASCADE)
-    description = models.CharField(max_length=1024, null=True, blank=True)
+    request = models.CharField(max_length=1024, null=True, blank=True)

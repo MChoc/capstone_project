@@ -1,6 +1,6 @@
 import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, ControlContainer } from '@angular/forms';
+import { FormGroup, FormControl } from '@angular/forms';
 
 import { CartService } from '../cart.service';
 import { DataService } from '../_services/data.service';
@@ -13,14 +13,16 @@ import { DataService } from '../_services/data.service';
 export class AddItemComponent implements OnInit {
 
   id: string;
-  // TODO: apparently "any" is discouraged.
+  category: string;
   item: any = {};
-  // item: Object;
+  extras = [];
   success_message = '';
   error_message = '';
+  selected_extras = []
 
   orderForm = new FormGroup({
     quantity: new FormControl(1),
+    request: new FormControl(''),
   });
 
   constructor(
@@ -33,8 +35,12 @@ export class AddItemComponent implements OnInit {
       this.id = params.get('id');
       this.data.getItem(this.id).toPromise().then(data => {
         this.item = data;
+        this.category = data['category'];
+        this.data.getExtras().toPromise().then(data => {
+          this.extras = data;
+        });
       })
-    })    
+    })
   }
 
   ngOnInit(): void {
@@ -42,6 +48,7 @@ export class AddItemComponent implements OnInit {
 
   // https://angular.io/start/start-data Amazing tutorial for creating carts
   addToCart(item) {
+
     let quantity = this.orderForm.controls['quantity'].value;
     if (quantity > 15) {
       this.error_message = "Maximum quantity is 15, please reduce your quantity and try again.";
@@ -53,8 +60,35 @@ export class AddItemComponent implements OnInit {
       this.error_message = '';
     }
 
-    this.cartService.addToCart(item, quantity);
-    this.router.navigate(['/']); 
+    let cart_item = {
+      'id': item.id,
+      'name': item.name,
+      'price': item.price,
+      'url': item.url,
+      'extras': this.selected_extras,
+      'request': this.orderForm.controls['request'].value
+    }
+    this.cartService.addToCart(cart_item, quantity);
+    this.router.navigate(['/cart']); 
   }
 
+
+  checkValue(item, checked) {
+    if(checked) {
+      this.addExtra(item);
+    } else {
+      this.removeExtra(item);
+    }
+  }
+
+  addExtra(item) {
+    this.selected_extras.push(item);
+  }
+
+  removeExtra(item) {
+    const index: number = this.selected_extras.indexOf(item);
+    if (index !== -1) {
+      this.selected_extras.splice(index, 1);
+    }
+  }
 }

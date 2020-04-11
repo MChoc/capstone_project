@@ -22,7 +22,7 @@ class IsManager(permissions.BasePermission):
 class LoggedInOrValidateOnly(permissions.BasePermission):
 
     def has_permission(self, request, view):
-        if view.action == "validate":
+        if view.action == "create":
             return True
 
         # extra condition to allow adding to this database
