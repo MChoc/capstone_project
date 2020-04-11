@@ -1,4 +1,3 @@
-from menu.models.category import Category
 from menu.models.menu import Menu
 
 from rest_framework import serializers

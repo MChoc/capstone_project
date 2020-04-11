@@ -1,5 +1,3 @@
-from menu.models.extra import Extra
-from menu.models.food_item import FoodItem
 from menu.models.category import Category
 
 from rest_framework import serializers

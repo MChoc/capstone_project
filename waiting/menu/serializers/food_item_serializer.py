@@ -1,5 +1,4 @@
 from menu.models.food_item import FoodItem
-from menu.models.tag import Tag
 
 from rest_framework import serializers
 
