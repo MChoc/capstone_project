@@ -26,13 +26,7 @@ export class DataService {
   }
 
   getMenus() {
-    let key = window.localStorage.getItem('key')
-    var header = {
-      headers: new HttpHeaders()
-        .set('Authorization', 'Token ' + key)
-    }
-
-    return this.http.get(this.menuList, header)
+    return this.http.get<any[]>(this.menuList);
   }
 
   getExtras() {
@@ -40,50 +34,22 @@ export class DataService {
   }
 
   getCategories() {
-    let key = window.localStorage.getItem('key')
-    var header = {
-      headers: new HttpHeaders()
-        .set('Authorization', 'Token ' + key)
-    }
-    return this.http.get(this.categoryList, header)
+    return this.http.get<any[]>(this.categoryList);
   }
 
   getCategory(id) {
-    let key = window.localStorage.getItem('key')
-    var header = {
-      headers: new HttpHeaders()
-        .set('Authorization', 'Token ' + key)
-    }
+
     let url = this.categoryList + id + '/'
-    return this.http.get(url, header)
+    return this.http.get(url);
   }
 
   getItems() {
-    let key = window.localStorage.getItem('key')
-    var header = {
-      headers: new HttpHeaders()
-        .set('Authorization', 'Token ' + key)
-    }
-
-    return this.http.get(this.itemList, header)
+    return this.http.get<any[]>(this.itemList);
   }
 
   getItem(id: string) {
     let url = this.itemList + id + '/';
     return this.http.get(url);
-  }
-
-
-  getCustomerCategories() {
-    return this.http.get(this.categoryList)
-  }
-
-  getCustomerItems() {
-    return this.http.get(this.itemList)
-  }
-
-  getCustomerExtras() {
-    return this.http.get(this.extraList)
   }
 
 }
