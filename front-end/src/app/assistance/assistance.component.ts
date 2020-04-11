@@ -19,7 +19,7 @@ export class AssistanceComponent implements OnInit {
   }
 
   assistanceForm = new FormGroup({
-    request: new FormControl(),
+    issue: new FormControl(),
   })
 
   onFormSubmit() {
