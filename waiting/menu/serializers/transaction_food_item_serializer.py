@@ -6,7 +6,6 @@ from rest_framework import serializers
 class TransactionFoodItemSerializer(serializers.HyperlinkedModelSerializer):
     extras = serializers.HyperlinkedRelatedField(
         many=True,
-        read_only=True,
         view_name='extra-detail'
     )
 
