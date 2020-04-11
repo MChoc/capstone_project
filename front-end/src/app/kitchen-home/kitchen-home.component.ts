@@ -1,4 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import {interval} from "rxjs/internal/observable/interval";
+import {startWith, switchMap} from "rxjs/operators";
+
+import { DataService } from '../_services/data.service';
+import {Transaction} from "../models/transaction.model";
+
 
 @Component({
   selector: 'app-kitchen-home',
@@ -7,9 +13,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class KitchenHomeComponent implements OnInit {
 
-  constructor() { }
+  transactions: Transaction[];
 
-  ngOnInit(): void {
+  constructor(
+    private data : DataService,
+  ) { 
+
+  }
+
+  ngOnInit() {
+    interval(10000)
+      .pipe(
+        startWith(0),
+        switchMap(() => this.data.getTransactions())
+      )
+      .subscribe(res => {
+        this.transactions = res;
+        console.log(res);
+      })
+    ;
   }
 
 }
