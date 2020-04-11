@@ -41,5 +41,5 @@ class ValidateViewSet(ModelViewSet):
             context=self.get_serializer_context()
         ).data
         response['validated'] = True
-        
+
         return Response(response)

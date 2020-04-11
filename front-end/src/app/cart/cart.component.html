@@ -5,7 +5,8 @@
             <td class="table-field1"></td>
             <td class="table-field2"></td>
             <td class="table-field3"></td>
-            <tr *ngFor="let item of items" class="items">
+            <ng-container *ngFor="let item of items" class="items">
+                <tr>
                 <td>
                     <button (click)="deleteFromCart(item)" class="delete">
                         <i class="material-icons">delete</i>
@@ -14,9 +15,19 @@
                 <td>
                     <a href="/add/{{ item.id }}">{{ item.name }}</a>
                     <br>{{ item.size }}
+                    <br>{{ item.request }}
                 </td>
                 <td class="price">${{ item.price }}</td>
+                <br>
             </tr>
+                <tr *ngFor="let extra of item.extras" >
+                    <td></td>
+                    <td>
+                        {{ extra.name }}
+                    </td>
+                    <td>+{{ extra.price }}</td>
+                </tr>
+            </ng-container>
                 <td></td>
                 <td class="total" style="text-decoration: underline;">Total</td>
                 <td class="price" style="text-decoration: underline;">${{ total_price }}</td>
