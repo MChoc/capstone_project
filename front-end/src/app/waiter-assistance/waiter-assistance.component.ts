@@ -55,8 +55,8 @@ export class WaiterAssistanceComponent implements OnInit {
   onFormSubmit() {
     let post_data = {
       resolved: true,
-      notes: this.editAssistanceForm.value['notes']
-      //TODO: add waiter url
+      notes: this.editAssistanceForm.value['notes'],
+      waiter: 'http://127.0.0.1:5000/api/accounts/' + window.localStorage.getItem('staffID') + '/'
     };
     
     let url = 'http://127.0.0.1:5000/api/assistance/' + this.id + '/';
@@ -68,11 +68,10 @@ export class WaiterAssistanceComponent implements OnInit {
         'Authorization': 'Token ' + key
       })
     }
-
-    console.log(this.editAssistanceForm.value);
     
     this.http.patch(url, post_data, header).toPromise().then(data => {
       console.log(data);
+      this.router.navigate(['/waiter']);
     },
     error => {  }
     )
