@@ -1,3 +1,4 @@
+from menu.models.food_item import FoodItem
 from menu.models.transaction import Transaction
 
 from rest_framework import serializers
@@ -6,6 +7,7 @@ from rest_framework import serializers
 class TransactionSerializer(serializers.HyperlinkedModelSerializer):
     food_items = serializers.HyperlinkedRelatedField(
         many=True,
+        read_only=True,
         view_name='fooditem-detail'
     )
 

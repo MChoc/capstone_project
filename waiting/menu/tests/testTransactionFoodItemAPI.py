@@ -1,9 +1,14 @@
+import datetime
+import pytz
+
 from collections import OrderedDict
 
-from menu.models.category import Category
+from menu.models.credit_card import CreditCard
+from menu.models.extra import Extra
 from menu.models.food_item import FoodItem
-from menu.models.tag import Tag
-from menu.serializers.food_item_serializer import FoodItemSerializer
+from menu.models. transaction import Transaction
+from menu.models.transaction_food_item import TransactionFoodItem
+from menu.serializers.transaction_food_item_serializer import TransactionFoodItemSerializer
 
 from django.contrib.auth import get_user_model
 
@@ -13,9 +18,9 @@ from rest_framework.request import Request
 from rest_framework.test import APITestCase, APIRequestFactory
 
 
-class TestFoodItemModel(APITestCase):
+class TestTransactionFoodItemModel(APITestCase):
     """
-    Testing the FoodItem model and its API returns
+    Testing the TransactionFoodItem model and its API returns
 
     FYI
         GET: LIST/RETRIEVE
@@ -61,15 +66,15 @@ class TestFoodItemModel(APITestCase):
         GET data is same as database data.
     """
     def test_list(self):
-        url = '/api/food_items/'
+        url = '/api/transaction_food_item/'
         factory = APIRequestFactory()
         request = factory.post(url)
         
-        objs = FoodItem.objects.all()
+        objs = TransactionFoodItem.objects.all()
         serializer_context = {
             'request': Request(request),
         }
-        serializer = FoodItemSerializer(
+        serializer = TransactionFoodItemSerializer(
             objs,
             context=serializer_context,
             many=True,
@@ -90,50 +95,32 @@ class TestFoodItemModel(APITestCase):
         Object exists in database.
     """
     def test_create(self):
-        url = '/api/food_items/'
+        url = '/api/transaction_food_item/'
         factory = APIRequestFactory()
         request = factory.post(url)
         
-        init_count = FoodItem.objects.count()
-
+        init_count = TransactionFoodItem.objects.count()
         body = {
-            'name': 'Test Name',
-            'active': True,
-            'price': '10.00',
-            'description': 'Test Description',
-            'category': reverse(
-                'category-detail',
-                args=[Category.objects.get(id=1).pk,],
+            'transaction': reverse(
+                'transaction-detail',
+                args=[Transaction.objects.get(id=1).pk,],
                 request=request,
             ),
-            'tags' : [],
+            'food_item': reverse(
+                'fooditem-detail',
+                args=[FoodItem.objects.get(id=10).pk,],
+                request=request,
+            ),
         }
         response = self.client.post(url, body, format='json')
+        # print(response.__getstate__())
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 
-        post_count = FoodItem.objects.count()
+        post_count = TransactionFoodItem.objects.count()
         self.assertEqual(post_count, init_count+1)
 
-        post_obj = FoodItem.objects.get(name='Test Name')
+        post_obj = TransactionFoodItem.objects.get(id=post_count)
         self.assertIsNotNone(post_obj)
-
-        url = f'/api/food_items/{post_obj.pk}/'
-        # print(post_obj.pk)
-        factory = APIRequestFactory()
-        request = factory.post(url)
-
-        body = {
-            'tags': [reverse(
-                'tag-detail',
-                args=[Tag.objects.get(id=1).pk,],
-                request=request,
-            ),]
-        }
-        response=self.client.patch(url, body, format='json')
-        # print(response.__getstate__())
-        self.assertEqual(response.status_code, status.HTTP_200_OK)
-        # print(post_obj.tags)
-        self.assertIsNotNone(post_obj.tags)
 
     """
     Testing RETRIEVE
@@ -144,15 +131,15 @@ class TestFoodItemModel(APITestCase):
         GET data is same as in database.
     """
     def test_retrieve(self):
-        url = '/api/food_items/1/'
+        url = '/api/transaction_food_item/1/'
         factory = APIRequestFactory()
         request = factory.post(url)
         
-        obj = [FoodItem.objects.get(id=1),]
+        obj = [TransactionFoodItem.objects.get(id=1),]
         serializer_context = {
             'request': Request(request),
         }
-        serializer = FoodItemSerializer(
+        serializer = TransactionFoodItemSerializer(
             obj,
             context=serializer_context,
             many=True,
@@ -172,33 +159,33 @@ class TestFoodItemModel(APITestCase):
         All fields have been changed and content is correct.
     """
     def test_update(self):
-        url = '/api/food_items/1/'
+        url = '/api/transaction_food_item/1/'
         factory = APIRequestFactory()
         request = factory.post(url)
         
-        category = Category.objects.get(id=2)
+        customer = get_user_model().objects.get(username='Customer1')
+        credit_card = CreditCard.objects.get(id=1)
         body = {
-            'name': 'Test Change',
             'active': False,
-            'price': '10.00',
-            'description': 'Test Change',
-            'category': reverse(
-                'category-detail',
-                args=[category.pk,],
+            'customer': reverse(
+                'customuser-detail',
+                args=[customer.pk,],
                 request=request,
             ),
-            'size': 'SMALL',
+            'credit_card': reverse(
+                'creditcard-detail',
+                args=[credit_card.pk,],
+                request=request,
+            ),
         }
         response = self.client.put(url, body, format='json')
         # print(response.__getstate__())
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
-        obj = FoodItem.objects.get(id=1)
-        self.assertEqual(obj.name, 'Test Change')
+        obj = TransactionFoodItem.objects.get(id=1)
         self.assertFalse(obj.active)
-        self.assertEqual(obj.description, 'Test Change')
-        self.assertEqual(obj.category, category)
-        self.assertEqual(obj.size, 'SMALL')
+        self.assertEqual(obj.customer, customer)
+        self.assertEqual(obj.credit_card, credit_card)
 
     """
     Testing UPDATE (partial)
@@ -209,16 +196,24 @@ class TestFoodItemModel(APITestCase):
         Correct field/s have been changed and content correct.
     """
     def test_partial_update(self):
-        url = '/api/food_items/1/'
+        url = '/api/transaction_food_item/1/'
+        factory = APIRequestFactory()
+        request = factory.post(url)
 
+        extra = Extra.objects.get(id=2)
         body = {
-            'name': 'Test Change',
+            'extras': reverse(
+                'extra-detail',
+                args=[extra.pk,],
+                request=request,
+            ),
         }
         response = self.client.patch(url, body, format='json')
+        # print(response.__getstate__())
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
-        obj = FoodItem.objects.get(id=1)
-        self.assertEqual(obj.name, 'Test Change')
+        obj = TransactionFoodItem.objects.get(id=1)
+        self.assertEqual(obj.extras, extra)
 
     """
     Testing DESTROY
@@ -229,36 +224,8 @@ class TestFoodItemModel(APITestCase):
         Correct object has been deleted from database.
     """
     def test_destroy(self):
-        url = '/api/food_items/1/'
+        url = '/api/transaction_food_item/1/'
 
         response = self.client.delete(url)
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
-        self.assertRaises(FoodItem.DoesNotExist, FoodItem.objects.get, id=1)
-
-    """
-    Testing adding to through model.
-
-    Asserts:
-
-    """
-    def test_add_tags_through(self):
-        url = '/api/food_items/1/'
-        factory = APIRequestFactory()
-        request = factory.post(url)
-
-        tag = Tag.objects.get(id=1)
-        body = {
-            'tags': [
-                reverse(
-                    'tag-detail',
-                    args=[tag.pk,],
-                    request=request,
-                ),
-            ],
-        }
-        response = self.client.patch(url, body, format='json')
-        # print(response.__getstate__())
-        self.assertEqual(response.status_code, status.HTTP_200_OK)
-
-        obj = FoodItem.objects.get(id=1)
-        self.assertEqual(obj.tags.get(id=1), tag)
+        self.assertRaises(TransactionFoodItem.DoesNotExist, TransactionFoodItem.objects.get, id=1)

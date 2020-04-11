@@ -98,6 +98,7 @@ class TestCategoryModel(APITestCase):
             'active': True,
         }
         response = self.client.post(url, body, format='json')
+        # print(response.__getstate__())
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 
         post_count = Menu.objects.count()

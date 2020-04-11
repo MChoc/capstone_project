@@ -4,6 +4,7 @@ import pytz
 from collections import OrderedDict
 
 from menu.models.credit_card import CreditCard
+from menu.models.food_item import FoodItem
 from menu.models.transaction import Transaction
 from menu.serializers.transaction_serializer import TransactionSerializer
 
@@ -176,6 +177,7 @@ class TestTransactionModel(APITestCase):
             ),
         }
         response = self.client.put(url, body, format='json')
+        # print(response.__getstate__())
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
         obj = Transaction.objects.get(id=1)

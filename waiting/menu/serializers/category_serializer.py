@@ -1,3 +1,5 @@
+from menu.models.extra import Extra
+from menu.models.food_item import FoodItem
 from menu.models.category import Category
 
 from rest_framework import serializers
@@ -6,10 +8,12 @@ from rest_framework import serializers
 class CategorySerializer(serializers.HyperlinkedModelSerializer):
     food_items = serializers.HyperlinkedRelatedField(
         many=True,
+        read_only=True,
         view_name='fooditem-detail'
     )
     extras = serializers.HyperlinkedRelatedField(
         many=True,
+        read_only=True,
         view_name='extra-detail'
     )
 
