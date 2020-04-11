@@ -13,7 +13,15 @@ export class RegisterComponent implements OnInit {
   constructor(
     private http: HttpClient,
     private router: Router
-    ) { }
+    ) {
+
+      let loggedOn = window.localStorage.getItem('user');
+
+      if(!loggedOn || JSON.parse(loggedOn)['user_type'] != 'MANAGER') {
+        this.router.navigate(['**']);
+      }
+
+    }
 
   ngOnInit(): void {
   }

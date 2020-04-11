@@ -21,3 +21,30 @@ Updated Jira to create all the requirements for our first sprint.
 By Sunday we hope to have the login page working.
 I will be working on the homepage and login page front end.
 
+Week 5
+Last week we got a start on the login feature however we had trouble connecting the front and and backend through the API.
+In the next week I will work with Tripta to make this connection.
+I will also work on creating more pages for the front end.
+
+Week 6
+Last week I worked with Tripta to connect the front wnd and back-end. We have made good progress but not managed to complete everything.
+By tomorrow we will finish this sprint and complete the login function.
+We will then move on to the next sprint which is the menu function (reading and editing the menu).
+Since we have now worked out the FE-BE connection, this next sprint should be much smoother than the last one.
+
+Week 7
+Last week we finally completed the login sprint and moved on to creating the menu.
+I will work on the manager editing and updating the menu and will have this done by friday.
+I also have some general style changes to make such as adding a back and home button to the header.
+We are a bit behind our sprint schedule and have 3 weeks to complete our project but now that we all have the hang of it I am confident we will get it done.
+
+Week 8
+We almost completed the entire menu sprint in the last week.
+In the front end, I worked on the manager creating and managing the menu and Tripta worked on the customer ordering system.
+We just have a few final touches to finish in the next few days before this sprint is done.
+We have changed the ways that 'extra' food items relate to the menu as our original plan was too complex and messy to implement.
+Instead of extra's being assigned to different menu items in a many-to-many relationship, we will now have extra items associated with a category so they will work very similar to normal food items.
+I need to work on that change and also help Tripta with the styling of her section.
+I have also been helping Leonard and Angus learn the front end so they can help contribute as well.
+After thise jobs are complete on friday, we will merge all of the changes from this sprint and move on to the next one.
+For the next sprint, we will create the notifications that are passed between different staff types (food is ordered, food is ready, customer assistance etc).

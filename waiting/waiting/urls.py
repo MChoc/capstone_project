@@ -22,8 +22,7 @@ from rest_framework import routers
 from rest_framework import permissions
 
 from menu.urls import router as menu_router
-from accounts.urls import router as accounts_router
-
+from accounts.urls import router as users_router
 
 schema_view = get_schema_view(
    openapi.Info(
@@ -36,11 +35,13 @@ schema_view = get_schema_view(
 
 router = routers.DefaultRouter()
 router.registry.extend(menu_router.registry)
-router.registry.extend(accounts_router.registry)
+router.registry.extend(users_router.registry)
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include(router.urls)),
+    path('api/', include('menu.urls')),
     path('rest-auth/', include('rest_auth.urls')),
     path('rest-auth/registration/', include('rest_auth.registration.urls')),
     path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),

@@ -2,7 +2,6 @@ from menu.models.menu import Menu
 from menu.models.category import Category
 from menu.models.food_item import FoodItem
 from menu.models.discount import Discount
-from menu.models.drink import Drink
 from menu.models.extra import Extra
 from menu.models.tag import Tag
 from menu.models.transaction import Transaction
@@ -18,13 +17,13 @@ from django.contrib.auth import get_user_model
 menu = Menu.objects.create(name='Waiting Cafe')
 print(f"Created {menu}")
 
-# Create categories and food items/drinks
+# Create categories and food items and extras
 categories = []
 food_items = []
-drinks = []
+extras = []
 for i in range(0,10):
     category = Category.objects.create(
-        name='Category ' + str(1),
+        name='Category ' + str(i+1),
         menu=menu
     )
     categories.append(category)
@@ -33,29 +32,34 @@ for i in range(0,10):
     for i in range(0,10):
         if i <= 5:
             food_item = FoodItem.objects.create(
-                name='Food item ' + str(i),
+                name='Food item ' + str(i+1),
                 price='10.00', #TODO: use rand
-                description='Test description ' + str(i),
+                description='Test description ' + str(i+1),
                 category=category
             )
         else:
             food_item = FoodItem.objects.create(
-                name='Food item ' + str(i-5),
+                name='Drink ' + str(i-5),
                 price='10.00', # TODO: use rand
                 description='Test description ' + str(i-5),
-                category=category
+                category=category,
+                size='LARGE'
             )
-            drink_item = Drink.objects.create(
-                    food_item=food_item,
-                    size='LARGE' # TODO: use rand
-                )
         food_items.append(food_item)
         print(f"Created {food_item}")
+
+        extra = Extra.objects.create(
+            name='Extra ' + str(i+1),
+            price=i,
+            category=category
+        )
+        extras.append(extra)
+        print(f"Created {extra}")
 
 # TODO: use rand to add tags to items
 tags = []
 for i in range(0,10):
-    tag = Tag.objects.create(name='Tag ' + str(i))
+    tag = Tag.objects.create(name='Tag ' + str(i+1))
     tags.append(tag)
     print(f"Created {tag}")
 
@@ -68,10 +72,10 @@ print("Created admin")
 managers = []
 for i in range(1,5):
     manager = get_user_model().objects.create_superuser(
-        username='Manager' + str(i),
-        password='Manager' + str(i),
-        first_name='Manager' + str(i),
-        last_name='M' + str(i),
+        username='Manager' + str(i+1),
+        password='Manager' + str(i+1),
+        first_name='Manager' + str(i+1),
+        last_name='M' + str(i+1),
         user_type='MANAGER'
     )
     managers.append(manager)
@@ -79,12 +83,12 @@ for i in range(1,5):
 
 # Populate table with customers
 customers = []
-for i in range(0,10):
+for i in range(0,5):
     customer = get_user_model().objects.create_user(
-        username='Customer' + str(i),
-        password='Customer' + str(i),
-        first_name='Customer' + str(i),
-        last_name='C' + str(i),
+        username='Customer' + str(i+1),
+        password='Customer' + str(i+1),
+        first_name='Customer' + str(i+1),
+        last_name='C' + str(i+1),
         user_type='CUSTOMER'
     )
     customers.append(customer)
@@ -92,12 +96,12 @@ for i in range(0,10):
 
 # Populate table with kitchen staff
 kitchens = []
-for i in range(0,10):
+for i in range(0,5):
     kitchen = get_user_model().objects.create_user(
-        username='Kitchen' + str(i),
-        password='Kitchen' + str(i),
-        first_name='Kitchen' + str(i),
-        last_name='K' + str(i),
+        username='Kitchen' + str(i+1),
+        password='Kitchen' + str(i+1),
+        first_name='Kitchen' + str(i+1),
+        last_name='K' + str(i+1),
         user_type='KITCHEN'
     )
     kitchens.append(kitchen)
@@ -105,12 +109,12 @@ for i in range(0,10):
 
 # Populate table with waiters
 waiters = []
-for i in range(0,10):
+for i in range(0,5):
     waiter = get_user_model().objects.create_user(
-        username='Waiter' + str(i),
-        password='Waiter' + str(i),
-        first_name='Waiter' + str(i),
-        last_name='W' + str(i),
+        username='Waiter' + str(i+1),
+        password='Waiter' + str(i+1),
+        first_name='Waiter' + str(i+1),
+        last_name='W' + str(i+1),
         user_type='WAITER'
     )
     waiters.append(waiter)
@@ -128,24 +132,14 @@ for i in range(0,5):
     discounts.append(discount)
     print(f"Created {discount}")
 
-# TODO: Create extras
-extras = []
-for i in range(0,10):
-    extra = Extra.objects.create(
-        name='Extra ' + str(i),
-        price=i
-    )
-    extras.append(extra)
-    print(f"Created {extra}")
-
 # Create credit cards
 credit_cards = []
 for i in range(0,5):
     credit_card = CreditCard.objects.create(
-        number='123412341234123' + str(i),
-        expiry_month='0' + str(i),
-        expiry_year='0' + str(i),
-        cvs='12' + str(i)
+        number='123412341234123' + str(i+1),
+        expiry_month='0' + str(i+1),
+        expiry_year='0' + str(i+1),
+        cvs='12' + str(i+1)
     )
     credit_cards.append(credit_card)
     print(f"Created {credit_card}")
@@ -168,3 +162,14 @@ for i in range(0,5):
         'discount': discounts[i]
     })
     print(f"Created {transaction}")
+
+assistances = []
+for i in range(0,5):
+    assistance = Assistance.objects.create(
+        transaction=transactions[i],
+        waiter=waiters[i],
+        problem='Problem ' + str(i+1),
+        notes='Notes ' + str(i+1),
+    )
+    assistances.append(assistance)
+    print(f'Created {assistance}')

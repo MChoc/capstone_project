@@ -29,10 +29,10 @@ export class MenuComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.data.getCategories().subscribe(
+    this.data.getCustomerCategories().subscribe(
       data => this.categories$ = data,
     ),
-    this.data.getItems().subscribe(
+    this.data.getCustomerItems().subscribe(
       data => this.items$ = data,
     )
   }

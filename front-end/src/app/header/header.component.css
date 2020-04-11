@@ -1,6 +1,10 @@
 * {
     box-sizing: border-box;
-  }
+}
+
+a {
+    text-decoration: none;
+}
   
 .column {
     background-color: #abc2ba;
@@ -26,9 +30,16 @@
     clear: both;
 }
 
-a {
+a, button {
     color: #352728;
 }
+
+button {
+    background-color: #abc2ba;
+    border: none;
+    
+}
+
 .activated {
     color: #90694a;
 }
@@ -37,6 +48,3 @@ i {
     cursor: pointer;
 }
 
-i:hover {
-    color: #352728e0;
-}

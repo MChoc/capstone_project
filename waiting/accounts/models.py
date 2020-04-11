@@ -11,7 +11,7 @@ class CustomUser(AbstractUser):
     )
     first_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=30)
-    # TODO: figure out how to create manager using `python manage.py createsuperuser`
+    active = models.BooleanField(default=True)
     user_type = models.CharField(
         max_length=10,
         choices=USER_TYPE_CHOICES,

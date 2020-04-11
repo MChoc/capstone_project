@@ -14,5 +14,5 @@ class FoodItemSerializer(serializers.HyperlinkedModelSerializer):
         model = FoodItem
         fields = [
             'id', 'url', 'name', 'active', 'price', 'description', 'category',
-            'tags'
+            'tags', 'size',
         ]

@@ -19,7 +19,11 @@
     "@angular/platform-browser": "~9.0.5",
     "@angular/platform-browser-dynamic": "~9.0.5",
     "@angular/router": "~9.0.5",
+<<<<<<< HEAD
     "ng2-search-filter": "^0.5.1",
+=======
+    "ng-multiselect-dropdown": "^0.2.10",
+>>>>>>> master
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
     "zone.js": "~0.10.2"

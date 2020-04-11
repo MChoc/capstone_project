@@ -3,32 +3,74 @@ h2{
     margin-bottom: 20px;
 }
 
-b {
-    font-size: larger;
-}
-
-.category-list {
+a, button {
     color: #352728;
-    list-style-type: none;
-}
-
-.category {
-    margin-left: 8%;
-    width: 75%;
+    padding: 0 5px;
     background-color: #fcf7fb;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    text-decoration: none;
+}
+
+ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.category, .archived-category {
+    width: 300px;
+    margin: auto;
+    margin-top: 20px;
     padding: 20px;
+    border-bottom: solid .5px #35272862;
+}
+
+.column1 {
+    float: left;
+    width: 75%;
+}
+
+.column2 {
+    float: right;
+    width: 25%;
+    text-align: right;
+    margin: auto;
+}
+
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.pad {
+    text-align: center;
+    padding-top: 20px;
+    color: grey;
+}
+
+.archived-category a, .archived-category button {
+    color: grey;
+}
+
+.category-form {
+    text-align: center;
+    width: 300px;
+    margin: auto;
+}
+
+input[type=text] {
+    background-color: #fcf7fb;
+    color: #352728;
+    padding: 10px;
     border: solid 1px #352728;
-    margin-top: 40px;
-    margin-bottom: 10px;
+    border-radius: 4px;
+    outline: none;
+    margin-top: 30px;
 }
 
-.row {
-    display: flex;
-    margin-bottom: 20px;
-}
-
-.addCategory {
-    width: 30%;
+.save {
     background-color: #352728;
     color: #fcf7fb;
     padding: 10px;
@@ -37,54 +79,5 @@ b {
     cursor: pointer;
     outline: none;
     margin-top: 20px;
-    margin-left: 35%;
-}
-
-a, button {
-    color: #352728;
-    padding: 0 5px;
-    background-color: #fcf7fb;
-    border: none;
-    cursor: pointer;
-    outline: none;
-}
-
-a .activated {
-    color: #90694a;
-}
-
-i:hover {
-    color: #352728e0;
-}
-
-.column1 {
-    float: left;
-    width: 50%;
-}
-
-.column2 {
-    float: right;
-    width: 50%;
-    text-align: right;
-    margin: auto;
-}
-  
-.row:after {
-    content: "";
-    display: table;
-    clear: both;
-}
-
-ul, li{
-    margin: 0;
-    padding: 0;
-}
-
-.items {
-    margin-left: 20px;
-}
-
-p {
-    font-size: small;
-    color: grey;
+    margin-left: 10px;
 }

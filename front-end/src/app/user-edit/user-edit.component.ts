@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router, ActivatedRoute } from '@angular/router';
 
 
@@ -26,15 +26,36 @@ export class UserEditComponent implements OnInit {
   onFormSubmit(): void {
     console.log(this.userEditForm.value);
     let url = 'http://127.0.0.1:5000/api/accounts/' + this.id + '/';
-    this.http.put(url, this.userEditForm.value).toPromise().then(data => {
-      this.success_message = 'User updated successfully!'
+    
+    let key = window.localStorage.getItem('key');
+    let header = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'Authorization': 'Token ' + key
+      })
+    }
+    
+    this.http.put(url, this.userEditForm.value, header).toPromise().then(data => {
+      this.router.navigate(['/management/staff']); 
     },
     error => {
       this.error_message = "An error occured. User was not updated."
     })
   }
 
-  constructor(private _Activatedroute: ActivatedRoute, private http: HttpClient, private router: Router) { }
+  constructor(
+    private _Activatedroute: ActivatedRoute, 
+    private http: HttpClient, 
+    private router: Router
+    ) {
+
+      let loggedOn = window.localStorage.getItem('user');
+
+      if(!loggedOn || JSON.parse(loggedOn)['user_type'] != 'MANAGER') {
+        this.router.navigate(['**']);
+      }
+
+    }
 
   ngOnInit(): void {
 
@@ -43,7 +64,12 @@ export class UserEditComponent implements OnInit {
     });
 
     let url = 'http://127.0.0.1:5000/api/accounts/' + this.id + '/';
-    this.http.get(url).toPromise().then(data => {
+    let key = window.localStorage.getItem('key')
+    let header = {
+      headers: new HttpHeaders()
+        .set('Authorization', 'Token ' + key)
+    }
+    this.http.get(url, header).toPromise().then(data => {
       this.user = data;
       this.userEditForm.setValue({username: this.user['username'],
                                   first_name: this.user['first_name'],

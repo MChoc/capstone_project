@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ɵNgSelectMultipleOption } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -19,12 +19,20 @@ import { LogoutComponent } from './logout/logout.component';
 import { UserEditComponent } from './user-edit/user-edit.component';
 import { ManageMenuComponent } from './manage-menu/manage-menu.component';
 import { AddItemComponent } from './add-item/add-item.component';
-import { CategoryComponent } from './category/category.component';
 import { CategoryEditComponent } from './category-edit/category-edit.component';
 import { ItemComponent } from './item/item.component';
 import { ItemEditComponent } from './item-edit/item-edit.component';
+<<<<<<< HEAD
 import { FilterPipe } from './shared/filter.pipe';
 
+=======
+import { CartComponent } from './cart/cart.component';
+import { CheckoutComponent } from './checkout/checkout.component';
+import { CategoryManageComponent } from './category-manage/category-manage.component';
+import { ExtraComponent } from './extra/extra.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { ExtraEditComponent } from './extra-edit/extra-edit.component';
+>>>>>>> master
 
 
 @NgModule({
@@ -43,11 +51,19 @@ import { FilterPipe } from './shared/filter.pipe';
     UserEditComponent,
     ManageMenuComponent,
     AddItemComponent,
-    CategoryComponent,
     CategoryEditComponent,
     ItemComponent,
     ItemEditComponent,
+<<<<<<< HEAD
     FilterPipe
+=======
+    CartComponent,
+    CheckoutComponent,
+    CategoryManageComponent,
+    ExtraComponent,
+    PageNotFoundComponent,
+    ExtraEditComponent
+>>>>>>> master
   ],
   imports: [
     BrowserModule,
@@ -55,6 +71,7 @@ import { FilterPipe } from './shared/filter.pipe';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+    // NgMultiSelectDropDownModule.forRoot()
   ],
   providers: [
   ],

@@ -4,7 +4,9 @@ rm -rf menu/__pycache__
 rm -rf menu/migrations/00*
 rm db.sqlite3
 . ../.venv/bin/activate
-./manage.py makemigrations accounts
-./manage.py makemigrations menu
-./manage.py migrate
-./manage.py shell < dummy_data.py
+python manage.py makemigrations accounts
+python manage.py makemigrations menu
+python manage.py migrate
+python manage.py shell < dummy_data.py
+python manage.py dumpdata > ../database.json
+python manage.py dumpdata > menu/fixtures/dump.json
