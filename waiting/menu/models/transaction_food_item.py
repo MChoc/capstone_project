@@ -21,4 +21,4 @@ class TransactionFoodItem(models.Model):
         blank=True,
         related_name='transaction_food_items'
     )
-    description = models.CharField(max_length=1024, null=True, blank=True)
+    request = models.CharField(max_length=1024, null=True, blank=True)

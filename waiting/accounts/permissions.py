@@ -22,12 +22,23 @@ class IsManager(permissions.BasePermission):
 class LoggedInOrValidateOnly(permissions.BasePermission):
 
     def has_permission(self, request, view):
-
-        if view.action == "validate":
+        if view.action == "create":
             return True
 
         # extra condition to allow adding to this database
         if request.user.is_anonymous is False and request.user.user_type == 'MANAGER':
+            return True
+
+        return False
+
+
+class IsStaffOrPostOnly(permissions.BasePermission):
+    
+    def has_permission(self, request, view):
+        if request.method == "POST":
+            return True
+        
+        if request.user.is_anonymous is False and request.user.user_type != 'CUSTOMER':
             return True
 
         return False
@@ -40,7 +51,6 @@ class AdminOrPostOnly(permissions.BasePermission):
             return True
 
         if request.user.is_anonymous is False and request.user.user_type == 'MANAGER':
-            return True
             return True
 
         return False

@@ -9,10 +9,30 @@
         </ng-container>
       </div>
       <form [formGroup]="orderForm">
+
         <div [formGroup]="orderForm" class="element">
           <label>Quantity: </label>
           <input type="number" min="1" max="15" formControlName="quantity">
         </div>
+
+        <p style="text-align: center;">Sides and Extras:</p>
+        <ul class="columnList" *ngFor="let extra of extras;">
+          <div *ngIf="extra.category === category && extra.active" class="extra">
+            <div class="row">
+              <div class="column1">
+                <input type="checkbox" (change)="checkValue(extra, $event.target.checked)">
+                <b>{{ extra.name }}</b>
+                ${{ extra.price }}
+              </div>
+            </div>
+          </div>
+        </ul>
+
+        <div [formGroup]="orderForm" class="element">
+          <label>Special Requests:</label>
+          <input class="request" type="text" formControlName="request">
+        </div>
+
       </form>
       <br/>
       <button type="button" (click)="addToCart(item)">Add to order</button>

@@ -27,24 +27,6 @@
                     </div>
                   </div> 
                 </ul>
-                <p style="text-align: center;">Sides and Extras</p>
-                <ul *ngFor="let extra of extras$">
-                  <div *ngIf="category.url === extra.category && extra.active" class="extra">
-                    <div class="row">
-                
-                      <div class="column1">
-                        <b>{{ extra.name }}</b><br>
-                        ${{ extra.price }}
-                      </div>
-            
-                      <div class="column2a">
-                        <a [routerLink] = "['add', extra.id]" [class.activated]="currentUrl == ''">
-                          <i class="material-icons">add</i>
-                        </a>
-                      </div>
-                    </div>
-                  </div> 
-                </ul>
             </div>
           </div>
         </li> 
