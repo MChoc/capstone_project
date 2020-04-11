@@ -4,5 +4,10 @@
     <p>Your order number is:</p>
     <h3>{{ id }}</h3>
     <br>
-    <p>Status: Being prepared</p>
+    <p *ngIf="!complete else elseBlock;">
+        Status: Being prepared
+    </p>
+    <ng-template #elseBlock>
+        <p>Status: Complete! Please head to the counter to pick it up</p>
+    </ng-template>
 </div>

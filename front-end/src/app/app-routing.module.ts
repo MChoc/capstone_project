@@ -105,7 +105,7 @@ const routes: Routes = [
     component: ExtraEditComponent
   },
   {
-    path: 'order-details/:id',
+    path: 'management/menu/order-details/:id',
     component: OrderSuccessComponent
   },
   {

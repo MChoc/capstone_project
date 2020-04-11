@@ -33,11 +33,11 @@ class LoggedInOrValidateOnly(permissions.BasePermission):
 
 
 class IsStaffOrPostOnly(permissions.BasePermission):
-    
+
     def has_permission(self, request, view):
         if request.method == "POST":
             return True
-        
+
         if request.user.is_anonymous is False and request.user.user_type != 'CUSTOMER':
             return True
 
@@ -48,6 +48,19 @@ class AdminOrPostOnly(permissions.BasePermission):
 
     def has_permission(self, request, view):
         if request.method == "POST":
+            return True
+
+        if request.user.is_anonymous is False and (request.user.user_type == 'MANAGER'
+           or request.user.user_type == 'KITCHEN' or request.user.user_type == "WAITER"):
+            return True
+
+        return False
+
+
+class IsAuthenticatedOrGetOrPostOnly(permissions.BasePermission):
+
+    def has_permission(self, request, view):
+        if request.method == "POST" or request.method == "GET":
             return True
 
         if request.user.is_anonymous is False and (request.user.user_type == 'MANAGER'

@@ -71,13 +71,8 @@ export class DataService {
 
   getTransaction(id): Observable<Transaction> {
     let url = 'http://127.0.0.1:5000/api/transaction/' + id + '/';
-    let key = window.localStorage.getItem('key')
-    var header = {
-      headers: new HttpHeaders()
-        .set('Authorization', 'Token ' + key)
-    }
 
-    return this.http.get<Transaction>(url, header);
+      return this.http.get<Transaction>(url);
   }
 
   getTransactionFoodItems(): Observable<TransactionFoodItem[]> {
