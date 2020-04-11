@@ -23,6 +23,8 @@ import { ExtraEditComponent } from './extra-edit/extra-edit.component';
 import { OrderSuccessComponent } from './order-success/order-success.component';
 import { AssistanceComponent } from './assistance/assistance.component';
 import { AssistanceIdComponent } from './assistance-id/assistance-id.component';
+import { WaiterAssistanceComponent } from './waiter-assistance/waiter-assistance.component';
+
 
 const routes: Routes = [
   {
@@ -112,6 +114,10 @@ const routes: Routes = [
   {
     path: 'assistance/:id',
     component: AssistanceIdComponent
+  },
+  {
+    path: 'waiter/request/:id',
+    component: WaiterAssistanceComponent
   },
   { 
     path: '**', 

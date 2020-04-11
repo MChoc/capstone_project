@@ -31,6 +31,7 @@ import { ExtraEditComponent } from './extra-edit/extra-edit.component';
 import { OrderSuccessComponent } from './order-success/order-success.component';
 import { AssistanceComponent } from './assistance/assistance.component';
 import { AssistanceIdComponent } from './assistance-id/assistance-id.component';
+import { WaiterAssistanceComponent } from './waiter-assistance/waiter-assistance.component';
 
 
 @NgModule({
@@ -61,6 +62,7 @@ import { AssistanceIdComponent } from './assistance-id/assistance-id.component';
     OrderSuccessComponent,
     AssistanceComponent,
     AssistanceIdComponent,
+    WaiterAssistanceComponent,
   ],
   imports: [
     BrowserModule,

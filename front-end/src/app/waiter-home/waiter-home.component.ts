@@ -33,7 +33,7 @@ export class WaiterHomeComponent implements OnInit {
   }
 
   moveTo(id) {
-    this.router.navigate(['/']);
+    this.router.navigate(['/waiter/request/'+ id]);
   }
 
 }
