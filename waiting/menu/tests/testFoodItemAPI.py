@@ -239,7 +239,8 @@ class TestFoodItemModel(APITestCase):
     Testing adding to through model.
 
     Asserts:
-
+        200 response.
+        Correct object has been added related.
     """
     def test_add_tags_through(self):
         url = '/api/food_items/1/'

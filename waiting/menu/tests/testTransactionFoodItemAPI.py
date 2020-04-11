@@ -3,7 +3,6 @@ import pytz
 
 from collections import OrderedDict
 
-from menu.models.credit_card import CreditCard
 from menu.models.extra import Extra
 from menu.models.food_item import FoodItem
 from menu.models. transaction import Transaction
@@ -108,7 +107,7 @@ class TestTransactionFoodItemModel(APITestCase):
             ),
             'food_item': reverse(
                 'fooditem-detail',
-                args=[FoodItem.objects.get(id=10).pk,],
+                args=[FoodItem.objects.get(id=1).pk,],
                 request=request,
             ),
         }
@@ -163,18 +162,17 @@ class TestTransactionFoodItemModel(APITestCase):
         factory = APIRequestFactory()
         request = factory.post(url)
         
-        customer = get_user_model().objects.get(username='Customer1')
-        credit_card = CreditCard.objects.get(id=1)
+        food_item = FoodItem.objects.get(id=2)
+        transaction = Transaction.objects.get(id=2)
         body = {
-            'active': False,
-            'customer': reverse(
-                'customuser-detail',
-                args=[customer.pk,],
+            'food_item': reverse(
+                'fooditem-detail',
+                args=[food_item.pk,],
                 request=request,
             ),
-            'credit_card': reverse(
-                'creditcard-detail',
-                args=[credit_card.pk,],
+            'transaction': reverse(
+                'transaction-detail',
+                args=[transaction.pk,],
                 request=request,
             ),
         }
@@ -183,9 +181,8 @@ class TestTransactionFoodItemModel(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
         obj = TransactionFoodItem.objects.get(id=1)
-        self.assertFalse(obj.active)
-        self.assertEqual(obj.customer, customer)
-        self.assertEqual(obj.credit_card, credit_card)
+        self.assertEqual(obj.food_item, food_item)
+        self.assertEqual(obj.transaction, transaction)
 
     """
     Testing UPDATE (partial)
@@ -200,11 +197,11 @@ class TestTransactionFoodItemModel(APITestCase):
         factory = APIRequestFactory()
         request = factory.post(url)
 
-        extra = Extra.objects.get(id=2)
+        food_item = FoodItem.objects.get(id=2)
         body = {
-            'extras': reverse(
-                'extra-detail',
-                args=[extra.pk,],
+            'food_item': reverse(
+                'fooditem-detail',
+                args=[food_item.pk,],
                 request=request,
             ),
         }
@@ -213,7 +210,7 @@ class TestTransactionFoodItemModel(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
         obj = TransactionFoodItem.objects.get(id=1)
-        self.assertEqual(obj.extras, extra)
+        self.assertEqual(obj.food_item, food_item)
 
     """
     Testing DESTROY
@@ -229,3 +226,32 @@ class TestTransactionFoodItemModel(APITestCase):
         response = self.client.delete(url)
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
         self.assertRaises(TransactionFoodItem.DoesNotExist, TransactionFoodItem.objects.get, id=1)
+
+    """
+    Testing adding to through model.
+
+    Asserts:
+        200 response.
+        Correct object has been added related.
+    """
+    def test_add_extras_through(self):
+        url = '/api/transaction_food_item/1/'
+        factory = APIRequestFactory()
+        request = factory.post(url)
+
+        extra = Extra.objects.get(id=1)
+        body = {
+            'extras': [
+                reverse(
+                    'extra-detail',
+                    args=[extra.pk,],
+                    request=request,
+                ),
+            ],
+        }
+        response = self.client.patch(url, body, format='json')
+        # print(response.__getstate__())
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+
+        obj = TransactionFoodItem.objects.get(id=1)
+        self.assertEqual(obj.extras.get(id=1), extra)

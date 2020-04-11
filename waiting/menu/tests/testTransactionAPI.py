@@ -226,3 +226,32 @@ class TestTransactionModel(APITestCase):
         response = self.client.delete(url)
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
         self.assertRaises(Transaction.DoesNotExist, Transaction.objects.get, id=1)
+
+    """
+    Testing adding to through model.
+
+    Asserts:
+        200 response.
+        Correct object has been added related.
+    """
+    def test_add_food_item_through(self):
+        url = '/api/transaction/1/'
+        factory = APIRequestFactory()
+        request = factory.post(url)
+
+        food_item = FoodItem.objects.get(id=1)
+        body = {
+            'food_items': [
+                reverse(
+                    'fooditem-detail',
+                    args=[food_item.pk,],
+                    request=request,
+                ),
+            ],
+        }
+        response = self.client.patch(url, body, format='json')
+        # print(response.__getstate__())
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+
+        obj = Transaction.objects.get(id=1)
+        self.assertEqual(obj.food_items.get(id=1), food_item)

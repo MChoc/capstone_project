@@ -16,5 +16,9 @@ class TransactionFoodItem(models.Model):
         null=True,
         blank=True
     )
-    extras = models.ManyToManyField(Extra)
+    extras = models.ManyToManyField(
+        Extra,
+        blank=True,
+        related_name='transaction_food_items'
+    )
     description = models.CharField(max_length=1024, null=True, blank=True)
