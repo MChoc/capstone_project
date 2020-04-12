@@ -5,7 +5,7 @@
         <p>Order Details: </p>
         <div *ngFor="let item of transactionFoodItems">
             <div *ngIf="item.transaction == transaction$.url">
-                <b>{{ getFoodItemName(item.food_item) }}</b><br>
+                <p><b>{{ getFoodItemName(item.food_item) }}</b><p>
                 <ng-container *ngIf="item.extras.length > 0">
                     <p>Extras: {{ getExtraNames(item.extras) }}</p>
                 </ng-container>
@@ -14,7 +14,7 @@
                 </ng-container>
             </div>
         </div>        
-        <button (click)="pickup()" class="resolve">Alert Customer</button>
+        <button (click)="pickup()" class="resolve">Mark as picked up</button>
         <button (click)="back()" class="back">Back to Categories</button>
     </div>
 </div>

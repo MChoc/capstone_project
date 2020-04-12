@@ -56,7 +56,7 @@ export class OrderSuccessComponent implements OnInit {
     )
     .subscribe(res => {
       // order is complete when it has been marked as inactive by the waiter
-      if (res.active == false) {
+      if (res.prepared == true) {
         this.complete = true;
       }
     });
