@@ -1,14 +1,19 @@
 <div>
-    <h1>Your order has been placed!</h1>
+    <h1 *ngIf="!complete else elseBlock;">
+        Your order has been placed!
+    </h1>
+    <ng-template #elseBlock>
+        <h1>Your order is ready!</h1>
+    </ng-template>
     <br>
     <p><b>Your order number is:</b></p>
     <b><h1>{{ id }}</h1></b>
     <br>
-    <p *ngIf="!complete else elseBlock;">
+    <p *ngIf="!complete else elseBlock2;">
         Please wait for a waiter to call your number. Do not leave this page until you have received your order.
     </p>
-    <ng-template #elseBlock>
-        <p>Your order is ready! Please head to the counter to pick it up.</p>
+    <ng-template #elseBlock2>
+        <p>Please proceed to the counter to pick it up.</p>
         <button class="orderDone" (click)="menu()">I have received my order</button>
     </ng-template>
 </div>
