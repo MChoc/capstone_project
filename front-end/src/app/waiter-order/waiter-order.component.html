@@ -2,7 +2,8 @@
     <div *ngIf="transaction$">
         <h1>Customer Order</h1>
         <p>No. {{ transaction$.id }}</p>
-        <button (click)="pickup()" class="resolve">Alert Customer</button>
-        <button (click)="back()" class="back">Back to Categories</button>
+        <button (click)="pickup()" class="alert">Alert Customer</button>
+        <button (click)="pickup()" class="resolve">Resolve Order</button>
+        <button (click)="back()" class="back">Back to Alerts</button>
     </div>
 </div>
