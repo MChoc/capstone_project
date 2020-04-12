@@ -4,6 +4,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 import { DataService } from '../_services/data.service';
 import { Transaction } from "../models/transaction.model";
+import { TransactionFoodItem } from "../models/transaction-food-item.model"
 
 
 @Component({
@@ -15,6 +16,9 @@ export class WaiterOrderComponent implements OnInit {
 
   transaction$: Transaction;
   id: string;
+  transactionFoodItems: TransactionFoodItem[] = [];
+  foodItems = [];
+  extras = [];
 
   constructor(
     private _Activatedroute: ActivatedRoute,
@@ -34,6 +38,18 @@ export class WaiterOrderComponent implements OnInit {
         this.transaction$ = data;
         console.log(this.transaction$);
       });
+    })
+
+    this.data.getTransactionFoodItems().subscribe(data => {
+      this.transactionFoodItems = data;
+    })
+
+    this.data.getItems().subscribe(data => {
+      this.foodItems = data;
+    })
+
+    this.data.getExtras().subscribe(data => {
+      this.extras = data;
     })
 
   }
@@ -60,6 +76,36 @@ export class WaiterOrderComponent implements OnInit {
 
   back(): void {
     this.router.navigate(['/waiter']);
+  }
+
+    /**
+   * 
+   * @param url url to get food item name for
+   * 
+   * returns: array of [item_name, size]
+   */
+  public getFoodItemName(url: string): string[]{
+    let item_details = []
+    for(let item of this.foodItems) {
+      if (item['url'] === url) {
+        item_details.push(item['name']);
+
+        if(item['size']){
+          item_details.push(item['size']);
+        }
+      }
+    }
+    return item_details
+  }
+
+  public getExtraNames(urls: string[]): string[]{
+    let names: string[] = [];
+    for(let extra of this.extras){
+      if ( urls.indexOf(extra['url']) !== -1) {
+        names.push(extra['name']);
+      }
+    }
+    return names
   }
 
 }

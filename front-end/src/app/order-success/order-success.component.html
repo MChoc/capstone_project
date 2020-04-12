@@ -4,6 +4,18 @@
     <p>Your order number is:</p>
     <h3>{{ id }}</h3>
     <br>
+    <p>Order Details: </p>
+    <div *ngFor="let item of transactionFoodItems">
+        <div *ngIf="item.transaction == transaction.url">
+            <b>{{ getFoodItemName(item.food_item) }}</b><br>
+            <ng-container *ngIf="item.extras.length > 0">
+                <p>Extras: {{ getExtraNames(item.extras) }}</p>
+            </ng-container>
+            <ng-container *ngIf="item.request">
+                <p>Request: {{ item.request }}</p>
+            </ng-container>
+        </div>
+    </div>
     <p *ngIf="!complete else elseBlock;">
         Status: Being prepared
     </p>
