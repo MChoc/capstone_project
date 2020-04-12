@@ -41,4 +41,8 @@ export class OrderSuccessComponent implements OnInit {
     });
   }
 
+  menu() {
+    this.router.navigate(['/'])
+  }
+
 }
