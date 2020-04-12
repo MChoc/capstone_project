@@ -42,6 +42,8 @@ export class LoginComponent implements OnInit {
       //this.router.navigate([this.returnUrl]);
       window.localStorage.setItem('key', data['key']);
       window.localStorage.setItem('user', JSON.stringify(data['user']));
+      window.localStorage.setItem('staffID', JSON.stringify(data['user']['id']));
+
       console.log('logged in');
       if(data['user']['user_type'] === 'MANAGER') {
         this.router.navigate(['/management']);

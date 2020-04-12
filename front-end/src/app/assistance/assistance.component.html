@@ -1,13 +1,12 @@
 <div class="assistance">
     <h2>ASSISTANCE REQUEST</h2>
     <form ngNativeValidate [formGroup]="assistanceForm" (ngSubmit)="onFormSubmit()">
-        <!-- <div class="success">{{ success_message }}</div> -->
         <div [formGroup]="assistanceForm">
             <label>Please specify your issue:</label>
             <br>
             <textarea formControlName="issue" rows="5" required></textarea>
         </div>
-        <button type="submit">Request Assistance</button>
+        <button type="submit">Submit</button>
     </form>
     <button type="button" class="back" onclick="window.location.href = '/';">Back to Menu</button>
 </div>

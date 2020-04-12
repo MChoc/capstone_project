@@ -7,7 +7,7 @@
         <div class="success">{{ success_message }}</div>
         <div [formGroup]="checkoutForm">
             <label>Card Number</label>
-            <input type="number" formControlName="card_number" required>
+            <input type="number" formControlName="card_number" min="0" required>
         </div>
         <div [formGroup]="checkoutForm">
             <label>Expiry Month</label>
@@ -28,11 +28,11 @@
         </div>
         <div [formGroup]="checkoutForm">
             <label>Expiry Year</label>
-            <input type="number" formControlName="expiry_year" required>
+            <input type="number" formControlName="expiry_year" min="0" required>
         </div>
         <div [formGroup]="checkoutForm">
             <label>CVC</label>
-            <input type="number" formControlName="cvc" required>
+            <input type="number" formControlName="cvc" min="0" required>
         </div>
         <button type="submit">Place Order Now</button>
         <button type="button" class="back" onclick="window.location.href = '/cart';">Back to Cart</button>

@@ -22,6 +22,10 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { ExtraEditComponent } from './extra-edit/extra-edit.component';
 import { OrderSuccessComponent } from './order-success/order-success.component';
 import { AssistanceComponent } from './assistance/assistance.component';
+import { AssistanceIdComponent } from './assistance-id/assistance-id.component';
+import { WaiterAssistanceComponent } from './waiter-assistance/waiter-assistance.component';
+import { WaiterOrderComponent } from './waiter-order/waiter-order.component';
+
 
 const routes: Routes = [
   {
@@ -101,12 +105,24 @@ const routes: Routes = [
     component: ExtraEditComponent
   },
   {
-    path: 'order-details/:id',
+    path: 'management/menu/order-details/:id',
     component: OrderSuccessComponent
   },
   {
     path: 'assistance',
     component: AssistanceComponent
+  },
+  {
+    path: 'assistance/:id',
+    component: AssistanceIdComponent
+  },
+  {
+    path: 'waiter/request/:id',
+    component: WaiterAssistanceComponent
+  },
+  {
+    path: 'waiter/pickup/:id',
+    component: WaiterOrderComponent
   },
   { 
     path: '**', 

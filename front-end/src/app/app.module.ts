@@ -30,6 +30,9 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { ExtraEditComponent } from './extra-edit/extra-edit.component';
 import { OrderSuccessComponent } from './order-success/order-success.component';
 import { AssistanceComponent } from './assistance/assistance.component';
+import { AssistanceIdComponent } from './assistance-id/assistance-id.component';
+import { WaiterAssistanceComponent } from './waiter-assistance/waiter-assistance.component';
+import { WaiterOrderComponent } from './waiter-order/waiter-order.component';
 
 
 @NgModule({
@@ -58,7 +61,10 @@ import { AssistanceComponent } from './assistance/assistance.component';
     PageNotFoundComponent,
     ExtraEditComponent,
     OrderSuccessComponent,
-    AssistanceComponent
+    AssistanceComponent,
+    AssistanceIdComponent,
+    WaiterAssistanceComponent,
+    WaiterOrderComponent,
   ],
   imports: [
     BrowserModule,
@@ -66,7 +72,6 @@ import { AssistanceComponent } from './assistance/assistance.component';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    // NgMultiSelectDropDownModule.forRoot()
   ],
   providers: [
   ],

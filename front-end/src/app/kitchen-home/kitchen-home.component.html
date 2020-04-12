@@ -1,1 +1,21 @@
-<p>kitchen-home works!</p>
+<div class="kitchen-home">
+    <h2>Pending Orders</h2>
+    <div *ngFor="let transaction of transactions">
+        <div *ngIf="transaction.active && ! transaction.prepared">
+            Order number: {{ transaction.id }} <br>
+            <div *ngFor="let fe of transactionFoodItems">
+                <div *ngIf="fe.transaction == transaction.url">
+                    <b>{{ getFoodItemName(fe.food_item) }}</b><br>
+                    <ng-container *ngIf="fe.extras.length > 0">
+                        Extras: {{ getExtraNames(fe.extras) }}<br>
+                    </ng-container>
+                    <ng-container *ngIf="fe.request">
+                        Request: {{fe.request }}<br>
+                    </ng-container>
+                    <button (click)="cooked(transaction.id)" class="cooked">Done</button>
+                    <br><br>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -19,16 +19,17 @@ export class AssistanceComponent implements OnInit {
   }
 
   assistanceForm = new FormGroup({
-    request: new FormControl(),
+    issue: new FormControl(),
   })
 
   onFormSubmit() {
     let request_data = {
       'problem': this.assistanceForm.value['issue']
     }
-    let validate_url = 'http://127.0.0.1:5000/api/assistance/'
-    this.http.post(validate_url, request_data).toPromise().then(data => {
+    let assistance_url = 'http://127.0.0.1:5000/api/assistance/'
+    this.http.post(assistance_url, request_data).toPromise().then(data => {
       console.log(data);
+      this.router.navigate(['/assistance/'+ data['id']]);
     },
     error => {
       console.error("Error! " + error.error);
