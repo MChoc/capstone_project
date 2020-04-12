@@ -78,18 +78,28 @@ export class KitchenHomeComponent implements OnInit {
     })
   }
 
-  public getFoodItemName(url: string): string{
 
+  /**
+   * 
+   * @param url url to get food item name for
+   * 
+   * returns: array of [item_name, size]
+   */
+  public getFoodItemName(url: string): string[]{
+    let item_details = []
     for(let item of this.foodItems) {
       if (item['url'] === url) {
-        return item['name'];
+        item_details.push(item['name']);
+
+        if(item['size']){
+          item_details.push(item['size']);
+        }
       }
     }
-    return 'Not found'
+    return item_details
   }
 
   public getExtraNames(urls: string[]): string[]{
-
     let names: string[] = [];
     for(let extra of this.extras){
       if ( urls.indexOf(extra['url']) !== -1) {

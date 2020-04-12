@@ -63,6 +63,7 @@ export class AddItemComponent implements OnInit {
     let cart_item = {
       'id': item.id,
       'name': item.name,
+      'size': item.size,
       'price': item.price,
       'url': item.url,
       'extras': this.selected_extras,

@@ -9,6 +9,7 @@ export class CartService {
   // cart_item = {
   //   'id': string,
   //   'name': string,
+  //   'size': string,
   //   'price': string,
   //   'url': string,
   //   'extras': [],
