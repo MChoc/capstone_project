@@ -8,55 +8,31 @@ h2{
     width: 300px;
     margin: auto;
   }
-  
-  button[type=submit], [type=button] {
-    background-color: #352728    ;
-    color: #fcf7fb;
-    padding: 12px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    outline: none;
-    width: 100%;
-    margin: 28px 0 20px 0;
-  }
-  
- textarea {
-    width: 100%;
-    height: 100px;
-    padding: 12px 20px;
-    margin: 8px 0;
-    border: 1px solid #352728;
-    border-radius: 4px;
-    box-sizing: border-box;
-    outline: none;
-    background-color: #fcf7fb;
-    color: #352728;
-  }
-  
-  .back {
-    background-color: #fcf7fb;
-    color: #352728;
-    text-decoration: underline;
-    padding: 0;
-    margin-top: 0;
-  }
 
-  .requestDone {
-    display: block;
+  .number, .requestDone {
     margin: auto;
-    margin-top: 20px;
-    padding: 15px;
     background-color: #c7e8f7;
     color: #352728;
     border: none;
     border-radius: 4px;
-    cursor: pointer;
     outline: none;
     box-shadow: 2px 2px 2px grey;
-  }
+}
 
-  button:active {
+.number {
+    padding: 15px;
+    font-size: larger;
+}
+
+.requestDone {
+    cursor: pointer;
+    padding: 12px 20px;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.requestDone:active {
     transform: translateY(2px);
     box-shadow: 1px 1px 2px grey;
 }
+  
