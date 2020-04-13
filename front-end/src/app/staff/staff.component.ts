@@ -38,6 +38,14 @@ export class StaffComponent implements OnInit {
   url : string;
   username : string;
 
+  check_if_its_user(id) {
+    let current_user = JSON.parse(localStorage.getItem('user'));
+    if (current_user.id == id) {
+      return false;
+    } 
+    else return true;
+  }
+
   deleteUser(id) {
     let key = window.localStorage.getItem('key')
     let header = {
