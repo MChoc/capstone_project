@@ -12,7 +12,6 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 
 import django_heroku
 import os
-import dj_database_url
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -27,14 +26,7 @@ SECRET_KEY = 'ge8&%pr+sdtr039vcf(k=zkhxx0og#1gl89-+6l$=!4li1#(t3'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [
-    '0.0.0.0',
-    'localhost',
-    '127.0.0.1',
-    'waiting-for-the-train-api.herokuapp.com'
-]
-
-django_heroku.settings(locals())
+ALLOWED_HOSTS = []
 
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
@@ -45,7 +37,6 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
-DATABASES['default'] = dj_database_url.config(conn_max_age=600)
 
 # Application definition
 
@@ -185,4 +176,4 @@ CORS_ORIGIN_WHITELIST = (
     'http://localhost:4200',
 )
 
-del DATABASES['default']['OPTIONS']['sslmode']
+django_heroku.settings(locals())
