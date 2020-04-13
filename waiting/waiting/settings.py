@@ -10,8 +10,9 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
-#import django_heroku
+import django_heroku
 import os
+import dj_database_url
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -26,7 +27,28 @@ SECRET_KEY = 'ge8&%pr+sdtr039vcf(k=zkhxx0og#1gl89-+6l$=!4li1#(t3'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    '0.0.0.0',
+    'localhost',
+    '127.0.0.1',
+    'waiting-for-the-train-api.herokuapp.com'
+]
+
+django_heroku.settings(locals())
+
+# Database
+# https://docs.djangoproject.com/en/3.0/ref/settings/#databases
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    }
+}
+DATABASES['default'] = dj_database_url.config(conn_max_age=600)
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
 
 
 # Application definition
@@ -49,6 +71,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'rest_auth.registration',
     'corsheaders',
+    'whitenoise.runserver_nostatic',
 
     'accounts.apps.AccountsConfig',
     'menu.apps.MenuConfig',
@@ -72,6 +95,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'corsheaders.middleware.CorsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'waiting.urls'
@@ -93,17 +117,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'waiting.wsgi.application'
-
-
-# Database
-# https://docs.djangoproject.com/en/3.0/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
 
 AUTH_USER_MODEL = 'accounts.CustomUser'
 REST_AUTH_REGISTER_SERIALIZERS = {
@@ -178,4 +191,4 @@ CORS_ORIGIN_WHITELIST = (
     'http://localhost:4200',
 )
 
-#django_heroku.settings(locals())
+del DATABASES['default']['OPTIONS']['sslmode']
