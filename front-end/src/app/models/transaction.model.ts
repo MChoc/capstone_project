@@ -10,6 +10,7 @@ export class Transaction implements Deserializable {
     credit_card: string;
     food_items:  string[];
     request: string;
+    prepared: boolean;
   
     deserialize(input: any) {
       Object.assign(<any>this, input);

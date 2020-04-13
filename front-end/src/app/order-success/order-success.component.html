@@ -9,6 +9,19 @@
     <p><b>Your order number is:</b></p>
     <b><h1>{{ id }}</h1></b>
     <br>
+    <p>Order Details: </p>
+    <div *ngFor="let item of transactionFoodItems">
+        <div *ngIf="item.transaction == transaction.url">
+            <p><b>{{ getFoodItemName(item.food_item) }}</b></p>
+            <ng-container *ngIf="item.extras.length > 0">
+                <p>Extras: {{ getExtraNames(item.extras) }}</p>
+            </ng-container>
+            <ng-container *ngIf="item.request">
+                <p>Request: {{ item.request }}</p>
+            </ng-container>
+        </div>
+    </div>
+
     <p *ngIf="!complete else elseBlock2;">
         Please wait for a waiter to call your number. Do not leave this page until you have received your order.
     </p>

@@ -76,13 +76,8 @@ export class DataService {
   }
 
   getTransactionFoodItems(): Observable<TransactionFoodItem[]> {
-    let key = window.localStorage.getItem('key')
-    var header = {
-      headers: new HttpHeaders()
-        .set('Authorization', 'Token ' + key)
-    }
 
-    return this.http.get<TransactionFoodItem[]>(this.transactionFoodItemList, header);
+    return this.http.get<TransactionFoodItem[]>(this.transactionFoodItemList);
   }
 
 
