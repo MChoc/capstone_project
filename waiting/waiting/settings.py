@@ -71,7 +71,6 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'rest_auth.registration',
     'corsheaders',
-    'whitenoise.runserver_nostatic',
 
     'accounts.apps.AccountsConfig',
     'menu.apps.MenuConfig',
@@ -95,7 +94,6 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'corsheaders.middleware.CorsMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'waiting.urls'
