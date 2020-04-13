@@ -67,7 +67,7 @@ class TestTransactionFoodItemModel(APITestCase):
     def test_list(self):
         url = '/api/transaction_food_item/'
         factory = APIRequestFactory()
-        request = factory.post(url)
+        request = factory.get(url)
         
         objs = TransactionFoodItem.objects.all()
         serializer_context = {
@@ -80,8 +80,8 @@ class TestTransactionFoodItemModel(APITestCase):
         )
 
         response = self.client.get(url)
-
         self.assertEqual(response.status_code, status.HTTP_200_OK)
+
         self.assertEqual(response.data, serializer.data)
 
     """
@@ -132,7 +132,7 @@ class TestTransactionFoodItemModel(APITestCase):
     def test_retrieve(self):
         url = '/api/transaction_food_item/1/'
         factory = APIRequestFactory()
-        request = factory.post(url)
+        request = factory.get(url)
         
         obj = [TransactionFoodItem.objects.get(id=1),]
         serializer_context = {
@@ -255,3 +255,34 @@ class TestTransactionFoodItemModel(APITestCase):
 
         obj = TransactionFoodItem.objects.get(id=1)
         self.assertEqual(obj.extras.get(id=1), extra)
+
+    """
+    Testing LIST:
+        Lists a queryset.
+    
+    Checks for:
+        200 response.
+        GET data is same as database data.
+    """
+    def test_list_by_transaction_id(self):
+        url = '/api/transaction_food_item/'
+        factory = APIRequestFactory()
+        request = factory.get(url)
+        
+        objs = TransactionFoodItem.objects.filter(transaction=1)
+        serializer_context = {
+            'request': Request(request),
+        }
+        serializer = TransactionFoodItemSerializer(
+            objs,
+            context=serializer_context,
+            many=True,
+        )
+
+        body = {
+            'transaction_id': 1
+        }
+        response = self.client.get(url, body)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+
+        self.assertEqual(response.data, serializer.data)

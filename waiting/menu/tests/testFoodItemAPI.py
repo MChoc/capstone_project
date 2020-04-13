@@ -63,7 +63,7 @@ class TestFoodItemModel(APITestCase):
     def test_list(self):
         url = '/api/food_items/'
         factory = APIRequestFactory()
-        request = factory.post(url)
+        request = factory.get(url)
         
         objs = FoodItem.objects.all()
         serializer_context = {
@@ -76,8 +76,8 @@ class TestFoodItemModel(APITestCase):
         )
 
         response = self.client.get(url)
-
         self.assertEqual(response.status_code, status.HTTP_200_OK)
+        
         self.assertEqual(response.data, serializer.data)
 
     """
@@ -146,7 +146,7 @@ class TestFoodItemModel(APITestCase):
     def test_retrieve(self):
         url = '/api/food_items/1/'
         factory = APIRequestFactory()
-        request = factory.post(url)
+        request = factory.get(url)
         
         obj = [FoodItem.objects.get(id=1),]
         serializer_context = {

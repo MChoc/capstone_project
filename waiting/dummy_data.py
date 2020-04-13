@@ -139,7 +139,7 @@ for i in range(0,5):
         number='123412341234123' + str(i+1),
         expiry_month='0' + str(i+1),
         expiry_year='0' + str(i+1),
-        cvs='12' + str(i+1)
+        cvv='12' + str(i+1)
     )
     credit_cards.append(credit_card)
     print(f"Created {credit_card}")

@@ -61,7 +61,7 @@ class TestCreditCardModel(APITestCase):
     def test_list(self):
         url = '/api/credit_cards/'
         factory = APIRequestFactory()
-        request = factory.post(url)
+        request = factory.get(url)
         
         objs = CreditCard.objects.all()
         serializer_context = {
@@ -74,8 +74,8 @@ class TestCreditCardModel(APITestCase):
         )
 
         response = self.client.get(url)
-
         self.assertEqual(response.status_code, status.HTTP_200_OK)
+        
         self.assertEqual(response.data, serializer.data)
 
     """
@@ -96,7 +96,7 @@ class TestCreditCardModel(APITestCase):
             'number': 1234123412341239,
             'expiry_month': 1,
             'expiry_year': 2030,
-            'cvs': 123,
+            'cvv': 123,
         }
         response = self.client.post(url, body, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
@@ -118,7 +118,7 @@ class TestCreditCardModel(APITestCase):
     def test_retrieve(self):
         url = '/api/credit_cards/1/'
         factory = APIRequestFactory()
-        request = factory.post(url)
+        request = factory.get(url)
         
         obj = [CreditCard.objects.get(id=1),]
         serializer_context = {
@@ -150,7 +150,7 @@ class TestCreditCardModel(APITestCase):
             'number': 1234123412341238,
             'expiry_month': 2,
             'expiry_year': 2031,
-            'cvs': 124,
+            'cvv': 124,
         }
         response = self.client.put(url, body, format='json')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
@@ -159,7 +159,7 @@ class TestCreditCardModel(APITestCase):
         self.assertEqual(obj.number, 1234123412341238)
         self.assertEqual(obj.expiry_month, 2)
         self.assertEqual(obj.expiry_year, 2031)
-        self.assertEqual(obj.cvs, 124)
+        self.assertEqual(obj.cvv, 124)
 
     """
     Testing UPDATE (partial)
@@ -195,3 +195,31 @@ class TestCreditCardModel(APITestCase):
         response = self.client.delete(url)
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
         self.assertRaises(CreditCard.DoesNotExist, CreditCard.objects.get, id=1)
+
+    """
+    Testing credit card validation
+
+    Asserts:
+        200 response.
+        Object count has not increased.
+        Credit card data is valid.
+    """
+    def test_validate(self):
+        url = '/api/credit_cards/'
+
+        init_count = CreditCard.objects.count()
+        credit_card = CreditCard.objects.get(id=1)
+        body = {
+            'number': credit_card.number,
+            'expiry_month': credit_card.expiry_month,
+            'expiry_year': credit_card.expiry_year,
+            'cvv': credit_card.cvv,
+            'validate': True,
+        }
+        response = self.client.post(url, body, format='json')
+        # print(response.__getstate__())
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+
+        post_count = CreditCard.objects.count()
+        self.assertEqual(post_count, init_count)
+        self.assertTrue(response.data['validated'])

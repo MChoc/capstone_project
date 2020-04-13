@@ -62,7 +62,7 @@ class TestExtraModel(APITestCase):
     def test_list(self):
         url = '/api/extra/'
         factory = APIRequestFactory()
-        request = factory.post(url)
+        request = factory.get(url)
         
         objs = Extra.objects.all()
         serializer_context = {
@@ -75,8 +75,8 @@ class TestExtraModel(APITestCase):
         )
 
         response = self.client.get(url)
-
         self.assertEqual(response.status_code, status.HTTP_200_OK)
+        
         self.assertEqual(response.data, serializer.data)
 
     """
@@ -125,7 +125,7 @@ class TestExtraModel(APITestCase):
     def test_retrieve(self):
         url = '/api/extra/1/'
         factory = APIRequestFactory()
-        request = factory.post(url)
+        request = factory.get(url)
         
         obj = [Extra.objects.get(id=1),]
         serializer_context = {

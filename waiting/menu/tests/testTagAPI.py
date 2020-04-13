@@ -61,7 +61,7 @@ class TestTagModel(APITestCase):
     def test_list(self):
         url = '/api/tag/'
         factory = APIRequestFactory()
-        request = factory.post(url)
+        request = factory.get(url)
         
         objs = Tag.objects.all()
         serializer_context = {
@@ -74,8 +74,8 @@ class TestTagModel(APITestCase):
         )
 
         response = self.client.get(url)
-
         self.assertEqual(response.status_code, status.HTTP_200_OK)
+        
         self.assertEqual(response.data, serializer.data)
 
     """
@@ -117,7 +117,7 @@ class TestTagModel(APITestCase):
     def test_retrieve(self):
         url = '/api/tag/1/'
         factory = APIRequestFactory()
-        request = factory.post(url)
+        request = factory.get(url)
         
         obj = [Tag.objects.get(id=1),]
         serializer_context = {
