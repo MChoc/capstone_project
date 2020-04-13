@@ -6,7 +6,7 @@
             <h2>Order no. {{ transaction.id }}</h2>
             <div *ngFor="let fe of transactionFoodItems">
                 <div *ngIf="fe.transaction == transaction.url" class="item">
-                    <b>{{ getFoodItemName(fe.food_item) }}</b><br>
+                    <h4 style="font-weight: bold;">{{ getFoodItemName(fe.food_item) }}</h4>
                     <ng-container *ngIf="fe.extras.length > 0">
                         Extras: {{ getExtraNames(fe.extras) }}<br>
                     </ng-container>
