@@ -38,7 +38,7 @@ class TestCustomUserModel(APITestCase):
 
     def setUp(self):
         login_url = '/rest-auth/login/'
-        body = {'username': 'Manager2', 'password': 'Manager2'}
+        body = {'username': 'Manager1', 'password': 'Manager1'}
         response = self.client.post(login_url, body, format='json')
         self.client.credentials(
             HTTP_AUTHORIZATION='Token ' + response.data['key']
@@ -147,7 +147,6 @@ class TestCustomUserModel(APITestCase):
         
         body = {
             'username': 'Testusernamechange',
-            'password': 'Testpasswordchange',
             'first_name': 'Test first name change',
             'last_name': 'Test last name change',
             'user_type': 'WAITER',

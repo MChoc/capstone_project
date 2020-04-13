@@ -39,7 +39,7 @@ class TestCategoryModel(APITestCase):
 
     def setUp(self):
         login_url = '/rest-auth/login/'
-        body = {'username': 'Manager2', 'password': 'Manager2'}
+        body = {'username': 'Manager1', 'password': 'Manager1'}
         response = self.client.post(login_url, body, format='json')
         self.client.credentials(
             HTTP_AUTHORIZATION='Token ' + response.data['key']
@@ -98,6 +98,7 @@ class TestCategoryModel(APITestCase):
             'active': True,
         }
         response = self.client.post(url, body, format='json')
+        # print(response.__getstate__())
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 
         post_count = Menu.objects.count()

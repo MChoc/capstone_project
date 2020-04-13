@@ -15,7 +15,11 @@ class FoodItem(models.Model):
         related_name='food_items',
         on_delete=models.CASCADE
     )
-    tags = models.ManyToManyField(Tag)
+    tags = models.ManyToManyField(
+        Tag,
+        blank=True,
+        related_name='food_items'
+    )
 
     SIZE_CHOICES = (
         ('LARGE', 'L'),
@@ -29,6 +33,9 @@ class FoodItem(models.Model):
         null=True,
         blank=True
     )
+
+    class Meta:
+        verbose_name_plural = 'food_items'
 
     def __str__(self):
         return self.name
