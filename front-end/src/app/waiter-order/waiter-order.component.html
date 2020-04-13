@@ -1,7 +1,7 @@
 <div class="pickup">
     <div *ngIf="transaction$">
         <h1>Customer Order</h1>
-        <p><b>No. {{ transaction$.id }}</b></p>
+        <p>No. {{ transaction$.id }}</p>
         <p>Order Details: </p>
         <div *ngFor="let item of transactionFoodItems">
             <div *ngIf="item.transaction == transaction$.url">
@@ -14,7 +14,7 @@
                 </ng-container>
             </div>
         </div>        
-        <button (click)="pickup()" class="resolve">Mark as picked up</button>
-        <button (click)="back()" class="back">Back to Categories</button>
+        <button (click)="pickup()" class="resolve">Resolve Order</button>
+        <button (click)="back()" class="back">Back to Alerts</button>
     </div>
 </div>

@@ -6,34 +6,35 @@
             <td class="table-field2"></td>
             <td class="table-field3"></td>
             <ng-container *ngFor="let item of items" class="items">
-                <tr>
-                <td>
-                    <button (click)="deleteFromCart(item)" class="delete">
-                        <i class="material-icons">delete</i>
-                    </button>
-                </td>
-                <td>
-                    <a href="/add/{{ item.id }}">{{ item.name }}</a>
-                    <br>{{ item.size }}
-                    <br>{{ item.request }}
-                </td>
-                <td class="price">${{ item.price }}</td>
-                <br>
-            </tr>
+                <tr class="item">
+                    <td>
+                        <button (click)="deleteFromCart(item)" class="delete">
+                            <i class="material-icons">delete</i>
+                        </button>
+                    </td>
+                    <td>
+                        <a href="/add/{{ item.id }}">{{ item.name }}</a>
+                        <p>{{ item.size }}</p>
+                        <p>{{ item.request }}</p>
+                    </td>
+                    <td class="price">
+                        ${{ item.price }}
+                    </td>
+                </tr>
                 <tr *ngFor="let extra of item.extras" >
                     <td></td>
                     <td>
-                        {{ extra.name }}
+                        + {{ extra.name }}
                     </td>
-                    <td>+{{ extra.price }}</td>
+                    <td style="text-align: right;">${{ extra.price }}</td>
                 </tr>
+                <tr></tr>
             </ng-container>
-                <td></td>
-                <td class="total" style="text-decoration: underline;">Total</td>
-                <td class="price" style="text-decoration: underline;">${{ total_price }}</td>
         </table>
         
-        
+        <span class="total">Total</span>
+        <span class="total-price">${{ total_price }}</span>
+
         <button type="button" class="order" onclick="window.location.href = '/checkout';">Checkout</button>
 
     </div>

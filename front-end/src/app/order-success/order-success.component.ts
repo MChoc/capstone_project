@@ -92,4 +92,8 @@ export class OrderSuccessComponent implements OnInit {
     return names
   }
 
+  menu() {
+    this.router.navigate(['/'])
+  }
+
 }

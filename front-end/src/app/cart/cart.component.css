@@ -24,17 +24,24 @@ h2, h5 {
     text-align: center;
 }
 
-.price {
-    text-align: right;
+.price, .total-price {
+    float: right;
+}
+
+.total-price {
+    padding-top: 20px;
+    font-weight: bold;
+}
+
+.total {
+    padding-top: 20px;
+    float: left;
+    font-weight: bold;
 }
 
 .delete {
     background-color: #fcf7fb;
     border: none;
-}
-
-td {
-    padding-bottom: 10px;
 }
 
 a {
@@ -51,7 +58,6 @@ a {
     cursor: pointer;
     outline: none;
     margin-top: 20px;
-    margin-left: 10px;
     font-size: small;
     width: 300px;
 }
@@ -84,3 +90,27 @@ button {
 .alert {
     text-align: center;
 }
+
+td {
+    text-align: left;
+    vertical-align: top;
+}
+
+p {
+    margin: 0;
+}
+
+tr {
+    margin-top: 10px;
+}
+
+table {
+    border-collapse:separate; 
+    border-spacing: 0 15px;
+    border-bottom: solid 0.5px #352728;
+  }
+
+  .item {
+    border: solid 1px;
+  }
+
