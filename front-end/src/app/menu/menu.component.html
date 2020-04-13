@@ -3,13 +3,18 @@
    
       <h2 class="w3-center"><span>THE MENU</span></h2>
     
+      <div>
+        <input [(ngModel)]="searchname" placeholder="search text goes here">
+      </div>
+      
+    
         <li *ngFor="let category of categories$" class="category">
           <div *ngIf="category.active">
             <div class="w3-row w3-center w3-card w3-padding">
               <div class="w3-col s6 tablink">{{ category.name }}</div>
             </div>
             <div class="w3-container menu w3-padding-48 w3-card" >
-                <ul *ngFor="let item of items$">
+                <ul *ngFor="let item of items$| filter : searchname">
                   <div *ngIf="category.url === item.category && item.active" class="item">
                     <div class="row">
                 

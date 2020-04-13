@@ -3,11 +3,13 @@ import { DataService } from '../_services/data.service';
 import { Observable } from 'rxjs';
 import { Router, NavigationEnd } from '@angular/router'
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { FilterPipe } from './../filter.pipe';
 
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',
-  styleUrls: ['./menu.component.css']
+  styleUrls: ['./menu.component.css'],
+  providers: [FilterPipe]
 })
 
 export class MenuComponent implements OnInit {
@@ -17,6 +19,7 @@ export class MenuComponent implements OnInit {
   categories$: Object;
   items$: Object;
   error: any;
+  searchname: string;
   
   constructor(
     private http: HttpClient,
