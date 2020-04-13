@@ -1,0 +1,30 @@
+.pickup {
+    margin: auto;
+    width: 300px;
+    text-align: center;
+}
+
+.resolve {
+    cursor: pointer;
+    padding: 12px 20px;
+    width: 100%;
+    margin-top: 20px;
+    margin: auto;
+    background-color: #c7e8f7;
+    color: #352728;
+    border: none;
+    border-radius: 4px;
+    outline: none;
+    box-shadow: 2px 2px 2px grey;
+}
+
+.back {
+    background-color: #fcf7fb;
+    padding: 10px;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    margin-top: 30px;
+    text-decoration: underline;
+    margin: 10px;
+}

@@ -1,15 +1,17 @@
-from menu.models.transaction import Transaction
-from menu.serializers import transaction_serializer
-
-from rest_framework.viewsets import ModelViewSet
-from rest_framework.response import Response
 from accounts.permissions import AdminOrPostOnly
+from menu.models.transaction import Transaction
+from menu.serializers.transaction_serializer import TransactionSerializer
+
+from rest_framework import viewsets
+from rest_framework.permissions import IsAuthenticatedOrReadOnly
+from rest_framework.response import Response
+from rest_framework.viewsets import ModelViewSet
 
 
 class TransactionViewSet(ModelViewSet):
     queryset = Transaction.objects.all()
-    serializer_class = transaction_serializer.TransactionSerializer
-    permission_classes = [AdminOrPostOnly]
+    serializer_class = TransactionSerializer
+    permission_classes = [AdminOrPostOnly | IsAuthenticatedOrReadOnly]
 
     """
     Overriding the get_queryset method to allow for listing only active
@@ -20,6 +22,6 @@ class TransactionViewSet(ModelViewSet):
         Else execute default get_queryset method.
     """
     def get_queryset(self):
-        if self.request.query_params.get('get_active'):
-            return Transaction.objects.filter(active=True)
+        if self.request.query_params.get('get_unprepared'):
+            return Transaction.objects.filter(prepared=False)
         return super().get_queryset()

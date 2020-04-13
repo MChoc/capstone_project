@@ -268,12 +268,12 @@ class TestTransactionModel(APITestCase):
         factory = APIRequestFactory()
         request = factory.get(url)
         
-        # Change one transaction to inactive
+        # Change one transaction to finished
         t = Transaction.objects.get(id=1)
-        t.active = False
+        t.prepared = True
         t.save()
 
-        objs = Transaction.objects.filter(active=True)
+        objs = Transaction.objects.filter(prepared=False)
         serializer_context = {
             'request': Request(request),
         }
@@ -284,7 +284,7 @@ class TestTransactionModel(APITestCase):
         )
 
         body = {
-            'get_active': True,
+            'get_unprepared': True,
         }
         response = self.client.get(url, body)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
