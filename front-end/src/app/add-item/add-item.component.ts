@@ -70,7 +70,7 @@ export class AddItemComponent implements OnInit {
       'request': this.orderForm.controls['request'].value
     }
     this.cartService.addToCart(cart_item, quantity);
-    this.router.navigate(['/cart']); 
+    this.router.navigate(['/']); 
   }
 
 

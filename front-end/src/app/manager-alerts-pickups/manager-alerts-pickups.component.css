@@ -1,4 +1,4 @@
-.pickup {
+.pickups {
     margin: auto;
     width: 300px;
     text-align: center;
@@ -6,7 +6,7 @@
 
 .number, .resolve {
     margin: auto;
-    background-color: #fdcfd7;
+    background-color: #abc2ba;
     color: #352728;
     border: none;
     border-radius: 4px;

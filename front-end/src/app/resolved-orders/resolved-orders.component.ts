@@ -1,22 +1,19 @@
-import { Component, OnInit, Inject } from '@angular/core';
-import {interval} from "rxjs/internal/observable/interval";
-import {startWith, switchMap} from "rxjs/operators";
-import { Router, ActivatedRoute } from '@angular/router';
-
+import { Component, OnInit } from '@angular/core';
+import { Transaction } from '../models/transaction.model';
+import { TransactionFoodItem } from '../models/transaction-food-item.model';
+import { ActivatedRoute, Router } from '@angular/router';
 import { DataService } from '../_services/data.service';
-import { Transaction } from "../models/transaction.model";
-import { TransactionFoodItem } from "../models/transaction-food-item.model"
+import { HttpClient } from '@angular/common/http';
 
 @Component({
-  selector: 'app-order-success',
-  templateUrl: './order-success.component.html',
-  styleUrls: ['./order-success.component.css']
+  selector: 'app-resolved-orders',
+  templateUrl: './resolved-orders.component.html',
+  styleUrls: ['./resolved-orders.component.css']
 })
-export class OrderSuccessComponent implements OnInit {
+export class ResolvedOrdersComponent implements OnInit {
 
-  id: String;
-  complete: boolean = false;
-  transaction: Transaction;
+  transaction$: Transaction;
+  id: string;
   transactionFoodItems: TransactionFoodItem[] = [];
   foodItems = [];
   extras = [];
@@ -25,13 +22,20 @@ export class OrderSuccessComponent implements OnInit {
     private _Activatedroute: ActivatedRoute,
     private router: Router,
     private data : DataService,
-  ) { 
+    private http: HttpClient,
+  ) {
+
+    let loggedOn = window.localStorage.getItem('user');
+
+    if(!loggedOn || JSON.parse(loggedOn)['user_type'] != 'MANAGER') {
+      this.router.navigate(['**']);
+    }
     this._Activatedroute.paramMap.subscribe(params => { 
       this.id = params.get('id');
-    });
-
-    this.data.getTransaction(this.id).subscribe(data => {
-      this.transaction = data;
+      this.data.getTransaction(this.id).subscribe(data => {
+        this.transaction$ = data;
+        console.log(this.transaction$);
+      });
     })
 
     this.data.getTransactionFoodItems().subscribe(data => {
@@ -45,29 +49,12 @@ export class OrderSuccessComponent implements OnInit {
     this.data.getExtras().subscribe(data => {
       this.extras = data;
     })
+
   }
 
   ngOnInit(): void {
-
-    interval(10000)
-    .pipe(
-      startWith(0),
-      switchMap(() => this.data.getTransaction(this.id))
-    )
-    .subscribe(res => {
-      // order is complete when it has been marked as inactive by the waiter
-      if (res.prepared == true) {
-        this.complete = true;
-      }
-    });
   }
 
-  /**
-   * 
-   * @param url url to get food item name for
-   * 
-   * returns: array of [item_name, size]
-   */
   public getFoodItemName(url: string): string[]{
     let item_details = []
     for(let item of this.foodItems) {
@@ -92,8 +79,8 @@ export class OrderSuccessComponent implements OnInit {
     return names
   }
 
-  menu() {
-    this.router.navigate(['/'])
+  back() {
+    this.router.navigate(['/management/alerts/resolved']);
   }
 
 }

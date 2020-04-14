@@ -1,4 +1,4 @@
-.assistance-requests {
+.assistance-requests, .kitchen-orders, .order-pickups {
     text-align: center;
     width: 300px;
     margin: auto;
@@ -33,4 +33,25 @@ button:active {
 
 .orders {
     background-color: #fdcfd7;
+}
+
+.pickups {
+    background-color: #abc2ba;
+}
+
+.resolved {
+    background-color: #fcf7fb;
+    padding: 10px;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    margin-top: 30px;
+    text-decoration: underline;
+    margin: 10px;
+    box-shadow: none;
+}
+
+.resolved:active {
+    transform: none;
+    box-shadow: none;
 }
