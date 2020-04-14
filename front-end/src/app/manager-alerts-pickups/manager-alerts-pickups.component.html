@@ -1,1 +1,25 @@
-<p>manager-alerts-pickups works!</p>
+<div class="pickups">
+    <div *ngIf="transaction$">
+        <h1>Customer Order</h1>
+        <button class="number">No. {{ transaction$.id }}</button>
+        <br>
+
+        <div class="container">
+            <h3>Order Details</h3>
+            <div *ngFor="let item of transactionFoodItems">
+                <div *ngIf="item.transaction == transaction$.url" class="orderDetails">
+                    <h4>{{ getFoodItemName(item.food_item) }}</h4>
+                    <ng-container *ngIf="item.extras.length > 0">
+                        <p>Extras: {{ getExtraNames(item.extras) }}</p>
+                    </ng-container>
+                    <ng-container *ngIf="item.request">
+                        <p>Request: {{ item.request }}</p>
+                    </ng-container>
+                </div>
+            </div>  
+        </div>
+    
+        <button (click)="back()" class="back">Back to Alerts</button>
+
+    </div>
+</div>
