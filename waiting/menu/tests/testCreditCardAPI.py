@@ -1,14 +1,13 @@
 from collections import OrderedDict
 
-from menu.models.credit_card import CreditCard
-from menu.serializers.credit_card_serializer import CreditCardSerializer
-
 from django.contrib.auth import get_user_model
-
 from rest_framework import status
 from rest_framework.reverse import reverse
 from rest_framework.request import Request
 from rest_framework.test import APITestCase, APIRequestFactory
+
+from menu.models.credit_card import CreditCard
+from menu.serializers.credit_card_serializer import CreditCardSerializer
 
 
 class TestCreditCardModel(APITestCase):
@@ -29,10 +28,10 @@ class TestCreditCardModel(APITestCase):
 
     CREATE:
         Create a model instance.
-    
+
     UPDATE:
         Update a model instance.
-    
+
     DESTROY:
         Destroy a model instance.
     """
@@ -53,7 +52,7 @@ class TestCreditCardModel(APITestCase):
     """
     Testing LIST:
         Lists a queryset.
-    
+
     Checks for:
         200 response.
         GET data is same as database data.
@@ -62,26 +61,26 @@ class TestCreditCardModel(APITestCase):
         url = '/api/credit_cards/'
         factory = APIRequestFactory()
         request = factory.get(url)
-        
+
         objs = CreditCard.objects.all()
         serializer_context = {
-            'request': Request(request),
+            'request': Request(request)
         }
         serializer = CreditCardSerializer(
             objs,
             context=serializer_context,
-            many=True,
+            many=True
         )
 
         response = self.client.get(url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        
+
         self.assertEqual(response.data, serializer.data)
 
     """
     Testing CREATE
         Create a model instance.
-    
+
     Asserts:
         201 response.
         Object count increased.
@@ -89,14 +88,14 @@ class TestCreditCardModel(APITestCase):
     """
     def test_create(self):
         url = '/api/credit_cards/'
-        
+
         init_count = CreditCard.objects.count()
 
         body = {
             'number': 1234123412341239,
             'expiry_month': 1,
             'expiry_year': 2030,
-            'cvv': 123,
+            'cvv': 123
         }
         response = self.client.post(url, body, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
@@ -110,7 +109,7 @@ class TestCreditCardModel(APITestCase):
     """
     Testing RETRIEVE
         Retrieve a model instance.
-    
+
     Asserts:
         200 response.
         GET data is same as in database.
@@ -119,38 +118,38 @@ class TestCreditCardModel(APITestCase):
         url = '/api/credit_cards/1/'
         factory = APIRequestFactory()
         request = factory.get(url)
-        
-        obj = [CreditCard.objects.get(id=1),]
+
+        obj = [CreditCard.objects.get(id=1)]
         serializer_context = {
-            'request': Request(request),
+            'request': Request(request)
         }
         serializer = CreditCardSerializer(
             obj,
             context=serializer_context,
-            many=True,
+            many=True
         )
 
         response = self.client.get(url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        
-        self.assertEqual([OrderedDict(response.data),], serializer.data)
-        
+
+        self.assertEqual([OrderedDict(response.data)], serializer.data)
+
     """
     Testing UPDATE
         Update a model instance.
-    
+
     Asserts:
         200 response.
         All fields have been changed and content is correct.
     """
     def test_update(self):
         url = '/api/credit_cards/1/'
-        
+
         body = {
             'number': 1234123412341238,
             'expiry_month': 2,
             'expiry_year': 2031,
-            'cvv': 124,
+            'cvv': 124
         }
         response = self.client.put(url, body, format='json')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
@@ -184,7 +183,7 @@ class TestCreditCardModel(APITestCase):
     """
     Testing DESTROY
         Destroy a model instance.
-    
+
     Asserts:
         204 response.
         Correct object has been deleted from database.
@@ -194,7 +193,11 @@ class TestCreditCardModel(APITestCase):
 
         response = self.client.delete(url)
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
-        self.assertRaises(CreditCard.DoesNotExist, CreditCard.objects.get, id=1)
+        self.assertRaises(
+            CreditCard.DoesNotExist,
+            CreditCard.objects.get,
+            id=1
+        )
 
     """
     Testing credit card validation
@@ -214,7 +217,7 @@ class TestCreditCardModel(APITestCase):
             'expiry_month': credit_card.expiry_month,
             'expiry_year': credit_card.expiry_year,
             'cvv': credit_card.cvv,
-            'validate': True,
+            'validate': True
         }
         response = self.client.post(url, body, format='json')
         # print(response.__getstate__())

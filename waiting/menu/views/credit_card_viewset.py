@@ -1,9 +1,9 @@
-from menu.models.credit_card import CreditCard
-from menu.serializers.credit_card_serializer import CreditCardSerializer
-
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.response import Response
 from accounts.permissions import LoggedInOrValidateOnly
+
+from menu.models.credit_card import CreditCard
+from menu.serializers.credit_card_serializer import CreditCardSerializer
 
 
 class CreditCardViewSet(ModelViewSet):
@@ -15,7 +15,8 @@ class CreditCardViewSet(ModelViewSet):
     Overriding the create method to allow for credit card validation.
 
     Checks if the 'validate' field exists and is set to True.
-        If it exists, return the credit card object and set 'validated' to True.
+        If it exists, return the credit card object and set 'validated' to
+        True.
         Else execute default create method.
     """
     def create(self, request, *args, **kwargs):

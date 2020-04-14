@@ -1,6 +1,6 @@
-from menu.models.transaction import Transaction
-
 from rest_framework import serializers
+
+from menu.models.transaction import Transaction
 
 
 class TransactionSerializer(serializers.HyperlinkedModelSerializer):

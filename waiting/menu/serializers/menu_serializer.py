@@ -1,6 +1,6 @@
-from menu.models.menu import Menu
-
 from rest_framework import serializers
+
+from menu.models.menu import Menu
 
 
 class MenuSerializer(serializers.HyperlinkedModelSerializer):

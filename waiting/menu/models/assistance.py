@@ -1,7 +1,7 @@
+from django.db import models
+
 from accounts.models import CustomUser
 from menu.models.transaction import Transaction
-
-from django.db import models
 
 
 class Assistance(models.Model):

@@ -1,9 +1,9 @@
-from menu.models.food_item import FoodItem
+from django.db import models
+
 from menu.models.discount import Discount
 from menu.models.extra import Extra
+from menu.models.food_item import FoodItem
 from menu.models.transaction import Transaction
-
-from django.db import models
 
 
 class TransactionFoodItem(models.Model):

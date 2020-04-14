@@ -1,14 +1,13 @@
 from collections import OrderedDict
 
-from menu.models.tag import Tag
-from menu.serializers.tag_serializer import TagSerializer
-
 from django.contrib.auth import get_user_model
-
 from rest_framework import status
 from rest_framework.reverse import reverse
 from rest_framework.request import Request
 from rest_framework.test import APITestCase, APIRequestFactory
+
+from menu.models.tag import Tag
+from menu.serializers.tag_serializer import TagSerializer
 
 
 class TestTagModel(APITestCase):
@@ -29,10 +28,10 @@ class TestTagModel(APITestCase):
 
     CREATE:
         Create a model instance.
-    
+
     UPDATE:
         Update a model instance.
-    
+
     DESTROY:
         Destroy a model instance.
     """
@@ -53,7 +52,7 @@ class TestTagModel(APITestCase):
     """
     Testing LIST:
         Lists a queryset.
-    
+
     Checks for:
         200 response.
         GET data is same as database data.
@@ -62,26 +61,26 @@ class TestTagModel(APITestCase):
         url = '/api/tag/'
         factory = APIRequestFactory()
         request = factory.get(url)
-        
+
         objs = Tag.objects.all()
         serializer_context = {
-            'request': Request(request),
+            'request': Request(request)
         }
         serializer = TagSerializer(
             objs,
             context=serializer_context,
-            many=True,
+            many=True
         )
 
         response = self.client.get(url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        
+
         self.assertEqual(response.data, serializer.data)
 
     """
     Testing CREATE
         Create a model instance.
-    
+
     Asserts:
         201 response.
         Object count increased.
@@ -91,7 +90,7 @@ class TestTagModel(APITestCase):
         url = '/api/tag/'
         factory = APIRequestFactory()
         request = factory.post(url)
-        
+
         init_count = Tag.objects.count()
 
         body = {
@@ -109,7 +108,7 @@ class TestTagModel(APITestCase):
     """
     Testing RETRIEVE
         Retrieve a model instance.
-    
+
     Asserts:
         200 response.
         GET data is same as in database.
@@ -118,26 +117,26 @@ class TestTagModel(APITestCase):
         url = '/api/tag/1/'
         factory = APIRequestFactory()
         request = factory.get(url)
-        
-        obj = [Tag.objects.get(id=1),]
+
+        obj = [Tag.objects.get(id=1)]
         serializer_context = {
-            'request': Request(request),
+            'request': Request(request)
         }
         serializer = TagSerializer(
             obj,
             context=serializer_context,
-            many=True,
+            many=True
         )
 
         response = self.client.get(url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        
-        self.assertEqual([OrderedDict(response.data),], serializer.data)
-        
+
+        self.assertEqual([OrderedDict(response.data)], serializer.data)
+
     """
     Testing UPDATE
         Update a model instance.
-    
+
     Asserts:
         200 response.
         All fields have been changed and content is correct.
@@ -177,7 +176,7 @@ class TestTagModel(APITestCase):
     """
     Testing DESTROY
         Destroy a model instance.
-    
+
     Asserts:
         204 response.
         Correct object has been deleted from database.

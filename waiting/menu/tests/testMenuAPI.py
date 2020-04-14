@@ -1,13 +1,12 @@
 from collections import OrderedDict
 
-from menu.models.category import Menu
-from menu.serializers.menu_serializer import MenuSerializer
-
 from django.contrib.auth import get_user_model
-
 from rest_framework import status
 from rest_framework.request import Request
 from rest_framework.test import APITestCase, APIRequestFactory
+
+from menu.models.category import Menu
+from menu.serializers.menu_serializer import MenuSerializer
 
 
 class TestCategoryModel(APITestCase):
@@ -28,10 +27,10 @@ class TestCategoryModel(APITestCase):
 
     CREATE:
         Create a model instance.
-    
+
     UPDATE:
         Update a model instance.
-    
+
     DESTROY:
         Destroy a model instance.
     """
@@ -52,7 +51,7 @@ class TestCategoryModel(APITestCase):
     """
     Testing LIST:
         Lists a queryset.
-    
+
     Checks for:
         200 response.
         GET data is same as database data.
@@ -61,26 +60,26 @@ class TestCategoryModel(APITestCase):
         url = '/api/menus/'
         factory = APIRequestFactory()
         request = factory.get(url)
-        
+
         objs = Menu.objects.all()
         serializer_context = {
-            'request': Request(request),
+            'request': Request(request)
         }
         serializer = MenuSerializer(
             objs,
             context=serializer_context,
-            many=True,
+            many=True
         )
 
         response = self.client.get(url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        
+
         self.assertEqual(response.data, serializer.data)
 
     """
     Testing CREATE
         Create a model instance.
-    
+
     Asserts:
         201 response.
         Object count increased.
@@ -90,7 +89,7 @@ class TestCategoryModel(APITestCase):
         url = '/api/menus/'
         factory = APIRequestFactory()
         request = factory.post(url)
-        
+
         init_count = Menu.objects.count()
 
         body = {
@@ -110,7 +109,7 @@ class TestCategoryModel(APITestCase):
     """
     Testing RETRIEVE
         Retrieve a model instance.
-    
+
     Asserts:
         200 response.
         GET data is same as in database.
@@ -119,33 +118,33 @@ class TestCategoryModel(APITestCase):
         url = '/api/menus/1/'
         factory = APIRequestFactory()
         request = factory.get(url)
-        
-        obj = [Menu.objects.get(id=1),]
+
+        obj = [Menu.objects.get(id=1)]
         serializer_context = {
-            'request': Request(request),
+            'request': Request(request)
         }
         serializer = MenuSerializer(
             obj,
             context=serializer_context,
-            many=True,
+            many=True
         )
 
         response = self.client.get(url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        
-        self.assertEqual([OrderedDict(response.data),], serializer.data)
-        
+
+        self.assertEqual([OrderedDict(response.data)], serializer.data)
+
     """
     Testing UPDATE
         Update a model instance.
-    
+
     Asserts:
         200 response.
         All fields have been changed and content is correct.
     """
     def test_update(self):
         url = '/api/menus/1/'
-        
+
         body = {
             'name': 'Test Change',
             'active': False,
@@ -182,7 +181,7 @@ class TestCategoryModel(APITestCase):
     """
     Testing DESTROY
         Destroy a model instance.
-    
+
     Asserts:
         204 response.
         Correct object has been deleted from database.

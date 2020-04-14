@@ -1,6 +1,6 @@
-from menu.models.category import Category
-
 from rest_framework import serializers
+
+from menu.models.category import Category
 
 
 class CategorySerializer(serializers.HyperlinkedModelSerializer):
@@ -17,4 +17,5 @@ class CategorySerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = Category
-        fields = ['id', 'url', 'name', 'active', 'menu', 'food_items', 'extras']
+        fields = ['id', 'url', 'name', 'active', 'menu', 'food_items',
+                  'extras']

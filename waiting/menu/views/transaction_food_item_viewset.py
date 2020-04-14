@@ -1,12 +1,14 @@
-from accounts.permissions import AdminOrPostOnly
-from menu.models.transaction_food_item import TransactionFoodItem
-from menu.serializers.transaction_food_item_serializer import TransactionFoodItemSerializer
-
-from rest_framework import viewsets
+from rest_framework.viewsets import ModelViewSet
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 
+from accounts.permissions import AdminOrPostOnly
+from menu.models.transaction_food_item import TransactionFoodItem
+from menu.serializers.transaction_food_item_serializer import (
+    TransactionFoodItemSerializer
+)
 
-class TransactionFoodItemViewSet(viewsets.ModelViewSet):
+
+class TransactionFoodItemViewSet(ModelViewSet):
     queryset = TransactionFoodItem.objects.all()
     serializer_class = TransactionFoodItemSerializer
     permission_classes = [AdminOrPostOnly | IsAuthenticatedOrReadOnly]
