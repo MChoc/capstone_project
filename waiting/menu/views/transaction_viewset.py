@@ -22,5 +22,5 @@ class TransactionViewSet(ModelViewSet):
     """
     def get_queryset(self):
         if self.request.query_params.get('get_unprepared'):
-            return Transaction.objects.filter(prepared=False)
+            return Transaction.objects.filter(prepared=False, active=True)
         return super().get_queryset()

@@ -105,4 +105,13 @@ export class DataService {
     return this.http.get<TransactionFoodItem[]>(this.transactionFoodItemList, {params: transaction_details});
   }
 
+  getUnpreparedTransactions(): Observable<Transaction[]> {
+    
+    let transaction_details = {
+      'get_unprepared': 'true',
+    }
+
+    return this.http.get<Transaction[]>(this.transactionList, {params: transaction_details});
+  }
+
 }
