@@ -34,6 +34,9 @@ import { AssistanceIdComponent } from './assistance-id/assistance-id.component';
 import { WaiterAssistanceComponent } from './waiter-assistance/waiter-assistance.component';
 import { WaiterOrderComponent } from './waiter-order/waiter-order.component';
 import { ManagerAlertsComponent } from './manager-alerts/manager-alerts.component';
+import { ManagerAlertsAssistanceComponent } from './manager-alerts-assistance/manager-alerts-assistance.component';
+import { ManagerAlertsOrdersComponent } from './manager-alerts-orders/manager-alerts-orders.component';
+import { ManagerAlertsPickupsComponent } from './manager-alerts-pickups/manager-alerts-pickups.component';
 
 
 @NgModule({
@@ -67,6 +70,9 @@ import { ManagerAlertsComponent } from './manager-alerts/manager-alerts.componen
     WaiterAssistanceComponent,
     WaiterOrderComponent,
     ManagerAlertsComponent,
+    ManagerAlertsAssistanceComponent,
+    ManagerAlertsOrdersComponent,
+    ManagerAlertsPickupsComponent,
   ],
   imports: [
     BrowserModule,

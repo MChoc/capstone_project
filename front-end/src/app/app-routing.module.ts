@@ -26,6 +26,9 @@ import { AssistanceIdComponent } from './assistance-id/assistance-id.component';
 import { WaiterAssistanceComponent } from './waiter-assistance/waiter-assistance.component';
 import { WaiterOrderComponent } from './waiter-order/waiter-order.component';
 import { ManagerAlertsComponent } from './manager-alerts/manager-alerts.component';
+import { ManagerAlertsAssistanceComponent } from './manager-alerts-assistance/manager-alerts-assistance.component';
+import { ManagerAlertsOrdersComponent } from './manager-alerts-orders/manager-alerts-orders.component';
+import { ManagerAlertsPickupsComponent } from './manager-alerts-pickups/manager-alerts-pickups.component';
 
 
 const routes: Routes = [
@@ -56,6 +59,17 @@ const routes: Routes = [
   {
     path: 'management/alerts',
     component: ManagerAlertsComponent
+  },
+  {
+    path: 'management/alerts/assistance/:id',
+    component: ManagerAlertsAssistanceComponent  },
+  {
+    path: 'management/alerts/orders/:id',
+    component: ManagerAlertsOrdersComponent
+  },
+  {
+    path: 'management/alerts/pickups/:id',
+    component: ManagerAlertsPickupsComponent
   },
   {
     path: 'management/staff',
