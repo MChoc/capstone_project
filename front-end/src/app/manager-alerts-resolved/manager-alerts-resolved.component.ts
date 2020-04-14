@@ -51,4 +51,12 @@ export class ManagerAlertsResolvedComponent implements OnInit {
     this.router.navigate(['/management/alerts']);
   }
 
+  assistance(id) {
+    this.router.navigate(['/management/alerts/resolved/assistance/'+ id]);
+  }
+
+  orders(id) {
+    this.router.navigate(['/management/alerts/resolved/orders/'+ id]);
+  }
+
 }
