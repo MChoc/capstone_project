@@ -1,0 +1,32 @@
+<div class="request">
+    <h1>Customer Request</h1>
+    <p>- RESOLVED -</p>
+    <br>
+    <button class="number">No. {{ request_id }}</button>
+    <br><br>
+    <div class="row">
+        <div class="column1">
+            <p><b>Customer issue:</b></p>
+        </div>
+        <div class="column2">
+            <p>{{ request_problem }}</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="column1">
+            <p><b>Waiter Note:</b></p>
+        </div>
+        <div class="column2">
+            <p>{{ request_note }}</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="column1">
+            <p><b>Waiter:</b></p>
+        </div>
+        <div class="column2">
+            <p>{{ waiter_username }}</p>
+        </div>
+    </div>
+    <button (click)="back()" class="back">Back to Resolved Alerts</button>
+</div>
