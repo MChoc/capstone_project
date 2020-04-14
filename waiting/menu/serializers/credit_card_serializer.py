@@ -1,6 +1,6 @@
-from menu.models.credit_card import CreditCard
-
 from rest_framework import serializers
+
+from menu.models.credit_card import CreditCard
 
 
 class CreditCardSerializer(serializers.HyperlinkedModelSerializer):

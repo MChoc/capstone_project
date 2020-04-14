@@ -1,8 +1,8 @@
+from django.db import models
+
 from menu.models.category import Category
 from menu.models.extra import Extra
 from menu.models.tag import Tag
-
-from django.db import models
 
 
 class FoodItem(models.Model):
