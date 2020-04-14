@@ -25,6 +25,7 @@ import { AssistanceComponent } from './assistance/assistance.component';
 import { AssistanceIdComponent } from './assistance-id/assistance-id.component';
 import { WaiterAssistanceComponent } from './waiter-assistance/waiter-assistance.component';
 import { WaiterOrderComponent } from './waiter-order/waiter-order.component';
+import { ManagerAlertsComponent } from './manager-alerts/manager-alerts.component';
 
 
 const routes: Routes = [
@@ -51,6 +52,10 @@ const routes: Routes = [
   {
     path: 'kitchen',
     component: KitchenHomeComponent
+  },
+  {
+    path: 'management/alerts',
+    component: ManagerAlertsComponent
   },
   {
     path: 'management/staff',

@@ -33,6 +33,7 @@ import { AssistanceComponent } from './assistance/assistance.component';
 import { AssistanceIdComponent } from './assistance-id/assistance-id.component';
 import { WaiterAssistanceComponent } from './waiter-assistance/waiter-assistance.component';
 import { WaiterOrderComponent } from './waiter-order/waiter-order.component';
+import { ManagerAlertsComponent } from './manager-alerts/manager-alerts.component';
 
 
 @NgModule({
@@ -65,6 +66,7 @@ import { WaiterOrderComponent } from './waiter-order/waiter-order.component';
     AssistanceIdComponent,
     WaiterAssistanceComponent,
     WaiterOrderComponent,
+    ManagerAlertsComponent,
   ],
   imports: [
     BrowserModule,
