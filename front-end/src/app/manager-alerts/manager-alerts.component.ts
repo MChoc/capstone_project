@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { DataService } from '../_services/data.service';
 import { Router, NavigationEnd } from '@angular/router';
 import { interval } from 'rxjs';
@@ -44,6 +44,7 @@ export class ManagerAlertsComponent implements OnInit {
       .subscribe(res => {
         this.transactions$ = res;
       });
+    
   }
 
   assistance(id) {
