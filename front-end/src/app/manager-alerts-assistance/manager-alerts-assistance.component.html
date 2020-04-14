@@ -1,1 +1,7 @@
-<p>manager-alerts-assistance works!</p>
+<div class="request">
+    <h1>Customer Request</h1>
+    <button class="number">No. {{ request_id }}</button>
+    <p><b>Customer issue description:</b></p>
+    <p>{{ request_problem }}</p>
+    <button (click)="back()" class="back">Back to Alerts</button>
+</div>
