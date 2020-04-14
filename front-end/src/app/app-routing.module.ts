@@ -25,6 +25,13 @@ import { AssistanceComponent } from './assistance/assistance.component';
 import { AssistanceIdComponent } from './assistance-id/assistance-id.component';
 import { WaiterAssistanceComponent } from './waiter-assistance/waiter-assistance.component';
 import { WaiterOrderComponent } from './waiter-order/waiter-order.component';
+import { ManagerAlertsComponent } from './manager-alerts/manager-alerts.component';
+import { ManagerAlertsAssistanceComponent } from './manager-alerts-assistance/manager-alerts-assistance.component';
+import { ManagerAlertsOrdersComponent } from './manager-alerts-orders/manager-alerts-orders.component';
+import { ManagerAlertsPickupsComponent } from './manager-alerts-pickups/manager-alerts-pickups.component';
+import { ManagerAlertsResolvedComponent } from './manager-alerts-resolved/manager-alerts-resolved.component';
+import { ResolvedAssistanceComponent } from './resolved-assistance/resolved-assistance.component';
+import { ResolvedOrdersComponent } from './resolved-orders/resolved-orders.component';
 
 
 const routes: Routes = [
@@ -51,6 +58,33 @@ const routes: Routes = [
   {
     path: 'kitchen',
     component: KitchenHomeComponent
+  },
+  {
+    path: 'management/alerts',
+    component: ManagerAlertsComponent
+  },
+  {
+    path: 'management/alerts/resolved',
+    component: ManagerAlertsResolvedComponent
+  },
+  {
+    path: 'management/alerts/assistance/:id',
+    component: ManagerAlertsAssistanceComponent  },
+  {
+    path: 'management/alerts/orders/:id',
+    component: ManagerAlertsOrdersComponent
+  },
+  {
+    path: 'management/alerts/pickups/:id',
+    component: ManagerAlertsPickupsComponent
+  },
+  {
+    path: 'management/alerts/resolved/assistance/:id',
+    component: ResolvedAssistanceComponent
+  },
+  {
+    path: 'management/alerts/resolved/orders/:id',
+    component: ResolvedOrdersComponent
   },
   {
     path: 'management/staff',

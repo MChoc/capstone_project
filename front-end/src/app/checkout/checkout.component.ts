@@ -82,7 +82,7 @@ export class CheckoutComponent implements OnInit {
       this.processFoodItemTransaction(data['url']);
       // Remove everything from cart once order has been placed
       this.cartService.clearCart();
-      this.router.navigate(['/management/menu/order-details/'+ data['id']]); 
+      this.router.navigate(['/order-details/'+ data['id']]); 
     },
     error => {
       console.error(error);
