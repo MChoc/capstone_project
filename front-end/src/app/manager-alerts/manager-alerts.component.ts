@@ -58,4 +58,8 @@ export class ManagerAlertsComponent implements OnInit {
     this.router.navigate(['/management/alerts/pickups/'+ id]);
   }
 
+  resolved() {
+    this.router.navigate(['/management/alerts/resolved']);
+  }
+
 }

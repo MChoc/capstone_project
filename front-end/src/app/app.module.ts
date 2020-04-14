@@ -37,6 +37,7 @@ import { ManagerAlertsComponent } from './manager-alerts/manager-alerts.componen
 import { ManagerAlertsAssistanceComponent } from './manager-alerts-assistance/manager-alerts-assistance.component';
 import { ManagerAlertsOrdersComponent } from './manager-alerts-orders/manager-alerts-orders.component';
 import { ManagerAlertsPickupsComponent } from './manager-alerts-pickups/manager-alerts-pickups.component';
+import { ManagerAlertsResolvedComponent } from './manager-alerts-resolved/manager-alerts-resolved.component';
 
 
 @NgModule({
@@ -73,6 +74,7 @@ import { ManagerAlertsPickupsComponent } from './manager-alerts-pickups/manager-
     ManagerAlertsAssistanceComponent,
     ManagerAlertsOrdersComponent,
     ManagerAlertsPickupsComponent,
+    ManagerAlertsResolvedComponent,
   ],
   imports: [
     BrowserModule,

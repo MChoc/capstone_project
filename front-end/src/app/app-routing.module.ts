@@ -29,6 +29,7 @@ import { ManagerAlertsComponent } from './manager-alerts/manager-alerts.componen
 import { ManagerAlertsAssistanceComponent } from './manager-alerts-assistance/manager-alerts-assistance.component';
 import { ManagerAlertsOrdersComponent } from './manager-alerts-orders/manager-alerts-orders.component';
 import { ManagerAlertsPickupsComponent } from './manager-alerts-pickups/manager-alerts-pickups.component';
+import { ManagerAlertsResolvedComponent } from './manager-alerts-resolved/manager-alerts-resolved.component';
 
 
 const routes: Routes = [
@@ -59,6 +60,10 @@ const routes: Routes = [
   {
     path: 'management/alerts',
     component: ManagerAlertsComponent
+  },
+  {
+    path: 'management/alerts/resolved',
+    component: ManagerAlertsResolvedComponent
   },
   {
     path: 'management/alerts/assistance/:id',
