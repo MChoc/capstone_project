@@ -81,19 +81,28 @@ export class DataService {
   }
 
 
-    getRequests() {
-      let key = window.localStorage.getItem('key')
-      var header = {
-        headers: new HttpHeaders()
-          .set('Authorization', 'Token ' + key)
-      }
-  
-      return this.http.get(this.requestList, header)
+  getRequests() {
+    let key = window.localStorage.getItem('key')
+    var header = {
+      headers: new HttpHeaders()
+        .set('Authorization', 'Token ' + key)
     }
-  
-    getRequest(id: string) {
-      let url = this.requestList + id + '/';
-      return this.http.get(url);
+
+    return this.http.get(this.requestList, header)
+  }
+
+  getRequest(id: string) {
+    let url = this.requestList + id + '/';
+    return this.http.get(url);
+  }
+
+  getTransactionDetails(id): Observable<TransactionFoodItem[]> {
+
+    let transaction_details = {
+      'transaction_id': id,
+
     }
+    return this.http.get<TransactionFoodItem[]>(this.transactionFoodItemList, {params: transaction_details});
+  }
 
 }
