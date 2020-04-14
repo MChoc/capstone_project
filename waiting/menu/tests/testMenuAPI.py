@@ -60,7 +60,7 @@ class TestCategoryModel(APITestCase):
     def test_list(self):
         url = '/api/menus/'
         factory = APIRequestFactory()
-        request = factory.post(url)
+        request = factory.get(url)
         
         objs = Menu.objects.all()
         serializer_context = {
@@ -73,8 +73,8 @@ class TestCategoryModel(APITestCase):
         )
 
         response = self.client.get(url)
-
         self.assertEqual(response.status_code, status.HTTP_200_OK)
+        
         self.assertEqual(response.data, serializer.data)
 
     """
@@ -118,7 +118,7 @@ class TestCategoryModel(APITestCase):
     def test_retrieve(self):
         url = '/api/menus/1/'
         factory = APIRequestFactory()
-        request = factory.post(url)
+        request = factory.get(url)
         
         obj = [Menu.objects.get(id=1),]
         serializer_context = {

@@ -11,35 +11,30 @@ class CreditCardViewSet(ModelViewSet):
     serializer_class = CreditCardSerializer
     permission_classes = [LoggedInOrValidateOnly]
 
-
-class ValidateViewSet(ModelViewSet):
     """
-    View to validate credit card information.
+    Overriding the create method to allow for credit card validation.
+
+    Checks if the 'validate' field exists and is set to True.
+        If it exists, return the credit card object and set 'validated' to True.
+        Else execute default create method.
     """
-    queryset = CreditCard.objects.all()
-    serializer_class = CreditCardSerializer
-    permission_classes = [LoggedInOrValidateOnly]
-    http_method_names = [u'post']
+    def create(self, request, *args, **kwargs):
+        if request.data.get('validate'):
+            try:
+                credit_card = CreditCard.objects.get(
+                    number=request.data['number'],
+                    expiry_month=request.data['expiry_month'],
+                    expiry_year=request.data['expiry_year'],
+                    cvv=request.data['cvv']
+                )
+            except CreditCard.DoesNotExist:
+                return Response({'validated': False})
 
-    def create(self, request, format=None):
-        """
-        Return whether credit was validated or not and if so, return the credit
-            card object.
-        """
-        try:
-            credit_card = CreditCard.objects.get(
-                number=request.data['number'],
-                expiry_month=request.data['expiry_month'],
-                expiry_year=request.data['expiry_year'],
-                cvs=request.data['cvs']
-            )
-        except CreditCard.DoesNotExist:
-            return Response({'validated': False})
+            response = CreditCardSerializer(
+                credit_card,
+                context=self.get_serializer_context()
+            ).data
+            response['validated'] = True
 
-        response = CreditCardSerializer(
-            credit_card,
-            context=self.get_serializer_context()
-        ).data
-        response['validated'] = True
-
-        return Response(response)
+            return Response(response)
+        return super().create(request, *args, **kwargs)
