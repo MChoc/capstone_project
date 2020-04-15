@@ -4,7 +4,7 @@
         <div [formGroup]="assistanceForm">
             <label>Please specify your issue:</label>
             <br>
-            <label formArrayName="requests" *ngFor="let request of assistanceForm.controls.requests.controls; let i = index">
+            <label formArrayName="requests" *ngFor="let request of assistanceForm.controls.requests['controls']; let i = index">
                 <input type="checkbox" [formControlName]="i" />
                 {{requestlist[i].request}}
                 <br>
