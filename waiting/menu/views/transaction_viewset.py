@@ -31,5 +31,5 @@ class TransactionViewSet(ModelViewSet):
             start_date = datetime(1970, 1, 1)
 
         if self.request.query_params.get('get_unprepared'):
-            return Transaction.objects.filter(prepared=False).exclude(date__lt=start_date)
+            return Transaction.objects.filter(prepared=False, active=True).exclude(date__lt=start_date)
         return super().get_queryset().exclude(date__lt=start_date)

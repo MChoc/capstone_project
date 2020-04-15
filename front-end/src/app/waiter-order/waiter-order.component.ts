@@ -14,7 +14,6 @@ import { TransactionFoodItem } from "../models/transaction-food-item.model"
 })
 export class WaiterOrderComponent implements OnInit {
 
-  transaction$: Transaction;
   id: string;
   transactionFoodItems: TransactionFoodItem[] = [];
   foodItems = [];
@@ -34,13 +33,9 @@ export class WaiterOrderComponent implements OnInit {
     }
     this._Activatedroute.paramMap.subscribe(params => { 
       this.id = params.get('id');
-      this.data.getTransaction(this.id).subscribe(data => {
-        this.transaction$ = data;
-        console.log(this.transaction$);
-      });
     })
 
-    this.data.getTransactionFoodItems().subscribe(data => {
+    this.data.getTransactionDetails(this.id).subscribe(data => {
       this.transactionFoodItems = data;
     })
 
