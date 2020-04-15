@@ -4,7 +4,14 @@
         <div [formGroup]="assistanceForm">
             <label>Please specify your issue:</label>
             <br>
-            <textarea formControlName="issue" rows="5" required></textarea>
+            <label formArrayName="requests" *ngFor="let request of assistanceForm.controls.requests.controls; let i = index">
+                <input type="checkbox" [formControlName]="i" />
+                {{requestlist[i].request}}
+                <br>
+            </label>
+            <br>
+            Other requests
+            <textarea formControlName="issue" rows="5" ></textarea>
         </div>
         <button type="submit">Submit</button>
     </form>
