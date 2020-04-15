@@ -33,11 +33,13 @@ export class AddItemComponent implements OnInit {
   ) { 
     this._Activatedroute.paramMap.subscribe(params => {
       this.id = params.get('id');
+      console.log(this.id);
       this.data.getItem(this.id).toPromise().then(data => {
         this.item = data;
         this.category = data['category'];
         this.data.getExtras().toPromise().then(data => {
           this.extras = data;
+          console.log(this.extras);
         });
       })
     })
