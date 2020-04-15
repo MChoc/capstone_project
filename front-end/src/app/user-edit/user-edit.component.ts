@@ -65,6 +65,10 @@ export class UserEditComponent implements OnInit {
 
     let url = 'http://127.0.0.1:5000/api/accounts/' + this.id + '/';
     let key = window.localStorage.getItem('key')
+
+    let current_user = JSON.parse(localStorage.getItem('user'));
+    // console.log(current_user['id']);
+
     let header = {
       headers: new HttpHeaders()
         .set('Authorization', 'Token ' + key)
@@ -81,6 +85,10 @@ export class UserEditComponent implements OnInit {
       console.log("ERROR!")
       console.log(error.error);
     })
+    // this.userEditForm.get('user_type').disable()
+    if (this.id == current_user.id) {
+      this.userEditForm.get('user_type').disable()
+    }
 
   }
 }
