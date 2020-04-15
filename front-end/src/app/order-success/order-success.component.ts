@@ -16,7 +16,6 @@ export class OrderSuccessComponent implements OnInit {
 
   id: String;
   complete: boolean = false;
-  transaction: Transaction;
   transactionFoodItems: TransactionFoodItem[] = [];
   foodItems = [];
   extras = [];
@@ -29,12 +28,8 @@ export class OrderSuccessComponent implements OnInit {
     this._Activatedroute.paramMap.subscribe(params => { 
       this.id = params.get('id');
     });
-
-    this.data.getTransaction(this.id).subscribe(data => {
-      this.transaction = data;
-    })
-
-    this.data.getTransactionFoodItems().subscribe(data => {
+    
+    this.data.getTransactionDetails(this.id).subscribe(data => {
       this.transactionFoodItems = data;
     })
 
@@ -45,6 +40,7 @@ export class OrderSuccessComponent implements OnInit {
     this.data.getExtras().subscribe(data => {
       this.extras = data;
     })
+
   }
 
   ngOnInit(): void {

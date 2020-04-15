@@ -16,8 +16,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class KitchenHomeComponent implements OnInit {
 
-  transactions: Transaction[];
-  transactionFoodItems: TransactionFoodItem[];
+  transactions: Transaction[] = [];
+  transactionFoodItems: TransactionFoodItem[] = [];
   foodItems = []
   extras = []
 
@@ -46,7 +46,7 @@ export class KitchenHomeComponent implements OnInit {
     interval(10000)
       .pipe(
         startWith(0),
-        switchMap(() => this.data.getTransactions())
+        switchMap(() => this.data.getUnpreparedTransactions())
       )
       .subscribe(res => {
         this.transactions = res;
