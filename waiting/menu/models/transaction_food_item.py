@@ -8,7 +8,11 @@ from menu.models.transaction import Transaction
 
 class TransactionFoodItem(models.Model):
     food_item = models.ForeignKey(FoodItem, on_delete=models.CASCADE)
-    transaction = models.ForeignKey(Transaction, on_delete=models.CASCADE)
+    transaction = models.ForeignKey(
+        Transaction,
+        on_delete=models.CASCADE,
+        related_name='transaction_food_items'
+    )
 
     discount = models.ForeignKey(
         Discount,
