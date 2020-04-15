@@ -34,6 +34,13 @@ import { AssistanceIdComponent } from './assistance-id/assistance-id.component';
 import { WaiterAssistanceComponent } from './waiter-assistance/waiter-assistance.component';
 import { WaiterOrderComponent } from './waiter-order/waiter-order.component';
 import { FilterPipe } from './filter.pipe';
+import { ManagerAlertsComponent } from './manager-alerts/manager-alerts.component';
+import { ManagerAlertsAssistanceComponent } from './manager-alerts-assistance/manager-alerts-assistance.component';
+import { ManagerAlertsOrdersComponent } from './manager-alerts-orders/manager-alerts-orders.component';
+import { ManagerAlertsPickupsComponent } from './manager-alerts-pickups/manager-alerts-pickups.component';
+import { ManagerAlertsResolvedComponent } from './manager-alerts-resolved/manager-alerts-resolved.component';
+import { ResolvedAssistanceComponent } from './resolved-assistance/resolved-assistance.component';
+import { ResolvedOrdersComponent } from './resolved-orders/resolved-orders.component';
 
 
 @NgModule({
@@ -67,6 +74,13 @@ import { FilterPipe } from './filter.pipe';
     WaiterAssistanceComponent,
     WaiterOrderComponent,
     FilterPipe,
+    ManagerAlertsComponent,
+    ManagerAlertsAssistanceComponent,
+    ManagerAlertsOrdersComponent,
+    ManagerAlertsPickupsComponent,
+    ManagerAlertsResolvedComponent,
+    ResolvedAssistanceComponent,
+    ResolvedOrdersComponent,
   ],
   imports: [
     BrowserModule,

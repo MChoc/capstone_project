@@ -1,4 +1,4 @@
-<div>
+<div class="orderSuccess">
     <h1 *ngIf="!complete else elseBlock;">
         Your order has been placed!
     </h1>
@@ -6,19 +6,21 @@
         <h1>Your order is ready!</h1>
     </ng-template>
     <br>
-    <p><b>Your order number is:</b></p>
-    <b><h1>{{ id }}</h1></b>
+    <button class="number">No. {{ id }}</button>
     <br>
-    <p>Order Details: </p>
-    <div *ngFor="let item of transactionFoodItems">
-        <div *ngIf="item.transaction == transaction.url">
-            <p><b>{{ getFoodItemName(item.food_item) }}</b></p>
-            <ng-container *ngIf="item.extras.length > 0">
-                <p>Extras: {{ getExtraNames(item.extras) }}</p>
-            </ng-container>
-            <ng-container *ngIf="item.request">
-                <p>Request: {{ item.request }}</p>
-            </ng-container>
+    
+    <div class="container">
+        <h3>Order Details</h3>
+        <div *ngFor="let item of transactionFoodItems">
+            <div *ngIf="item.transaction == transaction.url" class="orderDetails">
+                <h4 style="font-weight: bold;">{{ getFoodItemName(item.food_item) }}</h4>
+                <ng-container *ngIf="item.extras.length > 0">
+                    <p>Extras: {{ getExtraNames(item.extras) }}</p>
+                </ng-container>
+                <ng-container *ngIf="item.request">
+                    <p>Request: {{ item.request }}</p>
+                </ng-container>
+            </div>
         </div>
     </div>
 

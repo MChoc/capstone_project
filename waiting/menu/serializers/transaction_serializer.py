@@ -1,6 +1,6 @@
-from menu.models.transaction import Transaction
-
 from rest_framework import serializers
+
+from menu.models.transaction import Transaction
 
 
 class TransactionSerializer(serializers.HyperlinkedModelSerializer):
@@ -12,5 +12,5 @@ class TransactionSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = Transaction
-        fields = ['id', 'url', 'active', 'prepared', 'date', 'customer', 'credit_card',
-                  'food_items', 'request']
+        fields = ['id', 'url', 'active', 'prepared', 'date', 'customer',
+                  'credit_card', 'food_items', 'request']

@@ -21,7 +21,7 @@ export class CheckoutComponent implements OnInit {
     card_number: new FormControl(),
     expiry_month: new FormControl(),
     expiry_year: new FormControl(),
-    cvc: new FormControl(),
+    cvv: new FormControl(),
   })
 
   constructor(
@@ -41,10 +41,11 @@ export class CheckoutComponent implements OnInit {
       'number': this.checkoutForm.value['card_number'],
       'expiry_month': this.checkoutForm.value['expiry_month'],
       'expiry_year': this.checkoutForm.value['expiry_year'],
-      'cvs': this.checkoutForm.value['cvc']
+      'cvv': this.checkoutForm.value['cvv'],
+      'validate': true
     }
 
-    let validate_url = 'http://127.0.0.1:5000/api/credit_cards_validate/'
+    let validate_url = 'http://127.0.0.1:5000/api/credit_cards/'
     this.http.post(validate_url, card_data).toPromise().then(data => {
       console.log(data);
       if (data['validated'] == true) {
@@ -82,7 +83,7 @@ export class CheckoutComponent implements OnInit {
       this.processFoodItemTransaction(data['url']);
       // Remove everything from cart once order has been placed
       this.cartService.clearCart();
-      this.router.navigate(['/management/menu/order-details/'+ data['id']]); 
+      this.router.navigate(['/order-details/'+ data['id']]); 
     },
     error => {
       console.error(error);

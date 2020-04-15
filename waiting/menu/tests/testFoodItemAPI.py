@@ -1,16 +1,15 @@
 from collections import OrderedDict
 
-from menu.models.category import Category
-from menu.models.food_item import FoodItem
-from menu.models.tag import Tag
-from menu.serializers.food_item_serializer import FoodItemSerializer
-
 from django.contrib.auth import get_user_model
-
 from rest_framework import status
 from rest_framework.reverse import reverse
 from rest_framework.request import Request
 from rest_framework.test import APITestCase, APIRequestFactory
+
+from menu.models.category import Category
+from menu.models.food_item import FoodItem
+from menu.models.tag import Tag
+from menu.serializers.food_item_serializer import FoodItemSerializer
 
 
 class TestFoodItemModel(APITestCase):
@@ -31,10 +30,10 @@ class TestFoodItemModel(APITestCase):
 
     CREATE:
         Create a model instance.
-    
+
     UPDATE:
         Update a model instance.
-    
+
     DESTROY:
         Destroy a model instance.
     """
@@ -55,7 +54,7 @@ class TestFoodItemModel(APITestCase):
     """
     Testing LIST:
         Lists a queryset.
-    
+
     Checks for:
         200 response.
         GET data is same as database data.
@@ -63,27 +62,27 @@ class TestFoodItemModel(APITestCase):
     def test_list(self):
         url = '/api/food_items/'
         factory = APIRequestFactory()
-        request = factory.post(url)
-        
+        request = factory.get(url)
+
         objs = FoodItem.objects.all()
         serializer_context = {
-            'request': Request(request),
+            'request': Request(request)
         }
         serializer = FoodItemSerializer(
             objs,
             context=serializer_context,
-            many=True,
+            many=True
         )
 
         response = self.client.get(url)
-
         self.assertEqual(response.status_code, status.HTTP_200_OK)
+
         self.assertEqual(response.data, serializer.data)
 
     """
     Testing CREATE
         Create a model instance.
-    
+
     Asserts:
         201 response.
         Object count increased.
@@ -93,7 +92,7 @@ class TestFoodItemModel(APITestCase):
         url = '/api/food_items/'
         factory = APIRequestFactory()
         request = factory.post(url)
-        
+
         init_count = FoodItem.objects.count()
 
         body = {
@@ -103,10 +102,10 @@ class TestFoodItemModel(APITestCase):
             'description': 'Test Description',
             'category': reverse(
                 'category-detail',
-                args=[Category.objects.get(id=1).pk,],
-                request=request,
+                args=[Category.objects.get(id=1).pk],
+                request=request
             ),
-            'tags' : [],
+            'tags': []
         }
         response = self.client.post(url, body, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
@@ -125,11 +124,11 @@ class TestFoodItemModel(APITestCase):
         body = {
             'tags': [reverse(
                 'tag-detail',
-                args=[Tag.objects.get(id=1).pk,],
-                request=request,
-            ),]
+                args=[Tag.objects.get(id=1).pk],
+                request=request
+            )]
         }
-        response=self.client.patch(url, body, format='json')
+        response = self.client.patch(url, body, format='json')
         # print(response.__getstate__())
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         # print(post_obj.tags)
@@ -138,7 +137,7 @@ class TestFoodItemModel(APITestCase):
     """
     Testing RETRIEVE
         Retrieve a model instance.
-    
+
     Asserts:
         200 response.
         GET data is same as in database.
@@ -146,27 +145,27 @@ class TestFoodItemModel(APITestCase):
     def test_retrieve(self):
         url = '/api/food_items/1/'
         factory = APIRequestFactory()
-        request = factory.post(url)
-        
-        obj = [FoodItem.objects.get(id=1),]
+        request = factory.get(url)
+
+        obj = [FoodItem.objects.get(id=1)]
         serializer_context = {
-            'request': Request(request),
+            'request': Request(request)
         }
         serializer = FoodItemSerializer(
             obj,
             context=serializer_context,
-            many=True,
+            many=True
         )
 
         response = self.client.get(url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        
-        self.assertEqual([OrderedDict(response.data),], serializer.data)
-        
+
+        self.assertEqual([OrderedDict(response.data)], serializer.data)
+
     """
     Testing UPDATE
         Update a model instance.
-    
+
     Asserts:
         200 response.
         All fields have been changed and content is correct.
@@ -175,7 +174,7 @@ class TestFoodItemModel(APITestCase):
         url = '/api/food_items/1/'
         factory = APIRequestFactory()
         request = factory.post(url)
-        
+
         category = Category.objects.get(id=2)
         body = {
             'name': 'Test Change',
@@ -184,10 +183,10 @@ class TestFoodItemModel(APITestCase):
             'description': 'Test Change',
             'category': reverse(
                 'category-detail',
-                args=[category.pk,],
-                request=request,
+                args=[category.pk],
+                request=request
             ),
-            'size': 'SMALL',
+            'size': 'SMALL'
         }
         response = self.client.put(url, body, format='json')
         # print(response.__getstate__())
@@ -223,7 +222,7 @@ class TestFoodItemModel(APITestCase):
     """
     Testing DESTROY
         Destroy a model instance.
-    
+
     Asserts:
         204 response.
         Correct object has been deleted from database.
@@ -252,10 +251,10 @@ class TestFoodItemModel(APITestCase):
             'tags': [
                 reverse(
                     'tag-detail',
-                    args=[tag.pk,],
-                    request=request,
-                ),
-            ],
+                    args=[tag.pk],
+                    request=request
+                )
+            ]
         }
         response = self.client.patch(url, body, format='json')
         # print(response.__getstate__())

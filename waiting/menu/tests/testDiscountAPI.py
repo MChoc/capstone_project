@@ -1,14 +1,13 @@
 from collections import OrderedDict
 
-from menu.models.discount import Discount
-from menu.serializers.discount_serializer import DiscountSerializer
-
 from django.contrib.auth import get_user_model
-
 from rest_framework import status
 from rest_framework.reverse import reverse
 from rest_framework.request import Request
 from rest_framework.test import APITestCase, APIRequestFactory
+
+from menu.models.discount import Discount
+from menu.serializers.discount_serializer import DiscountSerializer
 
 
 class TestDiscountModel(APITestCase):
@@ -29,10 +28,10 @@ class TestDiscountModel(APITestCase):
 
     CREATE:
         Create a model instance.
-    
+
     UPDATE:
         Update a model instance.
-    
+
     DESTROY:
         Destroy a model instance.
     """
@@ -53,7 +52,7 @@ class TestDiscountModel(APITestCase):
     """
     Testing LIST:
         Lists a queryset.
-    
+
     Checks for:
         200 response.
         GET data is same as database data.
@@ -61,27 +60,27 @@ class TestDiscountModel(APITestCase):
     def test_list(self):
         url = '/api/discounts/'
         factory = APIRequestFactory()
-        request = factory.post(url)
-        
+        request = factory.get(url)
+
         objs = Discount.objects.all()
         serializer_context = {
-            'request': Request(request),
+            'request': Request(request)
         }
         serializer = DiscountSerializer(
             objs,
             context=serializer_context,
-            many=True,
+            many=True
         )
 
         response = self.client.get(url)
-
         self.assertEqual(response.status_code, status.HTTP_200_OK)
+
         self.assertEqual(response.data, serializer.data)
 
     """
     Testing CREATE
         Create a model instance.
-    
+
     Asserts:
         201 response.
         Object count increased.
@@ -91,7 +90,7 @@ class TestDiscountModel(APITestCase):
         url = '/api/discounts/'
         factory = APIRequestFactory()
         request = factory.post(url)
-        
+
         init_count = Discount.objects.count()
 
         body = {
@@ -110,7 +109,7 @@ class TestDiscountModel(APITestCase):
     """
     Testing RETRIEVE
         Retrieve a model instance.
-    
+
     Asserts:
         200 response.
         GET data is same as in database.
@@ -118,34 +117,34 @@ class TestDiscountModel(APITestCase):
     def test_retrieve(self):
         url = '/api/discounts/1/'
         factory = APIRequestFactory()
-        request = factory.post(url)
-        
-        obj = [Discount.objects.get(id=1),]
+        request = factory.get(url)
+
+        obj = [Discount.objects.get(id=1)]
         serializer_context = {
-            'request': Request(request),
+            'request': Request(request)
         }
         serializer = DiscountSerializer(
             obj,
             context=serializer_context,
-            many=True,
+            many=True
         )
 
         response = self.client.get(url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        
-        self.assertEqual([OrderedDict(response.data),], serializer.data)
-        
+
+        self.assertEqual([OrderedDict(response.data)], serializer.data)
+
     """
     Testing UPDATE
         Update a model instance.
-    
+
     Asserts:
         200 response.
         All fields have been changed and content is correct.
     """
     def test_update(self):
         url = '/api/discounts/1/'
-        
+
         body = {
             'name': 'Test Change',
             'amount': 20,
@@ -157,7 +156,6 @@ class TestDiscountModel(APITestCase):
         obj = Discount.objects.get(id=1)
         self.assertEqual(obj.name, 'Test Change')
         self.assertEqual(obj.amount, 20)
-        # TODO: self.assertEqual(obj.discount, 'DOLLAR')
 
     """
     Testing UPDATE (partial)
@@ -184,7 +182,7 @@ class TestDiscountModel(APITestCase):
     """
     Testing DESTROY
         Destroy a model instance.
-    
+
     Asserts:
         204 response.
         Correct object has been deleted from database.

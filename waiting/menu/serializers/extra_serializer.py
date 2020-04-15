@@ -1,6 +1,6 @@
-from menu.models.extra import Extra
-
 from rest_framework import serializers
+
+from menu.models.extra import Extra
 
 
 class ExtraSerializer(serializers.HyperlinkedModelSerializer):

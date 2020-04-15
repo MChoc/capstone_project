@@ -12,7 +12,7 @@ from menu.models.credit_card import CreditCard
 from django.contrib.auth import get_user_model
 
 
-# ==============================================================================
+# =============================================================================
 # Create menu/store
 menu = Menu.objects.create(name='Waiting Cafe')
 print(f"Created {menu}")
@@ -21,7 +21,7 @@ print(f"Created {menu}")
 categories = []
 food_items = []
 extras = []
-for i in range(0,10):
+for i in range(0, 10):
     category = Category.objects.create(
         name='Category ' + str(i+1),
         menu=menu
@@ -29,18 +29,18 @@ for i in range(0,10):
     categories.append(category)
     print(f"Created {category}")
 
-    for i in range(0,10):
+    for i in range(0, 10):
         if i <= 5:
             food_item = FoodItem.objects.create(
                 name='Food item ' + str(i+1),
-                price='10.00', #TODO: use rand
+                price='10.00',  # TODO: use rand
                 description='Test description ' + str(i+1),
                 category=category
             )
         else:
             food_item = FoodItem.objects.create(
                 name='Drink ' + str(i-4),
-                price='10.00', # TODO: use rand
+                price='10.00',  # TODO: use rand
                 description='Test description ' + str(i-5),
                 category=category,
                 size='LARGE'
@@ -58,19 +58,19 @@ for i in range(0,10):
 
 # TODO: use rand to add tags to items
 tags = []
-for i in range(0,10):
+for i in range(0, 10):
     tag = Tag.objects.create(name='Tag ' + str(i+1))
     tags.append(tag)
     print(f"Created {tag}")
 
-# ==============================================================================
+# =============================================================================
 # Create superuser
 admin = get_user_model().objects.create_superuser('admin', password='admin')
 print("Created admin")
 
 # Populate table with managers
 managers = []
-for i in range(0,5):
+for i in range(0, 5):
     manager = get_user_model().objects.create_superuser(
         username='Manager' + str(i+1),
         password='Manager' + str(i+1),
@@ -83,7 +83,7 @@ for i in range(0,5):
 
 # Populate table with customers
 customers = []
-for i in range(0,5):
+for i in range(0, 5):
     customer = get_user_model().objects.create_user(
         username='Customer' + str(i+1),
         password='Customer' + str(i+1),
@@ -96,7 +96,7 @@ for i in range(0,5):
 
 # Populate table with kitchen staff
 kitchens = []
-for i in range(0,5):
+for i in range(0, 5):
     kitchen = get_user_model().objects.create_user(
         username='Kitchen' + str(i+1),
         password='Kitchen' + str(i+1),
@@ -109,7 +109,7 @@ for i in range(0,5):
 
 # Populate table with waiters
 waiters = []
-for i in range(0,5):
+for i in range(0, 5):
     waiter = get_user_model().objects.create_user(
         username='Waiter' + str(i+1),
         password='Waiter' + str(i+1),
@@ -120,10 +120,10 @@ for i in range(0,5):
     waiters.append(waiter)
     print(f"Created {waiter}")
 
-# ==============================================================================
+# =============================================================================
 # Create discounts including default zero
 discounts = []
-for i in range(0,5):
+for i in range(0, 5):
     discount = Discount.objects.create(
         name=str(i * 10) + '%',
         amount=i * 10,
@@ -134,19 +134,19 @@ for i in range(0,5):
 
 # Create credit cards
 credit_cards = []
-for i in range(0,5):
+for i in range(0, 5):
     credit_card = CreditCard.objects.create(
         number='123412341234123' + str(i+1),
         expiry_month='0' + str(i+1),
         expiry_year='0' + str(i+1),
-        cvs='12' + str(i+1)
+        cvv='12' + str(i+1)
     )
     credit_cards.append(credit_card)
     print(f"Created {credit_card}")
 
 # Create transactions
 transactions = []
-for i in range(0,5):
+for i in range(0, 5):
     transaction = Transaction.objects.create(
         # TODO: randomise customer and credit card
         customer=customers[i],
@@ -164,7 +164,7 @@ for i in range(0,5):
     print(f"Created {transaction}")
 
 assistances = []
-for i in range(0,5):
+for i in range(0, 5):
     assistance = Assistance.objects.create(
         transaction=transactions[i],
         waiter=waiters[i],

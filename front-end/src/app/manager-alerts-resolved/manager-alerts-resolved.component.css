@@ -1,0 +1,42 @@
+.resolved-assistance, .resolved-orders {
+    text-align: center;
+    width: 300px;
+    margin: auto;
+    padding-bottom: 20px;
+    border-bottom: solid .5px;
+}
+
+li {
+    list-style: none;
+}
+
+button {
+    display: block;
+    margin: auto;
+    margin-top: 20px;
+    padding-top: 20px;
+    width: 100%;
+    color: #352728;
+    background-color: #fcf7fb;
+    border: none;
+    border-top: solid .5px;
+    cursor: pointer;
+    outline: none;
+}
+
+.resolved {
+    background-color: #fcf7fb;
+    padding: 10px;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    margin-top: 30px;
+    text-decoration: underline;
+    margin: 10px;
+    box-shadow: none;
+}
+
+.resolved:active {
+    transform: none;
+    box-shadow: none;
+}

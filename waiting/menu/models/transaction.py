@@ -1,8 +1,8 @@
+from django.db import models
+
 from accounts.models import CustomUser
 from menu.models.credit_card import CreditCard
 from menu.models.food_item import FoodItem
-
-from django.db import models
 
 
 class Transaction(models.Model):
