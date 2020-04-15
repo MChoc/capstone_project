@@ -1,0 +1,43 @@
+.orderSuccess {
+    width: 300px;
+    margin: auto;
+    text-align: center;
+}
+
+.number, .orderDone {
+    margin: auto;
+    background-color: #fdcfd7;
+    color: #352728;
+    border: none;
+    border-radius: 4px;
+    outline: none;
+    box-shadow: 2px 2px 2px grey;
+}
+
+.number {
+    padding: 15px;
+    font-size: larger;
+}
+
+.orderDone {
+    cursor: pointer;
+    padding: 12px 20px;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.orderDone:active {
+    transform: translateY(2px);
+    box-shadow: 1px 1px 2px grey;
+}
+
+.orderDetails {
+    text-align: left;
+    border-top: solid .5px;
+}
+
+.container {
+    border-bottom: solid .5px;
+    margin-bottom: 30px;
+    margin-top: 20px;
+}

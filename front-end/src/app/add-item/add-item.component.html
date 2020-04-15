@@ -2,21 +2,57 @@
   <div *ngIf="item">
       <h2>{{ item.name }}</h2>
       <p>{{ item.description }}</p>
-      <p>Price: ${{ item.price }}</p>
-      <ng-container *ngIf="item.size">
-        <p>Size: {{ item.size }}</p>
-      </ng-container>
+      <div class="details">
+        <p style="font-weight: bold;">${{ item.price }}</p>
+        <ng-container *ngIf="item.size">
+          <p>{{ item.size }}</p>
+        </ng-container>
+      </div>
+      
       <form [formGroup]="orderForm">
-        <div [formGroup]="orderForm" class="element">
-          <label>Quantity:</label>
-          <input type="number" min="1" max="15" formControlName="quantity">
+        <div class="row">
+          <div class="column1">
+            <p>Quantity:</p>
+          </div>
+          <div class="column2">
+            <div [formGroup]="orderForm" class="element">
+              <input type="number" min="1" max="15" formControlName="quantity">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="column1">
+            <p>Sides and Extras:</p>
+          </div>
+          <div class="column2">
+            <div class="container">
+              <ul class="columnList" *ngFor="let extra of extras;">
+                <div *ngIf="extra.category === category && extra.active" class="extra">
+                  <input type="checkbox" (change)="checkValue(extra, $event.target.checked)">
+                  <b>{{ extra.name }}</b>
+                  ${{ extra.price }}
+                </div>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="column1">
+            <p>Special Requests:</p>
+          </div>
+          <div class=column2>
+            <div [formGroup]="orderForm" class="element">
+              <textarea class="request" type="text" formControlName="request"></textarea>
+            </div>
+          </div>
         </div>
       </form>
-      <br/>
+      
       <button type="button" (click)="addToCart(item)">Add to order</button>
-      <div class="success_message">{{ success_message }}</div>
       <div class="error_message">{{ error_message }}</div>
-    <a id="cart-ref" href="/cart">View Order</a>
-    <a id="menu-ref" href="/">Back to Menu</a>
+  </div>
+  <div class="buttons">
+    <a class="back" id="menu-ref" href="/">Back to Menu</a> 
+    <a class="cart" id="cart-ref" href="/cart">View Cart</a>
   </div>
 </div>

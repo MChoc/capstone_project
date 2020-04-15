@@ -1,0 +1,35 @@
+<div class="assistance-requests">
+    <h2>Assistance Requests</h2>
+    <li *ngFor="let request of requests$">
+        <div *ngIf="!request.resolved" >
+            <button type=[button] class="assistance" (click)="assistance( request.id )">
+                Request no. {{ request.id }}
+            </button>
+        </div>
+    </li>
+</div>
+<br>
+<div class="kitchen-orders">
+    <h2>Kitchen Orders</h2>
+    <li *ngFor="let transaction of transactions$">
+        <div *ngIf="transaction.active && !transaction.prepared">
+            <button type=[button] class="orders" (click)="orders( transaction.id )">
+                Order no. {{ transaction.id }}
+            </button>
+        </div>
+    </li>
+</div>
+<br>
+<div class="order-pickups">
+    <h2>Order Pickups</h2>
+    <li *ngFor="let transaction of transactions$">
+        <div *ngIf="transaction.active && transaction.prepared">
+            <button type=[button] class="pickups" (click)="pickups( transaction.id )">
+                Order no. {{ transaction.id }}
+            </button>
+        </div>
+    </li>
+</div>
+
+<br>
+<button  (click)=resolved() class="resolved">Resolved Alerts</button>

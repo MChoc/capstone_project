@@ -12,7 +12,7 @@ from menu.models.credit_card import CreditCard
 from django.contrib.auth import get_user_model
 
 
-# ==============================================================================
+# =============================================================================
 # Create menu/store
 menu = Menu.objects.create(name='Waiting Cafe')
 print(f"Created {menu}")
@@ -21,26 +21,26 @@ print(f"Created {menu}")
 categories = []
 food_items = []
 extras = []
-for i in range(0,10):
+for i in range(0, 10):
     category = Category.objects.create(
-        name='Category ' + str(1),
+        name='Category ' + str(i+1),
         menu=menu
     )
     categories.append(category)
     print(f"Created {category}")
 
-    for i in range(0,10):
+    for i in range(0, 10):
         if i <= 5:
             food_item = FoodItem.objects.create(
-                name='Food item ' + str(i),
-                price='10.00', #TODO: use rand
-                description='Test description ' + str(i),
+                name='Food item ' + str(i+1),
+                price='10.00',  # TODO: use rand
+                description='Test description ' + str(i+1),
                 category=category
             )
         else:
             food_item = FoodItem.objects.create(
-                name='Drink ' + str(i-5),
-                price='10.00', # TODO: use rand
+                name='Drink ' + str(i-4),
+                price='10.00',  # TODO: use rand
                 description='Test description ' + str(i-5),
                 category=category,
                 size='LARGE'
@@ -49,7 +49,7 @@ for i in range(0,10):
         print(f"Created {food_item}")
 
         extra = Extra.objects.create(
-            name='Extra ' + str(i),
+            name='Extra ' + str(i+1),
             price=i,
             category=category
         )
@@ -58,24 +58,24 @@ for i in range(0,10):
 
 # TODO: use rand to add tags to items
 tags = []
-for i in range(0,10):
-    tag = Tag.objects.create(name='Tag ' + str(i))
+for i in range(0, 10):
+    tag = Tag.objects.create(name='Tag ' + str(i+1))
     tags.append(tag)
     print(f"Created {tag}")
 
-# ==============================================================================
+# =============================================================================
 # Create superuser
 admin = get_user_model().objects.create_superuser('admin', password='admin')
 print("Created admin")
 
 # Populate table with managers
 managers = []
-for i in range(1,5):
+for i in range(0, 5):
     manager = get_user_model().objects.create_superuser(
-        username='Manager' + str(i),
-        password='Manager' + str(i),
-        first_name='Manager' + str(i),
-        last_name='M' + str(i),
+        username='Manager' + str(i+1),
+        password='Manager' + str(i+1),
+        first_name='Manager' + str(i+1),
+        last_name='M' + str(i+1),
         user_type='MANAGER'
     )
     managers.append(manager)
@@ -83,12 +83,12 @@ for i in range(1,5):
 
 # Populate table with customers
 customers = []
-for i in range(0,5):
+for i in range(0, 5):
     customer = get_user_model().objects.create_user(
-        username='Customer' + str(i),
-        password='Customer' + str(i),
-        first_name='Customer' + str(i),
-        last_name='C' + str(i),
+        username='Customer' + str(i+1),
+        password='Customer' + str(i+1),
+        first_name='Customer' + str(i+1),
+        last_name='C' + str(i+1),
         user_type='CUSTOMER'
     )
     customers.append(customer)
@@ -96,12 +96,12 @@ for i in range(0,5):
 
 # Populate table with kitchen staff
 kitchens = []
-for i in range(0,5):
+for i in range(0, 5):
     kitchen = get_user_model().objects.create_user(
-        username='Kitchen' + str(i),
-        password='Kitchen' + str(i),
-        first_name='Kitchen' + str(i),
-        last_name='K' + str(i),
+        username='Kitchen' + str(i+1),
+        password='Kitchen' + str(i+1),
+        first_name='Kitchen' + str(i+1),
+        last_name='K' + str(i+1),
         user_type='KITCHEN'
     )
     kitchens.append(kitchen)
@@ -109,21 +109,21 @@ for i in range(0,5):
 
 # Populate table with waiters
 waiters = []
-for i in range(0,5):
+for i in range(0, 5):
     waiter = get_user_model().objects.create_user(
-        username='Waiter' + str(i),
-        password='Waiter' + str(i),
-        first_name='Waiter' + str(i),
-        last_name='W' + str(i),
+        username='Waiter' + str(i+1),
+        password='Waiter' + str(i+1),
+        first_name='Waiter' + str(i+1),
+        last_name='W' + str(i+1),
         user_type='WAITER'
     )
     waiters.append(waiter)
     print(f"Created {waiter}")
 
-# ==============================================================================
+# =============================================================================
 # Create discounts including default zero
 discounts = []
-for i in range(0,5):
+for i in range(0, 5):
     discount = Discount.objects.create(
         name=str(i * 10) + '%',
         amount=i * 10,
@@ -134,19 +134,19 @@ for i in range(0,5):
 
 # Create credit cards
 credit_cards = []
-for i in range(0,5):
+for i in range(0, 5):
     credit_card = CreditCard.objects.create(
-        number='123412341234123' + str(i),
-        expiry_month='0' + str(i),
-        expiry_year='0' + str(i),
-        cvs='12' + str(i)
+        number='123412341234123' + str(i+1),
+        expiry_month='0' + str(i+1),
+        expiry_year='0' + str(i+1),
+        cvv='12' + str(i+1)
     )
     credit_cards.append(credit_card)
     print(f"Created {credit_card}")
 
 # Create transactions
 transactions = []
-for i in range(0,5):
+for i in range(0, 5):
     transaction = Transaction.objects.create(
         # TODO: randomise customer and credit card
         customer=customers[i],
@@ -164,12 +164,12 @@ for i in range(0,5):
     print(f"Created {transaction}")
 
 assistances = []
-for i in range(0,5):
+for i in range(0, 5):
     assistance = Assistance.objects.create(
         transaction=transactions[i],
         waiter=waiters[i],
-        problem='Problem ' + str(i),
-        notes='Notes ' + str(i),
+        problem='Problem ' + str(i+1),
+        notes='Notes ' + str(i+1),
     )
     assistances.append(assistance)
     print(f'Created {assistance}')

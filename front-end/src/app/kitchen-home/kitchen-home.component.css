@@ -1,0 +1,31 @@
+.kitchen-home {
+    margin: auto;
+    width: 300px;
+    text-align: center;
+}
+
+.cooked {
+    margin: auto;
+    background-color: #fdcfd7;
+    color: #352728;
+    border: none;
+    border-radius: 4px;
+    outline: none;
+    box-shadow: 2px 2px 2px grey;
+    cursor: pointer;
+    padding: 12px 20px;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.item {
+    border-top: solid .5px  #35272862;
+    padding-top: 15px;
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.cooked:active {
+    transform: translateY(2px);
+    box-shadow: 1px 1px 2px grey;
+}

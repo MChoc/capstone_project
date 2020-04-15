@@ -3,3 +3,5 @@
 .vscode/
 **/db.sqlite3
 todo
+database.json
+dump.json

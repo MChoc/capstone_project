@@ -2,12 +2,12 @@
     <h2>STAFF</h2>
     
     <ul class="staff-list">
-        <li *ngFor="let user of users$" class="staff">
-            <div *ngIf="user.active">
+        <li *ngFor="let user of users$">
+            <div *ngIf="user.active"  class="staff">
             
-                <b>{{ user.username }}</b>
                 <div class="row">
                     <div class="column1">
+                        <b>{{ user.username }}</b>
                         <ul class="staff-list">
                             <li>{{ user.first_name }} {{ user.last_name }}</li>
                             <li>{{ user.user_type }}</li>
@@ -29,33 +29,34 @@
         </li>
     </ul>
 
-    <p>Archived Accounts:</p>
-    <ul *ngFor="let user of users$" class="archivestaff">
-        <div *ngIf="!user.active">
+    <div class="archived-staff-list">
+        <p class="pad">Archived Accounts:</p>
+        <ul *ngFor="let user of users$" >
+            <div *ngIf="!user.active" class="archived-staff">
         
-            <b>{{ user.username }}</b>
-            <div class="row">
-                <div class="column1">
-                    <ul class="staff-list">
-                        <li>{{ user.first_name }} {{ user.last_name }}</li>
-                        <li>{{ user.user_type }}</li>
-                    </ul>
-                </div>
-                <div class="column2">
-                    <a [routerLink] = "['edit', user.id]" [class.activated]="currentUrl == '/management/staff'">
-                        <i class="material-icons">edit</i>
-                    </a>
-                    <button (click)="unarchiveUser( user.id )" class="unarchive">
-                        <i class="material-icons">add</i>
-                    </button>
-                    <button (click)="deleteUser( user.id )" class="delete">
-                        <i class="material-icons">delete</i>
-                    </button>
+                <div class="row">
+                    <div class="column1">
+                        <b>{{ user.username }}</b>
+                        <ul class="staff-list">
+                            <li>{{ user.first_name }} {{ user.last_name }}</li>
+                            <li>{{ user.user_type }}</li>
+                        </ul>
+                    </div>
+                    <div class="column2">
+                        <a [routerLink] = "['edit', user.id]" [class.activated]="currentUrl == '/management/staff'">
+                            <i class="material-icons">edit</i>
+                        </a>
+                        <button (click)="unarchiveUser( user.id )" class="unarchive">
+                            <i class="material-icons">add</i>
+                        </button>
+                        <button (click)="deleteUser( user.id )" class="delete">
+                            <i class="material-icons">delete</i>
+                        </button>
+                    </div>
                 </div>
             </div>
-        </div>
-    </ul>
-
+        </ul>
+    </div>
     <button type="button" class="addEmp" onclick="window.location.href='/management/staff/register'">Add Employee</button>
 
 </div>

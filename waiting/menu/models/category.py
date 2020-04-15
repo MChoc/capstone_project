@@ -1,6 +1,6 @@
-from menu.models.menu import Menu
-
 from django.db import models
+
+from menu.models.menu import Menu
 
 
 class Category(models.Model):
@@ -11,7 +11,7 @@ class Category(models.Model):
         on_delete=models.CASCADE,
         related_name='categories'
     )
-    
+
     class Meta:
         verbose_name_plural = 'categories'
 

@@ -1,12 +1,13 @@
+from django.db import models
+
 from accounts.models import CustomUser
 from menu.models.credit_card import CreditCard
 from menu.models.food_item import FoodItem
 
-from django.db import models
-
 
 class Transaction(models.Model):
     active = models.BooleanField(default=True)
+    prepared = models.BooleanField(default=False)
     date = models.DateTimeField(auto_now_add=True)
     customer = models.ForeignKey(
         CustomUser,
@@ -20,4 +21,4 @@ class Transaction(models.Model):
         through='TransactionFoodItem'
     )
     credit_card = models.ForeignKey(CreditCard, on_delete=models.CASCADE)
-    description = models.CharField(max_length=1024, null=True, blank=True)
+    request = models.CharField(max_length=1024, null=True, blank=True)

@@ -1,0 +1,34 @@
+<div class="orderSuccess">
+    <h1 *ngIf="!complete else elseBlock;">
+        Your order has been placed!
+    </h1>
+    <ng-template #elseBlock>
+        <h1>Your order is ready!</h1>
+    </ng-template>
+    <br>
+    <button class="number">No. {{ id }}</button>
+    <br>
+    
+    <div class="container">
+        <h3>Order Details</h3>
+        <div *ngFor="let item of transactionFoodItems">
+            <div *ngIf="item.transaction == transaction.url" class="orderDetails">
+                <h4 style="font-weight: bold;">{{ getFoodItemName(item.food_item) }}</h4>
+                <ng-container *ngIf="item.extras.length > 0">
+                    <p>Extras: {{ getExtraNames(item.extras) }}</p>
+                </ng-container>
+                <ng-container *ngIf="item.request">
+                    <p>Request: {{ item.request }}</p>
+                </ng-container>
+            </div>
+        </div>
+    </div>
+
+    <p *ngIf="!complete else elseBlock2;">
+        Please wait for a waiter to call your number. Do not leave this page until you have received your order.
+    </p>
+    <ng-template #elseBlock2>
+        <p>Please proceed to the counter to pick it up.</p>
+        <button class="orderDone" (click)="menu()">I have received my order</button>
+    </ng-template>
+</div>

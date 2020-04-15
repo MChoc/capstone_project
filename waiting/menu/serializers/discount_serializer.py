@@ -1,6 +1,6 @@
-from menu.models.discount import Discount
-
 from rest_framework import serializers
+
+from menu.models.discount import Discount
 
 
 class DiscountSerializer(serializers.HyperlinkedModelSerializer):

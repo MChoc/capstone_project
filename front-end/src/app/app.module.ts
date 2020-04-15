@@ -28,6 +28,18 @@ import { CategoryManageComponent } from './category-manage/category-manage.compo
 import { ExtraComponent } from './extra/extra.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { ExtraEditComponent } from './extra-edit/extra-edit.component';
+import { OrderSuccessComponent } from './order-success/order-success.component';
+import { AssistanceComponent } from './assistance/assistance.component';
+import { AssistanceIdComponent } from './assistance-id/assistance-id.component';
+import { WaiterAssistanceComponent } from './waiter-assistance/waiter-assistance.component';
+import { WaiterOrderComponent } from './waiter-order/waiter-order.component';
+import { ManagerAlertsComponent } from './manager-alerts/manager-alerts.component';
+import { ManagerAlertsAssistanceComponent } from './manager-alerts-assistance/manager-alerts-assistance.component';
+import { ManagerAlertsOrdersComponent } from './manager-alerts-orders/manager-alerts-orders.component';
+import { ManagerAlertsPickupsComponent } from './manager-alerts-pickups/manager-alerts-pickups.component';
+import { ManagerAlertsResolvedComponent } from './manager-alerts-resolved/manager-alerts-resolved.component';
+import { ResolvedAssistanceComponent } from './resolved-assistance/resolved-assistance.component';
+import { ResolvedOrdersComponent } from './resolved-orders/resolved-orders.component';
 
 
 @NgModule({
@@ -54,7 +66,19 @@ import { ExtraEditComponent } from './extra-edit/extra-edit.component';
     CategoryManageComponent,
     ExtraComponent,
     PageNotFoundComponent,
-    ExtraEditComponent
+    ExtraEditComponent,
+    OrderSuccessComponent,
+    AssistanceComponent,
+    AssistanceIdComponent,
+    WaiterAssistanceComponent,
+    WaiterOrderComponent,
+    ManagerAlertsComponent,
+    ManagerAlertsAssistanceComponent,
+    ManagerAlertsOrdersComponent,
+    ManagerAlertsPickupsComponent,
+    ManagerAlertsResolvedComponent,
+    ResolvedAssistanceComponent,
+    ResolvedOrdersComponent,
   ],
   imports: [
     BrowserModule,
@@ -62,7 +86,6 @@ import { ExtraEditComponent } from './extra-edit/extra-edit.component';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    // NgMultiSelectDropDownModule.forRoot()
   ],
   providers: [
   ],

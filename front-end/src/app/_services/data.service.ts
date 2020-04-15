@@ -1,77 +1,56 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
+import {Transaction} from "../models/transaction.model";
+import {Observable} from "rxjs/internal/Observable";
+import { TransactionFoodItem } from '../models/transaction-food-item.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
 
-  private userList = 'http://127.0.0.1:5000/api/accounts/'
-  private menuList = 'http://127.0.0.1:5000/api/menus/'
-  private extraList = 'http://127.0.0.1:5000/api/extra/'
-  private categoryList = 'http://127.0.0.1:5000/api/categories/'
-  private itemList = 'http://127.0.0.1:5000/api/food_items/'
+  private userList = 'http://127.0.0.1:5000/api/accounts/';
+  private menuList = 'http://127.0.0.1:5000/api/menus/';
+  private extraList = 'http://127.0.0.1:5000/api/extra/';
+  private categoryList = 'http://127.0.0.1:5000/api/categories/';
+  private itemList = 'http://127.0.0.1:5000/api/food_items/';
+  private transactionList = 'http://127.0.0.1:5000/api/transaction/';
+  private transactionFoodItemList = 'http://127.0.0.1:5000/api/transaction_food_item/';
+  private requestList = 'http://127.0.0.1:5000/api/assistance/';
 
   constructor(private http: HttpClient) { }
 
   getUsers() {
-    let key = window.localStorage.getItem('key')
+    let key = window.localStorage.getItem('key');
     var header = {
       headers: new HttpHeaders()
         .set('Authorization', 'Token ' + key)
     }
     
-    return this.http.get(this.userList, header)
+    return this.http.get(this.userList, header);
   }
 
   getMenus() {
-    let key = window.localStorage.getItem('key')
-    var header = {
-      headers: new HttpHeaders()
-        .set('Authorization', 'Token ' + key)
-    }
-
-    return this.http.get(this.menuList, header)
+    return this.http.get<any[]>(this.menuList);
   }
 
   getExtras() {
-    let key = window.localStorage.getItem('key')
-    var header = {
-      headers: new HttpHeaders()
-        .set('Authorization', 'Token ' + key)
-    }
-
-    return this.http.get(this.extraList, header)
+    return this.http.get<any[]>(this.extraList);
   }
 
   getCategories() {
-    let key = window.localStorage.getItem('key')
-    var header = {
-      headers: new HttpHeaders()
-        .set('Authorization', 'Token ' + key)
-    }
-    return this.http.get(this.categoryList, header)
+    return this.http.get<any[]>(this.categoryList);
   }
 
   getCategory(id) {
-    let key = window.localStorage.getItem('key')
-    var header = {
-      headers: new HttpHeaders()
-        .set('Authorization', 'Token ' + key)
-    }
-    let url = this.categoryList + id + '/'
-    return this.http.get(url, header)
+
+    let url = this.categoryList + id + '/';
+    return this.http.get(url);
   }
 
   getItems() {
-    let key = window.localStorage.getItem('key')
-    var header = {
-      headers: new HttpHeaders()
-        .set('Authorization', 'Token ' + key)
-    }
-
-    return this.http.get(this.itemList, header)
+    return this.http.get<any[]>(this.itemList);
   }
 
   getItem(id: string) {
@@ -79,13 +58,42 @@ export class DataService {
     return this.http.get(url);
   }
 
+  getTransactions(): Observable<Transaction[]> {
 
-  getCustomerCategories() {
-    return this.http.get(this.categoryList)
+    let key = window.localStorage.getItem('key')
+    var header = {
+      headers: new HttpHeaders()
+        .set('Authorization', 'Token ' + key)
+    }
+
+    return this.http.get<Transaction[]>(this.transactionList, header);
   }
 
-  getCustomerItems() {
-    return this.http.get(this.itemList)
+  getTransaction(id): Observable<Transaction> {
+    let url = 'http://127.0.0.1:5000/api/transaction/' + id + '/';
+
+      return this.http.get<Transaction>(url);
   }
+
+  getTransactionFoodItems(): Observable<TransactionFoodItem[]> {
+
+    return this.http.get<TransactionFoodItem[]>(this.transactionFoodItemList);
+  }
+
+
+    getRequests() {
+      let key = window.localStorage.getItem('key')
+      var header = {
+        headers: new HttpHeaders()
+          .set('Authorization', 'Token ' + key)
+      }
+  
+      return this.http.get(this.requestList, header)
+    }
+  
+    getRequest(id: string) {
+      let url = this.requestList + id + '/';
+      return this.http.get(url);
+    }
 
 }
