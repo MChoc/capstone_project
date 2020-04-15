@@ -31,7 +31,7 @@ export class ManagerAlertsComponent implements OnInit {
     interval(10000)
     .pipe(
       startWith(0),
-      switchMap(() => this.data.getRequests())
+      switchMap(() => this.data.getRequests({'start_date': this.getLast24HoursDate()}))
     )
     .subscribe(res => {
       this.requests$ = res;
