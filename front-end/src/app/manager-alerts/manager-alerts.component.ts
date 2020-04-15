@@ -4,6 +4,7 @@ import { DataService } from '../_services/data.service';
 import { Router, NavigationEnd } from '@angular/router';
 import { interval } from 'rxjs';
 import { startWith, switchMap } from 'rxjs/operators';
+import { Transaction } from '../models/transaction.model';
 
 @Component({
   selector: 'app-manager-alerts',
@@ -13,7 +14,7 @@ import { startWith, switchMap } from 'rxjs/operators';
 export class ManagerAlertsComponent implements OnInit {
   currentUrl: string;
   requests$: Object;
-  transactions$: Object;
+  transactions$: Transaction[] = [];
 
   constructor(private http: HttpClient,
     private data : DataService,
@@ -39,12 +40,12 @@ export class ManagerAlertsComponent implements OnInit {
     interval(10000)
       .pipe(
         startWith(0),
-        switchMap(() => this.data.getTransactions())
+        switchMap(() => this.data.getTransactions({'start_date': this.getLast24HoursDate()}))
       )
       .subscribe(res => {
         this.transactions$ = res;
       });
-    
+
   }
 
   assistance(id) {
@@ -61,6 +62,12 @@ export class ManagerAlertsComponent implements OnInit {
 
   resolved() {
     this.router.navigate(['/management/alerts/resolved']);
+  }
+
+  getLast24HoursDate(): string {
+    let now = new Date();
+    now.setHours(now.getHours() - 24)
+    return now.toISOString()
   }
 
 }
