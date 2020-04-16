@@ -32,12 +32,16 @@ import { ManagerAlertsPickupsComponent } from './manager-alerts-pickups/manager-
 import { ManagerAlertsResolvedComponent } from './manager-alerts-resolved/manager-alerts-resolved.component';
 import { ResolvedAssistanceComponent } from './resolved-assistance/resolved-assistance.component';
 import { ResolvedOrdersComponent } from './resolved-orders/resolved-orders.component';
-
+import { MenuCategoryComponent } from './menu-category/menu-category.component';
 
 const routes: Routes = [
   {
     path: '',
     component: MenuComponent
+  },
+  {
+    path: 'menu/:id',
+    component: MenuCategoryComponent
   },
   {
     path: 'login',
@@ -103,7 +107,7 @@ const routes: Routes = [
     component: ManageMenuComponent
   },
   {
-    path: 'add/:id',
+    path: 'menu/:id/add/:id',
     component: AddItemComponent
   },
   {

@@ -40,6 +40,7 @@ import { ManagerAlertsPickupsComponent } from './manager-alerts-pickups/manager-
 import { ManagerAlertsResolvedComponent } from './manager-alerts-resolved/manager-alerts-resolved.component';
 import { ResolvedAssistanceComponent } from './resolved-assistance/resolved-assistance.component';
 import { ResolvedOrdersComponent } from './resolved-orders/resolved-orders.component';
+import { MenuCategoryComponent } from './menu-category/menu-category.component';
 
 
 @NgModule({
@@ -79,6 +80,7 @@ import { ResolvedOrdersComponent } from './resolved-orders/resolved-orders.compo
     ManagerAlertsResolvedComponent,
     ResolvedAssistanceComponent,
     ResolvedOrdersComponent,
+    MenuCategoryComponent,
   ],
   imports: [
     BrowserModule,
