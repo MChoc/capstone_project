@@ -20,3 +20,4 @@ class Assistance(models.Model):
     problem = models.CharField(max_length=1024)
     notes = models.CharField(max_length=2048, null=True, blank=True)
     resolved = models.BooleanField(default=False)
+    date = models.DateTimeField(auto_now_add=True)
