@@ -24,13 +24,14 @@ class TransactionViewSet(ModelViewSet):
         Else execute default get_queryset method.
     """
     def get_queryset(self):
-        start_date = self.request.query_params.get('start_date')
-        if start_date:
-            start_date = dateutil.parser.parse(start_date)
-        else:
-            start_date = datetime(1970, 1, 1)
-
-        if self.request.query_params.get('get_unprepared'):
-            return Transaction.objects.filter(prepared=False) \
-                .exclude(date__lt=start_date)
-        return super().get_queryset().exclude(date__lt=start_date)
+        if self.request.query_params:
+            ret_queryset = Transaction.objects.all()
+            if self.request.query_params.get('start_date'):
+                start_date = dateutil.parser.parse(
+                    self.request.query_params.get('start_date')
+                )
+                ret_queryset = ret_queryset.exclude(date__lt=start_date)
+            if self.request.query_params.get('get_unprepared'):
+                ret_queryset = ret_queryset.filter(prepared=False)
+            return ret_queryset
+        return super().get_queryset()

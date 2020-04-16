@@ -287,7 +287,7 @@ class TestTransactionModel(APITestCase):
         )
 
         body = {
-            'get_unprepared': True,
+            'get_unprepared': True
         }
         response = self.client.get(url, body)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
@@ -301,20 +301,18 @@ class TestTransactionModel(APITestCase):
         200 response.
         Correct objects have been returned.
     """
-    def test_list_active_transactions(self):
+    def test_list_filter_date_transactions(self):
         url = '/api/transaction/'
         factory = APIRequestFactory()
         request = factory.get(url)
 
-        # Change one transaction to finished
-        t = Transaction.objects.get(id=1)
-        t.prepared = True
-        t.save()
-
-        start_date = '1996-10-15T00:05:32.000Z'
-        objs = Transaction.objects.exclude(
-            date__lt=dateutil.parser.parse(start_date)
+        Transaction.objects.create(
+            customer=get_user_model().objects.get(username='Customer1'),
+            credit_card=CreditCard.objects.get(id=1)
         )
+        start_date = datetime.datetime.now(pytz.utc) - \
+            datetime.timedelta(seconds=10)
+        objs = Transaction.objects.exclude(date__lt=start_date)
         serializer_context = {
             'request': Request(request)
         }
@@ -325,7 +323,7 @@ class TestTransactionModel(APITestCase):
         )
 
         body = {
-            'start_date': start_date,
+            'start_date': start_date
         }
         response = self.client.get(url, body)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
