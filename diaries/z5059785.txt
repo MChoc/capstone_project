@@ -48,3 +48,16 @@ I need to work on that change and also help Tripta with the styling of her secti
 I have also been helping Leonard and Angus learn the front end so they can help contribute as well.
 After thise jobs are complete on friday, we will merge all of the changes from this sprint and move on to the next one.
 For the next sprint, we will create the notifications that are passed between different staff types (food is ordered, food is ready, customer assistance etc).
+
+Week 9
+Last week we completed the remainder of the menu sprint and also managed to get all of the communication between user types done.
+We now have a fully working system.
+Last week I completed the assistance feature which includes the process of a user requesting assitance from a waiter and the waiter recieving and resolving the issue.
+I also created the manager alerts pages which shows all of the current and resolved alerts from the past day (assistance and food orders).
+After showing our work to the tutor we were given a few features to improve but overall got a good response for our progress.
+This week I have a few touchups to make including:
+- creating realistic dummy data
+- displaying the menu separated into category pages
+- displaying the total order price on the customer order confirmation page
+In addition to this, our team will complete our final sprint which is an analytics page for the manager to see collated data about menu items, revenue and assistance requests.
+My job will be displaying this data after Colin and Tripta work on the backend of it.
