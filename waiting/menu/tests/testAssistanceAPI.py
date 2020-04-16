@@ -158,6 +158,7 @@ class TestCategoryModel(APITestCase):
         url = '/api/assistance/1/'
         factory = APIRequestFactory()
         request = factory.post(url)
+        obj = Assistance.objects.get(id=1)
 
         transaction = Transaction.objects.get(id=2)
         waiter = get_user_model().objects.get(username='Waiter2')
@@ -185,6 +186,7 @@ class TestCategoryModel(APITestCase):
         self.assertEqual(obj.problem, 'Test Change')
         self.assertEqual(obj.notes, 'Test Change')
         self.assertTrue(obj.resolved)
+        self.assertIsNotNone(obj.date_resolved)
 
     """
     Testing UPDATE (partial)
@@ -208,6 +210,7 @@ class TestCategoryModel(APITestCase):
 
         obj = Assistance.objects.get(id=1)
         self.assertEqual(obj.notes, 'Test Change')
+        self.assertIsNotNone(obj.date_resolved)
 
     """
     Testing DESTROY

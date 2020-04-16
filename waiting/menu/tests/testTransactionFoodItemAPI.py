@@ -1,5 +1,3 @@
-import datetime
-import pytz
 from collections import OrderedDict
 
 from django.contrib.auth import get_user_model

@@ -1,9 +1,9 @@
-import datetime
-import pytz
+from datetime import datetime, timedelta
 from collections import OrderedDict
 
 import dateutil.parser
 from django.contrib.auth import get_user_model
+from pytz import utc
 from rest_framework import status
 from rest_framework.reverse import reverse
 from rest_framework.request import Request
@@ -310,8 +310,7 @@ class TestTransactionModel(APITestCase):
             customer=get_user_model().objects.get(username='Customer1'),
             credit_card=CreditCard.objects.get(id=1)
         )
-        start_date = datetime.datetime.now(pytz.utc) - \
-            datetime.timedelta(seconds=10)
+        start_date = datetime.now(utc) - timedelta(seconds=10)
         objs = Transaction.objects.exclude(date__lt=start_date)
         serializer_context = {
             'request': Request(request)
