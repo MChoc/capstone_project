@@ -16,8 +16,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class KitchenHomeComponent implements OnInit {
 
-  transactions: Transaction[];
-  transactionFoodItems: TransactionFoodItem[];
+  transactions: Transaction[] = [];
+  transactionFoodItems: TransactionFoodItem[] = [];
   foodItems = []
   extras = []
 
@@ -46,7 +46,7 @@ export class KitchenHomeComponent implements OnInit {
     interval(10000)
       .pipe(
         startWith(0),
-        switchMap(() => this.data.getTransactions())
+        switchMap(() => this.data.getUnpreparedTransactions())
       )
       .subscribe(res => {
         this.transactions = res;
@@ -85,7 +85,7 @@ export class KitchenHomeComponent implements OnInit {
    * 
    * returns: array of [item_name, size]
    */
-  public getFoodItemName(url: string): string[]{
+  public getFoodItemName(url: string): string{
     let item_details = []
     for(let item of this.foodItems) {
       if (item['url'] === url) {
@@ -96,17 +96,17 @@ export class KitchenHomeComponent implements OnInit {
         }
       }
     }
-    return item_details
+    return item_details.join(", ")
   }
 
-  public getExtraNames(urls: string[]): string[]{
+  public getExtraNames(urls: string[]): string{
     let names: string[] = [];
     for(let extra of this.extras){
       if ( urls.indexOf(extra['url']) !== -1) {
         names.push(extra['name']);
       }
     }
-    return names
+    return names.join(", ")
   }
 
 }

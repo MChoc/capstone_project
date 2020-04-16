@@ -13,7 +13,6 @@ export class LoginComponent implements OnInit {
   
   loading = false;
   submitted = false;
-  returnUrl: string;
   error = '';
 
   constructor(
@@ -23,8 +22,11 @@ export class LoginComponent implements OnInit {
     ) { }
 
   ngOnInit(){
-     // get return url from route parameters or default to '/'
-     this.returnUrl = this.route.snapshot.queryParams['returnUrl']
+    // reroute to home page if user is already logged in
+    if(window.localStorage.getItem('key')) {
+      let userData = JSON.parse(window.localStorage.getItem('user'));
+      this.routeToUserHome(userData);
+    }
   }
 
   username: string;
@@ -39,21 +41,12 @@ export class LoginComponent implements OnInit {
     };
 
     this.http.post(this.url, post_data).toPromise().then(data => {
-      //this.router.navigate([this.returnUrl]);
       window.localStorage.setItem('key', data['key']);
       window.localStorage.setItem('user', JSON.stringify(data['user']));
       window.localStorage.setItem('staffID', JSON.stringify(data['user']['id']));
 
       console.log('logged in');
-      if(data['user']['user_type'] === 'MANAGER') {
-        this.router.navigate(['/management']);
-      } else if(data['user']['user_type'] === 'WAITER') {
-        this.router.navigate(['/waiter']);
-      } else if(data['user']['user_type'] === 'KITCHEN') {
-      this.router.navigate(['/kitchen']);
-      } else {
-        this.router.navigate(['/']); 
-      }
+      this.routeToUserHome(data['user']);
     },
     error=> {
       if (error.error['non_field_errors']) {
@@ -62,6 +55,20 @@ export class LoginComponent implements OnInit {
         this.error = '';
       }
     });
+  }
+
+  routeToUserHome(userData):void {
+
+    if(userData['user_type'] === 'MANAGER') {
+      this.router.navigate(['/management']);
+    } else if(userData['user_type'] === 'WAITER') {
+      this.router.navigate(['/waiter']);
+    } else if(userData['user_type'] === 'KITCHEN') {
+    this.router.navigate(['/kitchen']);
+    } else {
+      this.router.navigate(['/']); 
+    }
+
   }
 
 }
