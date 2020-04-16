@@ -127,7 +127,7 @@ for i in range(0, 5):
     discount = Discount.objects.create(
         name=str(i * 10) + '%',
         amount=i * 10,
-        discount='PERCENTAGE'
+        type='PERCENTAGE'
     )
     discounts.append(discount)
     print(f"Created {discount}")
@@ -153,6 +153,7 @@ for i in range(0, 5):
         credit_card=credit_cards[i]
     )
     transactions.append(transaction)
+    print(f"Created {transaction}")
 
     # TODO: create list of random food items of random length
     # TODO: apply random discount
@@ -161,7 +162,12 @@ for i in range(0, 5):
     transaction.food_items.set(food_items[j:j+5], through_defaults={
         'discount': discounts[i]
     })
-    print(f"Created {transaction}")
+
+    # Call save to force price calculation
+    tfi_set = TransactionFoodItem.objects.filter(transaction=transaction.pk)
+    for tfi in tfi_set:
+        tfi.save()
+        print(tfi.price)
 
 assistances = []
 for i in range(0, 5):

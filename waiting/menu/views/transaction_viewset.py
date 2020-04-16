@@ -6,7 +6,9 @@ from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
 
 from accounts.permissions import AdminOrPostOnly
+from django.db.models import Sum
 from menu.models.transaction import Transaction
+from menu.models.transaction_food_item import TransactionFoodItem
 from menu.serializers.transaction_serializer import TransactionSerializer
 
 
@@ -35,3 +37,13 @@ class TransactionViewSet(ModelViewSet):
                 ret_queryset = ret_queryset.filter(prepared=False, active=True)
             return ret_queryset
         return super().get_queryset()
+
+    def update(self, request, *args, **kwargs):
+        if request.data.get('checkout'):
+            tfis = TransactionFoodItem.objects.filter(
+                transaction=self.get_object().pk
+            )
+            request.data['total_price'] = TransactionFoodItem.objects.filter(
+                transaction=self.get_object().pk
+            ).aggregate(Sum('price'))['price__sum']
+        return super().update(request, *args, **kwargs)

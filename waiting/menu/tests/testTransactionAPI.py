@@ -101,12 +101,12 @@ class TestTransactionModel(APITestCase):
         body = {
             'customer': reverse(
                 'customuser-detail',
-                args=[get_user_model().objects.get(username='Customer1').pk, ],
+                args=[get_user_model().objects.get(username='Customer1').pk],
                 request=request
             ),
             'credit_card': reverse(
                 'creditcard-detail',
-                args=[CreditCard.objects.get(id=1).pk, ],
+                args=[CreditCard.objects.get(id=1).pk],
                 request=request
             ),
         }
@@ -166,12 +166,12 @@ class TestTransactionModel(APITestCase):
             'active': False,
             'customer': reverse(
                 'customuser-detail',
-                args=[customer.pk, ],
+                args=[customer.pk],
                 request=request
             ),
             'credit_card': reverse(
                 'creditcard-detail',
-                args=[credit_card.pk, ],
+                args=[credit_card.pk],
                 request=request
             ),
         }
@@ -201,7 +201,7 @@ class TestTransactionModel(APITestCase):
         body = {
             'credit_card': reverse(
                 'creditcard-detail',
-                args=[credit_card.pk, ],
+                args=[credit_card.pk],
                 request=request
             ),
         }
@@ -247,7 +247,7 @@ class TestTransactionModel(APITestCase):
             'food_items': [
                 reverse(
                     'fooditem-detail',
-                    args=[food_item.pk, ],
+                    args=[food_item.pk],
                     request=request
                 ),
             ],
@@ -328,3 +328,33 @@ class TestTransactionModel(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
         self.assertEqual(response.data, serializer.data)
+
+    """
+    Testing checkout
+
+    Asserts:
+        200 response.
+        Checkout conducted correctly.
+    """
+    def test_checkout(self):
+        url = '/api/transaction/2/'
+        factory = APIRequestFactory()
+        request = factory.post(url)
+
+        credit_card = CreditCard.objects.get(id=1)
+        body = {
+            'credit_card': reverse(
+                'creditcard-detail',
+                args=[credit_card.pk],
+                request=request
+            ),
+            'checkout': True
+        }
+        response = self.client.patch(url, body, format='json')
+        # print(response.__getstate__())
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+
+        obj = Transaction.objects.get(id=2)
+        self.assertEqual(obj.credit_card, credit_card)
+        # print(obj.total_price)
+        self.assertIsNotNone(obj.total_price)

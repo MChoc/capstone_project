@@ -4,13 +4,13 @@ from django.db import models
 class Discount(models.Model):
     name = models.CharField(max_length=200)
     amount = models.IntegerField()
-    DISCOUNT_CHOICES = (
+    TYPE_CHOICES = (
         ('PERCENTAGE', '%'),
         ('DOLLAR', 'Dollar'),
     )
-    discount = models.CharField(
+    type = models.CharField(
         max_length=10,
-        choices=DISCOUNT_CHOICES,
+        choices=TYPE_CHOICES,
         default='PERCENTAGE'
     )
 

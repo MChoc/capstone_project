@@ -102,12 +102,12 @@ class TestTransactionFoodItemModel(APITestCase):
         body = {
             'transaction': reverse(
                 'transaction-detail',
-                args=[Transaction.objects.get(id=1).pk, ],
+                args=[Transaction.objects.get(id=1).pk],
                 request=request
             ),
             'food_item': reverse(
                 'fooditem-detail',
-                args=[FoodItem.objects.get(id=1).pk, ],
+                args=[FoodItem.objects.get(id=1).pk],
                 request=request
             ),
         }
@@ -169,12 +169,12 @@ class TestTransactionFoodItemModel(APITestCase):
         body = {
             'food_item': reverse(
                 'fooditem-detail',
-                args=[food_item.pk, ],
+                args=[food_item.pk],
                 request=request
             ),
             'transaction': reverse(
                 'transaction-detail',
-                args=[transaction.pk, ],
+                args=[transaction.pk],
                 request=request
             ),
         }
@@ -204,7 +204,7 @@ class TestTransactionFoodItemModel(APITestCase):
         body = {
             'food_item': reverse(
                 'fooditem-detail',
-                args=[food_item.pk, ],
+                args=[food_item.pk],
                 request=request
             ),
         }
@@ -253,7 +253,7 @@ class TestTransactionFoodItemModel(APITestCase):
             'extras': [
                 reverse(
                     'extra-detail',
-                    args=[extra.pk, ],
+                    args=[extra.pk],
                     request=request
                 ),
             ],
