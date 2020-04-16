@@ -54,7 +54,7 @@ export class ManagerAlertsPickupsComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  public getFoodItemName(url: string): string[]{
+  public getFoodItemName(url: string): string{
     let item_details = []
     for(let item of this.foodItems) {
       if (item['url'] === url) {
@@ -65,17 +65,17 @@ export class ManagerAlertsPickupsComponent implements OnInit {
         }
       }
     }
-    return item_details
+    return item_details.join(", ")
   }
 
-  public getExtraNames(urls: string[]): string[]{
+  public getExtraNames(urls: string[]): string{
     let names: string[] = [];
     for(let extra of this.extras){
       if ( urls.indexOf(extra['url']) !== -1) {
         names.push(extra['name']);
       }
     }
-    return names
+    return names.join(", ")
   }
 
   back() {

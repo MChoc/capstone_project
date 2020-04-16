@@ -58,20 +58,20 @@ export class DataService {
     return this.http.get(url);
   }
 
-  getTransactions(): Observable<Transaction[]> {
-
-    let key = window.localStorage.getItem('key')
-    var header = {
-      headers: new HttpHeaders()
-        .set('Authorization', 'Token ' + key)
+  getTransactions(parameters={}): Observable<Transaction[]> {
+    
+    if (parameters) {
+      return this.http.get<Transaction[]>(this.transactionList, {params: parameters});
     }
-
-    return this.http.get<Transaction[]>(this.transactionList, header);
+    return this.http.get<Transaction[]>(this.transactionList);
   }
 
-  getTransaction(id): Observable<Transaction> {
+  getTransaction(id, parameters?: any): Observable<Transaction> {
     let url = 'http://127.0.0.1:5000/api/transaction/' + id + '/';
 
+      if(parameters) {
+        return this.http.get<Transaction>(url, {params: parameters});
+      }
       return this.http.get<Transaction>(url);
   }
 
@@ -81,19 +81,16 @@ export class DataService {
   }
 
 
-  getRequests() {
+  getRequests(parameters = {}) {
     let key = window.localStorage.getItem('key')
-    var header = {
-      headers: new HttpHeaders()
-        .set('Authorization', 'Token ' + key)
-    }
+    let header = new HttpHeaders().set('Authorization', 'Token ' + key)
 
-    return this.http.get(this.requestList, header)
+    return this.http.get(this.requestList, {headers: header, params: parameters})
   }
 
-  getRequest(id: string) {
+  getRequest(id: string, parameters = {}) {
     let url = this.requestList + id + '/';
-    return this.http.get(url);
+    return this.http.get(url, {params: parameters});
   }
 
   getTransactionDetails(id): Observable<TransactionFoodItem[]> {

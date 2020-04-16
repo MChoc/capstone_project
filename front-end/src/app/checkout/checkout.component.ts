@@ -76,6 +76,7 @@ export class CheckoutComponent implements OnInit {
     let transaction_data = {
       'credit_card': card_url,
       'food_items': food_items,
+      'total_price': this.total_price,
     }
     console.log(transaction_data);
     this.http.post(transaction_url, transaction_data).toPromise().then(data => {

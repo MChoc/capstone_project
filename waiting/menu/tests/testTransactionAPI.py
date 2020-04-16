@@ -2,6 +2,7 @@ import datetime
 import pytz
 from collections import OrderedDict
 
+import dateutil.parser
 from django.contrib.auth import get_user_model
 from rest_framework import status
 from rest_framework.reverse import reverse
@@ -61,7 +62,6 @@ class TestTransactionModel(APITestCase):
         200 response.
         GET data is same as database data.
     """
-
     def test_list(self):
         url = '/api/transaction/'
         factory = APIRequestFactory()
@@ -91,7 +91,6 @@ class TestTransactionModel(APITestCase):
         Object count increased.
         Object exists in database.
     """
-
     def test_create(self):
         url = '/api/transaction/'
         factory = APIRequestFactory()
@@ -128,7 +127,6 @@ class TestTransactionModel(APITestCase):
         200 response.
         GET data is same as in database.
     """
-
     def test_retrieve(self):
         url = '/api/transaction/1/'
         factory = APIRequestFactory()
@@ -157,7 +155,6 @@ class TestTransactionModel(APITestCase):
         200 response.
         All fields have been changed and content is correct.
     """
-
     def test_update(self):
         url = '/api/transaction/1/'
         factory = APIRequestFactory()
@@ -195,7 +192,6 @@ class TestTransactionModel(APITestCase):
         200 response.
         Correct field/s have been changed and content correct.
     """
-
     def test_partial_update(self):
         url = '/api/transaction/1/'
         factory = APIRequestFactory()
@@ -223,7 +219,6 @@ class TestTransactionModel(APITestCase):
         204 response.
         Correct object has been deleted from database.
     """
-
     def test_destroy(self):
         url = '/api/transaction/1/'
 
@@ -242,7 +237,6 @@ class TestTransactionModel(APITestCase):
         200 response.
         Correct object has been added related.
     """
-
     def test_add_food_item_through(self):
         url = '/api/transaction/1/'
         factory = APIRequestFactory()
@@ -266,13 +260,12 @@ class TestTransactionModel(APITestCase):
         self.assertEqual(obj.food_items.get(id=1), food_item)
 
     """
-    Testing listing of only active transactions.
+    Testing listing of only unprepared transactions.
 
     Asserts:
         200 response.
         Correct objects have been returned.
     """
-
     def test_list_active_transactions(self):
         url = '/api/transaction/'
         factory = APIRequestFactory()
@@ -295,6 +288,44 @@ class TestTransactionModel(APITestCase):
 
         body = {
             'get_unprepared': True,
+        }
+        response = self.client.get(url, body)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+
+        self.assertEqual(response.data, serializer.data)
+
+    """
+    Testing listing of transactions before certain date.
+
+    Asserts:
+        200 response.
+        Correct objects have been returned.
+    """
+    def test_list_active_transactions(self):
+        url = '/api/transaction/'
+        factory = APIRequestFactory()
+        request = factory.get(url)
+
+        # Change one transaction to finished
+        t = Transaction.objects.get(id=1)
+        t.prepared = True
+        t.save()
+
+        start_date = '1996-10-15T00:05:32.000Z'
+        objs = Transaction.objects.exclude(
+            date__lt=dateutil.parser.parse(start_date)
+        )
+        serializer_context = {
+            'request': Request(request)
+        }
+        serializer = TransactionSerializer(
+            objs,
+            context=serializer_context,
+            many=True
+        )
+
+        body = {
+            'start_date': start_date,
         }
         response = self.client.get(url, body)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
