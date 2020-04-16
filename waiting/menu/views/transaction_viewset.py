@@ -32,6 +32,6 @@ class TransactionViewSet(ModelViewSet):
                 )
                 ret_queryset = ret_queryset.exclude(date__lt=start_date)
             if self.request.query_params.get('get_unprepared'):
-                ret_queryset = ret_queryset.filter(prepared=False)
+                ret_queryset = ret_queryset.filter(prepared=False, active=True)
             return ret_queryset
         return super().get_queryset()
