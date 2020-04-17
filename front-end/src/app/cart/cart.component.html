@@ -1,6 +1,6 @@
 <div class="cart">
     <h2>Cart</h2>
-    <div *ngIf="items?.length; else elseBlock">
+    <div *ngIf="items?.length; else elseBlock" @fade>
         <table>
             <td class="table-field1"></td>
             <td class="table-field2"></td>
@@ -41,7 +41,7 @@
 
     <div class="buttons">
         <button type="button" class="back" onclick="window.location.href = '/';">Back to Menu</button>
-        <button type="button" class="clear" (click)="clearCart()">Clear cart</button>
+        <button type="button" class="clear" (click)="clearCart()">Clear Cart</button>
     </div>
 
     <ng-template #elseBlock>

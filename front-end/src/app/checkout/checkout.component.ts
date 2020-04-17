@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { animation, transition, animate, state, trigger, style } from '@angular/animations';
 
 import { CartService } from '../cart.service';
 import { Router } from '@angular/router';
@@ -8,7 +9,15 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-checkout',
   templateUrl: './checkout.component.html',
-  styleUrls: ['./checkout.component.css']
+  styleUrls: ['./checkout.component.css'],
+  animations: [
+    trigger('fade', [
+      transition('void => *', [
+        style({backgroundColor: 'white', opacity: 0, transform: 'translateX(-40px)'}),
+        animate(1300)
+      ])
+    ])
+  ]
 })
 export class CheckoutComponent implements OnInit {
 

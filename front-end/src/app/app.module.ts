@@ -41,6 +41,7 @@ import { ManagerAlertsResolvedComponent } from './manager-alerts-resolved/manage
 import { ResolvedAssistanceComponent } from './resolved-assistance/resolved-assistance.component';
 import { ResolvedOrdersComponent } from './resolved-orders/resolved-orders.component';
 
+import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -86,6 +87,7 @@ import { ResolvedOrdersComponent } from './resolved-orders/resolved-orders.compo
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+    BrowserAnimationsModule
   ],
   providers: [
   ],
