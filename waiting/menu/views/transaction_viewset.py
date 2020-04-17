@@ -5,7 +5,7 @@ from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
 
-from accounts.permissions import AdminOrPostOnly
+from accounts.permissions import IsStaffOrPostOnly
 from django.db.models import Sum
 from menu.models.transaction import Transaction
 from menu.models.transaction_food_item import TransactionFoodItem
@@ -15,7 +15,7 @@ from menu.serializers.transaction_serializer import TransactionSerializer
 class TransactionViewSet(ModelViewSet):
     queryset = Transaction.objects.all()
     serializer_class = TransactionSerializer
-    permission_classes = [AdminOrPostOnly | IsAuthenticatedOrReadOnly]
+    permission_classes = [IsStaffOrPostOnly | IsAuthenticatedOrReadOnly]
 
     """
     Overriding the get_queryset method to allow for listing only active
