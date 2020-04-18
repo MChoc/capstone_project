@@ -11,16 +11,14 @@
     
     <div class="container">
         <h3>Order Details</h3>
-        <div *ngFor="let item of transactionFoodItems">
-            <div *ngIf="item.transaction == transaction.url" class="orderDetails">
-                <h4 style="font-weight: bold;">{{ getFoodItemName(item.food_item) }}</h4>
-                <ng-container *ngIf="item.extras.length > 0">
-                    <p>Extras: {{ getExtraNames(item.extras) }}</p>
-                </ng-container>
-                <ng-container *ngIf="item.request">
-                    <p>Request: {{ item.request }}</p>
-                </ng-container>
-            </div>
+        <div *ngFor="let item of transactionFoodItems" class="orderDetails">
+            <h4 style="font-weight: bold;">{{ getFoodItemName(item.food_item) }}</h4>
+            <ng-container *ngIf="item.extras.length > 0">
+                <p>Extras: {{ getExtraNames(item.extras) }}</p>
+            </ng-container>
+            <ng-container *ngIf="item.request">
+                <p>Request: {{ item.request }}</p>
+            </ng-container>
         </div>
     </div>
 

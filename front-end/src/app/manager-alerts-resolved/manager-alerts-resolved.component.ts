@@ -31,7 +31,7 @@ export class ManagerAlertsResolvedComponent implements OnInit {
     interval(10000)
     .pipe(
       startWith(0),
-      switchMap(() => this.data.getRequests())
+      switchMap(() => this.data.getRequests({'start_date': this.getLast24HoursDate()}))
     )
     .subscribe(res => {
       this.requests$ = res;
@@ -40,7 +40,7 @@ export class ManagerAlertsResolvedComponent implements OnInit {
     interval(10000)
       .pipe(
         startWith(0),
-        switchMap(() => this.data.getTransactions())
+        switchMap(() => this.data.getTransactions({'start_date': this.getLast24HoursDate()}))
       )
       .subscribe(res => {
         this.transactions$ = res;
@@ -57,6 +57,12 @@ export class ManagerAlertsResolvedComponent implements OnInit {
 
   orders(id) {
     this.router.navigate(['/management/alerts/resolved/orders/'+ id]);
+  }
+
+  getLast24HoursDate(): string {
+    let now = new Date();
+    now.setHours(now.getHours() - 24)
+    return now.toISOString()
   }
 
 }

@@ -26,7 +26,6 @@ export class OrderSuccessComponent implements OnInit {
 
   id: String;
   complete: boolean = false;
-  transaction: Transaction;
   transactionFoodItems: TransactionFoodItem[] = [];
   foodItems = [];
   extras = [];
@@ -39,12 +38,8 @@ export class OrderSuccessComponent implements OnInit {
     this._Activatedroute.paramMap.subscribe(params => { 
       this.id = params.get('id');
     });
-
-    this.data.getTransaction(this.id).subscribe(data => {
-      this.transaction = data;
-    })
-
-    this.data.getTransactionFoodItems().subscribe(data => {
+    
+    this.data.getTransactionDetails(this.id).subscribe(data => {
       this.transactionFoodItems = data;
     })
 
@@ -55,6 +50,7 @@ export class OrderSuccessComponent implements OnInit {
     this.data.getExtras().subscribe(data => {
       this.extras = data;
     })
+
   }
 
   ngOnInit(): void {
@@ -78,7 +74,7 @@ export class OrderSuccessComponent implements OnInit {
    * 
    * returns: array of [item_name, size]
    */
-  public getFoodItemName(url: string): string[]{
+  public getFoodItemName(url: string): string{
     let item_details = []
     for(let item of this.foodItems) {
       if (item['url'] === url) {
@@ -89,17 +85,17 @@ export class OrderSuccessComponent implements OnInit {
         }
       }
     }
-    return item_details
+    return item_details.join(", ")
   }
 
-  public getExtraNames(urls: string[]): string[]{
+  public getExtraNames(urls: string[]): string{
     let names: string[] = [];
     for(let extra of this.extras){
       if ( urls.indexOf(extra['url']) !== -1) {
         names.push(extra['name']);
       }
     }
-    return names
+    return names.join(", ")
   }
 
   menu() {
