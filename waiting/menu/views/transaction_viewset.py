@@ -43,7 +43,7 @@ class TransactionViewSet(ModelViewSet):
             tfis = TransactionFoodItem.objects.filter(
                 transaction=self.get_object().pk
             )
-            request.data['total_price'] = TransactionFoodItem.objects.filter(
+            request.data['total_price'] = round(TransactionFoodItem.objects.filter(
                 transaction=self.get_object().pk
-            ).aggregate(Sum('price'))['price__sum']
+            ).aggregate(Sum('price'))['price__sum'], 2)
         return super().update(request, *args, **kwargs)
