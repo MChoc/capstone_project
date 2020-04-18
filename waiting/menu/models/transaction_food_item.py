@@ -35,21 +35,28 @@ class TransactionFoodItem(models.Model):
 
     def save(self, *args, **kwargs):
         # Only calculate if model is instantiated
-        if self.food_item:
-            food_item = float(self.food_item.price)
-            extras = self.extras.all().aggregate(models.Sum('price'))['price__sum']
+        if self.pk is None:
+            super().save(*args, **kwargs)
+            self.calculate_price()
+            self.save()
+        else:
+            self.calculate_price()
+            super().save(*args, **kwargs)
 
-            if extras is not None:
-                sub_total = food_item + extras
-            else:
-                sub_total = food_item
+    def calculate_price(self):
+        food_item = float(self.food_item.price)
+        extras = self.extras.all().aggregate(models.Sum('price'))['price__sum']
 
-            discount = self.discount
-            if discount is not None:
-                if discount.type == 'PERCENTAGE':
-                    self.price = sub_total * discount.amount / 100
-                else:
-                    self.price = sub_total - discount.amount
+        if extras is not None:
+            sub_total = food_item + float(extras)
+        else:
+            sub_total = food_item
+
+        discount = self.discount
+        if discount is not None:
+            if discount.type == 'PERCENTAGE':
+                self.price = sub_total * discount.amount / 100
             else:
-                self.price = sub_total
-        super().save(*args, **kwargs)
+                self.price = sub_total - discount.amount
+        else:
+            self.price = sub_total

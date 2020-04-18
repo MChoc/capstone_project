@@ -132,7 +132,7 @@ class TestTransactionModel(APITestCase):
         factory = APIRequestFactory()
         request = factory.get(url)
 
-        obj = [Transaction.objects.get(id=1), ]
+        obj = [Transaction.objects.get(id=1)]
         serializer_context = {
             'request': Request(request)
         }
@@ -176,7 +176,7 @@ class TestTransactionModel(APITestCase):
             ),
         }
         response = self.client.put(url, body, format='json')
-        # print(response.__getstate__())
+        # print(response.__getstate__()['_container'])
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
         obj = Transaction.objects.get(id=1)
@@ -253,7 +253,7 @@ class TestTransactionModel(APITestCase):
             ],
         }
         response = self.client.patch(url, body, format='json')
-        # print(response.__getstate__())
+        # print(response.__getstate__()['_container'])
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
         obj = Transaction.objects.get(id=1)
@@ -351,7 +351,7 @@ class TestTransactionModel(APITestCase):
             'checkout': True
         }
         response = self.client.patch(url, body, format='json')
-        # print(response.__getstate__())
+        # print(response.__getstate__()['_container'])
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
         obj = Transaction.objects.get(id=2)

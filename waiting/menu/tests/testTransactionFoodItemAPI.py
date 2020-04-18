@@ -112,7 +112,7 @@ class TestTransactionFoodItemModel(APITestCase):
             ),
         }
         response = self.client.post(url, body, format='json')
-        # print(response.__getstate__())
+        # print(response.__getstate__()['_container'])
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 
         post_count = TransactionFoodItem.objects.count()
@@ -135,7 +135,7 @@ class TestTransactionFoodItemModel(APITestCase):
         factory = APIRequestFactory()
         request = factory.get(url)
 
-        obj = [TransactionFoodItem.objects.get(id=1), ]
+        obj = [TransactionFoodItem.objects.get(id=1)]
         serializer_context = {
             'request': Request(request)
         }
@@ -179,7 +179,7 @@ class TestTransactionFoodItemModel(APITestCase):
             ),
         }
         response = self.client.put(url, body, format='json')
-        # print(response.__getstate__())
+        # print(response.__getstate__()['_container'])
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
         obj = TransactionFoodItem.objects.get(id=1)
@@ -209,7 +209,7 @@ class TestTransactionFoodItemModel(APITestCase):
             ),
         }
         response = self.client.patch(url, body, format='json')
-        # print(response.__getstate__())
+        # print(response.__getstate__()['_container'])
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
         obj = TransactionFoodItem.objects.get(id=1)
@@ -259,7 +259,7 @@ class TestTransactionFoodItemModel(APITestCase):
             ],
         }
         response = self.client.patch(url, body, format='json')
-        # print(response.__getstate__())
+        # print(response.__getstate__()['_container'])
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
         obj = TransactionFoodItem.objects.get(id=1)
@@ -296,3 +296,25 @@ class TestTransactionFoodItemModel(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
         self.assertEqual(response.data, serializer.data)
+
+    def test_price_calculation(self):
+        url = '/api/transaction_food_item/6/'
+        factory = APIRequestFactory()
+        request = factory.get(url)
+
+        obj = [TransactionFoodItem.objects.get(id=6)]
+        self.assertIsNotNone(obj[0].price)
+
+        serializer_context = {
+            'request': Request(request)
+        }
+        serializer = TransactionFoodItemSerializer(
+            obj,
+            context=serializer_context,
+            many=True
+        )
+
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+
+        self.assertEqual([OrderedDict(response.data)], serializer.data)
