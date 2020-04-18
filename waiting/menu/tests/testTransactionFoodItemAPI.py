@@ -303,7 +303,7 @@ class TestTransactionFoodItemModel(APITestCase):
         request = factory.get(url)
 
         obj = [TransactionFoodItem.objects.get(id=6)]
-        self.assertIsNotNone(obj[0].price)
+        self.assertEqual(float(obj[0].price), 4.05)
 
         serializer_context = {
             'request': Request(request)

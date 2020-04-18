@@ -7,7 +7,7 @@ from menu.models.transaction_food_item import TransactionFoodItem
 
 
 @receiver(post_save, sender=TransactionFoodItem)
-def save_profile(sender, instance, **kwargs):
+def update_total_price(sender, instance, **kwargs):
     transaction = instance.transaction
 
     instance.transaction.total_price = TransactionFoodItem.objects.filter(

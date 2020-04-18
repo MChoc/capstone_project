@@ -40,10 +40,8 @@ class TransactionViewSet(ModelViewSet):
 
     def update(self, request, *args, **kwargs):
         if request.data.get('checkout'):
-            tfis = TransactionFoodItem.objects.filter(
+            total_price = TransactionFoodItem.objects.filter(
                 transaction=self.get_object().pk
-            )
-            request.data['total_price'] = round(TransactionFoodItem.objects.filter(
-                transaction=self.get_object().pk
-            ).aggregate(Sum('price'))['price__sum'], 2)
+            ).aggregate(Sum('price'))['price__sum']
+            request.data['total_price'] = round(total_price, 2)
         return super().update(request, *args, **kwargs)
