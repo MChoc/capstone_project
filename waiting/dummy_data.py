@@ -166,8 +166,9 @@ for i in range(0, 5):
     # Call save to force price calculation
     tfi_set = TransactionFoodItem.objects.filter(transaction=transaction.pk)
     for tfi in tfi_set:
+        tfi.extras.add(extras[5])
         tfi.save()
-        print(tfi.price)
+        print(f'Added {extras[5]} to {tfi}')
 
 assistances = []
 for i in range(0, 5):

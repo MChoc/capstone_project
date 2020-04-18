@@ -219,7 +219,7 @@ class TestCreditCardModel(APITestCase):
             'validate': True
         }
         response = self.client.get(url, body)
-        # print(response.__getstate__())
+        # print(response.__getstate__()['_container'])
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
         post_count = CreditCard.objects.count()
