@@ -4,11 +4,20 @@ import { FormGroup, FormControl } from '@angular/forms';
 
 import { CartService } from '../cart.service';
 import { DataService } from '../_services/data.service';
+import { animation, transition, animate, state, trigger, style } from '@angular/animations';
 
 @Component({
   selector: 'app-add-item',
   templateUrl: './add-item.component.html',
-  styleUrls: ['./add-item.component.css']
+  styleUrls: ['./add-item.component.css'],
+  animations: [
+    trigger('fade', [
+      transition('void => *', [
+        style({backgroundColor: 'white', opacity: 0, transform: 'translateX(-40px)'}),
+        animate(1100)
+      ])
+    ])
+  ]
 })
 export class AddItemComponent implements OnInit {
 
