@@ -47,7 +47,7 @@ export class CheckoutComponent implements OnInit {
 
     let validate_url = 'http://127.0.0.1:5000/api/credit_cards/'
     this.http.get(validate_url, {params: card_data}).toPromise().then(data => {
-      console.log(data);
+
       if (data['validated'] == true) {
         this.processTransaction(data['url']);
         this.error_message = "";
@@ -67,7 +67,6 @@ export class CheckoutComponent implements OnInit {
     let food_items = [];
 
     for (let item of this.items) {
-      console.log(item);
       food_items.push(item['url']);
     }
 
@@ -77,13 +76,10 @@ export class CheckoutComponent implements OnInit {
       'credit_card': card_url,
       'food_items': food_items
     }
-    console.log(transaction_data);
+
     this.http.post(transaction_url, transaction_data).toPromise().then(data => {
-      console.log('Transaction Created!');
       this.processFoodItemTransaction(data['url'], data['id']);
-      // Remove everything from cart once order has been placed
-      this.cartService.clearCart();
-      this.router.navigate(['/order-details/'+ data['id']]); 
+
     },
     error => {
       console.error(error);
@@ -95,7 +91,8 @@ export class CheckoutComponent implements OnInit {
     // TODO: get this discount url from somewhere!
     let discountUrl = "http://127.0.0.1:5000/api/discounts/1/";
 
-    for (let item of this.items) {
+    for (let i = 0; i < this.items.length; i++) {
+      let item = this.items[i];
       let extras = [];
       for (let extra of item['extras']) {
         extras.push(extra['url']);
@@ -108,24 +105,21 @@ export class CheckoutComponent implements OnInit {
         'extras': extras,
         'request': item['request']
       }
-      // console.log(foodItemData);
-      this.http.post(foodItemTransactionUrl, foodItemData).toPromise().then(data => {
-        console.log("transaction created!");
-        console.log(data);
-      },
-      error => {
-        console.error(error.error);
+
+      this.http.post(foodItemTransactionUrl, foodItemData).subscribe(data => {
+        /**
+         * hack to only route to success page once last item has been processed
+         * to avoid routing before transaction has been completely created 
+         * */ 
+
+        if(i == this.items.length - 1) {
+          this.cartService.clearCart();
+          this.router.navigate(['/order-details/' + transaction_id]); 
+        }
       })
+
     }
 
-    let patch_data = {
-      'checkout': true
-    }
-
-    this.http.patch(transaction_url, patch_data).toPromise().then(data => {
-      console.log("total price calculated");
-      console.log(data);
-    })
   }
 
 }
