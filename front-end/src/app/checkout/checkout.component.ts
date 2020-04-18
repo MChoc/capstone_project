@@ -14,7 +14,7 @@ import { Router } from '@angular/router';
     trigger('fade', [
       transition('void => *', [
         style({backgroundColor: 'white', opacity: 0, transform: 'translateX(-40px)'}),
-        animate(1300)
+        animate(1100)
       ])
     ])
   ]
