@@ -2,11 +2,21 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { animation, transition, animate, state, trigger, style } from '@angular/animations';
+
 
 @Component({
   selector: 'app-assistance',
   templateUrl: './assistance.component.html',
-  styleUrls: ['./assistance.component.css']
+  styleUrls: ['./assistance.component.css'],
+  animations: [
+    trigger('fade', [
+      transition('void => *', [
+        style({backgroundColor: 'white', opacity: 0, transform: 'translateX(-40px)'}),
+        animate(1100)
+      ])
+    ])
+  ]
 })
 export class AssistanceComponent implements OnInit {
 
