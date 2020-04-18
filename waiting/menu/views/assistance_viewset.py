@@ -1,4 +1,7 @@
+from datetime import datetime
+
 import dateutil.parser
+from pytz import utc
 from accounts.permissions import IsStaffOrPostOnly
 from rest_framework.viewsets import ModelViewSet
 
@@ -26,3 +29,20 @@ class AssistanceViewSet(ModelViewSet):
                 date__lt=dateutil.parser.parse(start_date)
             )
         return super().get_queryset()
+
+    """
+    Overriding the update method to automatically generate date when assistance
+    request was resolved.
+
+    Checks if the truth status of resolved has changed.
+        If true -> false, null date_resolved field.
+        If false -> true, make date_resolved now.
+    """
+    def update(self, request, *args, **kwargs):
+        instance = self.get_object()
+        resolve_status = request.data.get('resolved')
+        if instance.resolved and resolve_status is False:
+            request.data['date_resolved'] = None
+        elif not instance.resolved and resolve_status:
+            request.data['date_resolved'] = datetime.now(utc).isoformat()
+        return super().update(request, *args, **kwargs)

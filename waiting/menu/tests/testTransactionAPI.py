@@ -1,9 +1,9 @@
-import datetime
-import pytz
+from datetime import datetime, timedelta
 from collections import OrderedDict
 
 import dateutil.parser
 from django.contrib.auth import get_user_model
+from pytz import utc
 from rest_framework import status
 from rest_framework.reverse import reverse
 from rest_framework.request import Request
@@ -101,12 +101,12 @@ class TestTransactionModel(APITestCase):
         body = {
             'customer': reverse(
                 'customuser-detail',
-                args=[get_user_model().objects.get(username='Customer1').pk, ],
+                args=[get_user_model().objects.get(username='Customer1').pk],
                 request=request
             ),
             'credit_card': reverse(
                 'creditcard-detail',
-                args=[CreditCard.objects.get(id=1).pk, ],
+                args=[CreditCard.objects.get(id=1).pk],
                 request=request
             ),
         }
@@ -132,7 +132,7 @@ class TestTransactionModel(APITestCase):
         factory = APIRequestFactory()
         request = factory.get(url)
 
-        obj = [Transaction.objects.get(id=1), ]
+        obj = [Transaction.objects.get(id=1)]
         serializer_context = {
             'request': Request(request)
         }
@@ -166,17 +166,17 @@ class TestTransactionModel(APITestCase):
             'active': False,
             'customer': reverse(
                 'customuser-detail',
-                args=[customer.pk, ],
+                args=[customer.pk],
                 request=request
             ),
             'credit_card': reverse(
                 'creditcard-detail',
-                args=[credit_card.pk, ],
+                args=[credit_card.pk],
                 request=request
             ),
         }
         response = self.client.put(url, body, format='json')
-        # print(response.__getstate__())
+        # print(response.__getstate__()['_container'])
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
         obj = Transaction.objects.get(id=1)
@@ -201,7 +201,7 @@ class TestTransactionModel(APITestCase):
         body = {
             'credit_card': reverse(
                 'creditcard-detail',
-                args=[credit_card.pk, ],
+                args=[credit_card.pk],
                 request=request
             ),
         }
@@ -247,13 +247,13 @@ class TestTransactionModel(APITestCase):
             'food_items': [
                 reverse(
                     'fooditem-detail',
-                    args=[food_item.pk, ],
+                    args=[food_item.pk],
                     request=request
                 ),
             ],
         }
         response = self.client.patch(url, body, format='json')
-        # print(response.__getstate__())
+        # print(response.__getstate__()['_container'])
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
         obj = Transaction.objects.get(id=1)
@@ -287,7 +287,7 @@ class TestTransactionModel(APITestCase):
         )
 
         body = {
-            'get_unprepared': True,
+            'get_unprepared': True
         }
         response = self.client.get(url, body)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
@@ -301,20 +301,17 @@ class TestTransactionModel(APITestCase):
         200 response.
         Correct objects have been returned.
     """
-    def test_list_active_transactions(self):
+    def test_list_filter_date_transactions(self):
         url = '/api/transaction/'
         factory = APIRequestFactory()
         request = factory.get(url)
 
-        # Change one transaction to finished
-        t = Transaction.objects.get(id=1)
-        t.prepared = True
-        t.save()
-
-        start_date = '1996-10-15T00:05:32.000Z'
-        objs = Transaction.objects.exclude(
-            date__lt=dateutil.parser.parse(start_date)
+        Transaction.objects.create(
+            customer=get_user_model().objects.get(username='Customer1'),
+            credit_card=CreditCard.objects.get(id=1)
         )
+        start_date = datetime.now(utc) - timedelta(seconds=10)
+        objs = Transaction.objects.exclude(date__lt=start_date)
         serializer_context = {
             'request': Request(request)
         }
@@ -325,9 +322,39 @@ class TestTransactionModel(APITestCase):
         )
 
         body = {
-            'start_date': start_date,
+            'start_date': start_date
         }
         response = self.client.get(url, body)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
         self.assertEqual(response.data, serializer.data)
+
+    """
+    Testing checkout
+
+    Asserts:
+        200 response.
+        Checkout conducted correctly.
+    """
+    def test_checkout(self):
+        url = '/api/transaction/2/'
+        factory = APIRequestFactory()
+        request = factory.post(url)
+
+        credit_card = CreditCard.objects.get(id=1)
+        body = {
+            'credit_card': reverse(
+                'creditcard-detail',
+                args=[credit_card.pk],
+                request=request
+            ),
+            'checkout': True
+        }
+        response = self.client.patch(url, body, format='json')
+        # print(response.__getstate__()['_container'])
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+
+        obj = Transaction.objects.get(id=2)
+        self.assertEqual(obj.credit_card, credit_card)
+        # print(obj.total_price)
+        self.assertIsNotNone(obj.total_price)
