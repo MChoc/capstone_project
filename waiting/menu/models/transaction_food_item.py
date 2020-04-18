@@ -55,7 +55,7 @@ class TransactionFoodItem(models.Model):
         discount = self.discount
         if discount is not None:
             if discount.type == 'PERCENTAGE':
-                self.price = round(sub_total * discount.amount / 100, 2)
+                self.price = round(sub_total * (1 - discount.amount / 100), 2)
             else:
                 self.price = round(sub_total - discount.amount, 2)
         else:
