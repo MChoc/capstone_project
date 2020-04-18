@@ -49,10 +49,11 @@ button[type=submit] {
     outline: none;
     width: 100%;
     margin: 28px 0 20px 0;
+    font-size: smaller;
 }
 
 button[type=submit]:hover {
-    background-color: #352728e0;
+    background-color: #283527e0;
 }
 
 .back {
@@ -79,9 +80,30 @@ input[type=text]:disabled {
 button[type=button] {
     background-color: #fcf7fb    ;
     color: #352728;
+    font-size: smaller;
+    padding: 5px;
     border: none;
     cursor: pointer;
     outline: none;
     width: 100%;
-    text-decoration: underline;
+    text-decoration: none;
+    position: relative;
+    width: 50%;
+    margin-left: 25%;
+  }
+
+  button[type=button]::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 2px;
+    background: currentColor;
+    transform: scaleX(0);
+    transition: transform 200ms ease-in;
+  }
+  
+  button[type=button]:hover::after {
+    transform: scaleX(1);
   }

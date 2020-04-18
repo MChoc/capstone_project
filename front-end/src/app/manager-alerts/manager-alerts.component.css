@@ -31,12 +31,24 @@ button:active {
     background-color: #c7e8f7;
 }
 
+.assistance:hover {
+    background-color: #9bdaf8;;
+}
+
 .orders {
     background-color: #fdcfd7;
 }
 
+.orders:hover {
+    background-color: #faabb9;
+}
+
 .pickups {
     background-color: #abc2ba;
+}
+
+.pickups:hover {
+    background-color: #7ac0a8;
 }
 
 .resolved {
@@ -47,9 +59,11 @@ button:active {
     margin-top: 30px;
     text-decoration: underline;
     box-shadow: none;
+    font-size: smaller;
 }
 
 .resolved:active {
     transform: none;
     box-shadow: none;
 }
+

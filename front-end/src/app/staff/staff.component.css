@@ -34,6 +34,10 @@ h2{
     margin-left: 35%;
 }
 
+.addEmp:hover {
+    background-color: #2f3f3a;
+}
+
 a, button {
     color: #352728;
     padding: 15px;
