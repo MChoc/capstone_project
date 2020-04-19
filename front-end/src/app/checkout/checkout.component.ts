@@ -42,12 +42,12 @@ export class CheckoutComponent implements OnInit {
       'expiry_month': this.checkoutForm.value['expiry_month'],
       'expiry_year': this.checkoutForm.value['expiry_year'],
       'cvv': this.checkoutForm.value['cvv'],
-      'validate': true
+      'validate': "true"
     }
 
     let validate_url = 'http://127.0.0.1:5000/api/credit_cards/'
-    this.http.post(validate_url, card_data).toPromise().then(data => {
-      console.log(data);
+    this.http.get(validate_url, {params: card_data}).toPromise().then(data => {
+
       if (data['validated'] == true) {
         this.processTransaction(data['url']);
         this.error_message = "";
@@ -67,7 +67,6 @@ export class CheckoutComponent implements OnInit {
     let food_items = [];
 
     for (let item of this.items) {
-      console.log(item);
       food_items.push(item['url']);
     }
 
@@ -75,28 +74,25 @@ export class CheckoutComponent implements OnInit {
 
     let transaction_data = {
       'credit_card': card_url,
-      'food_items': food_items,
-      'total_price': this.total_price,
+      'food_items': food_items
     }
-    console.log(transaction_data);
+
     this.http.post(transaction_url, transaction_data).toPromise().then(data => {
-      console.log('Transaction Created!');
-      this.processFoodItemTransaction(data['url']);
-      // Remove everything from cart once order has been placed
-      this.cartService.clearCart();
-      this.router.navigate(['/order-details/'+ data['id']]); 
+      this.processFoodItemTransaction(data['url'], data['id']);
+
     },
     error => {
       console.error(error);
     })
   }
 
-  processFoodItemTransaction(transaction_url) {
+  processFoodItemTransaction(transaction_url, transaction_id) {
     let foodItemTransactionUrl = "http://127.0.0.1:5000/api/transaction_food_item/";
     // TODO: get this discount url from somewhere!
     let discountUrl = "http://127.0.0.1:5000/api/discounts/1/";
 
-    for (let item of this.items) {
+    for (let i = 0; i < this.items.length; i++) {
+      let item = this.items[i];
       let extras = [];
       for (let extra of item['extras']) {
         extras.push(extra['url']);
@@ -109,15 +105,21 @@ export class CheckoutComponent implements OnInit {
         'extras': extras,
         'request': item['request']
       }
-      // console.log(foodItemData);
-      this.http.post(foodItemTransactionUrl, foodItemData).toPromise().then(data => {
-        console.log("transaction created!");
-        console.log(data);
-      },
-      error => {
-        console.error(error.error);
+
+      this.http.post(foodItemTransactionUrl, foodItemData).subscribe(data => {
+        /**
+         * hack to only route to success page once last item has been processed
+         * to avoid routing before transaction has been completely created 
+         * */ 
+
+        if(i == this.items.length - 1) {
+          this.cartService.clearCart();
+          this.router.navigate(['/order-details/' + transaction_id]); 
+        }
       })
+
     }
+
   }
 
 }
