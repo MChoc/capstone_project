@@ -11,6 +11,7 @@ from menu.views.transaction_viewset import TransactionViewSet
 from menu.views.transaction_food_item_viewset import TransactionFoodItemViewSet
 from menu.views.transaction_food_item_viewset import TransactionFoodItemStatsViewSet
 from menu.views.assistance_viewset import AssistanceViewSet
+from menu.views.assistance_viewset import AssistanceStatsViewSet
 from menu.views.credit_card_viewset import CreditCardViewSet
 
 
@@ -25,6 +26,7 @@ router.register(r'transaction', TransactionViewSet)
 router.register(r'transaction_food_item', TransactionFoodItemViewSet)
 router.register(r'transaction_food_item_stats', TransactionFoodItemStatsViewSet)
 router.register(r'assistance', AssistanceViewSet)
+router.register(r'assistance_stats', AssistanceStatsViewSet)
 router.register(r'credit_cards', CreditCardViewSet)
 
 

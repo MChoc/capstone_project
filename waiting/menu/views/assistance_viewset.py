@@ -3,7 +3,10 @@ from datetime import datetime
 import dateutil.parser
 from pytz import utc
 from accounts.permissions import IsStaffOrPostOnly
+from django.db.models import Count
 from rest_framework.viewsets import ModelViewSet
+from rest_framework.permissions import AllowAny
+from rest_framework.response import Response
 
 from menu.models.assistance import Assistance
 from menu.serializers.assistance_serializer import AssistanceSerializer
@@ -46,3 +49,16 @@ class AssistanceViewSet(ModelViewSet):
         elif not instance.resolved and resolve_status:
             request.data['date_resolved'] = datetime.now(utc).isoformat()
         return super().update(request, *args, **kwargs)
+
+
+class AssistanceStatsViewSet(ModelViewSet):
+    queryset = Assistance.objects.all()
+    serializer_class = AssistanceSerializer
+    http_method_names = [u'post']
+    # TODO: remove AllowAny when done
+    permission_classes = [AllowAny]
+
+    def create(self, request, *args, **kwargs):
+
+        problem = Assistance.objects.values("problem").annotate(total_requests=Count('problem')).order_by('-total_requests')
+        return Response(problem)
