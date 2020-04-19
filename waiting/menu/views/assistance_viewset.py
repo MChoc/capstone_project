@@ -60,5 +60,9 @@ class AssistanceStatsViewSet(ModelViewSet):
 
     def create(self, request, *args, **kwargs):
 
-        problem = Assistance.objects.values("problem").annotate(total_requests=Count('problem')).order_by('-total_requests')
-        return Response(problem)
+        if request.query_params.get("waiters"):
+            waiters = Assistance.objects.filter(resolved=True).values("waiter__username").annotate(total_resolved=Count('waiter__username')).order_by('-total_resolved')
+            return Response(waiters)
+        else:
+            problem = Assistance.objects.values("problem").annotate(total_requests=Count('problem')).order_by('-total_requests')
+            return Response(problem)
