@@ -61,11 +61,20 @@ class AssistanceStatsViewSet(ModelViewSet):
     def create(self, request, *args, **kwargs):
 
         if request.query_params.get("waiters"):
-            response = Assistance.objects.filter(resolved=True).values("waiter__username").annotate(total_resolved=Count('waiter__username')).order_by('-total_resolved')
+
+            response = Assistance.objects.filter(resolved=True).values("waiter__username").annotate(
+                total_resolved=Count('waiter__username')).order_by('-total_resolved')
+
         elif request.query_params.get("average_time"):
-            duration = ExpressionWrapper(F('date_resolved') - F('date'), output_field=fields.DurationField())
-            response = Assistance.objects.filter(resolved=True).annotate(duration=duration).aggregate(average_time=Avg(duration))
+
+            duration = ExpressionWrapper(
+                F('date_resolved') - F('date'), output_field=fields.DurationField())
+            response = Assistance.objects.filter(resolved=True).annotate(
+                duration=duration).aggregate(average_time=Avg(duration))
+
         else:
-            response = Assistance.objects.values("problem").annotate(total_requests=Count('problem')).order_by('-total_requests')
+
+            response = Assistance.objects.values("problem").annotate(
+                total_requests=Count('problem')).order_by('-total_requests')
 
         return Response(response)
