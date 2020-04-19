@@ -1,5 +1,7 @@
+from django.db.models import Count, Sum
 from rest_framework.viewsets import ModelViewSet
-from rest_framework.permissions import IsAuthenticatedOrReadOnly
+from rest_framework.permissions import IsAuthenticatedOrReadOnly, AllowAny
+from rest_framework.response import Response
 
 from accounts.permissions import IsStaffOrPostOnly
 from menu.models.transaction_food_item import TransactionFoodItem
@@ -29,3 +31,17 @@ class TransactionFoodItemViewSet(ModelViewSet):
                 transaction=transaction_id
             )
         return super().get_queryset()
+
+
+class TransactionFoodItemStatsViewSet(ModelViewSet):
+    queryset = TransactionFoodItem.objects.all()
+    serializer_class = TransactionFoodItemSerializer
+    http_method_names = [u'post']
+    # TODO: remove AllowAny when done
+    permission_classes = [AllowAny]
+
+    def create(self, request, *args, **kwargs):
+
+        revenue = TransactionFoodItem.objects.values("food_item__id").annotate(Count('food_item'), Sum('food_item__price')).order_by('-food_item__count')
+
+        return Response(revenue)
