@@ -19,6 +19,8 @@ export class OrderSuccessComponent implements OnInit {
   transactionFoodItems: TransactionFoodItem[] = [];
   foodItems = [];
   extras = [];
+  transaction: Object;
+  total_price: number;
 
   constructor(
     private _Activatedroute: ActivatedRoute,
@@ -39,6 +41,10 @@ export class OrderSuccessComponent implements OnInit {
 
     this.data.getExtras().subscribe(data => {
       this.extras = data;
+    })
+    this.data.getTransaction(this.id).subscribe(data => {
+      this.transaction = data;
+      this.total_price = data['total_price'];
     })
 
   }
