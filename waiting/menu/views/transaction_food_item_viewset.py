@@ -42,6 +42,5 @@ class TransactionFoodItemStatsViewSet(ModelViewSet):
 
     def create(self, request, *args, **kwargs):
 
-        revenue = TransactionFoodItem.objects.values("food_item__id").annotate(Count('food_item'), Sum('food_item__price')).order_by('-food_item__count')
-
+        revenue = TransactionFoodItem.objects.values("food_item__id").annotate(total_orders=Count('food_item'), total_revenue=Sum('food_item__price')).order_by('-total_orders')
         return Response(revenue)
