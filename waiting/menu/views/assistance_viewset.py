@@ -3,7 +3,7 @@ from datetime import datetime
 import dateutil.parser
 from pytz import utc
 from accounts.permissions import IsStaffOrPostOnly
-from django.db.models import Count
+from django.db.models import Count, Avg, F, ExpressionWrapper, fields, Avg
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
@@ -61,8 +61,11 @@ class AssistanceStatsViewSet(ModelViewSet):
     def create(self, request, *args, **kwargs):
 
         if request.query_params.get("waiters"):
-            waiters = Assistance.objects.filter(resolved=True).values("waiter__username").annotate(total_resolved=Count('waiter__username')).order_by('-total_resolved')
-            return Response(waiters)
+            response = Assistance.objects.filter(resolved=True).values("waiter__username").annotate(total_resolved=Count('waiter__username')).order_by('-total_resolved')
+        elif request.query_params.get("average_time"):
+            duration = ExpressionWrapper(F('date_resolved') - F('date'), output_field=fields.DurationField())
+            response = Assistance.objects.filter(resolved=True).annotate(duration=duration).aggregate(average_time=Avg(duration))
         else:
-            problem = Assistance.objects.values("problem").annotate(total_requests=Count('problem')).order_by('-total_requests')
-            return Response(problem)
+            response = Assistance.objects.values("problem").annotate(total_requests=Count('problem')).order_by('-total_requests')
+
+        return Response(response)
