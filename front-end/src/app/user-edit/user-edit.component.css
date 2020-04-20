@@ -75,3 +75,7 @@ input[type=text]:disabled {
 .element {
     margin-top: 20px;
 }
+
+a:hover {
+    color: #35272880;
+}

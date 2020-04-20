@@ -81,3 +81,7 @@ input[type=text] {
     margin-top: 20px;
     margin-left: 10px;
 }
+
+.save:hover {
+    background-color: #35272880;
+}

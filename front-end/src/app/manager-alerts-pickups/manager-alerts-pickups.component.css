@@ -56,3 +56,7 @@
 h4 {
     font-weight: bold;
 }
+
+.back:hover {
+    color: #35272880;
+}

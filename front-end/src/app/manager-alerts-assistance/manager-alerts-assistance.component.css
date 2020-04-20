@@ -50,5 +50,8 @@ textarea {
     color: #352728;
   }
 
+.back:hover {
+    color: #35272880;
+}
 
 
