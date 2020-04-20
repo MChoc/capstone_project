@@ -50,3 +50,11 @@ input[type=text], [type=number], select {
   padding: 0;
   margin-top: 0;
 }
+
+.order:hover {
+  background-color: #35272880;
+}
+
+.back:hover {
+  color: #35272880;
+}
