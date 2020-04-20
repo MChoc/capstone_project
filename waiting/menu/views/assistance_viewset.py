@@ -59,6 +59,17 @@ class AssistanceStatsViewSet(ModelViewSet):
     permission_classes = [AllowAny]
 
     def create(self, request, *args, **kwargs):
+        '''
+        param:'waiters': 'true':
+        returns: list of all waiters who have resolved assistance requests and the total requests
+                resolved
+
+        param: 'average_time': 'true'
+        returns: average time (in seconds) it takes to resolve an assistance request
+
+        param: None
+        returns: List of all assistance requests in order of most to least requested
+         '''
 
         if request.query_params.get("waiters"):
 
