@@ -11,7 +11,7 @@ export class Transaction implements Deserializable {
     food_items:  string[];
     request: string;
     prepared: boolean;
-    totalPrice: number;
+    total_price: number;
   
     deserialize(input: any) {
       Object.assign(<any>this, input);

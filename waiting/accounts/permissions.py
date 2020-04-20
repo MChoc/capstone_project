@@ -24,7 +24,7 @@ class IsManager(BasePermission):
 class LoggedInOrValidateOnly(BasePermission):
 
     def has_permission(self, request, view):
-        if view.action == "create":
+        if view.action == "list" and 'validate' in request.query_params:
             return True
 
         # extra condition to allow adding to this database
@@ -38,20 +38,8 @@ class LoggedInOrValidateOnly(BasePermission):
 class IsStaffOrPostOnly(BasePermission):
 
     def has_permission(self, request, view):
-        if request.method == "POST":
-            return True
-
-        if request.user.is_anonymous is False and \
-                request.user.user_type != 'CUSTOMER':
-            return True
-
-        return False
-
-
-class AdminOrPostOnly(BasePermission):
-
-    def has_permission(self, request, view):
-        if request.method == "POST":
+        allowed_methods = ['PUT', 'PATCH', 'POST']
+        if request.method in allowed_methods:
             return True
 
         if request.user.is_anonymous is False and \
@@ -66,7 +54,8 @@ class AdminOrPostOnly(BasePermission):
 class IsAuthenticatedOrGetOrPostOnly(BasePermission):
 
     def has_permission(self, request, view):
-        if request.method == "POST" or request.method == "GET":
+        allowed_methods = ["POST", "GET"]
+        if request.method in allowed_methods:
             return True
 
         if request.user.is_anonymous is False and \
