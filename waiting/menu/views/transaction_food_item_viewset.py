@@ -1,6 +1,6 @@
 from django.db.models import Count, Sum
 from rest_framework.viewsets import ModelViewSet
-from rest_framework.permissions import IsAuthenticatedOrReadOnly, AllowAny
+from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from rest_framework.response import Response
 
 from accounts.permissions import IsStaffOrPostOnly
