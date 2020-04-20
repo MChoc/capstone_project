@@ -31,29 +31,3 @@ class TransactionFoodItemViewSet(ModelViewSet):
                 transaction=transaction_id
             )
         return super().get_queryset()
-
-
-class TransactionFoodItemStatsViewSet(ModelViewSet):
-    queryset = TransactionFoodItem.objects.all()
-    serializer_class = TransactionFoodItemSerializer
-    http_method_names = [u'post']
-    # TODO: remove AllowAny when done
-    permission_classes = [AllowAny]
-
-    def create(self, request, *args, **kwargs):
-        '''
-        param: 'extra': 'true'
-        returns: extras in order of number of times ordered. (Extras that have never been ordered aren't included)
-
-        params: None
-        returns: food_items in order of number of times ordered. (Food items that have never been ordered aren't included)
-        '''
-        if self.request.query_params.get('extras'):
-            extras = TransactionFoodItem.objects.values("extras").annotate(total_orders=Count(
-                'food_item'), total_revenue=Sum('extras__price')).order_by('-total_orders')
-            return Response(extras)
-
-        else:
-            revenue = TransactionFoodItem.objects.values("food_item").annotate(total_orders=Count(
-                'food_item'), total_revenue=Sum('food_item__price')).order_by('-total_orders')
-            return Response(revenue)

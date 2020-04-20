@@ -54,38 +54,39 @@ class AssistanceViewSet(ModelViewSet):
 class AssistanceStatsViewSet(ModelViewSet):
     queryset = Assistance.objects.all()
     serializer_class = AssistanceSerializer
-    http_method_names = [u'post']
+    http_method_names = [u'get']
     # TODO: remove AllowAny when done
     permission_classes = [AllowAny]
 
-    def create(self, request, *args, **kwargs):
-        '''
+    def list(self, request, *args, **kwargs):
+        """
         param:'waiters': 'true':
-        returns: list of all waiters who have resolved assistance requests and the total requests
-                resolved
+        returns: list of all waiters who have resolved assistance requests and
+                 the total requests resolved
 
         param: 'average_time': 'true'
-        returns: average time (in seconds) it takes to resolve an assistance request
+        returns: average time (in seconds) it takes to resolve an assistance
+                 request
 
         param: None
-        returns: List of all assistance requests in order of most to least requested
-         '''
-
-        if request.query_params.get("waiters"):
-
-            response = Assistance.objects.filter(resolved=True).values("waiter__username").annotate(
-                total_resolved=Count('waiter__username')).order_by('-total_resolved')
-
+        returns: List of all assistance requests in order of most to least
+                 requested
+        """
+        if request.query_params.get('waiters'):
+            response = Assistance.objects.filter(resolved=True) \
+                .values('waiter__username') \
+                .annotate(total_resolved=Count('waiter__username')) \
+                .order_by('-total_resolved')
         elif request.query_params.get("average_time"):
-
             duration = ExpressionWrapper(
-                F('date_resolved') - F('date'), output_field=fields.DurationField())
+                F('date_resolved') - F('date'),
+                output_field=fields.DurationField()
+            )
             response = Assistance.objects.filter(resolved=True).annotate(
-                duration=duration).aggregate(average_time=Avg(duration))
-
+                duration=duration
+            ).aggregate(average_time=Avg(duration))
         else:
-
             response = Assistance.objects.values("problem").annotate(
-                total_requests=Count('problem')).order_by('-total_requests')
-
+                total_requests=Count('problem')
+            ).order_by('-total_requests')
         return Response(response)
