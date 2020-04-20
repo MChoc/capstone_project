@@ -2,10 +2,6 @@ h2 {
     text-align: center;
 }
 
-h2 span {
-    background-color: #d3b895;
-}
-
 a {
     font-size:18px;
     font-family:"Segoe UI",Arial,sans-serif;
@@ -19,11 +15,10 @@ p {
 }
 
 .w3-card{
-    box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
-    padding: 15px;
-    min-height: 20px;
-    width: 400px;
     margin: auto;
+    box-shadow:0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
+    width: 400px;
+    padding: 10px;
 }
 
 .w3-center{
@@ -39,10 +34,6 @@ p {
 .w3-col.s6{
     color: #352728e0;
     font-weight: bold;
-}
-
-.w3-container{
-    padding:0.01em 16px
 }
 
 .w3-content{
@@ -64,7 +55,7 @@ li, ul {
     float: right;
     width: 25%;
     text-align: right;
-    padding-top: 55px;
+    padding-top: 15px;
 }
 
 .column2a {
@@ -89,7 +80,6 @@ li, ul {
     margin: auto;
     padding: 10px 20px;
 }
-
 
 
 
@@ -130,10 +120,4 @@ li, ul {
     padding: 10px;
     color: white;
     background-color: grey;
-}
-
-.select {
-    text-align: center;
-    font-size: small;
-    margin-top: 20px;
 }

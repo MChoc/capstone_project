@@ -4,7 +4,12 @@
         <div [formGroup]="assistanceForm">
             <label>Please specify your issue:</label>
             <br>
-            <textarea formControlName="issue" rows="5" required></textarea>
+            <label *ngFor="let order of orders">
+                <input type="radio" formControlName="orders" name="orders" [value]="order.id" (change)="alertme()"/>
+                {{order.request}}
+                <br>
+            </label>
+            <textarea formControlName="issue" rows="5"></textarea>
         </div>
         <button type="submit">Submit</button>
     </form>
