@@ -27,10 +27,11 @@ extras = []
 with open('example_data/categories.csv') as f:
     reader = csv.reader(f)
     for row in reader:
+        menu = Menu.objects.get(name=row[2])
         category = Category.objects.create(
             name=row[0],
             active=row[1] == 'yes',
-            menu=Menu.objects.get(name=row[2])
+            menu=menu
         )
         categories.append(category)
         print(f"Created {category}")

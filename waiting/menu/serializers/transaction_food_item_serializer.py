@@ -24,7 +24,10 @@ class TransactionFoodItemSerializer(serializers.HyperlinkedModelSerializer):
         discount = instance.discount
         if discount is not None:
             if discount.type == 'PERCENTAGE':
-                instance.price = round(sub_total * (1 - discount.amount / 100), 2)
+                instance.price = round(
+                    sub_total * (1 - discount.amount / 100),
+                    2
+                )
             else:
                 instance.price = round(sub_total - discount.amount, 2)
         else:
