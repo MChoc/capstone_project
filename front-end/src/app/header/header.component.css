@@ -48,3 +48,6 @@ i {
     cursor: pointer;
 }
 
+.menu:hover {
+    text-decoration: underline;
+}

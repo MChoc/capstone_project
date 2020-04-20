@@ -81,3 +81,7 @@ input[type=text], [type=number], select {
 .back:hover::after {
   transform: scaleX(1);
 }
+
+.order:hover {
+  background-color: #35272880;
+}

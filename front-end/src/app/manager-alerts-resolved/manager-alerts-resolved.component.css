@@ -39,3 +39,7 @@ button {
     transform: none;
     box-shadow: none;
 }
+
+.resolved:hover {
+    color: #35272880;
+}

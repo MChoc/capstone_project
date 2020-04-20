@@ -82,3 +82,7 @@ ul, li{
     padding-top: 20px;
     color: grey;
 }
+
+.addEmp:hover {
+    background-color: #35272880;
+}

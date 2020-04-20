@@ -97,6 +97,10 @@ a {
     transform: scaleX(1);
 }
 
+.back {
+    text-decoration: underline;
+}
+
 .buttons {
     text-align: center;
     margin: auto;
@@ -170,3 +174,14 @@ table {
     border: solid 1px;
   }
 
+  .order:hover {
+      background-color: #35272880;
+  }
+
+  .back:hover {
+    color: #35272880;
+  }
+
+  .clear:hover {
+      color: rgba(255, 0, 0, 0.541);
+  }
