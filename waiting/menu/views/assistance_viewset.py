@@ -2,10 +2,9 @@ from datetime import datetime
 
 import dateutil.parser
 from pytz import utc
-from accounts.permissions import IsStaffOrPostOnly
+from accounts.permissions import IsStaffOrPostOnly, IsManager
 from django.db.models import Count, Avg, F, ExpressionWrapper, fields, Avg
 from rest_framework.viewsets import ModelViewSet
-from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 
 from menu.models.assistance import Assistance
@@ -55,8 +54,7 @@ class AssistanceStatsViewSet(ModelViewSet):
     queryset = Assistance.objects.all()
     serializer_class = AssistanceSerializer
     http_method_names = [u'get']
-    # TODO: remove AllowAny when done
-    permission_classes = [AllowAny]
+    permission_classes = [IsManager]
 
     def list(self, request, *args, **kwargs):
         """
