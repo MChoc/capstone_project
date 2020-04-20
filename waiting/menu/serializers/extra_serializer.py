@@ -22,9 +22,9 @@ class ExtraStatsSerializer(serializers.ModelSerializer):
     def get_total_orders(self, obj):
         return TransactionFoodItem.extras.through.objects.filter(
             extra_id=obj.id
-        ).aggregate(total_orders=Count('extra_id'))
+        ).aggregate(Count('extra_id'))['extra_id__count']
 
     def get_total_revenue(self, obj):
         return TransactionFoodItem.extras.through.objects.filter(
             extra_id=obj.id
-        ).aggregate(total_revenue=Sum('extra__price'))
+        ).aggregate(Sum('extra__price'))['extra__price__sum']
