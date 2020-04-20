@@ -1,37 +1,20 @@
-Espresso,yes,3,,Hot Drinks,
-Latte,yes,3.5,,Hot Drinks,SMALL
-Latte,yes,4,,Hot Drinks,MEDIUM
-Latte,yes,4.5,,Hot Drinks,LARGE
-Cappuccino,yes,3.5,,Hot Drinks,SMALL
-Cappuccino,yes,4,,Hot Drinks,MEDIUM
-Cappuccino,yes,4.5,,Hot Drinks,LARGE
-Hot Chocolate,yes,3.5,,Hot Drinks,SMALL
-Hot Chocolate,yes,4,,Hot Drinks,MEDIUM
-Hot Chocolate,yes,4.5,,Hot Drinks,LARGE
-Mocha,yes,3.5,,Hot Drinks,SMALL
-Mocha,yes,4,,Hot Drinks,MEDIUM
-Mocha,yes,4.5,,Hot Drinks,LARGE
-Chai Latte,yes,4.2,,Hot Drinks,
-Iced Coffee,yes,7,With icecream,Cold Drinks,
-Iced Chocolate,yes,7,With icecream,Cold Drinks,
-Chocolate Milkshake,yes,5,,Cold Drinks,SMALL
-Chocolate Milkshake,yes,6,,Cold Drinks,MEDIUM
-Chocolate Milkshake,yes,7,,Cold Drinks,LARGE
-Vanilla Milkshake,no,5,,Cold Drinks,SMALL
-Vanilla Milkshake,no,6,,Cold Drinks,MEDIUM
-Vanilla Milkshake,no,7,,Cold Drinks,LARGE
-Strawberry Milkshake,yes,5,,Cold Drinks,SMALL
-Strawberry Milkshake,yes,6,,Cold Drinks,MEDIUM
-Strawberry Milkshake,yes,7,,Cold Drinks,LARGE
-Banana Smoothie,yes,8,"Banana, honey, coconut yoghurt & coconut milk",Cold Drinks,
-Toast,yes,6.5,Sourdough toast with with Vegemite and butter,Breakfast,
-Pancakes,yes,11.6,"Buttermilk pancakes with maple syrup, banana and strawberries",Breakfast,
-Scrambled Eggs,yes,7.5,With sourdough toast,Breakfast,
-Poached eggs,no,7.5,With sourdough toast,Breakfast,
-Breakfast Sandwich,yes,12,"Lettuce, bacon, avo, fried egg and hollandaise sauce on a brioche bun",Breakfast,
-Granola Bowl,yes,14.5,"Housemade almond, honey & berry granola with seasonal fresh fruit and blackberry coconut yoghurt",Breakfast,
-Fresh Fruit Salad,yes,9,Seasonal fresh fruit served with a blackberry coconut yoghurt,Breakfast,
-BLT,yes,10,"Bacon, lettuce & tomato on sourdough bread",Sandwiches,
-Haloumi Wrap,yes,11,Grilled haloumi with roast vegetables and tahini yoghurt in a spinnach wrap,Sandwiches,
-Tuna Sandwich,yes,11,Tuna and dill mayo sandwich with pickled cabbage & rocket,Sandwiches,
-Chilli Chicken Sandwich,yes,12,"Poached chicken, chilli mayo, tomato and rocket on sourdough",Sandwiches,
+Skim Milk,yes,0.25,Hot Drinks
+Soy Milk,yes,0.5,Hot Drinks
+Almond Milk,yes,0.5,Hot Drinks
+Skim Milk,yes,0.25,Cold Drinks
+Soy Milk,yes,0.5,Cold Drinks
+Almond Milk,yes,0.5,Cold Drinks
+Dairy Free Icecream,yes,1,Cold Drinks
+Gluten free bread,yes,2,Breakfast
+Extra slice of toast,yes,1,Breakfast
+Extra egg,yes,2,Breakfast
+Hollandaise sauce,yes,2,Breakfast
+Haloumi,yes,3,Breakfast
+Bacon,yes,3,Breakfast
+Avo,yes,3,Breakfast
+Wilted spinnach,no,3,Breakfast
+Grilled mushrooms,no,3,Breakfast
+Gluten free bread,yes,2,Sandwiches
+Extra avo,yes,3,Sandwiches
+Extra haloumi,yes,3,Sandwiches
+Extra bacon,yes,3,Sandwiches
