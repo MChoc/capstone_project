@@ -114,3 +114,11 @@ textarea {
     background-color: #fcf7fb;
     color: #352728;
   }
+
+  i:hover, a:hover {
+    color: #35272880;
+  }
+
+  button:hover {
+      background-color: #35272880;
+  }

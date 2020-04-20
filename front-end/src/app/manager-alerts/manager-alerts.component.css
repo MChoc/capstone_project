@@ -39,6 +39,18 @@ button:active {
     background-color: #abc2ba;
 }
 
+.assistance:hover {
+    background-color: #c7e8f78c;
+}
+
+.orders:hover {
+    background-color: #fdcfd77e;
+}
+
+.pickups:hover {
+    background-color: #abc2ba80;
+}
+
 .resolved {
     background-color: #fcf7fb;
     outline: none;
@@ -52,4 +64,8 @@ button:active {
 .resolved:active {
     transform: none;
     box-shadow: none;
+}
+
+.resolved:hover {
+    color: #35272880;
 }

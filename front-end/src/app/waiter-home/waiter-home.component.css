@@ -34,3 +34,11 @@ button:active {
 .orders {
     background-color: #fdcfd7;
 }
+
+.assistance:hover {
+    background-color: #c7e8f77c;
+}
+
+.orders:hover {
+    background-color: #fdcfd780;
+}
