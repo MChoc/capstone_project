@@ -10,7 +10,7 @@
     <br>
     
     <div class="container">
-        <h3>Total Price: {{total_price}}</h3>
+        <h3>Total Price: ${{total_price}}</h3>
 
         <div *ngFor="let item of transactionFoodItems" class="orderDetails">
             <h4 style="font-weight: bold;">{{ getFoodItemName(item.food_item) }}</h4>
@@ -18,7 +18,7 @@
                 <p>Extras: {{ getExtraNames(item.extras) }}</p>
             </ng-container>
             <ng-container *ngIf="item.request">
-                <p>Request: ${{ item.request }}</p>
+                <p>Request: {{ item.request }}</p>
             </ng-container>
         </div>
     </div>
