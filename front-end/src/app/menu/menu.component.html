@@ -16,14 +16,12 @@
             <div class="w3-container menu w3-padding-48 w3-card" >
                 <ul *ngFor="let item of items$| filter : searchname">
                   <div *ngIf="category.url === item.category && item.active" class="item">
-                    <div class="row">
-                
+                    <div class="row">             
                       <div class="column1">
                         <h4 style="font-weight: bold;">{{ item.name }}</h4>
                         <p>{{ item.description }}</p> 
                         <p>{{ item.size }} ${{ item.price }}</p>
                       </div>
-            
                       <div class="column2">
                           <a [routerLink] = "['add', item.id]" [class.activated]="currentUrl == ''">
                               <i class="material-icons">add</i>

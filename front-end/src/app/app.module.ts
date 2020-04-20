@@ -41,6 +41,8 @@ import { ManagerAlertsPickupsComponent } from './manager-alerts-pickups/manager-
 import { ManagerAlertsResolvedComponent } from './manager-alerts-resolved/manager-alerts-resolved.component';
 import { ResolvedAssistanceComponent } from './resolved-assistance/resolved-assistance.component';
 import { ResolvedOrdersComponent } from './resolved-orders/resolved-orders.component';
+import { RemoveDuplicatesPipe } from './remove-duplicates.pipe';
+import { TransactionDuplicatesPipe } from './transaction-duplicates.pipe';
 
 
 @NgModule({
@@ -81,6 +83,8 @@ import { ResolvedOrdersComponent } from './resolved-orders/resolved-orders.compo
     ManagerAlertsResolvedComponent,
     ResolvedAssistanceComponent,
     ResolvedOrdersComponent,
+    RemoveDuplicatesPipe,
+    TransactionDuplicatesPipe,
   ],
   imports: [
     BrowserModule,
