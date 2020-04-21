@@ -2,22 +2,66 @@
     width: 100%;
     text-align: left;
     border: none;
-    padding: 10px;
+    padding: 15px;
     cursor: pointer;
     background-color: #3527284b;
-    border-bottom: solid 1px #35272862;
+    border-top: solid 1px #35272879;
 }
 
 .category:hover {
-    background-color: #35272862;
+    background-color: #35272879;
 }
 
 .category:focus {
-    background-color: #35272862;
+    background-color: #35272879;
     cursor: default;
 }
 
 .analytics {
-    border: solid 1px #35272862;
-    border-bottom: none;
+    border: solid 1px #35272879;
+    border-top: none;
+}
+
+th, td {
+    padding: 15px;
+}
+
+.heading {
+    min-height: 100px;
+}
+
+table tr:nth-child(odd) {
+    background-color: #35272807;
+}
+
+table tr:nth-child(even) {
+    background-color: #3527281e;
+}
+
+table th {
+    background-color: #35272807;
+}
+
+table td {
+    border: none;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+.extra {
+    text-indent: 5px;
+}
+
+.close {
+    background-color: #fcf7fb;
+    border: none;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.analytics-page {
+    text-align: center;
+    align-items: center;
 }

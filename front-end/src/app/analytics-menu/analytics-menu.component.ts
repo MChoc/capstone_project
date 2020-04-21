@@ -39,4 +39,8 @@ export class AnalyticsMenuComponent implements OnInit {
     this.open = id;
   }
 
+  close() {
+    this.open = null;
+  }
+  
 }
