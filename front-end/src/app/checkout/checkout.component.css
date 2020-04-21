@@ -49,12 +49,42 @@ input[type=text], [type=number], select {
   text-decoration: underline;
   padding: 0;
   margin-top: 0;
+  font-size: smaller;
 }
 
 .order:hover {
   background-color: #35272880;
 }
 
-.back:hover {
+/* .back:hover {
   color: #35272880;
+} */
+
+.back {
+  background-color: #fcf7fb;
+  color: #91363c;
+  /* text-decoration: underline; */
+  padding: 5px;
+  margin-top: 0;
+  margin-left: 30%;
+  text-decoration: none;
+  border: none;
+  position: relative;
+  width: 40%;
+}
+
+.back::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 2px;
+  background: currentColor;
+  transform: scaleX(0);
+  transition: transform 200ms ease-in;
+}
+
+.back:hover::after {
+  transform: scaleX(1);
 }
