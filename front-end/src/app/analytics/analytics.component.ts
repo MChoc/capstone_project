@@ -12,9 +12,7 @@ export class AnalyticsComponent implements OnInit {
 
   currentUrl: string;
   categories$: Object;
-  category1: Object;
-  items$: Object;
-  category_name: string;
+  open: number;
 
   constructor( 
     private http: HttpClient,
@@ -34,14 +32,11 @@ export class AnalyticsComponent implements OnInit {
   ngOnInit(): void {
     this.data.getCategoryStats().subscribe(
       data => this.categories$ = data,
-    ),
-    this.data.getCategoryData(1).subscribe(
-      data => {
-        this.category1 = data,
-        this.items$ = data['food_items'],
-        this.category_name = data['name']
-      }
     )  
+  }
+
+  collapse(id) {
+    this.open = id;
   }
 
 }

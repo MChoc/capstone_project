@@ -2,21 +2,25 @@
 
     <div class="analytics category">
         <h2>By Category</h2>
-        <table style="width: 100%;">
-            <tr style="text-align: left;">
-                <th>Category</th>
-                <th>Item</th>
-                <th>Total Ordered</th>
-                <th>Revenue</th>
-            </tr>
-            <tr *ngFor="let item of items$">
-                <td>{{ category1['name'] }}</td>
-                <td>{{ item.name }}</td>
-                <td>{{ item.total_orders }}</td>
-                <td>{{ item.total_revenue }}</td>
-            </tr>
+        
+        <div *ngFor="let category of categories$">
+            <button (click)="collapse(category.id)">{{ category.name }}</button>
+            <br><br>
+            <table *ngIf="open == category.id" style="width: 100%;">
+                <tr style="text-align: left;">
+                    <th>Item</th>
+                    <th>Total Ordered</th>
+                    <th>Revenue</th>
+                </tr>
+                <tr *ngFor="let item of category.food_items">
+                    <td>{{ item.name }}</td>
+                    <td>{{ item.total_orders }}</td>
+                    <td>{{ item.total_revenue }}</td>
+                </tr>
 
-        </table>
+            </table>
+            <br>
+        </div>
 
     </div>
 
