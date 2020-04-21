@@ -18,7 +18,7 @@ class FoodItemStatsSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = FoodItem
-        fields = ['id', 'name', 'total_orders', 'total_revenue']
+        fields = ['id', 'name', 'size', 'total_orders', 'total_revenue']
 
     def get_total_orders(self, obj):
         return TransactionFoodItem.objects.filter(food_item=obj.id).aggregate(
