@@ -41,12 +41,9 @@ import { ManagerAlertsPickupsComponent } from './manager-alerts-pickups/manager-
 import { ManagerAlertsResolvedComponent } from './manager-alerts-resolved/manager-alerts-resolved.component';
 import { ResolvedAssistanceComponent } from './resolved-assistance/resolved-assistance.component';
 import { ResolvedOrdersComponent } from './resolved-orders/resolved-orders.component';
-<<<<<<< HEAD
 import { RemoveDuplicatesPipe } from './remove-duplicates.pipe';
 import { TransactionDuplicatesPipe } from './transaction-duplicates.pipe';
-=======
 import { MenuCategoryComponent } from './menu-category/menu-category.component';
->>>>>>> dev
 
 
 @NgModule({
@@ -87,12 +84,9 @@ import { MenuCategoryComponent } from './menu-category/menu-category.component';
     ManagerAlertsResolvedComponent,
     ResolvedAssistanceComponent,
     ResolvedOrdersComponent,
-<<<<<<< HEAD
     RemoveDuplicatesPipe,
     TransactionDuplicatesPipe,
-=======
     MenuCategoryComponent,
->>>>>>> dev
   ],
   imports: [
     BrowserModule,

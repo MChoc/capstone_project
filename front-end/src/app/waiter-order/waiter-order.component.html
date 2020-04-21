@@ -5,28 +5,15 @@
 
         <div class="container">
             <h3>Order Details</h3>
-<<<<<<< HEAD
-            <div *ngFor="let item of removeDup(transactionFoodItems)">
-                <div *ngIf="item.transaction == transaction$.url" class="orderDetails">
-                    <h4>{{ getFoodItemName(item.food_item) }}</h4>
-                    <h4>x {{ count(item, transactionFoodItems) }}</h4>
-                    <ng-container *ngIf="item.extras.length > 0">
-                        <p>Extras: {{ getExtraNames(item.extras) }}</p>
-                    </ng-container>
-                    <ng-container *ngIf="item.request">
-                        <p>Request: {{ item.request }}</p>
-                    </ng-container>
-                </div>
-=======
-            <div *ngFor="let item of transactionFoodItems" class="orderDetails">
+            <div *ngFor="let item of removeDup(transactionFoodItems)" class="orderDetails">
                 <h4>{{ getFoodItemName(item.food_item) }}</h4>
+                <h4>x {{ count(item, transactionFoodItems) }}</h4>
                 <ng-container *ngIf="item.extras.length > 0">
                     <p>Extras: {{ getExtraNames(item.extras) }}</p>
                 </ng-container>
                 <ng-container *ngIf="item.request">
                     <p>Request: {{ item.request }}</p>
                 </ng-container>
->>>>>>> dev
             </div>  
         </div>
     
