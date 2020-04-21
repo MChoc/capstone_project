@@ -31,6 +31,10 @@ h2{
     margin-top: 20px;
 }
 
+.requestDone:hover {
+  background-color: #9ddbf8;
+}
+
 .requestDone:active {
     transform: translateY(2px);
     box-shadow: 1px 1px 2px grey;

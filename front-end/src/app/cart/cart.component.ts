@@ -1,11 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { CartService } from '../cart.service';
+import { animation, transition, animate, state, trigger, style } from '@angular/animations';
 import { RemoveDuplicatesPipe } from './../remove-duplicates.pipe';
 
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.css'],
+  animations: [
+    trigger('fade', [
+      transition('void => *', [
+        style({backgroundColor: 'white', opacity: 0, transform: 'translateX(40px)'}),
+        animate(300)
+      ])
+    ])
+  ],
   providers: [RemoveDuplicatesPipe]
 })
 export class CartComponent implements OnInit {

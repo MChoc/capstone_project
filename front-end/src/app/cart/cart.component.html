@@ -1,4 +1,4 @@
-<div class="cart">
+<div class="cart" @fade>
     <h2>Cart</h2>
     <div *ngIf="items?.length; else elseBlock">
         <table>
@@ -42,12 +42,12 @@
 
     <div class="buttons">
         <button type="button" class="back" onclick="window.location.href = '/';">Back to Menu</button>
-        <button type="button" class="clear" (click)="clearCart()">Clear cart</button>
+        <button type="button" class="clear" (click)="clearCart()">Clear Cart</button>
     </div>
 
     <ng-template #elseBlock>
         <div class="alert">
-            Your cart is empty!
+            Your Cart is Empty!
         </div>
     </ng-template>
 

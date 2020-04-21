@@ -2,11 +2,21 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { DataService } from '../_services/data.service';
 import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
+import { animation, transition, animate, state, trigger, style } from '@angular/animations';
+
 
 @Component({
   selector: 'app-menu-category',
   templateUrl: './menu-category.component.html',
-  styleUrls: ['./menu-category.component.css']
+  styleUrls: ['./menu-category.component.css'],
+  animations: [
+    trigger('fade', [
+      transition('void => *', [
+        style({backgroundColor: 'white', opacity: 0, transform: 'translateX(40px)'}),
+        animate(300)
+      ])
+    ])
+  ]
 })
 export class MenuCategoryComponent implements OnInit {
   currentUrl: string;

@@ -48,6 +48,9 @@ import { AnalyticsComponent } from './analytics/analytics.component';
 import { AnalyticsMenuComponent } from './analytics-menu/analytics-menu.component';
 import { AnalyticsAssistanceComponent } from './analytics-assistance/analytics-assistance.component';
 
+import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
+
+
 
 @NgModule({
   declarations: [
@@ -100,6 +103,7 @@ import { AnalyticsAssistanceComponent } from './analytics-assistance/analytics-a
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+    BrowserAnimationsModule
   ],
   providers: [
   ],

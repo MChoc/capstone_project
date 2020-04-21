@@ -6,11 +6,21 @@ import { TransactionDuplicatesPipe } from './../transaction-duplicates.pipe';
 import { DataService } from '../_services/data.service';
 import { Transaction } from "../models/transaction.model";
 import { TransactionFoodItem } from "../models/transaction-food-item.model"
+import { animation, transition, animate, state, trigger, style } from '@angular/animations';
+
 
 @Component({
   selector: 'app-order-success',
   templateUrl: './order-success.component.html',
   styleUrls: ['./order-success.component.css'],
+  animations: [
+    trigger('fade', [
+      transition('void => *', [
+        style({backgroundColor: 'white', opacity: 0, transform: 'translateX(40px)'}),
+        animate(300)
+      ])
+    ])
+  ],
   providers: [TransactionDuplicatesPipe]
 })
 export class OrderSuccessComponent implements OnInit {
