@@ -41,6 +41,7 @@ import { ManagerAlertsResolvedComponent } from './manager-alerts-resolved/manage
 import { ResolvedAssistanceComponent } from './resolved-assistance/resolved-assistance.component';
 import { ResolvedOrdersComponent } from './resolved-orders/resolved-orders.component';
 import { MenuCategoryComponent } from './menu-category/menu-category.component';
+import { AnalyticsComponent } from './analytics/analytics.component';
 
 
 @NgModule({
@@ -81,6 +82,7 @@ import { MenuCategoryComponent } from './menu-category/menu-category.component';
     ResolvedAssistanceComponent,
     ResolvedOrdersComponent,
     MenuCategoryComponent,
+    AnalyticsComponent,
   ],
   imports: [
     BrowserModule,
