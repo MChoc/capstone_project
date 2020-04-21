@@ -1,5 +1,5 @@
 import csv
-from random import randint
+from random import randint, choices
 from datetime import datetime, timedelta
 import warnings
 
@@ -27,6 +27,7 @@ print(f"Created {menu}")
 categories = []
 food_items = []
 extras = []
+extras_with_categories = {}
 
 with open('example_data/categories.csv') as f:
     reader = csv.reader(f)
@@ -55,28 +56,24 @@ with open('example_data/food_items.csv') as f:
         print(f"Created {food_item}")
 
 with open('example_data/extras.csv') as f:
-    reader = csv.reader(f)
+    reader = csv.DictReader(f)
     for row in reader:
+
         extra = Extra.objects.create(
-            name=row[0],
-            active=row[1] == 'yes',
-            price=row[2],
-            category=Category.objects.get(name=row[3])
+            name=row['name'],
+            active=row['active'] == 'yes',
+            price=row['price'],
+            category=Category.objects.get(name=row['category'])
         )
+
+        if row['category'] not in extras_with_categories:
+            extras_with_categories[row['category']] = [extra]
+        else:
+            extras_with_categories[row['category']].append(extra)
+
         extras.append(extra)
         print(f"Created {extra}")
 
-# # TODO: use rand to add tags to items
-# tags = []
-# for i in range(0, 10):
-#     tag = Tag.objects.create(name='Tag ' + str(i+1))
-#     tags.append(tag)
-#     print(f"Created {tag}")
-
-# =============================================================================
-# Create superuser
-# admin = get_user_model().objects.create_superuser('admin', password='admin')
-# print("Created admin")
 
 # Create custom users
 managers = []
@@ -151,29 +148,37 @@ for i in range(0, 5):
 
 # Create transactions
 transactions = []
-# for i in range(0, 5):
-#     transaction = Transaction.objects.create(
-#         # TODO: randomise customer and credit card
-#         customer=customers[i],
-#         credit_card=credit_cards[i]
-#     )
-#     transactions.append(transaction)
-#     print(f"Created {transaction}")
+for i in range(50):
+    transaction = Transaction.objects.create(
+        credit_card=credit_cards[0]
+    )
+    transactions.append(transaction)
+    print(f"Created {transaction}")
 
-#     # TODO: create list of random food items of random length
-#     # TODO: apply random discount
-#     # TODO: apply random extras
-#     j = i * 5
-#     transaction.food_items.set(food_items[j:j+5], through_defaults={
-#         'discount': discounts[i]
-#     })
+    # add between 1 and 5 food items to the list
+    random_food_items = choices(food_items, k=randint(1, 5))
 
-#     # Call save to force price calculation
-#     tfi_set = TransactionFoodItem.objects.filter(transaction=transaction.pk)
-#     for tfi in tfi_set:
-#         tfi.extras.add(extras[5])
-#         tfi.save()
-#         print(f'Added {extras[5]} to {tfi}')
+    transaction.food_items.set(random_food_items, through_defaults={
+        'discount': discounts[0]
+    })
+
+    tfi_set = TransactionFoodItem.objects.filter(transaction=transaction.pk)
+
+    for tfi in tfi_set:
+
+        category_name = tfi.food_item.category.name
+        # pick relevant extras for each category food is in
+
+        extra_list = extras_with_categories[category_name]
+        if category_name == 'Hot Drinks' or category_name == 'Cold Drinks':
+            tfi.extras.add(extra_list[randint(0, len(extra_list) - 1)])
+        else:
+            # add between 0 and 2 extras per food item
+            for i in range(randint(0, 2)):
+                tfi.extras.add(extra_list[randint(0, len(extra_list) - 1)])
+
+        # Call save to force price calculation
+        tfi.save()
 
 assistances = []
 
