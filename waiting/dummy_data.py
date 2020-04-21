@@ -180,6 +180,7 @@ assistances = []
 with open('example_data/assistance.csv') as f:
     reader = csv.DictReader(f)
     for row in reader:
+
         if int(row['custom']):
             num_requests = randint(1, 3)
         else:
@@ -196,7 +197,10 @@ with open('example_data/assistance.csv') as f:
             Assistance.objects.filter(pk=assistance.pk).update(date_resolved=updated_timestamp)
             assistances.append(assistance)
 
-    # unresolve last 5 requests
-    for request in assistances[-5:]:
+    # unresolve 5 requests
+    num_to_jump = int(len(assistances) / 5)
+    for i in range(5):
+        request = assistances[i * num_to_jump]
         Assistance.objects.filter(pk=request.pk).update(resolved=False, date_resolved=None)
+
     print('Created Assistance Requests')
