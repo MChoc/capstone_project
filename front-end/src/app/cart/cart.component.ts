@@ -34,6 +34,8 @@ export class CartComponent implements OnInit {
     });
     return t;
    }
+
+   
   ngOnInit(): void {
     this.items = this.cartService.getItems();
     this.items.sort((a,b) => a.name.localeCompare(b.name));

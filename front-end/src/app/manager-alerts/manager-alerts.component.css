@@ -39,19 +39,33 @@ button:active {
     background-color: #abc2ba;
 }
 
+.assistance:hover {
+    background-color: #c7e8f78c;
+}
+
+.orders:hover {
+    background-color: #fdcfd77e;
+}
+
+.pickups:hover {
+    background-color: #abc2ba80;
+}
+
 .resolved {
     background-color: #fcf7fb;
-    padding: 10px;
     outline: none;
     border: none;
     cursor: pointer;
     margin-top: 30px;
     text-decoration: underline;
-    margin: 10px;
     box-shadow: none;
 }
 
 .resolved:active {
     transform: none;
     box-shadow: none;
+}
+
+.resolved:hover {
+    color: #35272880;
 }

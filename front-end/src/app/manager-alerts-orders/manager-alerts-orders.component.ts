@@ -54,7 +54,7 @@ export class ManagerAlertsOrdersComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  public getFoodItemName(url: string): string[]{
+  public getFoodItemName(url: string): string{
     let item_details = []
     for(let item of this.foodItems) {
       if (item['url'] === url) {
@@ -65,7 +65,7 @@ export class ManagerAlertsOrdersComponent implements OnInit {
         }
       }
     }
-    return item_details
+    return item_details.join(", ")
   }
 
 
@@ -78,12 +78,12 @@ export class ManagerAlertsOrdersComponent implements OnInit {
         if (element1['request'] === element2['request'] && this.getFoodItemName(element1.food_item).toString() === this.getFoodItemName(element2.food_item).toString()) {
           var st1 = [];
           var st2 = [];
-          this.getExtraNames(element1.extras).forEach(extra1 => {
-            st1.push(extra1);
-          })
-          this.getExtraNames(element2.extras).forEach(extra2 => {
-            st2.push(extra2);
-          })
+          // this.getExtraNames(element1.extras).forEach(extra1 => {
+          //   st1.push(extra1);
+          // })
+          // this.getExtraNames(element2.extras).forEach(extra2 => {
+          //   st2.push(extra2);
+          // })
           if (st1.sort().toString() === st2.sort().toString()) {
             t = t + 1;
           }
@@ -102,12 +102,12 @@ var t = 0;
         if (element1['request'] === element2['request'] && this.getFoodItemName(element1.food_item).toString() === this.getFoodItemName(element2.food_item).toString()) {
           var st1 = [];
           var st2 = [];
-          this.getExtraNames(element1.extras).forEach(extra1 => {
-            st1.push(extra1);
-          })
-          this.getExtraNames(element2.extras).forEach(extra2 => {
-            st2.push(extra2);
-          })
+          // this.getExtraNames(element1.extras).forEach(extra1 => {
+          //   st1.push(extra1);
+          // })
+          // this.getExtraNames(element2.extras).forEach(extra2 => {
+          //   st2.push(extra2);
+          // })
           if (st1.sort().toString() === st2.sort().toString()) t = t + 1;
         }
       }
@@ -115,14 +115,14 @@ var t = 0;
 return t;
 }
 
-  public getExtraNames(urls: string[]): string[]{
+  public getExtraNames(urls: string[]): string{
     let names: string[] = [];
     for(let extra of this.extras){
       if ( urls.indexOf(extra['url']) !== -1) {
         names.push(extra['name']);
       }
     }
-    return names
+    return names.join(", ")
   }
 
   back() {

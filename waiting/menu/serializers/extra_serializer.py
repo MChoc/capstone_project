@@ -1,16 +1,30 @@
+from django.db.models import Count, Sum
 from rest_framework import serializers
 
 from menu.models.extra import Extra
+from menu.models.transaction_food_item import TransactionFoodItem
 
 
 class ExtraSerializer(serializers.HyperlinkedModelSerializer):
-    # # Placeholder for if we want to analyse extra statistics
-    # transaction_food_items = serializers.HyperlinkedRelatedField(
-    #     many=True,
-    #     read_only=True,
-    #     view_name='transactionfooditem-detail'
-    # )
-
     class Meta:
         model = Extra
         fields = ['id', 'url', 'name', 'active', 'price', 'category']
+
+
+class ExtraStatsSerializer(serializers.ModelSerializer):
+    total_orders = serializers.SerializerMethodField()
+    total_revenue = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Extra
+        fields = ['id', 'name', 'total_orders', 'total_revenue']
+
+    def get_total_orders(self, obj):
+        return TransactionFoodItem.extras.through.objects.filter(
+            extra_id=obj.id
+        ).aggregate(Count('extra_id'))['extra_id__count']
+
+    def get_total_revenue(self, obj):
+        return TransactionFoodItem.extras.through.objects.filter(
+            extra_id=obj.id
+        ).aggregate(Sum('extra__price'))['extra__price__sum']

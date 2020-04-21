@@ -1,11 +1,11 @@
 <div class="pickup">
-    <div *ngIf="transaction$">
         <h1>Customer Order</h1>
-        <button class="number">No. {{ transaction$.id }}</button>
+        <button class="number">No. {{ id }}</button>
         <br>
 
         <div class="container">
             <h3>Order Details</h3>
+<<<<<<< HEAD
             <div *ngFor="let item of removeDup(transactionFoodItems)">
                 <div *ngIf="item.transaction == transaction$.url" class="orderDetails">
                     <h4>{{ getFoodItemName(item.food_item) }}</h4>
@@ -17,11 +17,19 @@
                         <p>Request: {{ item.request }}</p>
                     </ng-container>
                 </div>
+=======
+            <div *ngFor="let item of transactionFoodItems" class="orderDetails">
+                <h4>{{ getFoodItemName(item.food_item) }}</h4>
+                <ng-container *ngIf="item.extras.length > 0">
+                    <p>Extras: {{ getExtraNames(item.extras) }}</p>
+                </ng-container>
+                <ng-container *ngIf="item.request">
+                    <p>Request: {{ item.request }}</p>
+                </ng-container>
+>>>>>>> dev
             </div>  
         </div>
     
         <button (click)="pickup()" class="resolve">Resolve Order</button>
         <button (click)="back()" class="back">Back to Alerts</button>
-
-    </div>
 </div>

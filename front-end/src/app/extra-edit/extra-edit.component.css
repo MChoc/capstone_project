@@ -84,4 +84,8 @@ button[type=button] {
     outline: none;
     width: 100%;
     text-decoration: underline;
-  }
+}
+
+.back:hover {
+    color: #35272880;
+}

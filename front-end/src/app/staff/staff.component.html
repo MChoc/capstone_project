@@ -20,8 +20,8 @@
                         <button (click)="archiveUser( user.id )" class="archive">
                             <i class="material-icons">archive</i>
                         </button>
-                        <button (click)="deleteUser( user.id )" class="delete">
-                            <i class="material-icons">delete</i>
+                        <button (click)="deleteUser( user.id )" class="delete" *ngIf="check_if_its_user(user.id)">
+                            <i class="material-icons">delete</i> 
                         </button>
                     </div>
                 </div>

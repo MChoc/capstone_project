@@ -2,13 +2,13 @@
     <h2>ADD STAFF MEMBER</h2>
     <form ngNativeValidate (ngSubmit)="registerUser()">
         <div class="error">{{ general_error }}</div>
-        <input type="text" [(ngModel)]="fname" name="fname" placeholder="First Name" required>
-        <input type="text" [(ngModel)]="lname" name="lname" placeholder="Last Name" required>
         <div class="error">{{ username_error }}</div>
         <input type="text" [(ngModel)]="username" name="username" placeholder="Employee ID" required>
+        <input type="text" [(ngModel)]="fname" name="fname" placeholder="First Name" required>
+        <input type="text" [(ngModel)]="lname" name="lname" placeholder="Last Name" required>
         <div class="error">{{ password1_error }}</div>
-        <input type="password" [(ngModel)]="password1" name="password1" placeholder="password" required>
-        <input type="password" [(ngModel)]="password2" name="password2" placeholder="Retype password" required>
+        <input type="password" [(ngModel)]="password1" name="password1" placeholder="Password" required>
+        <input type="password" [(ngModel)]="password2" name="password2" placeholder="Retype Password" required>
 
         <span class="position"><p>Select Position:</p></span>
         <span class="position">

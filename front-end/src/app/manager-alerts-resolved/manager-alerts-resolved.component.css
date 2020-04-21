@@ -26,17 +26,19 @@ button {
 
 .resolved {
     background-color: #fcf7fb;
-    padding: 10px;
     outline: none;
     border: none;
     cursor: pointer;
     margin-top: 30px;
     text-decoration: underline;
-    margin: 10px;
     box-shadow: none;
 }
 
 .resolved:active {
     transform: none;
     box-shadow: none;
+}
+
+.resolved:hover {
+    color: #35272880;
 }

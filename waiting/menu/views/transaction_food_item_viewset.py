@@ -1,7 +1,9 @@
+from django.db.models import Count, Sum
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
+from rest_framework.response import Response
 
-from accounts.permissions import AdminOrPostOnly
+from accounts.permissions import IsStaffOrPostOnly
 from menu.models.transaction_food_item import TransactionFoodItem
 from menu.serializers.transaction_food_item_serializer import (
     TransactionFoodItemSerializer
@@ -11,7 +13,7 @@ from menu.serializers.transaction_food_item_serializer import (
 class TransactionFoodItemViewSet(ModelViewSet):
     queryset = TransactionFoodItem.objects.all()
     serializer_class = TransactionFoodItemSerializer
-    permission_classes = [AdminOrPostOnly | IsAuthenticatedOrReadOnly]
+    permission_classes = [IsStaffOrPostOnly | IsAuthenticatedOrReadOnly]
 
     """
     Overriding the get_queryset method to allow for listing

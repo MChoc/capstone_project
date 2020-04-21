@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../_services/data.service';
 import { Observable } from 'rxjs';
-import { Router, NavigationEnd } from '@angular/router'
+import { Router, NavigationEnd, ActivatedRoute } from '@angular/router'
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { FilterPipe } from './../filter.pipe';
 
@@ -37,6 +37,8 @@ export class MenuComponent implements OnInit {
     )
   }
 
-  public isCollapsed = false;
+  display(id) {
+    this.router.navigate(['/menu/',id]);
+  }
   
 }

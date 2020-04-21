@@ -58,20 +58,20 @@ export class DataService {
     return this.http.get(url);
   }
 
-  getTransactions(): Observable<Transaction[]> {
-
-    let key = window.localStorage.getItem('key')
-    var header = {
-      headers: new HttpHeaders()
-        .set('Authorization', 'Token ' + key)
+  getTransactions(parameters={}): Observable<Transaction[]> {
+    
+    if (parameters) {
+      return this.http.get<Transaction[]>(this.transactionList, {params: parameters});
     }
-
-    return this.http.get<Transaction[]>(this.transactionList, header);
+    return this.http.get<Transaction[]>(this.transactionList);
   }
 
-  getTransaction(id): Observable<Transaction> {
+  getTransaction(id, parameters?: any): Observable<Transaction> {
     let url = 'http://127.0.0.1:5000/api/transaction/' + id + '/';
 
+      if(parameters) {
+        return this.http.get<Transaction>(url, {params: parameters});
+      }
       return this.http.get<Transaction>(url);
   }
 
@@ -81,19 +81,34 @@ export class DataService {
   }
 
 
-    getRequests() {
-      let key = window.localStorage.getItem('key')
-      var header = {
-        headers: new HttpHeaders()
-          .set('Authorization', 'Token ' + key)
-      }
-  
-      return this.http.get(this.requestList, header)
+  getRequests(parameters = {}) {
+    let key = window.localStorage.getItem('key')
+    let header = new HttpHeaders().set('Authorization', 'Token ' + key)
+
+    return this.http.get(this.requestList, {headers: header, params: parameters})
+  }
+
+  getRequest(id: string, parameters = {}) {
+    let url = this.requestList + id + '/';
+    return this.http.get(url, {params: parameters});
+  }
+
+  getTransactionDetails(id): Observable<TransactionFoodItem[]> {
+
+    let transaction_details = {
+      'transaction_id': id,
+
     }
-  
-    getRequest(id: string) {
-      let url = this.requestList + id + '/';
-      return this.http.get(url);
+    return this.http.get<TransactionFoodItem[]>(this.transactionFoodItemList, {params: transaction_details});
+  }
+
+  getUnpreparedTransactions(): Observable<Transaction[]> {
+    
+    let transaction_details = {
+      'get_unprepared': 'true',
     }
+
+    return this.http.get<Transaction[]>(this.transactionList, {params: transaction_details});
+  }
 
 }

@@ -1,5 +1,3 @@
-import datetime
-import pytz
 from collections import OrderedDict
 
 from django.contrib.auth import get_user_model
@@ -104,17 +102,17 @@ class TestTransactionFoodItemModel(APITestCase):
         body = {
             'transaction': reverse(
                 'transaction-detail',
-                args=[Transaction.objects.get(id=1).pk, ],
+                args=[Transaction.objects.get(id=1).pk],
                 request=request
             ),
             'food_item': reverse(
                 'fooditem-detail',
-                args=[FoodItem.objects.get(id=1).pk, ],
+                args=[FoodItem.objects.get(id=1).pk],
                 request=request
             ),
         }
         response = self.client.post(url, body, format='json')
-        # print(response.__getstate__())
+        # print(response.__getstate__()['_container'])
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 
         post_count = TransactionFoodItem.objects.count()
@@ -137,7 +135,7 @@ class TestTransactionFoodItemModel(APITestCase):
         factory = APIRequestFactory()
         request = factory.get(url)
 
-        obj = [TransactionFoodItem.objects.get(id=1), ]
+        obj = [TransactionFoodItem.objects.get(id=1)]
         serializer_context = {
             'request': Request(request)
         }
@@ -171,17 +169,17 @@ class TestTransactionFoodItemModel(APITestCase):
         body = {
             'food_item': reverse(
                 'fooditem-detail',
-                args=[food_item.pk, ],
+                args=[food_item.pk],
                 request=request
             ),
             'transaction': reverse(
                 'transaction-detail',
-                args=[transaction.pk, ],
+                args=[transaction.pk],
                 request=request
             ),
         }
         response = self.client.put(url, body, format='json')
-        # print(response.__getstate__())
+        # print(response.__getstate__()['_container'])
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
         obj = TransactionFoodItem.objects.get(id=1)
@@ -206,12 +204,12 @@ class TestTransactionFoodItemModel(APITestCase):
         body = {
             'food_item': reverse(
                 'fooditem-detail',
-                args=[food_item.pk, ],
+                args=[food_item.pk],
                 request=request
             ),
         }
         response = self.client.patch(url, body, format='json')
-        # print(response.__getstate__())
+        # print(response.__getstate__()['_container'])
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
         obj = TransactionFoodItem.objects.get(id=1)
@@ -255,13 +253,13 @@ class TestTransactionFoodItemModel(APITestCase):
             'extras': [
                 reverse(
                     'extra-detail',
-                    args=[extra.pk, ],
+                    args=[extra.pk],
                     request=request
                 ),
             ],
         }
         response = self.client.patch(url, body, format='json')
-        # print(response.__getstate__())
+        # print(response.__getstate__()['_container'])
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
         obj = TransactionFoodItem.objects.get(id=1)
@@ -298,3 +296,25 @@ class TestTransactionFoodItemModel(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
         self.assertEqual(response.data, serializer.data)
+
+    def test_price_calculation(self):
+        url = '/api/transaction_food_item/6/'
+        factory = APIRequestFactory()
+        request = factory.get(url)
+
+        obj = [TransactionFoodItem.objects.get(id=6)]
+        self.assertEqual(float(obj[0].price), 4.05)
+
+        serializer_context = {
+            'request': Request(request)
+        }
+        serializer = TransactionFoodItemSerializer(
+            obj,
+            context=serializer_context,
+            many=True
+        )
+
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+
+        self.assertEqual([OrderedDict(response.data)], serializer.data)

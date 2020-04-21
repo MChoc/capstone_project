@@ -1,5 +1,6 @@
 from collections import OrderedDict
 
+import dateutil.parser
 from django.contrib.auth import get_user_model
 from rest_framework import status
 from rest_framework.reverse import reverse
@@ -109,6 +110,7 @@ class TestCategoryModel(APITestCase):
             'notes': ''
         }
         response = self.client.post(url, body, format='json')
+        # print(response.__getstate__()['_container'])
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 
         post_count = Assistance.objects.count()
@@ -157,6 +159,7 @@ class TestCategoryModel(APITestCase):
         url = '/api/assistance/1/'
         factory = APIRequestFactory()
         request = factory.post(url)
+        obj = Assistance.objects.get(id=1)
 
         transaction = Transaction.objects.get(id=2)
         waiter = get_user_model().objects.get(username='Waiter2')
@@ -184,6 +187,7 @@ class TestCategoryModel(APITestCase):
         self.assertEqual(obj.problem, 'Test Change')
         self.assertEqual(obj.notes, 'Test Change')
         self.assertTrue(obj.resolved)
+        self.assertIsNotNone(obj.date_resolved)
 
     """
     Testing UPDATE (partial)
@@ -207,6 +211,7 @@ class TestCategoryModel(APITestCase):
 
         obj = Assistance.objects.get(id=1)
         self.assertEqual(obj.notes, 'Test Change')
+        self.assertIsNotNone(obj.date_resolved)
 
     """
     Testing DESTROY
@@ -226,3 +231,36 @@ class TestCategoryModel(APITestCase):
             Assistance.objects.get,
             id=1
         )
+
+    """
+    Testing listing of assistance after given date.
+
+    Asserts:
+        200 response.
+        Return data is correct.
+    """
+    def test_list_filter_date(self):
+        url = '/api/assistance/'
+        factory = APIRequestFactory()
+        request = factory.get(url)
+
+        start_date = '1996-10-15T00:05:32.000Z'
+        objs = Assistance.objects.exclude(
+            date__lt=dateutil.parser.parse(start_date)
+        )
+        serializer_context = {
+            'request': Request(request)
+        }
+        serializer = AssistanceSerializer(
+            objs,
+            context=serializer_context,
+            many=True
+        )
+
+        body = {
+            'start_date': start_date
+        }
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+
+        self.assertEqual(response.data, serializer.data)

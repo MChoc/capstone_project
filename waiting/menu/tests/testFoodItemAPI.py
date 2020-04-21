@@ -129,7 +129,7 @@ class TestFoodItemModel(APITestCase):
             )]
         }
         response = self.client.patch(url, body, format='json')
-        # print(response.__getstate__())
+        # print(response.__getstate__()['_container'])
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         # print(post_obj.tags)
         self.assertIsNotNone(post_obj.tags)
@@ -189,7 +189,7 @@ class TestFoodItemModel(APITestCase):
             'size': 'SMALL'
         }
         response = self.client.put(url, body, format='json')
-        # print(response.__getstate__())
+        # print(response.__getstate__()['_container'])
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
         obj = FoodItem.objects.get(id=1)
@@ -257,7 +257,7 @@ class TestFoodItemModel(APITestCase):
             ]
         }
         response = self.client.patch(url, body, format='json')
-        # print(response.__getstate__())
+        # print(response.__getstate__()['_container'])
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
         obj = FoodItem.objects.get(id=1)

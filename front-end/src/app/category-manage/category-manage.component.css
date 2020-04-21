@@ -105,7 +105,22 @@ button[type=button] {
     text-decoration: underline;
 }
 
+button[type=button]:hover {
+    color: rgba(255, 0, 0, 0.479);
+}
+
 .deleteCategory{
     background-color: red;
 }
 
+.add a:hover {
+    background-color: #35272880;
+}
+
+.back {
+    text-decoration: underline;
+}
+
+.back:hover {
+    color: #35272880;
+}

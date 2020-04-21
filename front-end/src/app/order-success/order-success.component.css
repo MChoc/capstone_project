@@ -34,6 +34,7 @@
 .orderDetails {
     text-align: left;
     border-top: solid .5px;
+    padding: 10px;
 }
 
 .container {
