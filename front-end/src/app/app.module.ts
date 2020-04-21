@@ -42,6 +42,9 @@ import { ResolvedAssistanceComponent } from './resolved-assistance/resolved-assi
 import { ResolvedOrdersComponent } from './resolved-orders/resolved-orders.component';
 import { MenuCategoryComponent } from './menu-category/menu-category.component';
 
+import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
+
+
 
 @NgModule({
   declarations: [
@@ -88,6 +91,7 @@ import { MenuCategoryComponent } from './menu-category/menu-category.component';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+    BrowserAnimationsModule
   ],
   providers: [
   ],
