@@ -15,7 +15,7 @@ import { animation, transition, animate, state, trigger, style } from '@angular/
     trigger('fade', [
       transition('void => *', [
         style({backgroundColor: 'white', opacity: 0, transform: 'translateX(40px)'}),
-        animate(1000)
+        animate(300)
       ])
     ])
   ]

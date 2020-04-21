@@ -14,10 +14,10 @@ import { FilterPipe } from './../filter.pipe';
     trigger('fade', [
       transition('void => *', [
         style({backgroundColor: 'white', opacity: 0, transform: 'translateX(40px)'}),
-        animate(1000)
+        animate(300)
       ])
     ])
-  ]
+  ],
   providers: [FilterPipe]
 })
 
