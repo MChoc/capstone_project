@@ -14,9 +14,8 @@
                         </button>
                     </td>
                     <td>
-                        <b>{{ item.name }}</b>
+                        <b>{{ count(item) }} x {{ item.name }}</b>
                         <p>{{ item.size }}</p>
-                        <p>x {{ count(item) }}</p>
                         <p>{{ item.request }}</p>
                     </td>
                     <td class="price">
