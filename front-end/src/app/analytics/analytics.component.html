@@ -1,1 +1,23 @@
-<p>analytics works!</p>
+<div class="analytics-page">
+
+    <div class="analytics category">
+        <h2>By Category</h2>
+        <table style="width: 100%;">
+            <tr style="text-align: left;">
+                <th>Category</th>
+                <th>Item</th>
+                <th>Total Ordered</th>
+                <th>Revenue</th>
+            </tr>
+            <tr *ngFor="let item of items$">
+                <td>{{ category1['name'] }}</td>
+                <td>{{ item.name }}</td>
+                <td>{{ item.total_orders }}</td>
+                <td>{{ item.total_revenue }}</td>
+            </tr>
+
+        </table>
+
+    </div>
+
+</div>
