@@ -1,13 +1,40 @@
 <div class="w3-container" id="menu">   
-<br>
-      <div class="w3-center nav">
-        <div *ngFor="let category of categories$" class="inner">
-          <div *ngIf="category.active">
-            <button class="category" (click)="display(category.id)">{{ category.name }}</button>
-          </div>
+
+  <br>
+    <div class="w3-center nav">
+      <div *ngFor="let category of categories$" class="inner">
+        <div *ngIf="category.active">
+          <button class="category" (click)="display(category.id)">{{ category.name }}</button>
         </div>
       </div>
-    
-      <div class="select">Select a category</div>
-        
+    </div>  
+    <div class="select">Select a category</div>
+    <div>
+      <h2 class="w3-center"><input [(ngModel)]="searchname" placeholder="Search.."></h2>       
+    </div>
+    <div *ngIf="searchname">
+        <div class="w3-container menu w3-padding-48 w3-card" >
+          <li *ngFor="let category of categories$">
+            <div *ngIf="category.active">
+              <ul *ngFor="let item of items$| filter : searchname">
+                <div *ngIf="category.url === item.category && item.active" class="item">
+                  <div class="row">             
+                    <div class="column1">
+                      <h4 style="font-weight: bold;">{{ item.name }}</h4>
+                      <p>{{ item.description }}</p> 
+                      <p>{{ item.size }} ${{ item.price }}</p>
+                    </div>
+                    <div class="column2">
+                      <a [routerLink] = "['add', item.id]" [class.activated]="currentUrl == ''">
+                      <i class="material-icons">add</i>
+                      </a>
+                    </div>
+                  </div>
+                </div> 
+              </ul>
+            </div>
+          </li> 
+        </div>
+
+    </div>
 </div>
