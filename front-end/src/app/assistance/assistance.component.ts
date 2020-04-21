@@ -31,9 +31,10 @@ export class AssistanceComponent implements OnInit {
     { id: 2, request: 'I have a question about the menu' },
     { id: 3, request: 'There is a problem with my credit card payment' },
     { id: 4, request: 'I need help with my cart' },
-    { id: 5, request: 'I need serviettes' },
-    { id: 6, request: 'I need cutlery' },
-    { id: 7, request: "Other (please specify)"}
+    { id: 5, request: 'There is a problem with my food' },
+    { id: 6, request: 'I need serviettes' },
+    { id: 7, request: 'I need cutlery' },
+    { id: 8, request: "Other (please specify)"}
   ];
 
   ngOnInit(): void {
