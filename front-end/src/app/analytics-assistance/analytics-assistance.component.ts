@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { DataService } from '../_services/data.service';
+import { Router, NavigationEnd } from '@angular/router';
 
 @Component({
   selector: 'app-analytics-assistance',
@@ -7,9 +10,50 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AnalyticsAssistanceComponent implements OnInit {
 
-  constructor() { }
+  currentUrl: string;
+  requests$: Object;
+  average$: Object;
+  average: string;
+  waiters$: Object;
+
+  constructor( 
+    private http: HttpClient,
+    private data : DataService,
+    private router: Router
+    ) {
+
+    let loggedOn = window.localStorage.getItem('user');
+
+    if(!loggedOn || JSON.parse(loggedOn)['user_type'] != 'MANAGER') {
+      this.router.navigate(['**']);
+    }
+
+    router.events.subscribe((_: NavigationEnd) => this.currentUrl = _.url)
+  }
 
   ngOnInit(): void {
+    this.data.getAssistanceStats().subscribe(
+      data => this.requests$ = data,
+    ),
+    this.data.getAssistanceStats({"average_time": "true"}).subscribe(
+      data => {
+        this.average$ = data,
+        this.average = this.transform(data['average_time']),
+        console.log('AV: ', this.average)
+      } 
+    ),
+    this.data.getAssistanceStats({"waiters": "true"}).subscribe(
+      data => {
+        this.waiters$ = data,
+        console.log('WAITERS: ', data)
+      } 
+    )
+  }
+
+  transform(value: number): string {
+    let minutes = Math.floor(value/60);
+    let seconds = Math.floor(value % 3600 % 60);
+    return minutes + ':' + seconds;
   }
 
 }
