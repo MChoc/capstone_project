@@ -5,7 +5,7 @@
     <p>{{ request_problem }}</p>
     <form ngNativeValidate [formGroup]="editAssistanceForm" (ngSubmit)="onFormSubmit()">
         <div [formGroup]="editAssistanceForm">
-            <textarea formControlName="notes" rows="5" placeholder="Notes" required></textarea>
+            <textarea formControlName="notes" rows="5" placeholder="Notes"></textarea>
         </div>
         <button type="submit" class="resolve">Resolve Issue</button>
         <button (click)="back()" class="back">Back to Alerts</button>

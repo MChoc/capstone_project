@@ -44,6 +44,9 @@ import { ResolvedOrdersComponent } from './resolved-orders/resolved-orders.compo
 import { RemoveDuplicatesPipe } from './remove-duplicates.pipe';
 import { TransactionDuplicatesPipe } from './transaction-duplicates.pipe';
 import { MenuCategoryComponent } from './menu-category/menu-category.component';
+import { AnalyticsComponent } from './analytics/analytics.component';
+import { AnalyticsMenuComponent } from './analytics-menu/analytics-menu.component';
+import { AnalyticsAssistanceComponent } from './analytics-assistance/analytics-assistance.component';
 
 
 @NgModule({
@@ -87,6 +90,9 @@ import { MenuCategoryComponent } from './menu-category/menu-category.component';
     RemoveDuplicatesPipe,
     TransactionDuplicatesPipe,
     MenuCategoryComponent,
+    AnalyticsComponent,
+    AnalyticsMenuComponent,
+    AnalyticsAssistanceComponent
   ],
   imports: [
     BrowserModule,

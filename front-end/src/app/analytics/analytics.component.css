@@ -1,0 +1,51 @@
+div {
+    width:  300px;
+    margin: auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+button{
+    display: block;
+    width: 100%;
+    margin: 20px;
+    padding: 30px;
+    color: #352728;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    outline: none;
+    font-size: x-large;  
+    box-shadow: 10px 10px 15px grey;
+}
+
+button:hover{
+    background-color: #e7cca9;
+}
+
+button:active {
+    transform: translateY(2px);
+}
+
+.assistance {
+    background-color: #c7e8f7;
+}
+
+.orders {
+    background-color: #fdcfd7;
+}
+
+.pickups {
+    background-color: #abc2ba;
+}
+
+.assistance:hover {
+    background-color: #c7e8f78c;
+}
+
+.orders:hover {
+    background-color: #fdcfd77e;
+}

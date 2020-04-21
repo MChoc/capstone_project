@@ -18,6 +18,8 @@ export class DataService {
   private transactionList = 'http://127.0.0.1:5000/api/transaction/';
   private transactionFoodItemList = 'http://127.0.0.1:5000/api/transaction_food_item/';
   private requestList = 'http://127.0.0.1:5000/api/assistance/';
+  private categoryStats = 'http://127.0.0.1:5000/api/categories_stats/'
+  private assistanceStats = 'http://127.0.0.1:5000/api/assistance_stats/'
 
   constructor(private http: HttpClient) { }
 
@@ -109,6 +111,34 @@ export class DataService {
     }
 
     return this.http.get<Transaction[]>(this.transactionList, {params: transaction_details});
+  }
+
+  getCategoryStats() {
+  let key = window.localStorage.getItem('key');
+    var header = {
+      headers: new HttpHeaders()
+        .set('Authorization', 'Token ' + key)
+    }
+    
+    return this.http.get(this.categoryStats, header);
+  }
+
+  getCategoryData(id) {
+    let url = this.categoryStats + id + '/';
+    let key = window.localStorage.getItem('key');
+      var header = {
+        headers: new HttpHeaders()
+          .set('Authorization', 'Token ' + key)
+      }
+      
+      return this.http.get(url, header);
+  }
+
+  getAssistanceStats(parameters = {}) {
+    let key = window.localStorage.getItem('key')
+    let header = new HttpHeaders().set('Authorization', 'Token ' + key)
+
+    return this.http.get(this.assistanceStats, {headers: header, params: parameters})
   }
 
 }

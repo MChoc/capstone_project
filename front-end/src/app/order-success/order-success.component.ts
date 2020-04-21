@@ -33,7 +33,8 @@ export class OrderSuccessComponent implements OnInit {
     });
     
     this.data.getTransactionDetails(this.id).subscribe(data => {
-      this.transactionFoodItems = data;
+      this.transactionFoodItems = data,
+      console.log('Transaction data: ', data)
     })
 
     this.data.getItems().subscribe(data => {
@@ -43,6 +44,7 @@ export class OrderSuccessComponent implements OnInit {
     this.data.getExtras().subscribe(data => {
       this.extras = data;
     })
+
     this.data.getTransaction(this.id).subscribe(data => {
       this.transaction = data;
       this.total_price = data['total_price'];
