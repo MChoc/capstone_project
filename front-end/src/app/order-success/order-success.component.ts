@@ -85,23 +85,27 @@ export class OrderSuccessComponent implements OnInit {
 
   public removeDup(items$: any[], args?: any): any[] {
         var unique = [];
+
         items$.forEach( element1 => {
-          var t = 0;
-          unique.forEach(element2 => {
-            if (element1['request'] === element2['request'] && this.getFoodItemName(element1.food_item).toString() === this.getFoodItemName(element2.food_item).toString()) {
-              var st1 = [];
-              var st2 = [];
-              this.getExtraNames(element1.extras).forEach(extra1 => {
-                st1.push(extra1);
-              })
-              this.getExtraNames(element2.extras).forEach(extra2 => {
-                st2.push(extra2);
-              })
-              if (st1.sort().toString() === st2.sort().toString()) {
-                t = t + 1;
+          if (element1.transaction == this.transaction.url) {
+            var t = 0;
+            unique.forEach(element2 => {
+              if (element1['request'] === element2['request'] && this.getFoodItemName(element1.food_item).toString() === this.getFoodItemName(element2.food_item).toString()) {
+                var st1 = [];
+                var st2 = [];
+                console.log("eep");
+                this.getExtraNames(element1.extras).forEach(extra1 => {
+                  st1.push(extra1);
+                })
+                this.getExtraNames(element2.extras).forEach(extra2 => {
+                  st2.push(extra2);
+                })
+                if (st1.sort().toString() === st2.sort().toString()) {
+                  t = t + 1;
+                }
               }
-            }
-          }) 
+            }) 
+          } 
           if (t < 1) unique.push(element1);
         })
   return unique;
@@ -109,8 +113,8 @@ export class OrderSuccessComponent implements OnInit {
 
   public count(element1: any, FoodItems: any): number {
     var t = 0;
-          FoodItems.forEach(element2 => {
-            console.log(this.getFoodItemName(element2.food_item))
+        FoodItems.forEach(element2 => {
+          if (element2.transaction == this.transaction.url) {
             if (element1['request'] === element2['request'] && this.getFoodItemName(element1.food_item).toString() === this.getFoodItemName(element2.food_item).toString()) {
               var st1 = [];
               var st2 = [];
@@ -122,7 +126,8 @@ export class OrderSuccessComponent implements OnInit {
               })
               if (st1.sort().toString() === st2.sort().toString()) t = t + 1;
             }
-          }) 
+          }
+         }) 
     return t;
   }
 

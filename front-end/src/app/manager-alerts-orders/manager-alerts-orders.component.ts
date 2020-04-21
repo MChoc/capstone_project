@@ -68,9 +68,11 @@ export class ManagerAlertsOrdersComponent implements OnInit {
     return item_details
   }
 
-  public removeDup(items$: any[], args?: any): any[] {
+
+  public removeDup(items$: any[], transaction: any, args?: any): any[] {
     var unique = [];
     items$.forEach( element1 => {
+      if (element1.transaction == transaction.url) {
       var t = 0;
       unique.forEach(element2 => {
         if (element1['request'] === element2['request'] && this.getFoodItemName(element1.food_item).toString() === this.getFoodItemName(element2.food_item).toString()) {
@@ -88,13 +90,15 @@ export class ManagerAlertsOrdersComponent implements OnInit {
         }
       }) 
       if (t < 1) unique.push(element1);
+    }
     })
-  return unique;
-  }
+return unique;
+}
 
-  public count(element1: any, FoodItems: any): number {
-  var t = 0;
+public count(element1: any, FoodItems: any, transaction: any): number {
+var t = 0;
       FoodItems.forEach(element2 => {
+        if (element2.transaction == transaction.url) {
         if (element1['request'] === element2['request'] && this.getFoodItemName(element1.food_item).toString() === this.getFoodItemName(element2.food_item).toString()) {
           var st1 = [];
           var st2 = [];
@@ -106,9 +110,10 @@ export class ManagerAlertsOrdersComponent implements OnInit {
           })
           if (st1.sort().toString() === st2.sort().toString()) t = t + 1;
         }
+      }
       }) 
-  return t;
-  }
+return t;
+}
 
   public getExtraNames(urls: string[]): string[]{
     let names: string[] = [];
