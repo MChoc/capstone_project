@@ -149,8 +149,21 @@ for i in range(0, 5):
 # Create transactions
 transactions = []
 for i in range(50):
+
+    prepared = False
+    active = True
+
+    if i < 25:
+        prepared = True
+        active = False
+    elif i < 38:
+        prepared = True
+        active = True
+
     transaction = Transaction.objects.create(
-        credit_card=credit_cards[0]
+        credit_card=credit_cards[0],
+        prepared=prepared,
+        active=active
     )
     transactions.append(transaction)
     print(f"Created {transaction}")
