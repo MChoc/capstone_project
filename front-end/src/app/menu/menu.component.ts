@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { Router, NavigationEnd, ActivatedRoute } from '@angular/router'
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { animation, transition, animate, state, trigger, style } from '@angular/animations';
-
+import { FilterPipe } from './../filter.pipe';
 
 @Component({
   selector: 'app-menu',
@@ -18,6 +18,7 @@ import { animation, transition, animate, state, trigger, style } from '@angular/
       ])
     ])
   ]
+  providers: [FilterPipe]
 })
 
 export class MenuComponent implements OnInit {
@@ -27,6 +28,7 @@ export class MenuComponent implements OnInit {
   categories$: Object;
   items$: Object;
   error: any;
+  searchname: string;
   
   constructor(
     private http: HttpClient,

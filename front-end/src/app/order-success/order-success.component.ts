@@ -2,7 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import {interval} from "rxjs/internal/observable/interval";
 import {startWith, switchMap} from "rxjs/operators";
 import { Router, ActivatedRoute } from '@angular/router';
-
+import { TransactionDuplicatesPipe } from './../transaction-duplicates.pipe';
 import { DataService } from '../_services/data.service';
 import { Transaction } from "../models/transaction.model";
 import { TransactionFoodItem } from "../models/transaction-food-item.model"
@@ -21,6 +21,7 @@ import { animation, transition, animate, state, trigger, style } from '@angular/
       ])
     ])
   ]
+  providers: [TransactionDuplicatesPipe]
 })
 export class OrderSuccessComponent implements OnInit {
 
@@ -42,7 +43,8 @@ export class OrderSuccessComponent implements OnInit {
     });
     
     this.data.getTransactionDetails(this.id).subscribe(data => {
-      this.transactionFoodItems = data;
+      this.transactionFoodItems = data,
+      console.log('Transaction data: ', data)
     })
 
     this.data.getItems().subscribe(data => {
@@ -52,12 +54,14 @@ export class OrderSuccessComponent implements OnInit {
     this.data.getExtras().subscribe(data => {
       this.extras = data;
     })
+
     this.data.getTransaction(this.id).subscribe(data => {
       this.transaction = data;
       this.total_price = data['total_price'];
     })
 
   }
+
 
   ngOnInit(): void {
 
@@ -85,7 +89,6 @@ export class OrderSuccessComponent implements OnInit {
     for(let item of this.foodItems) {
       if (item['url'] === url) {
         item_details.push(item['name']);
-
         if(item['size']){
           item_details.push(item['size']);
         }
@@ -94,7 +97,43 @@ export class OrderSuccessComponent implements OnInit {
     return item_details.join(", ")
   }
 
-  public getExtraNames(urls: string[]): string{
+  public removeDup(items$: any[], args?: any): any[] {
+        var unique = [];
+        items$.forEach( element1 => {
+            var t = 0;
+            unique.forEach(element2 => {
+              if (element1['request'] === element2['request'] && this.getFoodItemName(element1.food_item).toString() === this.getFoodItemName(element2.food_item).toString()) {
+                // var st1 = [];
+                // var st2 = [];
+                if (this.getExtraNames(element1.extras) === this.getExtraNames(element2.extras)) t = t + 1;
+                // this.getExtraNames(element1.extras).forEach(extra1 => {
+                //   st1.push(extra1);
+                // })
+                // this.getExtraNames(element2.extras).forEach(extra2 => {
+                //   st2.push(extra2);
+                // })
+                // if (st1.sort().toString() === st2.sort().toString()) {
+                //   t = t + 1;
+                // }
+              }
+            })  
+          if (t < 1) unique.push(element1);
+        })
+  return unique;
+  }
+
+  public count(element1: any, FoodItems: any): number {
+    var t = 0;
+      FoodItems.forEach(element2 => {
+        if (element1['request'] === element2['request'] && this.getFoodItemName(element1.food_item).toString() === this.getFoodItemName(element2.food_item).toString()) {
+          if (this.getExtraNames(element1.extras) === this.getExtraNames(element2.extras)) t = t + 1;
+        }
+      }) 
+    return t;
+  }
+
+
+  public getExtraNames(urls: string[]): string {
     let names: string[] = [];
     for(let extra of this.extras){
       if ( urls.indexOf(extra['url']) !== -1) {

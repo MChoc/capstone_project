@@ -14,6 +14,7 @@
 
         <div *ngFor="let item of transactionFoodItems" class="orderDetails">
             <h4 style="font-weight: bold;">{{ getFoodItemName(item.food_item) }}</h4>
+            <h4 style="font-weight: bold;"> x {{ count(item, transactionFoodItems) }} </h4>
             <ng-container *ngIf="item.extras.length > 0">
                 <p>Extras: {{ getExtraNames(item.extras) }}</p>
             </ng-container>
