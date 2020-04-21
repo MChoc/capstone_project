@@ -35,6 +35,7 @@ import { ResolvedOrdersComponent } from './resolved-orders/resolved-orders.compo
 import { MenuCategoryComponent } from './menu-category/menu-category.component';
 import { AnalyticsComponent } from './analytics/analytics.component';
 import { AnalyticsMenuComponent } from './analytics-menu/analytics-menu.component';
+import { AnalyticsAssistanceComponent } from './analytics-assistance/analytics-assistance.component';
 
 const routes: Routes = [
   {
@@ -72,6 +73,10 @@ const routes: Routes = [
   {
     path: 'management/analytics/menu',
     component: AnalyticsMenuComponent
+  },
+  {
+    path: 'management/analytics/assistance',
+    component: AnalyticsAssistanceComponent
   },
   {
     path: 'management/alerts',

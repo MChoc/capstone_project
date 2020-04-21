@@ -43,6 +43,7 @@ import { ResolvedOrdersComponent } from './resolved-orders/resolved-orders.compo
 import { MenuCategoryComponent } from './menu-category/menu-category.component';
 import { AnalyticsComponent } from './analytics/analytics.component';
 import { AnalyticsMenuComponent } from './analytics-menu/analytics-menu.component';
+import { AnalyticsAssistanceComponent } from './analytics-assistance/analytics-assistance.component';
 
 
 @NgModule({
@@ -84,7 +85,8 @@ import { AnalyticsMenuComponent } from './analytics-menu/analytics-menu.componen
     ResolvedOrdersComponent,
     MenuCategoryComponent,
     AnalyticsComponent,
-    AnalyticsMenuComponent
+    AnalyticsMenuComponent,
+    AnalyticsAssistanceComponent
   ],
   imports: [
     BrowserModule,
