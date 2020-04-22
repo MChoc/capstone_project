@@ -19,4 +19,4 @@ class TransactionSerializer(serializers.HyperlinkedModelSerializer):
         model = Transaction
         fields = ['id', 'url', 'active', 'prepared', 'date', 'customer',
                   'credit_card', 'food_items', 'request',  'total_price',
-                  'transaction_food_items']
+                  'transaction_food_items', 'kitchen_note']
