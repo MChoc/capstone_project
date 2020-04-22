@@ -28,3 +28,4 @@ class Transaction(models.Model):
         null=True,
         blank=True
     )
+    kitchen_note = models.CharField(max_length=1024, null=True, blank=True)
