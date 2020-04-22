@@ -7,6 +7,7 @@ import { DataService } from '../_services/data.service';
 import { Transaction } from "../models/transaction.model";
 import { TransactionFoodItem } from "../models/transaction-food-item.model"
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { FormGroup, FormControl } from '@angular/forms';
 
 
 @Component({
@@ -63,7 +64,11 @@ export class KitchenHomeComponent implements OnInit {
       });
   }
 
-  cooked(transaction_id): void {
+  addNote = new FormGroup({
+    notes: new FormControl(), 
+  });
+
+  /* cooked(transaction_id): void {
     console.log("cooked!");
     let url = 'http://127.0.0.1:5000/api/transaction/' + transaction_id + '/';
 
@@ -76,7 +81,24 @@ export class KitchenHomeComponent implements OnInit {
     this.http.patch(url, input, header).subscribe(res => {
       window.location.reload();
     })
-  }
+  } */
+
+  onFormSubmit(transaction_id) {
+    let url = 'http://127.0.0.1:5000/api/transaction/' + transaction_id + '/';
+
+    let key = window.localStorage.getItem('key');
+    var header = {
+      headers: new HttpHeaders()
+        .set('Authorization', 'Token ' + key)
+    }
+    let input = { 
+      prepared: true,
+      kitchen_note: this.addNote.value['notes']
+    };
+    this.http.patch(url, input, header).subscribe(res => {
+      window.location.reload();
+    })
+  } 
 
 
   /**

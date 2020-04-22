@@ -14,6 +14,12 @@
                 </ng-container>
             </div>
         </div>
-        <button (click)="cooked(transaction.id)" class="cooked">Done</button>
+        <form ngNativeValidate [formGroup]="addNote" (ngSubmit)="onFormSubmit(transaction.id)">
+            <div [formGroup]="addNote">
+                <textarea formControlName="notes" rows="5" placeholder="Kitchen notes..."></textarea>
+            </div>
+            <button type="submit" class="cooked">Done</button>
+        </form>
+        <!-- <button (click)="cooked(transaction.id)" class="cooked">Done</button> -->
     </div>
 </div>
