@@ -68,20 +68,6 @@ export class KitchenHomeComponent implements OnInit {
     notes: new FormControl(), 
   });
 
-  /* cooked(transaction_id): void {
-    console.log("cooked!");
-    let url = 'http://127.0.0.1:5000/api/transaction/' + transaction_id + '/';
-
-    let key = window.localStorage.getItem('key');
-    var header = {
-      headers: new HttpHeaders()
-        .set('Authorization', 'Token ' + key)
-    }
-    let input = { prepared: true };
-    this.http.patch(url, input, header).subscribe(res => {
-      window.location.reload();
-    })
-  } */
 
   onFormSubmit(transaction_id) {
     let url = 'http://127.0.0.1:5000/api/transaction/' + transaction_id + '/';
