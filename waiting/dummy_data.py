@@ -4,6 +4,7 @@ from datetime import datetime, timedelta
 import warnings
 
 from django.contrib.auth import get_user_model
+from django.core.exceptions import ObjectDoesNotExist
 
 from menu.models.assistance import Assistance
 from menu.models.category import Category
@@ -16,6 +17,7 @@ from menu.models.problem import Problem
 from menu.models.tag import Tag
 from menu.models.transaction import Transaction
 from menu.models.transaction_food_item import TransactionFoodItem
+
 
 warnings.filterwarnings("ignore")
 
@@ -209,9 +211,15 @@ with open('example_data/assistance.csv') as f:
                 waiter=waiters[randint(0, len(waiters) - 1)],
                 resolved=True
             )
-            problem = Problem.objects.create(
-                name=row['request'],
-            )
+            try:
+                problem = Problem.objects.get(
+                    name=row['request'],
+                )
+            except ObjectDoesNotExist:
+                problem = Problem.objects.create(
+                    name=row['request'],
+                )
+
             assistance.problems.add(problem)
             # create dummy resolved time
             updated_timestamp = datetime.utcnow() + timedelta(minutes=(randint(1, 5)))
