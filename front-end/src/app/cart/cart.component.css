@@ -62,7 +62,7 @@ a {
     width: 300px;
 }
 
-.clear {
+/* .clear {
     background-color: #fcf7fb;
     color: red;
     padding: 10px;
@@ -70,6 +70,35 @@ a {
     margin-top: 30px;
     text-decoration: underline;
     border: none;
+} */
+
+.clear {
+    background-color: #fcf7fb;
+    color: red;
+    font-size: small;
+    padding: 10px;
+    outline: none;
+    margin-top: 30px;
+    margin-left: 80px;
+    text-decoration: none;
+    border: none;
+    position: relative;
+}
+
+.clear::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 2px;
+    background: currentColor;
+    transform: scaleX(0);
+    transition: transform 200ms ease-in;
+}
+
+.clear:hover::after {
+    transform: scaleX(1);
 }
 
 .back {
@@ -84,12 +113,42 @@ a {
 button {
     color: #352728;
     padding: 0 5px;
+    font-size: smaller;
     background-color: #fcf7fb;
     border: none;
     cursor: pointer;
     outline: none;
     text-decoration: none;
 }
+
+.back {
+    background-color: #fcf7fb;
+    color: #000000;
+    /* text-decoration: underline; */
+    padding: 10px;
+    margin-top: 0;
+    text-decoration: none;
+    border: none;
+    position: relative;
+    /* top: 80%;
+    left: 30%; */
+  }
+  
+  .back::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 2px;
+    background: currentColor;
+    transform: scaleX(0);
+    transition: transform 200ms ease-in;
+  }
+  
+  .back:hover::after {
+    transform: scaleX(1);
+  }
 
 .alert {
     text-align: center;
@@ -122,10 +181,10 @@ table {
       background-color: #35272880;
   }
 
-  .back:hover {
+  /* .back:hover {
     color: #35272880;
   }
 
   .clear:hover {
       color: rgba(255, 0, 0, 0.541);
-  }
+  } */

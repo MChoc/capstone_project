@@ -6,9 +6,9 @@
 
         <div class="container">
             <h3>Order Details</h3>
-            <div *ngFor="let item of transactionFoodItems">
+            <div *ngFor="let item of removeDup(transactionFoodItems, transaction$)">
                 <div *ngIf="item.transaction == transaction$.url" class="orderDetails">
-                    <h4>{{ getFoodItemName(item.food_item) }}</h4>
+                    <h4>{{ count(item, transactionFoodItems, transaction$) }} x {{ getFoodItemName(item.food_item) }}</h4>
                     <ng-container *ngIf="item.extras.length > 0">
                         <p>Extras: {{ getExtraNames(item.extras) }}</p>
                     </ng-container>

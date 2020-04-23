@@ -1,10 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { animation, transition, animate, state, trigger, style } from '@angular/animations';
+
 
 @Component({
   selector: 'app-assistance-id',
   templateUrl: './assistance-id.component.html',
-  styleUrls: ['./assistance-id.component.css']
+  styleUrls: ['./assistance-id.component.css'],
+  animations: [
+    trigger('fade', [
+      transition('void => *', [
+        style({backgroundColor: 'white', opacity: 0, transform: 'translateX(40px)'}),
+        animate(300)
+      ])
+    ])
+  ]
 })
 export class AssistanceIdComponent implements OnInit {
 

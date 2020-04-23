@@ -3,11 +3,21 @@ import { FormGroup, FormControl, FormArray, FormBuilder } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { of } from 'rxjs';
+import { animation, transition, animate, state, trigger, style } from '@angular/animations';
+
 
 @Component({
   selector: 'app-assistance',
   templateUrl: './assistance.component.html',
-  styleUrls: ['./assistance.component.css']
+  styleUrls: ['./assistance.component.css'],
+  animations: [
+    trigger('fade', [
+      transition('void => *', [
+        style({backgroundColor: 'white', opacity: 0, transform: 'translateX(40px)'}),
+        animate(300)
+      ])
+    ])
+  ]
 })
 export class AssistanceComponent implements OnInit {
 
@@ -21,9 +31,10 @@ export class AssistanceComponent implements OnInit {
     { id: 2, request: 'I have a question about the menu' },
     { id: 3, request: 'There is a problem with my credit card payment' },
     { id: 4, request: 'I need help with my cart' },
-    { id: 5, request: 'I need serviettes' },
-    { id: 6, request: 'I need cutlery' },
-    { id: 7, request: "Other (please specify)"}
+    { id: 5, request: 'There is a problem with my food' },
+    { id: 6, request: 'I need serviettes' },
+    { id: 7, request: 'I need cutlery' },
+    { id: 8, request: "Other (please specify)"}
   ];
 
   ngOnInit(): void {

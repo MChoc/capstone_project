@@ -4,11 +4,21 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { CartService } from '../cart.service';
 import { Router } from '@angular/router';
+import { animation, transition, animate, state, trigger, style } from '@angular/animations';
+
 
 @Component({
   selector: 'app-checkout',
   templateUrl: './checkout.component.html',
-  styleUrls: ['./checkout.component.css']
+  styleUrls: ['./checkout.component.css'],
+  animations: [
+    trigger('fade', [
+      transition('void => *', [
+        style({backgroundColor: 'white', opacity: 0, transform: 'translateX(40px)'}),
+        animate(300)
+      ])
+    ])
+  ]
 })
 export class CheckoutComponent implements OnInit {
 
@@ -86,7 +96,11 @@ export class CheckoutComponent implements OnInit {
     })
   }
 
-  processFoodItemTransaction(transaction_url, transaction_id) {
+  sleep(ms: number) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
+
+  async processFoodItemTransaction(transaction_url, transaction_id) {
     let foodItemTransactionUrl = "http://127.0.0.1:5000/api/transaction_food_item/";
     // TODO: get this discount url from somewhere!
     let discountUrl = "http://127.0.0.1:5000/api/discounts/1/";
@@ -117,6 +131,7 @@ export class CheckoutComponent implements OnInit {
           this.router.navigate(['/order-details/' + transaction_id]); 
         }
       })
+      await this.sleep(200);
 
     }
 

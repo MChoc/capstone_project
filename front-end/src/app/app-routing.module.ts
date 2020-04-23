@@ -33,6 +33,9 @@ import { ManagerAlertsResolvedComponent } from './manager-alerts-resolved/manage
 import { ResolvedAssistanceComponent } from './resolved-assistance/resolved-assistance.component';
 import { ResolvedOrdersComponent } from './resolved-orders/resolved-orders.component';
 import { MenuCategoryComponent } from './menu-category/menu-category.component';
+import { AnalyticsComponent } from './analytics/analytics.component';
+import { AnalyticsMenuComponent } from './analytics-menu/analytics-menu.component';
+import { AnalyticsAssistanceComponent } from './analytics-assistance/analytics-assistance.component';
 
 const routes: Routes = [
   {
@@ -62,6 +65,18 @@ const routes: Routes = [
   {
     path: 'kitchen',
     component: KitchenHomeComponent
+  },
+  {
+    path: 'management/analytics',
+    component: AnalyticsComponent
+  },
+  {
+    path: 'management/analytics/menu',
+    component: AnalyticsMenuComponent
+  },
+  {
+    path: 'management/analytics/assistance',
+    component: AnalyticsAssistanceComponent
   },
   {
     path: 'management/alerts',

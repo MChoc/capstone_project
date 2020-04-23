@@ -3,11 +3,22 @@ import { DataService } from '../_services/data.service';
 import { Observable } from 'rxjs';
 import { Router, NavigationEnd, ActivatedRoute } from '@angular/router'
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { animation, transition, animate, state, trigger, style } from '@angular/animations';
+import { FilterPipe } from './../filter.pipe';
 
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',
-  styleUrls: ['./menu.component.css']
+  styleUrls: ['./menu.component.css'],
+  animations: [
+    trigger('fade', [
+      transition('void => *', [
+        style({backgroundColor: 'white', opacity: 0, transform: 'translateX(40px)'}),
+        animate(300)
+      ])
+    ])
+  ],
+  providers: [FilterPipe]
 })
 
 export class MenuComponent implements OnInit {
@@ -17,6 +28,7 @@ export class MenuComponent implements OnInit {
   categories$: Object;
   items$: Object;
   error: any;
+  searchname: string;
   
   constructor(
     private http: HttpClient,

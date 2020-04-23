@@ -1,0 +1,35 @@
+th, td {
+    padding: 15px;
+}
+
+.heading {
+    min-height: 100px;
+}
+
+table tr:nth-child(even) {
+    background-color: #35272807;
+}
+
+table tr:nth-child(odd) {
+    background-color: #3527281e;
+}
+
+table th {
+    background-color: #3527283d;
+}
+
+table td {
+    border: none;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+.assistance-page {
+    text-align: center;
+}
+
+.tables {
+    margin-top: 40px;
+}

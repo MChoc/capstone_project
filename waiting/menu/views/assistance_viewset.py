@@ -2,8 +2,10 @@ from datetime import datetime
 
 import dateutil.parser
 from pytz import utc
-from accounts.permissions import IsStaffOrPostOnly
+from accounts.permissions import IsStaffOrPostOnly, IsManager
+from django.db.models import Count, Avg, F, ExpressionWrapper, fields, Avg
 from rest_framework.viewsets import ModelViewSet
+from rest_framework.response import Response
 
 from menu.models.assistance import Assistance
 from menu.serializers.assistance_serializer import AssistanceSerializer
@@ -46,3 +48,43 @@ class AssistanceViewSet(ModelViewSet):
         elif not instance.resolved and resolve_status:
             request.data['date_resolved'] = datetime.now(utc).isoformat()
         return super().update(request, *args, **kwargs)
+
+
+class AssistanceStatsViewSet(ModelViewSet):
+    queryset = Assistance.objects.all()
+    serializer_class = AssistanceSerializer
+    http_method_names = [u'get']
+    permission_classes = [IsManager]
+
+    def list(self, request, *args, **kwargs):
+        """
+        param:'waiters': 'true':
+        returns: list of all waiters who have resolved assistance requests and
+                 the total requests resolved
+
+        param: 'average_time': 'true'
+        returns: average time (in seconds) it takes to resolve an assistance
+                 request
+
+        param: None
+        returns: List of all assistance requests in order of most to least
+                 requested
+        """
+        if request.query_params.get('waiters'):
+            response = Assistance.objects.filter(resolved=True) \
+                .values('waiter__username') \
+                .annotate(total_resolved=Count('waiter__username')) \
+                .order_by('-total_resolved')
+        elif request.query_params.get("average_time"):
+            duration = ExpressionWrapper(
+                F('date_resolved') - F('date'),
+                output_field=fields.DurationField()
+            )
+            response = Assistance.objects.filter(resolved=True).annotate(
+                duration=duration
+            ).aggregate(average_time=Avg(duration))
+        else:
+            response = Assistance.objects.values("problem").annotate(
+                total_requests=Count('problem')
+            ).order_by('-total_requests')
+        return Response(response)
