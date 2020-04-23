@@ -3,11 +3,13 @@ from datetime import datetime
 import dateutil.parser
 from pytz import utc
 from accounts.permissions import IsStaffOrPostOnly, IsManager
-from django.db.models import Count, Avg, F, ExpressionWrapper, fields, Avg
+from django.core.exceptions import ObjectDoesNotExist
+from django.db.models import Count, Avg, F, ExpressionWrapper, fields
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.response import Response
 
 from menu.models.assistance import Assistance
+from menu.models.problem import Problem
 from menu.serializers.assistance_serializer import AssistanceSerializer
 
 
@@ -48,6 +50,26 @@ class AssistanceViewSet(ModelViewSet):
         elif not instance.resolved and resolve_status:
             request.data['date_resolved'] = datetime.now(utc).isoformat()
         return super().update(request, *args, **kwargs)
+
+    def create(self, request, *args, **kwargs):
+        """
+        Overriding the create method so that users can enter problem string instead
+        of url.
+        """
+        problems = []
+        for problem in request.data['problems']:
+            try:
+                problem_obj = Problem.objects.get(
+                    name=problem
+                )
+            except ObjectDoesNotExist:
+                problem_obj = Problem.objects.create(
+                    name=problem
+                )
+            problems.append(problem_obj.id)
+        request.data['problems'] = problems
+
+        return super().create(request, *args, **kwargs)
 
 
 class AssistanceStatsViewSet(ModelViewSet):
