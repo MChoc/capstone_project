@@ -30,7 +30,7 @@ export class AssistanceComponent implements OnInit {
 
   addCheckboxes() {
     this.requestlist.forEach((o,i) => {
-      const control = new FormControl(i===0);
+      const control = new FormControl();
       (this.assistanceForm.controls.requests as FormArray).push(control);
     })
   }
@@ -45,7 +45,7 @@ export class AssistanceComponent implements OnInit {
     var string = ''
     for (let i = 0; i < selectedrequestids.length; i++){
       string += this.requestlist[selectedrequestids[i]-1].request
-      string += "\n"
+      string += ","
     };
     if (this.assistanceForm.value['issue'] !== null) string += this.assistanceForm.value['issue']
     let request_data = {

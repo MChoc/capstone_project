@@ -10,7 +10,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 export class ManagerAlertsAssistanceComponent implements OnInit {
   id: string;
   request: Object;
-  request_problem: string;
+  request_problems: string;
   request_id: string;
 
   constructor(
@@ -38,7 +38,9 @@ export class ManagerAlertsAssistanceComponent implements OnInit {
     this.http.get(url, header).toPromise().then(data => {
       this.request = data;
       this.request_id = data['id'];
-      this.request_problem = data['problem'];
+      let problem = data['problem'];
+      problem = problem.split(',');
+      this.request_problems = problem;
     },
     error => {
       console.log("ERROR!")
