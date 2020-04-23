@@ -5,16 +5,17 @@ import warnings
 
 from django.contrib.auth import get_user_model
 
-from menu.models.menu import Menu
+from menu.models.assistance import Assistance
 from menu.models.category import Category
-from menu.models.food_item import FoodItem
+from menu.models.credit_card import CreditCard
 from menu.models.discount import Discount
 from menu.models.extra import Extra
+from menu.models.food_item import FoodItem
+from menu.models.menu import Menu
+from menu.models.problem import Problem
 from menu.models.tag import Tag
 from menu.models.transaction import Transaction
 from menu.models.transaction_food_item import TransactionFoodItem
-from menu.models.assistance import Assistance
-from menu.models.credit_card import CreditCard
 
 warnings.filterwarnings("ignore")
 
@@ -206,10 +207,12 @@ with open('example_data/assistance.csv') as f:
         for i in range(num_requests):
             assistance = Assistance.objects.create(
                 waiter=waiters[randint(0, len(waiters) - 1)],
-                problem=row['request'],
                 resolved=True
             )
-
+            problem = Problem.objects.create(
+                name=row['request'],
+            )
+            assistance.problems.add(problem)
             # create dummy resolved time
             updated_timestamp = datetime.utcnow() + timedelta(minutes=(randint(1, 5)))
             Assistance.objects.filter(pk=assistance.pk).update(date_resolved=updated_timestamp)
