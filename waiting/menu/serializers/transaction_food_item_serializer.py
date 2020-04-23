@@ -10,4 +10,3 @@ class TransactionFoodItemSerializer(serializers.HyperlinkedModelSerializer):
         model = TransactionFoodItem
         fields = ['id', 'url', 'food_item', 'transaction', 'discount',
                   'extras', 'price', 'request']
-
