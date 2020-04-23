@@ -1,3 +1,4 @@
+from django.db.models import Sum
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 
@@ -6,6 +7,8 @@ from menu.models.transaction_food_item import TransactionFoodItem
 from menu.serializers.transaction_food_item_serializer import (
     TransactionFoodItemSerializer
 )
+from rest_framework.response import Response
+from rest_framework import status
 
 
 class TransactionFoodItemViewSet(ModelViewSet):
@@ -29,3 +32,30 @@ class TransactionFoodItemViewSet(ModelViewSet):
                 transaction=transaction_id
             )
         return super().get_queryset()
+
+    def create(self, request, *args, **kwargs):
+        # Instantiate object first
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        self.perform_create(serializer)
+        tfi = TransactionFoodItem.objects.get(id=int(serializer.data['id']))
+
+        food_item = float(tfi.food_item.price)
+        extras = tfi.extras.all().aggregate(Sum('price'))['price__sum']
+        if extras is None:
+            extras = 0
+
+        sub_total = food_item + float(extras)
+        discount = tfi.discount
+        if discount is not None:
+            if discount.type == 'PERCENTAGE':
+                tfi.price = round(sub_total * (1 - discount.amount / 100), 2)
+            else:
+                tfi.price = round(sub_total - discount.amount, 2)
+        else:
+            tfi.price = round(sub_total, 2)
+        tfi.save()
+
+        serializer = self.get_serializer(tfi)
+        headers = self.get_success_headers(serializer.data)
+        return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
