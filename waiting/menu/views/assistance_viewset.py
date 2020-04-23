@@ -84,7 +84,7 @@ class AssistanceStatsViewSet(ModelViewSet):
                 duration=duration
             ).aggregate(average_time=Avg(duration))
         else:
-            response = Assistance.objects.values("problem").annotate(
+            response = Assistance.objects.values(problem=F('problems__name')).annotate(
                 total_requests=Count('problem')
             ).order_by('-total_requests')
         return Response(response)
