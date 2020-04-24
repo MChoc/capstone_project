@@ -12,7 +12,7 @@ export class WaiterAssistanceComponent implements OnInit {
 
   id: string;
   request: Object;
-  request_problems: string;
+  request_problems: string[] = [];
   request_id: string
 
   constructor(
@@ -40,8 +40,7 @@ export class WaiterAssistanceComponent implements OnInit {
     this.http.get(url, header).toPromise().then(data => {
       this.request = data;
       this.request_id = data['id'];
-      let problem = data['problem'];
-      problem = problem.split(',');
+      let problem = data['problems'];
       this.request_problems = problem;
     },
     error => {

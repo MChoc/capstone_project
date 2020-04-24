@@ -9,7 +9,9 @@
             <p><b>Customer issue:</b></p>
         </div>
         <div class="column2">
-            <p>{{ request_problem }}</p>
+            <li *ngFor = "let problem of request_problems"> 
+                {{ problem }}
+            </li>
         </div>
     </div>
     <div class="row">
