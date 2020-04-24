@@ -51,18 +51,20 @@ export class AssistanceComponent implements OnInit {
   });
 
   onFormSubmit() {
+
     const selectedrequestids = this.assistanceForm.value.requests.map((v,i) => (v ? this.requestlist[i].id : null)).filter(v  => v !== null);
-    var string = ''
+
+    let requests = [];
     for (let i = 0; i < selectedrequestids.length; i++){
-      string += this.requestlist[selectedrequestids[i]-1].request
-      string += ","
+      requests.push(this.requestlist[selectedrequestids[i]-1].request);
     };
-    if (this.assistanceForm.value['issue'] !== null) string += this.assistanceForm.value['issue']
-    if (string.slice(-1) === ',') string = string.slice(0, string.length-1);
-    console.log(string);
+
+    if (this.assistanceForm.value['issue'] !== null) requests.push(this.assistanceForm.value['issue']);
+
     let request_data = {
-      'problem': string
+      'problems': requests
     }
+
     let assistance_url = 'http://127.0.0.1:5000/api/assistance/'
     this.http.post(assistance_url, request_data).toPromise().then(data => {
       console.log(data);
