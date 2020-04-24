@@ -12,6 +12,7 @@ export class Transaction implements Deserializable {
     request: string;
     prepared: boolean;
     total_price: number;
+    kitchen_note: string;
   
     deserialize(input: any) {
       Object.assign(<any>this, input);
