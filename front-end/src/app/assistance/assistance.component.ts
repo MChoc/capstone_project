@@ -11,10 +11,10 @@ import { Router } from '@angular/router';
 export class AssistanceComponent implements OnInit {
 
   requestlist = [
-    { id: 1, request: 'My table needs to be cleaned' },
-    { id: 2, request: 'I need serviettes' },
-    { id: 3, request: 'I need cutlery' },
-    { id: 4, request: 'I need more condiments' }, 
+    { id: 1, request: 'There is a problem with my order' },
+    { id: 2, request: 'My table needs to be cleaned' },
+    { id: 3, request: 'I need serviettes' },
+    { id: 4, request: 'I need cutlery' },
     { id: 5, request: 'Problem with card payment' },
     { id: 6, request: 'I cannot add items in my cart' }
   ]
