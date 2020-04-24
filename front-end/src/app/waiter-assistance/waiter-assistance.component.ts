@@ -12,8 +12,8 @@ export class WaiterAssistanceComponent implements OnInit {
 
   id: string;
   request: Object;
-  request_id: string;
-  request_problem: string;
+  request_problems: string;
+  request_id: string
 
   constructor(
     private _Activatedroute: ActivatedRoute, 
@@ -40,7 +40,9 @@ export class WaiterAssistanceComponent implements OnInit {
     this.http.get(url, header).toPromise().then(data => {
       this.request = data;
       this.request_id = data['id'];
-      this.request_problem = data['problem'];
+      let problem = data['problem'];
+      problem = problem.split(',');
+      this.request_problems = problem;
     },
     error => {
       console.log("ERROR!")
