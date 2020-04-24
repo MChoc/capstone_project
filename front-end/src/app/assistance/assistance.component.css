@@ -21,10 +21,6 @@ h2{
     width: 100%;
     margin: 28px 0 20px 0;
   }
-
-  button[type=submit]:hover {
-    background-color: #352728c2;
-  }
   
  textarea {
     width: 100%;
@@ -81,19 +77,4 @@ h2{
   .options {
       margin-top: 20px;
       text-align: left;
-  }
-
-  input {
-    float: left;
-  }
-
-  label {
-    float: left;
-  }
-
-
-  .span::after {
-    content: "";
-    display: table;
-    clear: both;
   }
