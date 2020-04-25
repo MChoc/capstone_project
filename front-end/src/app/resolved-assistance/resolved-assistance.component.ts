@@ -10,7 +10,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 export class ResolvedAssistanceComponent implements OnInit {
   id: string;
   request: Object;
-  request_problem: string;
+  request_problems: string[] = [];
   request_id: string;
   request_note: string;
   request_waiter: string;
@@ -42,7 +42,7 @@ export class ResolvedAssistanceComponent implements OnInit {
     this.http.get(url, header).toPromise().then(data => {
       this.request = data;
       this.request_id = data['id'];
-      this.request_problem = data['problem'];
+      this.request_problems = data['problems'];
       this.request_note = data['notes'];
       this.request_waiter = data['waiter'];
       this.http.get(this.request_waiter, header).toPromise().then(data2 => {

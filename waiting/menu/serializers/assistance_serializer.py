@@ -9,7 +9,7 @@ class AssistanceSerializer(serializers.HyperlinkedModelSerializer):
     problems = serializers.SlugRelatedField(
         queryset=Problem.objects.all(),
         many=True,
-        slug_field='id'
+        slug_field='name'
      )
 
     class Meta:

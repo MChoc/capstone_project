@@ -66,7 +66,7 @@ class AssistanceViewSet(ModelViewSet):
                 problem_obj = Problem.objects.create(
                     name=problem
                 )
-            problems.append(problem_obj.id)
+            problems.append(problem_obj.name)
         request.data['problems'] = problems
 
         return super().create(request, *args, **kwargs)
