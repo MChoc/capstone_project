@@ -1,6 +1,6 @@
 <div class="kitchen-home">
     <h1>PENDING ORDERS</h1>
-    <div *ngFor="let transaction of transactions">
+    <div *ngFor="let transaction of transactions; let i = index">
         <br>
         <h2>Order no. {{ transaction.id }}</h2>
         <div *ngFor="let fe of removeDup(transactionFoodItems, transaction)">
@@ -14,11 +14,11 @@
                 </ng-container>
             </div>
         </div>
-        <form ngNativeValidate [formGroup]="addNote" (ngSubmit)="onFormSubmit(transaction.id)">
-            <div [formGroup]="addNote">
-                <textarea formControlName="notes" rows="5" placeholder="Kitchen notes..."></textarea>
-            </div>
-            <button type="submit" class="cooked">Done</button>
+
+        <form #form="ngForm" (ngSubmit)="onFormSubmit(transaction.id, i)">
+                <input id= "form-note" name="note-{{transaction.id}}"
+                       [(ngModel)]="notes[i]">
+                <button type="submit" class="cooked">Done</button>
         </form>
     </div>
 </div>
