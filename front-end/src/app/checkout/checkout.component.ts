@@ -46,7 +46,6 @@ export class CheckoutComponent implements OnInit {
   }
 
   onFormSubmit() {
-    console.log("Submitted!");
     let card_data = {
       'number': this.checkoutForm.value['card_number'],
       'expiry_month': this.checkoutForm.value['expiry_month'],

@@ -61,7 +61,6 @@ export class KitchenHomeComponent implements OnInit {
       )
       .subscribe(res => {
         this.transactionFoodItems = res;
-        // console.log(res);
       });
   }
 

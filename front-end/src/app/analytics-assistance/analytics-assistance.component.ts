@@ -38,15 +38,13 @@ export class AnalyticsAssistanceComponent implements OnInit {
     this.data.getAssistanceStats({"average_time": "true"}).subscribe(
       data => {
         this.average$ = data,
-        this.average = this.transform(data['average_time']),
-        console.log('AV: ', this.average)
+        this.average = this.transform(data['average_time']);
       } 
     ),
     this.data.getAssistanceStats({"waiters": "true"}).subscribe(
       data => {
-        this.waiters$ = data,
-        console.log('WAITERS: ', data)
-      } 
+        this.waiters$ = data;
+      }
     )
   }
 

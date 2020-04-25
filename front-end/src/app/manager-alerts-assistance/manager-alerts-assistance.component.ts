@@ -42,8 +42,7 @@ export class ManagerAlertsAssistanceComponent implements OnInit {
       this.request_problems = problems;
     },
     error => {
-      console.log("ERROR!")
-      console.log(error.error);
+      console.error(error.error);
     })
   }
 

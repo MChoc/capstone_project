@@ -28,7 +28,6 @@ export class ExtraEditComponent implements OnInit {
   });
 
   onFormSubmit(): void {
-    console.log(this.extraEditForm.value);
     let url = 'http://127.0.0.1:5000/api/extra/' + this.id + '/';
     
     let key = window.localStorage.getItem('key');
@@ -72,8 +71,7 @@ export class ExtraEditComponent implements OnInit {
                                 })
     },
     error => {
-      console.log("ERROR!")
-      console.log(error.error);
+      console.error(error.error);
     })
   }
 

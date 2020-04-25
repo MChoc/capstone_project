@@ -50,13 +50,11 @@ export class ResolvedAssistanceComponent implements OnInit {
         this.waiter_username = data2['username'];
       },
       error => {
-        console.log("ERROR!")
-        console.log(error.error);
+        console.error(error.error);
       })
     },
     error => {
-      console.log("ERROR!")
-      console.log(error.error);
+      console.error(error.error);
     })
   }
 
