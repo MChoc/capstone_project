@@ -7,6 +7,7 @@ import { DataService } from '../_services/data.service';
 import { Transaction } from "../models/transaction.model";
 import { TransactionFoodItem } from "../models/transaction-food-item.model"
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { FormGroup, FormControl } from '@angular/forms';
 
 
 @Component({
@@ -20,6 +21,7 @@ export class KitchenHomeComponent implements OnInit {
   transactionFoodItems: TransactionFoodItem[] = [];
   foodItems = []
   extras = []
+  notes: string[] = []
 
 
   constructor(
@@ -63,20 +65,21 @@ export class KitchenHomeComponent implements OnInit {
       });
   }
 
-  cooked(transaction_id): void {
-    console.log("cooked!");
+  onFormSubmit(transaction_id, note_index) {
     let url = 'http://127.0.0.1:5000/api/transaction/' + transaction_id + '/';
-
     let key = window.localStorage.getItem('key');
     var header = {
       headers: new HttpHeaders()
         .set('Authorization', 'Token ' + key)
     }
-    let input = { prepared: true };
+    let input = { 
+      prepared: true,
+      kitchen_note: this.notes[note_index]
+    };
     this.http.patch(url, input, header).subscribe(res => {
       window.location.reload();
     })
-  }
+  } 
 
 
   /**
@@ -106,18 +109,7 @@ export class KitchenHomeComponent implements OnInit {
       var t = 0;
       unique.forEach(element2 => {
         if (element1['request'] === element2['request'] && this.getFoodItemName(element1.food_item).toString() === this.getFoodItemName(element2.food_item).toString()) {
-          // var st1 = [];
-          // var st2 = [];
           if (this.getExtraNames(element1.extras) == this.getExtraNames(element2.extras)) t = t + 1;
-          // this.getExtraNames(element1.extras).forEach(extra1 => {
-          //   st1.push(extra1);
-          // })
-          // this.getExtraNames(element2.extras).forEach(extra2 => {
-          //   st2.push(extra2);
-          // })
-          // if (st1.sort().toString() === st2.sort().toString()) {
-          //   t = t + 1;
-          // }
         }
       }) 
       if (t < 1) unique.push(element1);
@@ -131,16 +123,7 @@ var t = 0;
       FoodItems.forEach(element2 => {
         if (element2.transaction == transaction.url) {
         if (element1['request'] === element2['request'] && this.getFoodItemName(element1.food_item).toString() === this.getFoodItemName(element2.food_item).toString()) {
-          // var st1 = [];
-          // var st2 = [];
           if (this.getExtraNames(element1.extras) == this.getExtraNames(element2.extras)) t = t + 1;
-          // this.getExtraNames(element1.extras).forEach(extra1 => {
-          //   st1.push(extra1);
-          // })
-          // this.getExtraNames(element2.extras).forEach(extra2 => {
-          //   st2.push(extra2);
-          // })
-          // if (st1.sort().toString() === st2.sort().toString()) t = t + 1;
         }
       }
       }) 

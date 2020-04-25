@@ -18,6 +18,7 @@ export class WaiterOrderComponent implements OnInit {
   transactionFoodItems: TransactionFoodItem[] = [];
   foodItems = [];
   extras = [];
+  transaction: Object;
 
   constructor(
     private _Activatedroute: ActivatedRoute,
@@ -45,6 +46,10 @@ export class WaiterOrderComponent implements OnInit {
 
     this.data.getExtras().subscribe(data => {
       this.extras = data;
+    })
+
+    this.data.getTransaction(this.id).subscribe(data => {
+      this.transaction = data;
     })
 
   }

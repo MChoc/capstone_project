@@ -33,3 +33,16 @@
 .cooked:hover {
     background-color: #fdcfd780;
 }
+
+#form-note {
+    width: 100%;
+    height: 50px;
+    padding: 12px 20px;
+    margin: 8px 0;
+    border: 1px solid #352728;
+    border-radius: 4px;
+    box-sizing: border-box;
+    outline: none;
+    background-color: #fcf7fb;
+    color: #352728;
+  }
