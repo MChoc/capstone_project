@@ -12,6 +12,7 @@ from menu.views.transaction_food_item_viewset import TransactionFoodItemViewSet
 from menu.views.assistance_viewset import AssistanceViewSet
 from menu.views.assistance_viewset import AssistanceStatsViewSet
 from menu.views.credit_card_viewset import CreditCardViewSet
+from menu.views.problem_viewset import ProblemViewSet
 
 
 router = routers.DefaultRouter()
@@ -29,6 +30,7 @@ router.register(r'transaction_food_item', TransactionFoodItemViewSet)
 router.register(r'assistance', AssistanceViewSet)
 router.register(r'assistance_stats', AssistanceStatsViewSet)
 router.register(r'credit_cards', CreditCardViewSet)
+router.register(r'problem', ProblemViewSet)
 
 
 app_name = 'menu'

@@ -1,6 +1,7 @@
 from django.db import models
 
 from accounts.models import CustomUser
+from menu.models.problem import Problem
 from menu.models.transaction import Transaction
 
 
@@ -17,7 +18,7 @@ class Assistance(models.Model):
         null=True,
         blank=True
     )
-    problem = models.CharField(max_length=1024)
+    problems = models.ManyToManyField(Problem)
     notes = models.CharField(max_length=2048, null=True, blank=True)
     resolved = models.BooleanField(default=False)
     date = models.DateTimeField(auto_now_add=True)
