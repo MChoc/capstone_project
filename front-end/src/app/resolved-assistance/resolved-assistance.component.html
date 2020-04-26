@@ -4,15 +4,11 @@
     <br>
     <button class="number">No. {{ request_id }}</button>
     <br><br>
-    <div class="row">
-        <div class="column1">
-            <p><b>Customer issue:</b></p>
-        </div>
-        <div class="column2">
-            <li *ngFor = "let problem of request_problems"> 
-                {{ problem }}
-            </li>
-        </div>
+    <div class="row" style="text-align: left;">
+        <p><b>Customer issue:</b></p>
+        <li *ngFor = "let problem of request_problems"> 
+            {{ problem }}
+        </li>
     </div>
     <div class="row">
         <div class="column1">
