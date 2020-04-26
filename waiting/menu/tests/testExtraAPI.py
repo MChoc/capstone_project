@@ -1,15 +1,14 @@
 from collections import OrderedDict
 
-from menu.models.category import Category
-from menu.models.extra import Extra
-from menu.serializers.extra_serializer import ExtraSerializer
-
 from django.contrib.auth import get_user_model
-
 from rest_framework import status
 from rest_framework.reverse import reverse
 from rest_framework.request import Request
 from rest_framework.test import APITestCase, APIRequestFactory
+
+from menu.models.category import Category
+from menu.models.extra import Extra
+from menu.serializers.extra_serializer import ExtraSerializer
 
 
 class TestExtraModel(APITestCase):
@@ -30,10 +29,10 @@ class TestExtraModel(APITestCase):
 
     CREATE:
         Create a model instance.
-    
+
     UPDATE:
         Update a model instance.
-    
+
     DESTROY:
         Destroy a model instance.
     """
@@ -41,7 +40,7 @@ class TestExtraModel(APITestCase):
 
     def setUp(self):
         login_url = '/rest-auth/login/'
-        body = {'username': 'Manager1', 'password': 'Manager1'}
+        body = {'username': 'Manager2', 'password': 'Manager2'}
         response = self.client.post(login_url, body, format='json')
         self.client.credentials(
             HTTP_AUTHORIZATION='Token ' + response.data['key']
@@ -54,7 +53,7 @@ class TestExtraModel(APITestCase):
     """
     Testing LIST:
         Lists a queryset.
-    
+
     Checks for:
         200 response.
         GET data is same as database data.
@@ -62,27 +61,27 @@ class TestExtraModel(APITestCase):
     def test_list(self):
         url = '/api/extra/'
         factory = APIRequestFactory()
-        request = factory.post(url)
-        
+        request = factory.get(url)
+
         objs = Extra.objects.all()
         serializer_context = {
-            'request': Request(request),
+            'request': Request(request)
         }
         serializer = ExtraSerializer(
             objs,
             context=serializer_context,
-            many=True,
+            many=True
         )
 
         response = self.client.get(url)
-
         self.assertEqual(response.status_code, status.HTTP_200_OK)
+
         self.assertEqual(response.data, serializer.data)
 
     """
     Testing CREATE
         Create a model instance.
-    
+
     Asserts:
         201 response.
         Object count increased.
@@ -92,7 +91,7 @@ class TestExtraModel(APITestCase):
         url = '/api/extra/'
         factory = APIRequestFactory()
         request = factory.post(url)
-        
+
         init_count = Extra.objects.count()
 
         category = Category.objects.get(id=1)
@@ -101,8 +100,8 @@ class TestExtraModel(APITestCase):
             'price': '10.00',
             'category': reverse(
                 'category-detail',
-                args=[category.pk,],
-                request=request,
+                args=[category.pk],
+                request=request
             ),
         }
         response = self.client.post(url, body, format='json')
@@ -117,7 +116,7 @@ class TestExtraModel(APITestCase):
     """
     Testing RETRIEVE
         Retrieve a model instance.
-    
+
     Asserts:
         200 response.
         GET data is same as in database.
@@ -125,27 +124,27 @@ class TestExtraModel(APITestCase):
     def test_retrieve(self):
         url = '/api/extra/1/'
         factory = APIRequestFactory()
-        request = factory.post(url)
-        
-        obj = [Extra.objects.get(id=1),]
+        request = factory.get(url)
+
+        obj = [Extra.objects.get(id=1)]
         serializer_context = {
-            'request': Request(request),
+            'request': Request(request)
         }
         serializer = ExtraSerializer(
             obj,
             context=serializer_context,
-            many=True,
+            many=True
         )
 
         response = self.client.get(url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        
-        self.assertEqual([OrderedDict(response.data),], serializer.data)
-        
+
+        self.assertEqual([OrderedDict(response.data)], serializer.data)
+
     """
     Testing UPDATE
         Update a model instance.
-    
+
     Asserts:
         200 response.
         All fields have been changed and content is correct.
@@ -154,7 +153,7 @@ class TestExtraModel(APITestCase):
         url = '/api/extra/1/'
         factory = APIRequestFactory()
         request = factory.post(url)
-        
+
         category = Category.objects.get(id=2)
         body = {
             'name': 'Test Change',
@@ -162,8 +161,8 @@ class TestExtraModel(APITestCase):
             'active': False,
             'category': reverse(
                 'category-detail',
-                args=[category.pk,],
-                request=request,
+                args=[category.pk],
+                request=request
             ),
         }
         response = self.client.put(url, body, format='json')
@@ -198,7 +197,7 @@ class TestExtraModel(APITestCase):
     """
     Testing DESTROY
         Destroy a model instance.
-    
+
     Asserts:
         204 response.
         Correct object has been deleted from database.

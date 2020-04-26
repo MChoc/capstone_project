@@ -1,0 +1,21 @@
+name,active,price,category
+Skim Milk,yes,0.25,Hot Drinks
+Soy Milk,yes,0.5,Hot Drinks
+Almond Milk,yes,0.5,Hot Drinks
+Skim Milk,yes,0.25,Cold Drinks
+Soy Milk,yes,0.5,Cold Drinks
+Almond Milk,yes,0.5,Cold Drinks
+Dairy Free Icecream,yes,1,Cold Drinks
+Gluten free bread,yes,2,Breakfast
+Extra slice of toast,yes,1,Breakfast
+Extra egg,yes,2,Breakfast
+Hollandaise sauce,yes,2,Breakfast
+Haloumi,yes,3,Breakfast
+Bacon,yes,3,Breakfast
+Avo,yes,3,Breakfast
+Wilted spinnach,no,3,Breakfast
+Grilled mushrooms,no,3,Breakfast
+Gluten free bread,yes,2,Sandwiches
+Extra avo,yes,3,Sandwiches
+Extra haloumi,yes,3,Sandwiches
+Extra bacon,yes,3,Sandwiches

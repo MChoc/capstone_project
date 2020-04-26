@@ -3,8 +3,7 @@ from collections import OrderedDict
 from accounts.models import CustomUser
 from accounts.serializers import UserSerializer
 
-from rest_framework import status
-from rest_framework.reverse import reverse
+from rest_framework import status, reverse
 from rest_framework.request import Request
 from rest_framework.test import APITestCase, APIRequestFactory
 
@@ -27,10 +26,10 @@ class TestCustomUserModel(APITestCase):
 
     CREATE:
         Create a model instance.
-    
+
     UPDATE:
         Update a model instance.
-    
+
     DESTROY:
         Destroy a model instance.
     """
@@ -38,7 +37,7 @@ class TestCustomUserModel(APITestCase):
 
     def setUp(self):
         login_url = '/rest-auth/login/'
-        body = {'username': 'Manager1', 'password': 'Manager1'}
+        body = {'username': 'Manager2', 'password': 'Manager2'}
         response = self.client.post(login_url, body, format='json')
         self.client.credentials(
             HTTP_AUTHORIZATION='Token ' + response.data['key']
@@ -51,7 +50,7 @@ class TestCustomUserModel(APITestCase):
     """
     Testing LIST:
         Lists a queryset.
-    
+
     Checks for:
         200 response.
         GET data is same as database data.
@@ -60,7 +59,7 @@ class TestCustomUserModel(APITestCase):
         url = '/api/accounts/'
         factory = APIRequestFactory()
         request = factory.post(url)
-        
+
         objs = CustomUser.objects.all()
         serializer_context = {
             'request': Request(request),
@@ -79,7 +78,7 @@ class TestCustomUserModel(APITestCase):
     """
     Testing CREATE
         Create a model instance.
-    
+
     Asserts:
         201 response.
         Object count increased.
@@ -87,7 +86,7 @@ class TestCustomUserModel(APITestCase):
     """
     def test_create(self):
         url = '/api/accounts/'
-        
+
         init_count = CustomUser.objects.count()
 
         body = {
@@ -109,7 +108,7 @@ class TestCustomUserModel(APITestCase):
     """
     Testing RETRIEVE
         Retrieve a model instance.
-    
+
     Asserts:
         200 response.
         GET data is same as in database.
@@ -118,8 +117,8 @@ class TestCustomUserModel(APITestCase):
         url = '/api/accounts/1/'
         factory = APIRequestFactory()
         request = factory.post(url)
-        
-        obj = [CustomUser.objects.get(id=1),]
+
+        obj = [CustomUser.objects.get(id=1), ]
         serializer_context = {
             'request': Request(request),
         }
@@ -131,20 +130,20 @@ class TestCustomUserModel(APITestCase):
 
         response = self.client.get(url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        
-        self.assertEqual([OrderedDict(response.data),], serializer.data)
-        
+
+        self.assertEqual([OrderedDict(response.data), ], serializer.data)
+
     """
     Testing UPDATE
         Update a model instance.
-    
+
     Asserts:
         200 response.
         All fields have been changed and content is correct.
     """
     def test_update(self):
         url = '/api/accounts/1/'
-        
+
         body = {
             'username': 'Testusernamechange',
             'first_name': 'Test first name change',
@@ -183,7 +182,7 @@ class TestCustomUserModel(APITestCase):
     """
     Testing DESTROY
         Destroy a model instance.
-    
+
     Asserts:
         204 response.
         Correct object has been deleted from database.
@@ -193,4 +192,8 @@ class TestCustomUserModel(APITestCase):
 
         response = self.client.delete(url)
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
-        self.assertRaises(CustomUser.DoesNotExist, CustomUser.objects.get, id=1)
+        self.assertRaises(
+            CustomUser.DoesNotExist,
+            CustomUser.objects.get,
+            id=1
+        )

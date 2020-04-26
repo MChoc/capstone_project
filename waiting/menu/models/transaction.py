@@ -1,8 +1,8 @@
+from django.db import models
+
 from accounts.models import CustomUser
 from menu.models.credit_card import CreditCard
 from menu.models.food_item import FoodItem
-
-from django.db import models
 
 
 class Transaction(models.Model):
@@ -22,3 +22,10 @@ class Transaction(models.Model):
     )
     credit_card = models.ForeignKey(CreditCard, on_delete=models.CASCADE)
     request = models.CharField(max_length=1024, null=True, blank=True)
+    total_price = models.DecimalField(
+        max_digits=10,
+        decimal_places=2,
+        null=True,
+        blank=True
+    )
+    kitchen_note = models.CharField(max_length=1024, null=True, blank=True)

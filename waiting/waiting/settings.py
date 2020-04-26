@@ -10,7 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
-import django_heroku
+#import django_heroku
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -28,15 +28,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-# Database
-# https://docs.djangoproject.com/en/3.0/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
 
 # Application definition
 
@@ -102,6 +93,17 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'waiting.wsgi.application'
+
+
+# Database
+# https://docs.djangoproject.com/en/3.0/ref/settings/#databases
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    }
+}
 
 AUTH_USER_MODEL = 'accounts.CustomUser'
 REST_AUTH_REGISTER_SERIALIZERS = {
@@ -176,4 +178,4 @@ CORS_ORIGIN_WHITELIST = (
     'http://localhost:4200',
 )
 
-django_heroku.settings(locals())
+# django_heroku.settings(locals())

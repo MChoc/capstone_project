@@ -1,70 +1,67 @@
-from rest_framework import permissions
+from rest_framework.permissions import BasePermission
 
 
-class IsStaff(permissions.BasePermission):
+class IsStaff(BasePermission):
     """
     Custom permission to only allow staff to access it
     """
 
     def has_permission(self, request, view):
-        return request.user.is_anonymous is False and request.user.user_type != 'CUSTOMER'
+        return request.user.is_anonymous is False and \
+            request.user.user_type != 'CUSTOMER'
 
 
-class IsManager(permissions.BasePermission):
+class IsManager(BasePermission):
     """
     Custom permission to only allow managers to access it
     """
 
     def has_permission(self, request, view):
-        return request.user.is_anonymous is False and request.user.user_type == 'MANAGER'
+        return request.user.is_anonymous is False and \
+            request.user.user_type == 'MANAGER'
 
 
-class LoggedInOrValidateOnly(permissions.BasePermission):
+class LoggedInOrValidateOnly(BasePermission):
 
     def has_permission(self, request, view):
-        if view.action == "create":
+        if view.action == "list" and 'validate' in request.query_params:
             return True
 
         # extra condition to allow adding to this database
-        if request.user.is_anonymous is False and request.user.user_type == 'MANAGER':
+        if request.user.is_anonymous is False and \
+                request.user.user_type == 'MANAGER':
             return True
 
         return False
 
 
-class IsStaffOrPostOnly(permissions.BasePermission):
+class IsStaffOrPostOnly(BasePermission):
 
     def has_permission(self, request, view):
-        if request.method == "POST":
+        allowed_methods = ['PUT', 'PATCH', 'POST']
+        if request.method in allowed_methods:
             return True
 
-        if request.user.is_anonymous is False and request.user.user_type != 'CUSTOMER':
+        if request.user.is_anonymous is False and \
+            (request.user.user_type == 'MANAGER' or
+                request.user.user_type == 'KITCHEN' or
+                request.user.user_type == "WAITER"):
             return True
 
         return False
 
 
-class AdminOrPostOnly(permissions.BasePermission):
+class IsAuthenticatedOrGetOrPostOnly(BasePermission):
 
     def has_permission(self, request, view):
-        if request.method == "POST":
+        allowed_methods = ["POST", "GET"]
+        if request.method in allowed_methods:
             return True
 
-        if request.user.is_anonymous is False and (request.user.user_type == 'MANAGER'
-           or request.user.user_type == 'KITCHEN' or request.user.user_type == "WAITER"):
-            return True
-
-        return False
-
-
-class IsAuthenticatedOrGetOrPostOnly(permissions.BasePermission):
-
-    def has_permission(self, request, view):
-        if request.method == "POST" or request.method == "GET":
-            return True
-
-        if request.user.is_anonymous is False and (request.user.user_type == 'MANAGER'
-           or request.user.user_type == 'KITCHEN' or request.user.user_type == "WAITER"):
+        if request.user.is_anonymous is False and \
+            (request.user.user_type == 'MANAGER' or
+                request.user.user_type == 'KITCHEN' or
+                request.user.user_type == "WAITER"):
             return True
 
         return False
