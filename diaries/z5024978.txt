@@ -44,3 +44,12 @@ Week 8:
 Week 9:
 * Worked on the order -> kitchen -> customer & waitstaff pipeline
   * Customer creates an order and it gets sent to the kitchen which will then notify the customers and waitstaff when it is prepared and ready for collection.
+* Started working on consolidating data for the analytics pages.
+  * Created basic endpoints for assistance, staff and food analytics
+
+Week 10:
+* Created some more realistic dummmy data for transactions and assistance requests
+* Cleaned up the code in the front end
+* Worked on one of the updates based on our tutor's suggestions from our final demo (multiple assistance requests) with Colin and Leonard
+* Created setup script for a quicker setup
+* Worked on team report
