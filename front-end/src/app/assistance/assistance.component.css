@@ -34,14 +34,6 @@ h2{
     background-color: #fcf7fb;
     color: #352728;
   }
-  
-  /* .back {
-    background-color: #fcf7fb;
-    color: #352728;
-    text-decoration: underline;
-    padding: 0;
-    margin-top: 0;
-  } */
 
   .back {
     background-color: #fcf7fb;
@@ -78,3 +70,15 @@ h2{
       margin-top: 20px;
       text-align: left;
   }
+
+  label {
+    text-align: left;
+  }
+
+  .form {
+    text-align: left;
+  }
+
+button[type=submit]:hover {
+  background-color: #352728bd;
+}

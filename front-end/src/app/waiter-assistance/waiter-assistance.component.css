@@ -57,3 +57,7 @@ textarea {
 .back:hover {
     color: #35272880;
 }
+
+li {
+    text-align: left;
+}

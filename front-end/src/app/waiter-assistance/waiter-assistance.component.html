@@ -7,7 +7,6 @@
             {{ problem }}
         </li>
     </ul>
-    <!-- <p>{{ request_problem }}</p> -->
     <form ngNativeValidate [formGroup]="editAssistanceForm" (ngSubmit)="onFormSubmit()">
         <div [formGroup]="editAssistanceForm">
             <textarea formControlName="notes" rows="5" placeholder="Notes"></textarea>

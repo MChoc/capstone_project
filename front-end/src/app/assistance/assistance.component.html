@@ -1,17 +1,14 @@
 <div class="assistance" @fade>
     <h2>ASSISTANCE REQUEST</h2>
-    <form ngNativeValidate [formGroup]="assistanceForm" (ngSubmit)="onFormSubmit()">
+    <form ngNativeValidate [formGroup]="assistanceForm" (ngSubmit)="onFormSubmit()" class="form">
         <div [formGroup]="assistanceForm">
-            <label>Please specify your issue:</label>
-            <br>
+            <label style="text-align: center;"><h4>Please specify your issue</h4></label>
             <label formArrayName="requests" *ngFor="let request of assistanceForm.controls.requests['controls']; let i = index">
                 <input type="checkbox" [formControlName]="i" />
                 {{requestlist[i].request}}
                 <br>
             </label>
-            <br>
-            Other requests
-            <textarea formControlName="issue" rows="5" ></textarea>
+            <textarea formControlName="issue" rows="5" placeholder="Other"></textarea>
         </div>
         <button type="submit">Submit</button>
     </form>
