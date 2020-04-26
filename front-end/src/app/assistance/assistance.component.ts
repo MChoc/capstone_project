@@ -67,7 +67,6 @@ export class AssistanceComponent implements OnInit {
 
     let assistance_url = 'http://127.0.0.1:5000/api/assistance/'
     this.http.post(assistance_url, request_data).toPromise().then(data => {
-      console.log(data);
       this.router.navigate(['/assistance/'+ data['id']]);
     },
     error => {

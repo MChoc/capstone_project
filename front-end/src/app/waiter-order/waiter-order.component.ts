@@ -69,7 +69,6 @@ export class WaiterOrderComponent implements OnInit {
         .set('Authorization', 'Token ' + key)
     }
     this.http.patch(url, input, header).subscribe(res => {
-      console.log(res);
       this.router.navigate(['/waiter']);
     })
   }

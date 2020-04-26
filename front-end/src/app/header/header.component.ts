@@ -22,10 +22,8 @@ export class HeaderComponent implements OnInit {
       if (event instanceof NavigationEnd) {
         if(localStorage.getItem('key')) {
           this.loggedIn = true;
-          console.log('Logged In');
           let user = JSON.parse(localStorage.getItem('user'));
           this.userType = user['user_type'];
-          console.log('User type: ' + this.userType);
         } else {
           this.loggedIn = false;
         }

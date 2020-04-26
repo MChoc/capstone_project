@@ -47,15 +47,20 @@ with open('example_data/categories.csv') as f:
 with open('example_data/food_items.csv') as f:
     reader = csv.reader(f)
     for row in reader:
+        category = Category.objects.get(name=row[4])
+        active = row[1] == 'yes'
         food_item = FoodItem.objects.create(
             name=row[0],
-            active=row[1] == 'yes',
+            active=active,
             price=row[2],
             description=row[3],
-            category=Category.objects.get(name=row[4]),
+            category=category,
             size=row[5]
         )
-        food_items.append(food_item)
+
+        if active and category.active:
+            food_items.append(food_item)
+
         print(f"Created {food_item}")
 
 with open('example_data/extras.csv') as f:

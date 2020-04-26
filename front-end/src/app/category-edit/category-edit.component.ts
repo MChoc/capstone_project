@@ -42,13 +42,11 @@ export class CategoryEditComponent implements OnInit {
       this.categoryEditForm.setValue({name: this.category['name']})
     },
     error => {
-      console.log("ERROR!")
-      console.log(error.error);
+      console.error(error.error);
     })
   }
 
   onFormSubmit(): void {
-    console.log(this.categoryEditForm.value);
     let url = 'http://127.0.0.1:5000/api/categories/' + this.id + '/';
     
     let key = window.localStorage.getItem('key');

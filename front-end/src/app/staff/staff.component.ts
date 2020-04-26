@@ -54,12 +54,10 @@ export class StaffComponent implements OnInit {
     }
     let url = 'http://127.0.0.1:5000/api/accounts/' + id + '/';
     this.http.delete(url, header).toPromise().then(data => {
-      console.log("deleted");
       window.location.reload();
     },
     error => {
-      console.log("not deleted!")
-      console.log(error.error);
+      console.error(error.error);
     });   
   }
 
@@ -79,15 +77,11 @@ export class StaffComponent implements OnInit {
     this.http.patch(url, input, header).subscribe(
       (val) => {
         window.location.reload();  
-        console.log("PATCH call successful value returned in body", 
-                      val);
       },
       response => {
-          console.log("PATCH call in error", response);
+          console.error("PATCH call in error", response);
       },
-      () => {
-          console.log("The PATCH observable is now completed.");
-      });
+      () => {});
   }
 
   unarchiveUser(id) {
@@ -104,16 +98,12 @@ export class StaffComponent implements OnInit {
 
     this.http.patch(url, input, header).subscribe(
       (val) => {
-        window.location.reload();  
-        console.log("PATCH call successful value returned in body", 
-                      val);
+        window.location.reload();
       },
       response => {
-          console.log("PATCH call in error", response);
+          console.error("PATCH call in error", response);
       },
-      () => {
-          console.log("The PATCH observable is now completed.");
-      });
+      () => {});
   }
 
 }

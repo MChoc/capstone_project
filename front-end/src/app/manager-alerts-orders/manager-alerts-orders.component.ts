@@ -33,7 +33,6 @@ export class ManagerAlertsOrdersComponent implements OnInit {
       this.id = params.get('id');
       this.data.getTransaction(this.id).subscribe(data => {
         this.transaction$ = data;
-        console.log(this.transaction$);
       });
     })
 

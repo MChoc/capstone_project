@@ -44,8 +44,7 @@ export class WaiterAssistanceComponent implements OnInit {
       this.request_problems = problem;
     },
     error => {
-      console.log("ERROR!")
-      console.log(error.error);
+      console.error(error.error);
     })
   }
 
@@ -71,7 +70,6 @@ export class WaiterAssistanceComponent implements OnInit {
     }
     
     this.http.patch(url, post_data, header).toPromise().then(data => {
-      console.log(data);
       this.router.navigate(['/waiter']);
     },
     error => {  }

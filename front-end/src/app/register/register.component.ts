@@ -47,15 +47,10 @@ export class RegisterComponent implements OnInit {
       last_name: this.lname,
       user_type: this.employeeType
     };
-    console.log("request: " + post_data);
     this.http.post(this.url, post_data).toPromise().then(data => {
-      console.log("response!:");
-      console.log(data);
-      console.log(data['key']);
       this.router.navigate(['/management/staff']); 
     },
     error=> {
-      console.log(error.error);
       if (error.error['password1']) {
         this.password1_error = error.error['password1'];
       } else {

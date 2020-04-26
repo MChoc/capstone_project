@@ -30,7 +30,6 @@ export class ItemEditComponent implements OnInit {
   });
 
   onFormSubmit(): void {
-    console.log(this.itemEditForm.value);
     let url = 'http://127.0.0.1:5000/api/food_items/' + this.id + '/';
     
     let key = window.localStorage.getItem('key');
@@ -76,8 +75,7 @@ export class ItemEditComponent implements OnInit {
                                 })
     },
     error => {
-      console.log("ERROR!")
-      console.log(error.error);
+      console.error(error.error);
     })
   }
 

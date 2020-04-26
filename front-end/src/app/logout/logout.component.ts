@@ -20,16 +20,13 @@ export class LogoutComponent implements OnInit {
     }
     let url = 'http://127.0.0.1:5000/rest-auth/logout/';
     this.http.post(url, {}, header).toPromise().then(data => {
-      console.log("LOGOUT DATA");
-      console.log(data);
     },
     error => {
-      console.log("LOGOUT ERROR " + error);
+      console.error("LOGOUT ERROR " + error);
     });
     // remove key from localstorage
     window.localStorage.removeItem("key");
     window.localStorage.removeItem("user");
-    console.log('logged out');
   }
 
 }

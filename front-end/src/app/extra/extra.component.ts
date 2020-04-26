@@ -36,8 +36,7 @@ export class ExtraComponent implements OnInit {
       this.catName = data['name'];
     },
     error => {
-      console.log("ERROR!")
-      console.log(error.error);
+      console.error(error.error);
     })
   }
 
@@ -61,11 +60,10 @@ export class ExtraComponent implements OnInit {
       category: 'http://127.0.0.1:5000/api/categories/' + this.id + '/'
     };
     this.http.post(this.url, post_data, header).toPromise().then(data => {
-      console.log(data);
       this.router.navigate(['/management/menu/category/'+ this.id]); 
     },
     error=> {
-      console.log(error.error);
+      console.error(error.error);
     });
   }
 

@@ -45,7 +45,6 @@ export class LoginComponent implements OnInit {
       window.localStorage.setItem('user', JSON.stringify(data['user']));
       window.localStorage.setItem('staffID', JSON.stringify(data['user']['id']));
 
-      console.log('logged in');
       this.routeToUserHome(data['user']);
     },
     error=> {
