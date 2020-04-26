@@ -1,0 +1,39 @@
+<div class="analytics-page">
+    <h2>MENU DATA</h2>
+    
+    <button type="button" class="close" (click)="close()">Close All Categories</button>
+    <br><br>
+    <div class="analytics">
+        
+        <div *ngFor="let category of categories$">
+            
+            <button type="button" class="category row" (click)="collapse(category.id)"><h2>{{ category.name }}</h2></button>
+            
+            <table *ngIf="open == category.id" style="width: 100%;">
+                
+                <tr style="text-align: left;" class="row heading">
+                    <th>ITEM</th>
+                    <th>SIZE</th>
+                    <th style="text-align: right;">ORDERED</th>
+                    <th style="text-align: right;">REVENUE</th>
+                </tr>
+                <tr *ngFor="let item of category.food_items" class="row food" style="text-align: left;">
+                    <td>{{ item.name }}</td>
+                    <td>{{ item.size }}</td>
+                    <td style="text-align: right;">{{ item.total_orders }}</td>
+                    <td style="text-align: right;">${{ item.total_revenue }}</td>
+                </tr>
+                <tr *ngFor="let extra of category.extras" class="row extra" style="text-align: left;">
+                    <td>- {{ extra.name }}</td>
+                    <td></td>
+                    <td style="text-align: right;">{{ extra.total_orders }}</td>
+                    <td style="text-align: right;">${{ extra.total_revenue }}</td>
+                </tr>
+
+            </table>
+        
+        </div>       
+
+    </div>
+
+</div>

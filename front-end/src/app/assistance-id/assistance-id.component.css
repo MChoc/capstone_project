@@ -1,0 +1,42 @@
+h2{
+    text-align: center;
+  }
+
+  
+  .assistance {
+    text-align: center;
+    width: 300px;
+    margin: auto;
+  }
+
+  .number, .requestDone {
+    margin: auto;
+    background-color: #c7e8f7;
+    color: #352728;
+    border: none;
+    border-radius: 4px;
+    outline: none;
+    box-shadow: 2px 2px 2px grey;
+}
+
+.number {
+    padding: 15px;
+    font-size: larger;
+}
+
+.requestDone {
+    cursor: pointer;
+    padding: 12px 20px;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.requestDone:hover {
+  background-color: #9ddbf8;
+}
+
+.requestDone:active {
+    transform: translateY(2px);
+    box-shadow: 1px 1px 2px grey;
+}
+  

@@ -1,0 +1,41 @@
+<div class="assistance-page">
+    <h2>ASSISTANCE REQUEST DATA</h2>
+
+    Average resolve time <b>{{ average }} minutes</b>
+
+    <div class="tables">
+        <h3>Requests by Problem</h3>
+
+        <table style="width: 100%;">
+                
+            <tr style="text-align: left;" class="row heading">
+                <th>REQUEST</th>
+                <th style="text-align: right;">NO.</th>
+            </tr>
+            <tr *ngFor="let request of requests$" class="row request" style="text-align: left;">
+                <td>{{ request.problem }}</td>
+                <td style="text-align: right;">{{ request.total_requests }}</td>
+            </tr>
+
+        </table>
+    </div>
+
+
+    <div class="tables">
+        <h3>Resolved Requests by Waiter</h3>
+
+        <table style="width: 100%;">
+                
+            <tr style="text-align: left;" class="row heading">
+                <th>WAITER</th>
+                <th style="text-align: right;">RESOLVED REQ.</th>
+            </tr>
+            <tr *ngFor="let waiter of waiters$" class="row request" style="text-align: left;">
+                <td>{{ waiter.waiter__username }}</td>
+                <td style="text-align: right;">{{ waiter.total_resolved }}</td>
+            </tr>
+
+        </table>
+    </div>
+
+</div>

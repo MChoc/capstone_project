@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../_services/data.service';
-import { Observable } from 'rxjs';
 import { Router, NavigationEnd } from '@angular/router'
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
@@ -19,13 +18,13 @@ export class StaffComponent implements OnInit {
 
   constructor(
     private http: HttpClient,
-    private data : DataService,
-    private router: Router) { 
-      let loggedOn = window.localStorage.getItem('user');
+    private data: DataService,
+    private router: Router) {
+    let loggedOn = window.localStorage.getItem('user');
 
-      if(!loggedOn || JSON.parse(loggedOn)['user_type'] != 'MANAGER') {
-        this.router.navigate(['**']);
-      }  
+    if (!loggedOn || JSON.parse(loggedOn)['user_type'] != 'MANAGER') {
+      this.router.navigate(['**']);
+    }
     router.events.subscribe((_: NavigationEnd) => this.currentUrl = _.url)
   }
 
@@ -35,8 +34,16 @@ export class StaffComponent implements OnInit {
     )
   }
 
-  url : string;
-  username : string;
+  url: string;
+  username: string;
+
+  check_if_its_user(id) {
+    let current_user = JSON.parse(localStorage.getItem('user'));
+    if (current_user.id == id) {
+      return false;
+    }
+    else return true;
+  }
 
   deleteUser(id) {
     let key = window.localStorage.getItem('key')
@@ -46,66 +53,56 @@ export class StaffComponent implements OnInit {
     }
     let url = 'http://127.0.0.1:5000/api/accounts/' + id + '/';
     this.http.delete(url, header).toPromise().then(data => {
-      console.log("deleted");
       window.location.reload();
     },
-    error => {
-      console.log("not deleted!")
-      console.log(error.error);
-    });   
+      error => {
+        console.error(error.error);
+      });
   }
 
 
   archiveUser(id) {
     let input = { active: false };
     let url = 'http://127.0.0.1:5000/api/accounts/' + id + '/';
-    
+
     let key = window.localStorage.getItem('key');
-      let header = {
+    let header = {
       headers: new HttpHeaders({
-        'Content-Type':  'application/json',
+        'Content-Type': 'application/json',
         'Authorization': 'Token ' + key
       })
     }
 
     this.http.patch(url, input, header).subscribe(
       (val) => {
-        window.location.reload();  
-        console.log("PATCH call successful value returned in body", 
-                      val);
+        window.location.reload();
       },
       response => {
-          console.log("PATCH call in error", response);
+        console.error("PATCH call in error", response);
       },
-      () => {
-          console.log("The PATCH observable is now completed.");
-      });
+      () => { });
   }
 
   unarchiveUser(id) {
     let input = { active: true };
     let url = 'http://127.0.0.1:5000/api/accounts/' + id + '/';
-    
+
     let key = window.localStorage.getItem('key');
-      let header = {
+    let header = {
       headers: new HttpHeaders({
-        'Content-Type':  'application/json',
+        'Content-Type': 'application/json',
         'Authorization': 'Token ' + key
       })
     }
 
     this.http.patch(url, input, header).subscribe(
       (val) => {
-        window.location.reload();  
-        console.log("PATCH call successful value returned in body", 
-                      val);
+        window.location.reload();
       },
       response => {
-          console.log("PATCH call in error", response);
+        console.error("PATCH call in error", response);
       },
-      () => {
-          console.log("The PATCH observable is now completed.");
-      });
+      () => { });
   }
 
 }

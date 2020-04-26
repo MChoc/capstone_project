@@ -2,7 +2,7 @@ from rest_auth.models import TokenModel
 from rest_auth.registration.serializers import RegisterSerializer
 from rest_framework import serializers
 
-from .models import CustomUser
+from accounts.models import CustomUser
 
 
 # adding new fields in registration:https://stackoverflow.com/questions/53969386/how-to-save-extra-fields-on-registration-using-custom-user-model-in-drf-django

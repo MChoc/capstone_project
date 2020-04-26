@@ -1,6 +1,6 @@
-from menu.models.transaction import Transaction
-
 from rest_framework import serializers
+
+from menu.models.transaction import Transaction
 
 
 class TransactionSerializer(serializers.HyperlinkedModelSerializer):
@@ -9,8 +9,14 @@ class TransactionSerializer(serializers.HyperlinkedModelSerializer):
         read_only=True,
         view_name='fooditem-detail'
     )
+    transaction_food_items = serializers.HyperlinkedRelatedField(
+        many=True,
+        read_only=True,
+        view_name='transactionfooditem-detail'
+    )
 
     class Meta:
         model = Transaction
-        fields = ['id', 'url', 'active', 'date', 'customer', 'credit_card',
-                  'food_items', 'description']
+        fields = ['id', 'url', 'active', 'prepared', 'date', 'customer',
+                  'credit_card', 'food_items', 'request',  'total_price',
+                  'transaction_food_items', 'kitchen_note']

@@ -11,13 +11,14 @@ h2{
     list-style-type: none;
 }
 
-.staff {
-    margin-left: 8%;
-    width: 75%;
+.staff, .archived-staff {
+    width: 300px;
+    margin: auto;
+    margin-top: 20px;
     border-bottom: solid 0.5px;
     border-color: #35272862;
     background-color: #fcf7fb;
-    padding: 10px;
+    padding: 20px;
 }
 
 .addEmp {
@@ -66,4 +67,18 @@ a .activated {
 ul, li{
     margin: 0;
     padding: 0;
+}
+
+.archived-staff, .archived-staff li, .archived-staff a, .archived-staff button {
+    color: grey;
+}
+
+.pad {
+    text-align: center;
+    padding-top: 20px;
+    color: grey;
+}
+
+.addEmp:hover {
+    background-color: #35272880;
 }

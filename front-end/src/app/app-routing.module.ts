@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { MenuComponent} from './menu/menu.component';
+import { MenuComponent } from './menu/menu.component';
 import { LoginComponent } from './login/login.component';
 import { WaiterHomeComponent } from './waiter-home/waiter-home.component';
 import { KitchenHomeComponent } from './kitchen-home/kitchen-home.component';
@@ -15,16 +15,36 @@ import { ItemComponent } from './item/item.component';
 import { ItemEditComponent } from './item-edit/item-edit.component';
 import { CategoryEditComponent } from './category-edit/category-edit.component';
 import { CartComponent } from './cart/cart.component';
-import {CheckoutComponent} from './checkout/checkout.component';
+import { CheckoutComponent } from './checkout/checkout.component';
 import { CategoryManageComponent } from './category-manage/category-manage.component';
 import { ExtraComponent } from './extra/extra.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { ExtraEditComponent } from './extra-edit/extra-edit.component';
+import { OrderSuccessComponent } from './order-success/order-success.component';
+import { AssistanceComponent } from './assistance/assistance.component';
+import { AssistanceIdComponent } from './assistance-id/assistance-id.component';
+import { WaiterAssistanceComponent } from './waiter-assistance/waiter-assistance.component';
+import { WaiterOrderComponent } from './waiter-order/waiter-order.component';
+import { ManagerAlertsComponent } from './manager-alerts/manager-alerts.component';
+import { ManagerAlertsAssistanceComponent } from './manager-alerts-assistance/manager-alerts-assistance.component';
+import { ManagerAlertsOrdersComponent } from './manager-alerts-orders/manager-alerts-orders.component';
+import { ManagerAlertsPickupsComponent } from './manager-alerts-pickups/manager-alerts-pickups.component';
+import { ManagerAlertsResolvedComponent } from './manager-alerts-resolved/manager-alerts-resolved.component';
+import { ResolvedAssistanceComponent } from './resolved-assistance/resolved-assistance.component';
+import { ResolvedOrdersComponent } from './resolved-orders/resolved-orders.component';
+import { MenuCategoryComponent } from './menu-category/menu-category.component';
+import { AnalyticsComponent } from './analytics/analytics.component';
+import { AnalyticsMenuComponent } from './analytics-menu/analytics-menu.component';
+import { AnalyticsAssistanceComponent } from './analytics-assistance/analytics-assistance.component';
 
 const routes: Routes = [
   {
     path: '',
     component: MenuComponent
+  },
+  {
+    path: 'menu/:id',
+    component: MenuCategoryComponent
   },
   {
     path: 'login',
@@ -47,6 +67,46 @@ const routes: Routes = [
     component: KitchenHomeComponent
   },
   {
+    path: 'management/analytics',
+    component: AnalyticsComponent
+  },
+  {
+    path: 'management/analytics/menu',
+    component: AnalyticsMenuComponent
+  },
+  {
+    path: 'management/analytics/assistance',
+    component: AnalyticsAssistanceComponent
+  },
+  {
+    path: 'management/alerts',
+    component: ManagerAlertsComponent
+  },
+  {
+    path: 'management/alerts/resolved',
+    component: ManagerAlertsResolvedComponent
+  },
+  {
+    path: 'management/alerts/assistance/:id',
+    component: ManagerAlertsAssistanceComponent
+  },
+  {
+    path: 'management/alerts/orders/:id',
+    component: ManagerAlertsOrdersComponent
+  },
+  {
+    path: 'management/alerts/pickups/:id',
+    component: ManagerAlertsPickupsComponent
+  },
+  {
+    path: 'management/alerts/resolved/assistance/:id',
+    component: ResolvedAssistanceComponent
+  },
+  {
+    path: 'management/alerts/resolved/orders/:id',
+    component: ResolvedOrdersComponent
+  },
+  {
     path: 'management/staff',
     component: StaffComponent
   },
@@ -63,7 +123,7 @@ const routes: Routes = [
     component: ManageMenuComponent
   },
   {
-    path: 'add/:id',
+    path: 'menu/:id/add/:id',
     component: AddItemComponent
   },
   {
@@ -87,7 +147,7 @@ const routes: Routes = [
     component: CartComponent
   },
   {
-    path:'checkout',
+    path: 'checkout',
     component: CheckoutComponent
   },
   {
@@ -98,9 +158,29 @@ const routes: Routes = [
     path: 'management/menu/category/:id/edit-extra/:id',
     component: ExtraEditComponent
   },
-  { 
-    path: '**', 
-    component: PageNotFoundComponent 
+  {
+    path: 'order-details/:id',
+    component: OrderSuccessComponent
+  },
+  {
+    path: 'assistance',
+    component: AssistanceComponent
+  },
+  {
+    path: 'assistance/:id',
+    component: AssistanceIdComponent
+  },
+  {
+    path: 'waiter/request/:id',
+    component: WaiterAssistanceComponent
+  },
+  {
+    path: 'waiter/pickup/:id',
+    component: WaiterOrderComponent
+  },
+  {
+    path: '**',
+    component: PageNotFoundComponent
   }
 ];
 

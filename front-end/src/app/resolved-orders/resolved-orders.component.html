@@ -1,0 +1,29 @@
+<div class="orders">
+    <div *ngIf="transaction$">
+        <h1>Customer Order</h1>
+        <p>- RESOLVED -</p>
+        <br>
+        <button class="number">No. {{ transaction$.id }}</button>
+        <br>
+
+        <div class="container">
+            <h3>Order Details</h3>
+            <div *ngFor="let item of removeDup(transactionFoodItems)">
+                <div *ngIf="item.transaction == transaction$.url" class="orderDetails">
+                    <h4>{{ count(item, transactionFoodItems) }} x {{ getFoodItemName(item.food_item) }}</h4>
+                    <ng-container *ngIf="item.extras.length > 0">
+                        <p>Extras: {{ getExtraNames(item.extras) }}</p>
+                    </ng-container>
+                    <ng-container *ngIf="item.request">
+                        <p>Request: {{ item.request }}</p>
+                    </ng-container>
+                </div>
+            </div>  
+        </div>
+
+        <p style="text-align: left;"><b>Kitchen Note: </b>{{ transaction$['kitchen_note'] }}</p>
+    
+        <button (click)="back()" class="back">Back to Resolved Alerts</button>
+
+    </div>
+</div>

@@ -1,175 +1,240 @@
-from menu.models.menu import Menu
+import csv
+from random import randint, choices
+from datetime import datetime, timedelta
+import warnings
+
+from django.contrib.auth import get_user_model
+from django.core.exceptions import ObjectDoesNotExist
+
+from menu.models.assistance import Assistance
 from menu.models.category import Category
-from menu.models.food_item import FoodItem
+from menu.models.credit_card import CreditCard
 from menu.models.discount import Discount
 from menu.models.extra import Extra
+from menu.models.food_item import FoodItem
+from menu.models.menu import Menu
+from menu.models.problem import Problem
 from menu.models.tag import Tag
 from menu.models.transaction import Transaction
 from menu.models.transaction_food_item import TransactionFoodItem
-from menu.models.assistance import Assistance
-from menu.models.credit_card import CreditCard
-
-from django.contrib.auth import get_user_model
 
 
-# ==============================================================================
+warnings.filterwarnings("ignore")
+
+# =============================================================================
 # Create menu/store
-menu = Menu.objects.create(name='Waiting Cafe')
+menu = Menu.objects.create(name='Cafe Menu')
 print(f"Created {menu}")
 
 # Create categories and food items and extras
 categories = []
 food_items = []
 extras = []
-for i in range(0,10):
-    category = Category.objects.create(
-        name='Category ' + str(i+1),
-        menu=menu
-    )
-    categories.append(category)
-    print(f"Created {category}")
+extras_with_categories = {}
 
-    for i in range(0,10):
-        if i <= 5:
-            food_item = FoodItem.objects.create(
-                name='Food item ' + str(i+1),
-                price='10.00', #TODO: use rand
-                description='Test description ' + str(i+1),
-                category=category
-            )
-        else:
-            food_item = FoodItem.objects.create(
-                name='Drink ' + str(i-5),
-                price='10.00', # TODO: use rand
-                description='Test description ' + str(i-5),
-                category=category,
-                size='LARGE'
-            )
-        food_items.append(food_item)
+with open('example_data/categories.csv') as f:
+    reader = csv.reader(f)
+    for row in reader:
+        menu = Menu.objects.get(name=row[2])
+        category = Category.objects.create(
+            name=row[0],
+            active=row[1] == 'yes',
+            menu=menu
+        )
+        categories.append(category)
+        print(f"Created {category}")
+
+with open('example_data/food_items.csv') as f:
+    reader = csv.reader(f)
+    for row in reader:
+        category = Category.objects.get(name=row[4])
+        active = row[1] == 'yes'
+        food_item = FoodItem.objects.create(
+            name=row[0],
+            active=active,
+            price=row[2],
+            description=row[3],
+            category=category,
+            size=row[5]
+        )
+
+        if active and category.active:
+            food_items.append(food_item)
+
         print(f"Created {food_item}")
 
+with open('example_data/extras.csv') as f:
+    reader = csv.DictReader(f)
+    for row in reader:
+
         extra = Extra.objects.create(
-            name='Extra ' + str(i+1),
-            price=i,
-            category=category
+            name=row['name'],
+            active=row['active'] == 'yes',
+            price=row['price'],
+            category=Category.objects.get(name=row['category'])
         )
+
+        if row['category'] not in extras_with_categories:
+            extras_with_categories[row['category']] = [extra]
+        else:
+            extras_with_categories[row['category']].append(extra)
+
         extras.append(extra)
         print(f"Created {extra}")
 
-# TODO: use rand to add tags to items
-tags = []
-for i in range(0,10):
-    tag = Tag.objects.create(name='Tag ' + str(i+1))
-    tags.append(tag)
-    print(f"Created {tag}")
 
-# ==============================================================================
-# Create superuser
-admin = get_user_model().objects.create_superuser('admin', password='admin')
-print("Created admin")
-
-# Populate table with managers
+# Create custom users
 managers = []
-for i in range(1,5):
-    manager = get_user_model().objects.create_superuser(
-        username='Manager' + str(i+1),
-        password='Manager' + str(i+1),
-        first_name='Manager' + str(i+1),
-        last_name='M' + str(i+1),
-        user_type='MANAGER'
-    )
-    managers.append(manager)
-    print(f"Created {manager}")
-
-# Populate table with customers
 customers = []
-for i in range(0,5):
-    customer = get_user_model().objects.create_user(
-        username='Customer' + str(i+1),
-        password='Customer' + str(i+1),
-        first_name='Customer' + str(i+1),
-        last_name='C' + str(i+1),
-        user_type='CUSTOMER'
-    )
-    customers.append(customer)
-    print(f"Created {customer}")
-
-# Populate table with kitchen staff
 kitchens = []
-for i in range(0,5):
-    kitchen = get_user_model().objects.create_user(
-        username='Kitchen' + str(i+1),
-        password='Kitchen' + str(i+1),
-        first_name='Kitchen' + str(i+1),
-        last_name='K' + str(i+1),
-        user_type='KITCHEN'
-    )
-    kitchens.append(kitchen)
-    print(f"Created {kitchen}")
-
-# Populate table with waiters
 waiters = []
-for i in range(0,5):
-    waiter = get_user_model().objects.create_user(
-        username='Waiter' + str(i+1),
-        password='Waiter' + str(i+1),
-        first_name='Waiter' + str(i+1),
-        last_name='W' + str(i+1),
-        user_type='WAITER'
-    )
-    waiters.append(waiter)
-    print(f"Created {waiter}")
+with open('example_data/users.csv') as f:
+    reader = csv.reader(f)
+    for row in reader:
+        if row[5] == 'MANAGER':
+            managers.append(get_user_model().objects.create_superuser(
+                username=row[0],
+                password=row[1],
+                first_name=row[3],
+                last_name=row[4],
+                user_type=row[5],
+                active=row[6] == 'yes'
+            ))
+        elif row[5] == 'CUSTOMER':
+            customers.append(get_user_model().objects.create_user(
+                username=row[0],
+                password=row[1],
+                first_name=row[3],
+                last_name=row[4],
+                user_type=row[5],
+                active=row[6] == 'yes'
+            ))
+        elif row[5] == 'KITCHEN':
+            kitchens.append(get_user_model().objects.create_user(
+                username=row[0],
+                password=row[1],
+                first_name=row[3],
+                last_name=row[4],
+                user_type=row[5],
+                active=row[6] == 'yes'
+            ))
+        else:
+            waiters.append(get_user_model().objects.create_user(
+                username=row[0],
+                password=row[1],
+                first_name=row[3],
+                last_name=row[4],
+                user_type=row[5],
+                active=row[6] == 'yes'
+            ))
 
-# ==============================================================================
+print("created custom users")
+
+# =============================================================================
 # Create discounts including default zero
 discounts = []
-for i in range(0,5):
+for i in range(0, 5):
     discount = Discount.objects.create(
         name=str(i * 10) + '%',
         amount=i * 10,
-        discount='PERCENTAGE'
+        type='PERCENTAGE'
     )
     discounts.append(discount)
     print(f"Created {discount}")
 
 # Create credit cards
 credit_cards = []
-for i in range(0,5):
+for i in range(0, 5):
     credit_card = CreditCard.objects.create(
         number='123412341234123' + str(i+1),
         expiry_month='0' + str(i+1),
-        expiry_year='0' + str(i+1),
-        cvs='12' + str(i+1)
+        expiry_year='202' + str(i+1),
+        cvv='12' + str(i+1)
     )
     credit_cards.append(credit_card)
     print(f"Created {credit_card}")
 
 # Create transactions
 transactions = []
-for i in range(0,5):
+for i in range(50):
+
+    prepared = False
+    active = True
+
+    if i < 25:
+        prepared = True
+        active = False
+    elif i < 38:
+        prepared = True
+        active = True
+
     transaction = Transaction.objects.create(
-        # TODO: randomise customer and credit card
-        customer=customers[i],
-        credit_card=credit_cards[i]
+        credit_card=credit_cards[0],
+        prepared=prepared,
+        active=active
     )
     transactions.append(transaction)
-
-    # TODO: create list of random food items of random length
-    # TODO: apply random discount
-    # TODO: apply random extras
-    j = i * 5
-    transaction.food_items.set(food_items[j:j+5], through_defaults={
-        'discount': discounts[i]
-    })
     print(f"Created {transaction}")
 
+    # add between 1 and 5 food items to the list
+    random_food_items = choices(food_items, k=randint(1, 5))
+
+    transaction.food_items.set(random_food_items, through_defaults={
+        'discount': discounts[0]
+    })
+
+    tfi_set = TransactionFoodItem.objects.filter(transaction=transaction.pk)
+
+    for tfi in tfi_set:
+
+        category_name = tfi.food_item.category.name
+        # pick relevant extras for each category food is in
+
+        extra_list = extras_with_categories[category_name]
+        if category_name == 'Hot Drinks' or category_name == 'Cold Drinks':
+            tfi.extras.add(extra_list[randint(0, len(extra_list) - 1)])
+        else:
+            # add between 0 and 2 extras per food item
+            for i in range(randint(0, 2)):
+                tfi.extras.add(extra_list[randint(0, len(extra_list) - 1)])
+
+        # Call save to force price calculation
+        tfi.save()
+
 assistances = []
-for i in range(0,5):
-    assistance = Assistance.objects.create(
-        transaction=transactions[i],
-        waiter=waiters[i],
-        problem='Problem ' + str(i+1),
-        notes='Notes ' + str(i+1),
-    )
-    assistances.append(assistance)
-    print(f'Created {assistance}')
+
+with open('example_data/assistance.csv') as f:
+    reader = csv.DictReader(f)
+    for row in reader:
+
+        if int(row['custom']):
+            num_requests = randint(1, 3)
+        else:
+            num_requests = randint(1, 20)
+        for i in range(num_requests):
+            assistance = Assistance.objects.create(
+                waiter=waiters[randint(0, len(waiters) - 1)],
+                resolved=True
+            )
+            try:
+                problem = Problem.objects.get(
+                    name=row['request'],
+                )
+            except ObjectDoesNotExist:
+                problem = Problem.objects.create(
+                    name=row['request'],
+                )
+
+            assistance.problems.add(problem)
+            # create dummy resolved time
+            updated_timestamp = datetime.utcnow() + timedelta(minutes=(randint(1, 5)))
+            Assistance.objects.filter(pk=assistance.pk).update(date_resolved=updated_timestamp)
+            assistances.append(assistance)
+
+    # unresolve 5 requests
+    num_to_jump = int(len(assistances) / 5)
+    for i in range(5):
+        request = assistances[i * num_to_jump]
+        Assistance.objects.filter(pk=request.pk).update(resolved=False, date_resolved=None)
+
+    print('Created Assistance Requests')

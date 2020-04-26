@@ -4,7 +4,7 @@
 
     <form ngNativeValidate (ngSubmit)="addItem()">
         <input type="text" [(ngModel)]="name" name="name" placeholder="Item Name" required>
-        <input type="text" [(ngModel)]="description" name="description" placeholder="Item Description" required>
+        <input type="text" [(ngModel)]="description" name="description" placeholder="Item Description">
                 
         <p>
             Available in different sizes
@@ -22,7 +22,7 @@
         
         <button type="submit">Save</button>
        
-        <button type="button" (click)="back()">Cancel</button>
+        <button type="button" class="back" (click)="back()">Cancel</button>
 
     </form>
 </div>

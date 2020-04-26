@@ -1,0 +1,26 @@
+<div class="resolved-assistance">
+    <h2>Assistance Requests</h2>
+    <p><b>- RESOLVED -</b></p>
+    <li *ngFor="let request of requests$">
+        <div *ngIf="request.resolved" >
+            <button type=[button] class="assistance" (click)="assistance( request.id )">
+                Request no. {{ request.id }}
+            </button>
+        </div>
+    </li>
+</div>
+<br>
+<div class="resolved-orders">
+    <h2>Orders</h2>
+    <p><b>- RESOLVED -</b></p>
+    <li *ngFor="let transaction of transactions$">
+        <div *ngIf="!transaction.active">
+            <button type=[button] class="orders" (click)="orders( transaction.id )">
+                Order no. {{ transaction.id }}
+            </button>
+        </div>
+    </li>
+</div>
+
+<br>
+<button  (click)=back() class="resolved">Unresolved Alerts</button>

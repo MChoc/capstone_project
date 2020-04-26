@@ -1,1 +1,21 @@
-<p>waiter-home works!</p>
+<div class="assistance-requests">
+    <h2>Assistance Requests</h2>
+    <li *ngFor="let request of requests$">
+        <div *ngIf="!request.resolved" >
+            <button type=[button] class="assistance" (click)="moveTo( request.id )">
+                Request no. {{ request.id }}
+            </button>
+        </div>
+    </li>
+</div>
+<br>
+<div class="assistance-requests">
+    <h2>Order Pickups</h2>
+    <li *ngFor="let transaction of transactions$">
+        <div *ngIf="transaction.active && transaction.prepared">
+            <button type=[button] class="orders" (click)="pickupOrder( transaction.id )">
+                Order no. {{ transaction.id }}
+            </button>
+        </div>
+    </li>
+</div>

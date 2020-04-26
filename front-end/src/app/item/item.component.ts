@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router, ActivatedRoute } from '@angular/router';
 import { DataService } from '../_services/data.service';
-import { FormBuilder, FormGroup, FormArray, FormControl } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 
 
 @Component({
@@ -19,48 +19,46 @@ export class ItemComponent implements OnInit {
   category: Object;
   catName: string;
 
-  
+
 
 
   myForm: FormGroup;
-    disabled = false;
-    ShowFilter = false;
-    limitSelection = false;
-    extras: any = [];
+  disabled = false;
+  ShowFilter = false;
+  limitSelection = false;
+  extras: any = [];
 
-    dropdownList = [];
-    selectedItems = [];
-    dropdownSettings = {};
-  
+  dropdownList = [];
+  selectedItems = [];
+  dropdownSettings = {};
+
   constructor(
     private http: HttpClient,
     private router: Router,
-    private data : DataService,
-    private _Activatedroute: ActivatedRoute,
-    private formBuilder: FormBuilder
-    ) { 
-      
-    }
+    private data: DataService,
+    private _Activatedroute: ActivatedRoute
+  ) {
+
+  }
 
   ngOnInit(): void {
     this.data.getCategories().subscribe(
       data => this.categories$ = data,
     ),
-    this.data.getExtras().subscribe(
-      data => this.extras$ = data,
-    ),
-    this._Activatedroute.paramMap.subscribe(params => { 
-      this.id = params.get('id');
-    });
+      this.data.getExtras().subscribe(
+        data => this.extras$ = data,
+      ),
+      this._Activatedroute.paramMap.subscribe(params => {
+        this.id = params.get('id');
+      });
     let url = 'http://127.0.0.1:5000/api/categories/' + this.id + '/';
     this.http.get(url).toPromise().then(data => {
       this.category = data;
       this.catName = data['name'];
     },
-    error => {
-      console.log("ERROR!")
-      console.log(error.error);
-    })
+      error => {
+        console.error(error.error);
+      })
   }
 
   name: string;
@@ -76,11 +74,11 @@ export class ItemComponent implements OnInit {
     let key = window.localStorage.getItem('key');
     let header = {
       headers: new HttpHeaders({
-        'Content-Type':  'application/json',
+        'Content-Type': 'application/json',
         'Authorization': 'Token ' + key
       })
-    }    
-    if(this.noClicked) {
+    }
+    if (this.noClicked) {
       let post_data = {
         name: this.name,
         active: true,
@@ -89,12 +87,11 @@ export class ItemComponent implements OnInit {
         category: 'http://127.0.0.1:5000/api/categories/' + this.id + '/'
       };
       this.http.post(this.url, post_data, header).toPromise().then(data => {
-        console.log(data);
-        this.router.navigate(['/management/menu/category/'+ this.id]); 
+        this.router.navigate(['/management/menu/category/' + this.id]);
       },
-      error=> {
-        console.log(error.error);
-      });
+        error => {
+          console.error(error.error);
+        });
     } else {
       //small
       let post_data = {
@@ -106,11 +103,10 @@ export class ItemComponent implements OnInit {
         category: 'http://127.0.0.1:5000/api/categories/' + this.id + '/'
       };
       this.http.post(this.url, post_data, header).toPromise().then(data => {
-        console.log(data);
       },
-      error=> {
-        console.log(error.error);
-      });
+        error => {
+          console.error(error.error);
+        });
       //medium
       post_data = {
         name: this.name,
@@ -121,11 +117,10 @@ export class ItemComponent implements OnInit {
         category: 'http://127.0.0.1:5000/api/categories/' + this.id + '/'
       };
       this.http.post(this.url, post_data, header).toPromise().then(data => {
-        console.log(data);
       },
-      error=> {
-        console.log(error.error);
-      });
+        error => {
+          console.error(error.error);
+        });
       //large
       post_data = {
         name: this.name,
@@ -136,18 +131,17 @@ export class ItemComponent implements OnInit {
         category: 'http://127.0.0.1:5000/api/categories/' + this.id + '/'
       };
       this.http.post(this.url, post_data, header).toPromise().then(data => {
-        console.log(data);
-        this.router.navigate(['/management/menu/category/'+ this.id]); 
+        this.router.navigate(['/management/menu/category/' + this.id]);
       },
-      error=> {
-        console.log(error.error);
-      });
+        error => {
+          console.error(error.error);
+        });
     }
   }
 
   noClicked = true;
   yesClicked = false;
-  sizes(){
+  sizes() {
     this.noClicked = !this.noClicked;
     this.yesClicked = !this.yesClicked;
   }

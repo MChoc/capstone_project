@@ -1,0 +1,12 @@
+<div class="request">
+    <h1>Customer Request</h1>
+    <button class="number">No. {{ request_id }}</button>
+    <br><br>
+    <p><b>Customer issue description:</b></p>
+    <ul>
+        <li *ngFor = "let problem of request_problems"> 
+            {{ problem }}
+        </li>
+    </ul>
+    <button (click)="back()" class="back">Back to Alerts</button>
+</div>

@@ -1,6 +1,6 @@
-from menu.models.category import Category
-
 from django.db import models
+
+from menu.models.category import Category
 
 
 class Extra(models.Model):

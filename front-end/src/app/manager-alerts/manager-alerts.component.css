@@ -1,0 +1,71 @@
+.assistance-requests, .kitchen-orders, .order-pickups {
+    text-align: center;
+    width: 300px;
+    margin: auto;
+}
+
+li {
+    list-style: none;
+}
+
+button {
+    display: block;
+    margin: auto;
+    margin-bottom: 15px;
+    height: 40px;
+    width: 100%;
+    color: #352728;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    outline: none;
+    box-shadow: 2px 2px 2px grey;
+}
+
+button:active {
+    transform: translateY(2px);
+    box-shadow: 1px 1px 2px grey;
+}
+
+.assistance {
+    background-color: #c7e8f7;
+}
+
+.orders {
+    background-color: #fdcfd7;
+}
+
+.pickups {
+    background-color: #abc2ba;
+}
+
+.assistance:hover {
+    background-color: #c7e8f78c;
+}
+
+.orders:hover {
+    background-color: #fdcfd77e;
+}
+
+.pickups:hover {
+    background-color: #abc2ba80;
+}
+
+.resolved {
+    background-color: #fcf7fb;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    margin-top: 30px;
+    text-decoration: underline;
+    box-shadow: none;
+}
+
+.resolved:active {
+    transform: none;
+    box-shadow: none;
+}
+
+.resolved:hover {
+    color: #35272880;
+}
