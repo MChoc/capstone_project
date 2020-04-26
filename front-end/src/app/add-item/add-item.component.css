@@ -51,15 +51,6 @@ input[type=text], [type=number] {
     width: 100%;
 }
 
-.details {
-    padding-top: 15px;
-}
-
-/* .back {
-    float: left;
-    padding-top: 20px;
-} */
-
 .back {
     float: left;
     color: #000000;
