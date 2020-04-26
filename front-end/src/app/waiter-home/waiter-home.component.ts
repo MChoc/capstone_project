@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { DataService } from '../_services/data.service';
 import { Router, NavigationEnd } from '@angular/router';
-import {interval} from "rxjs/internal/observable/interval";
-import {startWith, switchMap} from "rxjs/operators";
+import { interval } from "rxjs/internal/observable/interval";
+import { startWith, switchMap } from "rxjs/operators";
 
 import { Transaction } from "../models/transaction.model";
 
@@ -20,27 +19,26 @@ export class WaiterHomeComponent implements OnInit {
   transactions$: Transaction[] = [];
 
   constructor(
-    private http: HttpClient,
-    private data : DataService,
-    private router: Router) { 
-      let loggedOn = window.localStorage.getItem('user');
+    private data: DataService,
+    private router: Router) {
+    let loggedOn = window.localStorage.getItem('user');
 
-      if(!loggedOn || JSON.parse(loggedOn)['user_type'] != 'WAITER') {
-        this.router.navigate(['**']);
-      }  
+    if (!loggedOn || JSON.parse(loggedOn)['user_type'] != 'WAITER') {
+      this.router.navigate(['**']);
+    }
     router.events.subscribe((_: NavigationEnd) => this.currentUrl = _.url)
   }
 
   ngOnInit(): void {
 
     interval(10000)
-    .pipe(
-      startWith(0),
-      switchMap(() => this.data.getRequests())
-    )
-    .subscribe(res => {
-      this.requests$ = res;
-    });
+      .pipe(
+        startWith(0),
+        switchMap(() => this.data.getRequests())
+      )
+      .subscribe(res => {
+        this.requests$ = res;
+      });
 
     interval(10000)
       .pipe(
@@ -53,11 +51,11 @@ export class WaiterHomeComponent implements OnInit {
   }
 
   moveTo(id) {
-    this.router.navigate(['/waiter/request/'+ id]);
+    this.router.navigate(['/waiter/request/' + id]);
   }
 
   pickupOrder(id) {
-    this.router.navigate(['/waiter/pickup/'+ id]);
+    this.router.navigate(['/waiter/pickup/' + id]);
   }
 
 }

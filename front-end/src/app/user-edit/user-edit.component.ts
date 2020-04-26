@@ -17,7 +17,7 @@ export class UserEditComponent implements OnInit {
   error_message = '';
 
   userEditForm = new FormGroup({
-    username: new FormControl({disabled: true}),
+    username: new FormControl({ disabled: true }),
     first_name: new FormControl(),
     last_name: new FormControl(),
     user_type: new FormControl(),
@@ -25,41 +25,41 @@ export class UserEditComponent implements OnInit {
 
   onFormSubmit(): void {
     let url = 'http://127.0.0.1:5000/api/accounts/' + this.id + '/';
-    
+
     let key = window.localStorage.getItem('key');
     let header = {
       headers: new HttpHeaders({
-        'Content-Type':  'application/json',
+        'Content-Type': 'application/json',
         'Authorization': 'Token ' + key
       })
     }
-    
+
     this.http.put(url, this.userEditForm.value, header).toPromise().then(data => {
-      this.router.navigate(['/management/staff']); 
+      this.router.navigate(['/management/staff']);
     },
-    error => {
-      this.error_message = "An error occured. User was not updated."
-    })
+      error => {
+        this.error_message = "An error occured. User was not updated."
+      })
   }
 
   constructor(
-    private _Activatedroute: ActivatedRoute, 
-    private http: HttpClient, 
+    private _Activatedroute: ActivatedRoute,
+    private http: HttpClient,
     private router: Router
-    ) {
+  ) {
 
-      let loggedOn = window.localStorage.getItem('user');
+    let loggedOn = window.localStorage.getItem('user');
 
-      if(!loggedOn || JSON.parse(loggedOn)['user_type'] != 'MANAGER') {
-        this.router.navigate(['**']);
-      }
-
+    if (!loggedOn || JSON.parse(loggedOn)['user_type'] != 'MANAGER') {
+      this.router.navigate(['**']);
     }
+
+  }
 
   ngOnInit(): void {
 
-    this._Activatedroute.paramMap.subscribe(params => { 
-        this.id = params.get('id');
+    this._Activatedroute.paramMap.subscribe(params => {
+      this.id = params.get('id');
     });
 
     let url = 'http://127.0.0.1:5000/api/accounts/' + this.id + '/';
@@ -73,16 +73,16 @@ export class UserEditComponent implements OnInit {
     }
     this.http.get(url, header).toPromise().then(data => {
       this.user = data;
-      this.userEditForm.setValue({username: this.user['username'],
-                                  first_name: this.user['first_name'],
-                                  last_name: this.user['last_name'],
-                                  user_type: this.user['user_type'],
-                                })
+      this.userEditForm.setValue({
+        username: this.user['username'],
+        first_name: this.user['first_name'],
+        last_name: this.user['last_name'],
+        user_type: this.user['user_type'],
+      })
     },
-    error => {
-      console.error(error.error);
-    })
-    // this.userEditForm.get('user_type').disable()
+      error => {
+        console.error(error.error);
+      })
     if (this.id == current_user.id) {
       this.userEditForm.get('user_type').disable()
     }

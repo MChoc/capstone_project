@@ -48,7 +48,7 @@ import { AnalyticsComponent } from './analytics/analytics.component';
 import { AnalyticsMenuComponent } from './analytics-menu/analytics-menu.component';
 import { AnalyticsAssistanceComponent } from './analytics-assistance/analytics-assistance.component';
 
-import { BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 

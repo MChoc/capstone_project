@@ -18,44 +18,48 @@ export class ResolvedAssistanceComponent implements OnInit {
   waiter_username: string;
 
   constructor(
-    private _Activatedroute: ActivatedRoute, 
-    private http: HttpClient, 
+    private _Activatedroute: ActivatedRoute,
+    private http: HttpClient,
     private router: Router
-  ) { 
+  ) {
     let loggedOn = window.localStorage.getItem('user');
 
-      if(!loggedOn || JSON.parse(loggedOn)['user_type'] != 'MANAGER') {
-        this.router.navigate(['**']);
-      }
+    if (!loggedOn || JSON.parse(loggedOn)['user_type'] != 'MANAGER') {
+      this.router.navigate(['**']);
+    }
   }
 
   ngOnInit(): void {
-    this._Activatedroute.paramMap.subscribe(params => { 
+    this._Activatedroute.paramMap.subscribe(params => {
       this.id = params.get('id');
-  });
-  let url = 'http://127.0.0.1:5000/api/assistance/' + this.id + '/';
+    });
+
+    let url = 'http://127.0.0.1:5000/api/assistance/' + this.id + '/';
     let key = window.localStorage.getItem('key')
     let header = {
       headers: new HttpHeaders()
         .set('Authorization', 'Token ' + key)
     }
+
     this.http.get(url, header).toPromise().then(data => {
       this.request = data;
       this.request_id = data['id'];
       this.request_problems = data['problems'];
       this.request_note = data['notes'];
       this.request_waiter = data['waiter'];
+
       this.http.get(this.request_waiter, header).toPromise().then(data2 => {
         this.waiter = data2;
         this.waiter_username = data2['username'];
       },
+        error => {
+          console.error(error.error);
+        })
+
+      },
       error => {
         console.error(error.error);
       })
-    },
-    error => {
-      console.error(error.error);
-    })
   }
 
   back() {

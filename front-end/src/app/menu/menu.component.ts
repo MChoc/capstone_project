@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../_services/data.service';
-import { Observable } from 'rxjs';
-import { Router, NavigationEnd, ActivatedRoute } from '@angular/router'
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { animation, transition, animate, state, trigger, style } from '@angular/animations';
+import { Router, NavigationEnd } from '@angular/router'
+import { transition, animate, trigger, style } from '@angular/animations';
 import { FilterPipe } from './../filter.pipe';
 
 @Component({
@@ -13,7 +11,7 @@ import { FilterPipe } from './../filter.pipe';
   animations: [
     trigger('fade', [
       transition('void => *', [
-        style({backgroundColor: 'white', opacity: 0, transform: 'translateX(40px)'}),
+        style({ backgroundColor: 'white', opacity: 0, transform: 'translateX(40px)' }),
         animate(300)
       ])
     ])
@@ -29,11 +27,10 @@ export class MenuComponent implements OnInit {
   items$: Object;
   error: any;
   searchname: string;
-  
+
   constructor(
-    private http: HttpClient,
-    private data : DataService,
-    private router: Router) { 
+    private data: DataService,
+    private router: Router) {
     router.events.subscribe((_: NavigationEnd) => this.currentUrl = _.url)
   }
 
@@ -41,13 +38,13 @@ export class MenuComponent implements OnInit {
     this.data.getCategories().subscribe(
       data => this.categories$ = data,
     ),
-    this.data.getItems().subscribe(
-      data => this.items$ = data,
-    )
+      this.data.getItems().subscribe(
+        data => this.items$ = data,
+      )
   }
 
   display(id) {
-    this.router.navigate(['/menu/',id]);
+    this.router.navigate(['/menu/', id]);
   }
-  
+
 }

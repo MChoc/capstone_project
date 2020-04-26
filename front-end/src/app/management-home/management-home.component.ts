@@ -11,11 +11,11 @@ export class ManagementHomeComponent implements OnInit {
 
   currentUrl: string;
 
-  constructor(private router: Router) { 
+  constructor(private router: Router) {
 
     let loggedOn = window.localStorage.getItem('user');
 
-    if(!loggedOn || JSON.parse(loggedOn)['user_type'] != 'MANAGER') {
+    if (!loggedOn || JSON.parse(loggedOn)['user_type'] != 'MANAGER') {
       this.router.navigate(['**']);
     }
 

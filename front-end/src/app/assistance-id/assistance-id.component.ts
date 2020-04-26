@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { animation, transition, animate, state, trigger, style } from '@angular/animations';
+import { transition, animate, trigger, style } from '@angular/animations';
 
 
 @Component({
@@ -10,7 +10,7 @@ import { animation, transition, animate, state, trigger, style } from '@angular/
   animations: [
     trigger('fade', [
       transition('void => *', [
-        style({backgroundColor: 'white', opacity: 0, transform: 'translateX(40px)'}),
+        style({ backgroundColor: 'white', opacity: 0, transform: 'translateX(40px)' }),
         animate(300)
       ])
     ])
@@ -26,7 +26,7 @@ export class AssistanceIdComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this._Activatedroute.paramMap.subscribe(params => { 
+    this._Activatedroute.paramMap.subscribe(params => {
       this.id = params.get('id');
     });
   }

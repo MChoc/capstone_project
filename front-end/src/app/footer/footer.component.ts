@@ -1,6 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router'
-import { CompileShallowModuleMetadata } from '@angular/compiler';
 
 @Component({
   selector: 'app-footer',
@@ -13,10 +12,10 @@ export class FooterComponent implements OnInit {
   currentUrl: string;
   loggedIn: boolean;
 
-  constructor(private router: Router) { 
+  constructor(private router: Router) {
     router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
-        if(localStorage.getItem('key')) {
+        if (localStorage.getItem('key')) {
           this.loggedIn = true;
         } else {
           this.loggedIn = false;
@@ -25,7 +24,7 @@ export class FooterComponent implements OnInit {
     });
   }
 
-  @Input() title:string="";
+  @Input() title: string = "";
 
   ngOnInit(): void {
   }

@@ -14,22 +14,22 @@ export class ManagerAlertsAssistanceComponent implements OnInit {
   request_id: string;
 
   constructor(
-    private _Activatedroute: ActivatedRoute, 
-    private http: HttpClient, 
+    private _Activatedroute: ActivatedRoute,
+    private http: HttpClient,
     private router: Router
-  ) { 
+  ) {
     let loggedOn = window.localStorage.getItem('user');
 
-      if(!loggedOn || JSON.parse(loggedOn)['user_type'] != 'MANAGER') {
-        this.router.navigate(['**']);
-      }
+    if (!loggedOn || JSON.parse(loggedOn)['user_type'] != 'MANAGER') {
+      this.router.navigate(['**']);
+    }
   }
 
   ngOnInit(): void {
-    this._Activatedroute.paramMap.subscribe(params => { 
+    this._Activatedroute.paramMap.subscribe(params => {
       this.id = params.get('id');
-  });
-  let url = 'http://127.0.0.1:5000/api/assistance/' + this.id + '/';
+    });
+    let url = 'http://127.0.0.1:5000/api/assistance/' + this.id + '/';
     let key = window.localStorage.getItem('key')
     let header = {
       headers: new HttpHeaders()
@@ -41,9 +41,9 @@ export class ManagerAlertsAssistanceComponent implements OnInit {
       let problems = data['problems'];
       this.request_problems = problems;
     },
-    error => {
-      console.error(error.error);
-    })
+      error => {
+        console.error(error.error);
+      })
   }
 
   back() {
