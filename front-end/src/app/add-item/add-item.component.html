@@ -1,13 +1,11 @@
 <div class="add-item" @fade>
   <div *ngIf="item">
       <h2>{{ item.name }}</h2>
+      <ng-container *ngIf="item.size">
+        <p>{{ item.size }}</p>
+      </ng-container>
       <p>{{ item.description }}</p>
-      <div class="details">
-        <p style="font-weight: bold;">${{ item.price }}</p>
-        <ng-container *ngIf="item.size">
-          <p>{{ item.size }}</p>
-        </ng-container>
-      </div>
+      <p style="font-weight: bold;">${{ item.price }}</p>
       
       <form [formGroup]="orderForm">
         <div class="row">
