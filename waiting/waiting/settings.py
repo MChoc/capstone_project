@@ -178,4 +178,4 @@ CORS_ORIGIN_WHITELIST = (
     'http://localhost:4200',
 )
 
-#django_heroku.settings(locals())
+# django_heroku.settings(locals())

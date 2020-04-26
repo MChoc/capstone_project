@@ -21,3 +21,55 @@ Updated Jira to create all the requirements for our first sprint.
 By Sunday we hope to have the login page working.
 I will be working on the homepage and login page front end.
 
+Week 5
+Last week we got a start on the login feature however we had trouble connecting the front and and backend through the API.
+In the next week I will work with Tripta to make this connection.
+I will also work on creating more pages for the front end.
+
+Week 6
+Last week I worked with Tripta to connect the front wnd and back-end. We have made good progress but not managed to complete everything.
+By tomorrow we will finish this sprint and complete the login function.
+We will then move on to the next sprint which is the menu function (reading and editing the menu).
+Since we have now worked out the FE-BE connection, this next sprint should be much smoother than the last one.
+
+Week 7
+Last week we finally completed the login sprint and moved on to creating the menu.
+I will work on the manager editing and updating the menu and will have this done by Friday.
+I also have some general style changes to make such as adding a back and home button to the header.
+We are a bit behind our sprint schedule and have 3 weeks to complete our project but now that we all have the hang of it I am confident we will get it done.
+
+Week 8
+We almost completed the entire menu sprint in the last week.
+In the front end, I worked on the manager creating and managing the menu and Tripta worked on the customer ordering system.
+We just have a few final touches to finish in the next few days before this sprint is done.
+We have changed the ways that 'extra' food items relate to the menu as our original plan was too complex and messy to implement.
+Instead of extra's being assigned to different menu items in a many-to-many relationship, we will now have extra items associated with a category so they will work very similar to normal food items.
+I need to work on that change and also help Tripta with the styling of her section.
+I have also been helping Leonard and Angus learn the front end so they can help contribute as well.
+After thise jobs are complete on Friday, we will merge all of the changes from this sprint and move on to the next one.
+For the next sprint, we will create the notifications that are passed between different staff types (food is ordered, food is ready, customer assistance etc).
+
+Week 9
+Last week we completed the remainder of the menu sprint and also managed to get all of the communication between user types done.
+We now have a fully working system.
+Last week I completed the assistance feature which includes the process of a user requesting assitance from a waiter and the waiter recieving and resolving the issue.
+I also created the manager alerts pages which shows all of the current and resolved alerts from the past day (assistance and food orders).
+After showing our work to the tutor we were given a few features to improve but overall got a good response for our progress.
+This week I have a few touch-ups to make including:
+- creating realistic dummy data
+- displaying the menu separated into category pages
+- displaying the total order price on the customer order confirmation page
+In addition to this, our team will complete our final sprint which is an analytics page for the manager to see collated data about menu items, revenue and assistance requests.
+My job will be displaying this data after Colin and Tripta work on the backend of it.
+
+Week 10
+The team completed everything for the demo!
+I was in charge of planning the demo presentation, splitting up roles and ensuring we go through all functionalities of our system.
+We finished the touch-ups suggested to us by out tutor and completed sprint 4, the manager analytics page.
+I did all of the frontend work for this sprint.
+After our demo, the tutor gave us some final touch-up suggestions before we submit our code next week.
+I will implement an optional ‘note’ for kitchen staff to add to an order once they have completed it so they can notify a waiter if there was an issue with the customer’s order request.
+We are also changing the customer assistance request page to have check boxes instead of radio boxes.
+While Leonard is changing that page, I will need to make sure the analytics for assistance requests still works with the new system and update it if it does not.
+We also need to write the report for next week and the parts will be split evenly among the group.
+

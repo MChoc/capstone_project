@@ -38,7 +38,7 @@ class TestCategoryModel(APITestCase):
 
     def setUp(self):
         login_url = '/rest-auth/login/'
-        body = {'username': 'Manager1', 'password': 'Manager1'}
+        body = {'username': 'Manager2', 'password': 'Manager2'}
         response = self.client.post(login_url, body, format='json')
         self.client.credentials(
             HTTP_AUTHORIZATION='Token ' + response.data['key']
