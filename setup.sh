@@ -12,7 +12,7 @@ npm install
 cd $DIR
 PYTHON_PATH=`which python3.8`
 echo -e "\e[92mPYTHON PATH is: $PYTHON_PATH, creating virtual environment\e[39m"
-if [ -d .venv ]; then
+if [ ! -d .venv ]; then
     virtualenv --python=$PYTHON_PATH .venv
 fi 
 source .venv/bin/activate
