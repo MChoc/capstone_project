@@ -14,15 +14,15 @@ export class AnalyticsMenuComponent implements OnInit {
   categories$: Object;
   open: number;
 
-  constructor( 
+  constructor(
     private http: HttpClient,
-    private data : DataService,
+    private data: DataService,
     private router: Router
-    ) {
+  ) {
 
     let loggedOn = window.localStorage.getItem('user');
 
-    if(!loggedOn || JSON.parse(loggedOn)['user_type'] != 'MANAGER') {
+    if (!loggedOn || JSON.parse(loggedOn)['user_type'] != 'MANAGER') {
       this.router.navigate(['**']);
     }
 
@@ -32,7 +32,7 @@ export class AnalyticsMenuComponent implements OnInit {
   ngOnInit(): void {
     this.data.getCategoryStats().subscribe(
       data => this.categories$ = data,
-    )  
+    )
   }
 
   collapse(id) {
@@ -42,5 +42,5 @@ export class AnalyticsMenuComponent implements OnInit {
   close() {
     this.open = null;
   }
-  
+
 }

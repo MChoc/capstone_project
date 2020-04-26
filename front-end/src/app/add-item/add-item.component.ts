@@ -14,7 +14,7 @@ import { animation, transition, animate, state, trigger, style } from '@angular/
   animations: [
     trigger('fade', [
       transition('void => *', [
-        style({backgroundColor: 'white', opacity: 0, transform: 'translateX(40px)'}),
+        style({ backgroundColor: 'white', opacity: 0, transform: 'translateX(40px)' }),
         animate(300)
       ])
     ])
@@ -39,9 +39,9 @@ export class AddItemComponent implements OnInit {
   constructor(
     private _Activatedroute: ActivatedRoute,
     private cartService: CartService,
-    private data : DataService,
+    private data: DataService,
     private router: Router
-  ) { 
+  ) {
     this._Activatedroute.paramMap.subscribe(params => {
       this.id = params.get('id');
       this.data.getItem(this.id).toPromise().then(data => {
@@ -64,7 +64,7 @@ export class AddItemComponent implements OnInit {
     if (quantity > 15) {
       this.error_message = "Maximum quantity is 15, please reduce your quantity and try again.";
       return;
-    } else if(quantity < 1) {
+    } else if (quantity < 1) {
       this.error_message = "Minimum quantity is 1. Please increase your quantity and try again.";
       return;
     } else {
@@ -81,12 +81,17 @@ export class AddItemComponent implements OnInit {
       'request': this.orderForm.controls['request'].value
     }
     this.cartService.addToCart(cart_item, quantity);
-    this.router.navigate(['/']); 
+    this.router.navigate(['/']);
   }
 
 
+  /**
+   * Adds or removes extras from the cart
+   * @param item item to be added to cart
+   * @param checked whether item is selected or not
+   */
   checkValue(item, checked) {
-    if(checked) {
+    if (checked) {
       this.addExtra(item);
     } else {
       this.removeExtra(item);

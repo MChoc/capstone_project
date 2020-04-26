@@ -4,7 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { CartService } from '../cart.service';
 import { Router } from '@angular/router';
-import { animation, transition, animate, state, trigger, style } from '@angular/animations';
+import { transition, animate, trigger, style } from '@angular/animations';
 
 
 @Component({
@@ -14,7 +14,7 @@ import { animation, transition, animate, state, trigger, style } from '@angular/
   animations: [
     trigger('fade', [
       transition('void => *', [
-        style({backgroundColor: 'white', opacity: 0, transform: 'translateX(40px)'}),
+        style({ backgroundColor: 'white', opacity: 0, transform: 'translateX(40px)' }),
         animate(300)
       ])
     ])
@@ -36,7 +36,7 @@ export class CheckoutComponent implements OnInit {
 
   constructor(
     private cartService: CartService,
-    private http: HttpClient, 
+    private http: HttpClient,
     private router: Router
   ) { }
 
@@ -55,7 +55,7 @@ export class CheckoutComponent implements OnInit {
     }
 
     let validate_url = 'http://127.0.0.1:5000/api/credit_cards/'
-    this.http.get(validate_url, {params: card_data}).toPromise().then(data => {
+    this.http.get(validate_url, { params: card_data }).toPromise().then(data => {
 
       if (data['validated'] == true) {
         this.processTransaction(data['url']);
@@ -64,15 +64,14 @@ export class CheckoutComponent implements OnInit {
         this.error_message = "Invalid card details";
       }
     },
-    error => {
-      console.error("Error! " + error.error);
-    })
+      error => {
+        console.error("Error! " + error.error);
+      })
 
   }
 
   processTransaction(card_url) {
 
-    // TODO: maybe create a service for this?
     let food_items = [];
 
     for (let item of this.items) {
@@ -90,9 +89,9 @@ export class CheckoutComponent implements OnInit {
       this.processFoodItemTransaction(data['url'], data['id']);
 
     },
-    error => {
-      console.error(error);
-    })
+      error => {
+        console.error(error);
+      })
   }
 
   sleep(ms: number) {
@@ -101,7 +100,6 @@ export class CheckoutComponent implements OnInit {
 
   async processFoodItemTransaction(transaction_url, transaction_id) {
     let foodItemTransactionUrl = "http://127.0.0.1:5000/api/transaction_food_item/";
-    // TODO: get this discount url from somewhere!
     let discountUrl = "http://127.0.0.1:5000/api/discounts/1/";
 
     for (let i = 0; i < this.items.length; i++) {
@@ -121,13 +119,13 @@ export class CheckoutComponent implements OnInit {
 
       this.http.post(foodItemTransactionUrl, foodItemData).subscribe(data => {
         /**
-         * hack to only route to success page once last item has been processed
+         * only route to success page once last item has been processed
          * to avoid routing before transaction has been completely created 
-         * */ 
+         * */
 
-        if(i == this.items.length - 1) {
+        if (i == this.items.length - 1) {
           this.cartService.clearCart();
-          this.router.navigate(['/order-details/' + transaction_id]); 
+          this.router.navigate(['/order-details/' + transaction_id]);
         }
       })
       await this.sleep(200);

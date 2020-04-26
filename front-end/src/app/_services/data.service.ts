@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
-import {Transaction} from "../models/transaction.model";
-import {Observable} from "rxjs/internal/Observable";
+import { Transaction } from "../models/transaction.model";
+import { Observable } from "rxjs/internal/Observable";
 import { TransactionFoodItem } from '../models/transaction-food-item.model';
 
 @Injectable({
@@ -29,7 +29,7 @@ export class DataService {
       headers: new HttpHeaders()
         .set('Authorization', 'Token ' + key)
     }
-    
+
     return this.http.get(this.userList, header);
   }
 
@@ -60,10 +60,10 @@ export class DataService {
     return this.http.get(url);
   }
 
-  getTransactions(parameters={}): Observable<Transaction[]> {
-    
+  getTransactions(parameters = {}): Observable<Transaction[]> {
+
     if (parameters) {
-      return this.http.get<Transaction[]>(this.transactionList, {params: parameters});
+      return this.http.get<Transaction[]>(this.transactionList, { params: parameters });
     }
     return this.http.get<Transaction[]>(this.transactionList);
   }
@@ -71,10 +71,10 @@ export class DataService {
   getTransaction(id, parameters?: any): Observable<Transaction> {
     let url = 'http://127.0.0.1:5000/api/transaction/' + id + '/';
 
-      if(parameters) {
-        return this.http.get<Transaction>(url, {params: parameters});
-      }
-      return this.http.get<Transaction>(url);
+    if (parameters) {
+      return this.http.get<Transaction>(url, { params: parameters });
+    }
+    return this.http.get<Transaction>(url);
   }
 
   getTransactionFoodItems(): Observable<TransactionFoodItem[]> {
@@ -87,12 +87,12 @@ export class DataService {
     let key = window.localStorage.getItem('key')
     let header = new HttpHeaders().set('Authorization', 'Token ' + key)
 
-    return this.http.get(this.requestList, {headers: header, params: parameters})
+    return this.http.get(this.requestList, { headers: header, params: parameters })
   }
 
   getRequest(id: string, parameters = {}) {
     let url = this.requestList + id + '/';
-    return this.http.get(url, {params: parameters});
+    return this.http.get(url, { params: parameters });
   }
 
   getTransactionDetails(id): Observable<TransactionFoodItem[]> {
@@ -101,44 +101,44 @@ export class DataService {
       'transaction_id': id,
 
     }
-    return this.http.get<TransactionFoodItem[]>(this.transactionFoodItemList, {params: transaction_details});
+    return this.http.get<TransactionFoodItem[]>(this.transactionFoodItemList, { params: transaction_details });
   }
 
   getUnpreparedTransactions(): Observable<Transaction[]> {
-    
+
     let transaction_details = {
       'get_unprepared': 'true',
     }
 
-    return this.http.get<Transaction[]>(this.transactionList, {params: transaction_details});
+    return this.http.get<Transaction[]>(this.transactionList, { params: transaction_details });
   }
 
   getCategoryStats() {
-  let key = window.localStorage.getItem('key');
+    let key = window.localStorage.getItem('key');
     var header = {
       headers: new HttpHeaders()
         .set('Authorization', 'Token ' + key)
     }
-    
+
     return this.http.get(this.categoryStats, header);
   }
 
   getCategoryData(id) {
     let url = this.categoryStats + id + '/';
     let key = window.localStorage.getItem('key');
-      var header = {
-        headers: new HttpHeaders()
-          .set('Authorization', 'Token ' + key)
-      }
-      
-      return this.http.get(url, header);
+    var header = {
+      headers: new HttpHeaders()
+        .set('Authorization', 'Token ' + key)
+    }
+
+    return this.http.get(url, header);
   }
 
   getAssistanceStats(parameters = {}) {
     let key = window.localStorage.getItem('key')
     let header = new HttpHeaders().set('Authorization', 'Token ' + key)
 
-    return this.http.get(this.assistanceStats, {headers: header, params: parameters})
+    return this.http.get(this.assistanceStats, { headers: header, params: parameters })
   }
 
 }

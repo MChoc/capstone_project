@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router'
-import {Location} from '@angular/common';
+import { Location } from '@angular/common';
 
 
 @Component({
@@ -17,10 +17,10 @@ export class HeaderComponent implements OnInit {
   constructor(
     private router: Router,
     private _location: Location
-    ) { 
+  ) {
     router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
-        if(localStorage.getItem('key')) {
+        if (localStorage.getItem('key')) {
           this.loggedIn = true;
           let user = JSON.parse(localStorage.getItem('user'));
           this.userType = user['user_type'];
@@ -31,21 +31,21 @@ export class HeaderComponent implements OnInit {
     });
   }
 
-  @Input() title:string="";
+  @Input() title: string = "";
 
   ngOnInit(): void {
   }
 
 
   homePage() {
-    if(this.userType === 'MANAGER') {
+    if (this.userType === 'MANAGER') {
       this.router.navigate(['/management']);
-    } else if(this.userType === 'WAITER') {
+    } else if (this.userType === 'WAITER') {
       this.router.navigate(['/waiter']);
-    } else if(this.userType === 'KITCHEN') {
+    } else if (this.userType === 'KITCHEN') {
       this.router.navigate(['/kitchen']);
     } else {
-      this.router.navigate(['/']); 
+      this.router.navigate(['/']);
     }
   }
 

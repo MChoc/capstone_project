@@ -10,7 +10,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 
 export class LoginComponent implements OnInit {
-  
+
   loading = false;
   submitted = false;
   error = '';
@@ -19,11 +19,11 @@ export class LoginComponent implements OnInit {
     private http: HttpClient,
     private route: ActivatedRoute,
     private router: Router,
-    ) { }
+  ) { }
 
-  ngOnInit(){
+  ngOnInit() {
     // reroute to home page if user is already logged in
-    if(window.localStorage.getItem('key')) {
+    if (window.localStorage.getItem('key')) {
       let userData = JSON.parse(window.localStorage.getItem('user'));
       this.routeToUserHome(userData);
     }
@@ -47,25 +47,25 @@ export class LoginComponent implements OnInit {
 
       this.routeToUserHome(data['user']);
     },
-    error=> {
-      if (error.error['non_field_errors']) {
-        this.error = error.error['non_field_errors'];
-      } else {
-        this.error = '';
-      }
-    });
+      error => {
+        if (error.error['non_field_errors']) {
+          this.error = error.error['non_field_errors'];
+        } else {
+          this.error = '';
+        }
+      });
   }
 
-  routeToUserHome(userData):void {
+  routeToUserHome(userData): void {
 
-    if(userData['user_type'] === 'MANAGER') {
+    if (userData['user_type'] === 'MANAGER') {
       this.router.navigate(['/management']);
-    } else if(userData['user_type'] === 'WAITER') {
+    } else if (userData['user_type'] === 'WAITER') {
       this.router.navigate(['/waiter']);
-    } else if(userData['user_type'] === 'KITCHEN') {
-    this.router.navigate(['/kitchen']);
+    } else if (userData['user_type'] === 'KITCHEN') {
+      this.router.navigate(['/kitchen']);
     } else {
-      this.router.navigate(['/']); 
+      this.router.navigate(['/']);
     }
 
   }

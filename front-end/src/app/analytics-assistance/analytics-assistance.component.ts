@@ -16,15 +16,15 @@ export class AnalyticsAssistanceComponent implements OnInit {
   average: string;
   waiters$: Object;
 
-  constructor( 
+  constructor(
     private http: HttpClient,
-    private data : DataService,
+    private data: DataService,
     private router: Router
-    ) {
+  ) {
 
     let loggedOn = window.localStorage.getItem('user');
 
-    if(!loggedOn || JSON.parse(loggedOn)['user_type'] != 'MANAGER') {
+    if (!loggedOn || JSON.parse(loggedOn)['user_type'] != 'MANAGER') {
       this.router.navigate(['**']);
     }
 
@@ -35,21 +35,21 @@ export class AnalyticsAssistanceComponent implements OnInit {
     this.data.getAssistanceStats().subscribe(
       data => this.requests$ = data,
     ),
-    this.data.getAssistanceStats({"average_time": "true"}).subscribe(
-      data => {
-        this.average$ = data,
-        this.average = this.transform(data['average_time']);
-      } 
-    ),
-    this.data.getAssistanceStats({"waiters": "true"}).subscribe(
-      data => {
-        this.waiters$ = data;
-      }
-    )
+      this.data.getAssistanceStats({ "average_time": "true" }).subscribe(
+        data => {
+          this.average$ = data,
+            this.average = this.transform(data['average_time']);
+        }
+      ),
+      this.data.getAssistanceStats({ "waiters": "true" }).subscribe(
+        data => {
+          this.waiters$ = data;
+        }
+      )
   }
 
   transform(value: number): string {
-    let minutes = Math.floor(value/60);
+    let minutes = Math.floor(value / 60);
     let seconds = Math.floor(value % 3600 % 60);
     return ('0' + minutes).slice(-2) + ':' + ('0' + seconds).slice(-2);
   }

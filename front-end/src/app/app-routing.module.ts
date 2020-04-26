@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { MenuComponent} from './menu/menu.component';
+import { MenuComponent } from './menu/menu.component';
 import { LoginComponent } from './login/login.component';
 import { WaiterHomeComponent } from './waiter-home/waiter-home.component';
 import { KitchenHomeComponent } from './kitchen-home/kitchen-home.component';
@@ -15,7 +15,7 @@ import { ItemComponent } from './item/item.component';
 import { ItemEditComponent } from './item-edit/item-edit.component';
 import { CategoryEditComponent } from './category-edit/category-edit.component';
 import { CartComponent } from './cart/cart.component';
-import {CheckoutComponent} from './checkout/checkout.component';
+import { CheckoutComponent } from './checkout/checkout.component';
 import { CategoryManageComponent } from './category-manage/category-manage.component';
 import { ExtraComponent } from './extra/extra.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
@@ -88,7 +88,8 @@ const routes: Routes = [
   },
   {
     path: 'management/alerts/assistance/:id',
-    component: ManagerAlertsAssistanceComponent  },
+    component: ManagerAlertsAssistanceComponent
+  },
   {
     path: 'management/alerts/orders/:id',
     component: ManagerAlertsOrdersComponent
@@ -146,7 +147,7 @@ const routes: Routes = [
     component: CartComponent
   },
   {
-    path:'checkout',
+    path: 'checkout',
     component: CheckoutComponent
   },
   {
@@ -177,9 +178,9 @@ const routes: Routes = [
     path: 'waiter/pickup/:id',
     component: WaiterOrderComponent
   },
-  { 
-    path: '**', 
-    component: PageNotFoundComponent 
+  {
+    path: '**',
+    component: PageNotFoundComponent
   }
 ];
 
