@@ -58,34 +58,53 @@ Week 7
 * Completed login sprint
 * Implemented edits to the backend database design based on team discussion and
   conclusions
-* Created unit testing to test the all the API's
+* Created unit testing to test all the API endpoints
+* Created dummy data for testing and populating front end
 
 
 ======
 Week 8
 ======
 
-* 
+* Major refactoring of food item model
+  * Removed drinks subclass model and added nullable size option to food item
+* Adding active statuses to other models after the meeting to allow front end
+  to efficiently parse through information
+* Implemented credit card validation endpoint
+* Other changes to models based on meeting
+* Experimented with deploying project to Heroku
 
 
 ======
 Week 9
 ======
 
-* 
+* Implemented small edits to models after meeting
+* Refactored credit card validation to work with GET request
+* Modified endpoints to allow filtering of transactions to make it easier
+  for front end
+* Logic for automatically updating resolution date of assistance by tracking
+  state of resolved attribute
+* Calculation logic for pricing of multiple models
 
 
 =======
 Week 10
 =======
 
-* 
+* Implemented analytics for food, assistance etc.
+* Made changes to models based on meeting feedback
+* Presented the product to the lecturer in a formal demonstration
+* Made changes based on lecturer feedback
+  * Pricing for transactions will not be affect by pricing changes
+  * More assistance attributes
+  * Changes to allow for multiple selection of problems in assistance
 
 
 =======
 Week 11
 =======
 
-* 
-
-
+* Completion of a draft report and final submission of code
+* Deployment of backend and frontend separately to Heroku
+* Completed peer review
