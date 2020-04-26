@@ -78,3 +78,11 @@ h2{
       margin-top: 20px;
       text-align: left;
   }
+
+  label {
+    text-align: left;
+  }
+
+  .form {
+    text-align: left;
+  }
