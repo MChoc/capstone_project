@@ -14,4 +14,17 @@ Week 3:
 -Roles were finaliased and I am to work with Lauen on the front-end
 
 Week4: 
--
+-Discussed the proposal and updated tutor on progress
+-Went about creating the starting files for angualar and installing all relavent software
+
+Week5: 
+-Still getting used to the front end software
+-Attempted to create login feature 
+
+Week 6:
+-Ran into sigficant issues with Angular on my computer, I believe it may have 
+something to do with the version of Angualar, however reinstalling doesn't work 
+
+Week 7:
+-Worked on creating the menu feature for managers, however still facing issues with Angular 
+
