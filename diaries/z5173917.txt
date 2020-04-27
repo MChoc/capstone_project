@@ -1,0 +1,51 @@
+Comp3900 BLog
+
+Week 1 
+Group is form and choose to the project topic of ‘waiter’ after considering a wide range of projects presented to us.  
+We did our own reading and research on the topic. Jira and teamwork related tools are set up. 
+
+Week 2 
+Draft of the proposal is written.
+Ideas for the project are being discussed and being formed into epics. 
+Write up for Epics with epic stories and background is being done.  
+Technicalities of how the app should operate and look is discussed in the lab meeting.
+
+Week 3
+Planning and getting done with the first sprint of JIRA. 
+Looked into Atlassian site on agile on JIRA and also scrum. 
+Proposal changes are bring finalised and tweaked based on the feedback tutor gave from the draft. 
+Roles were given out and I am to work with Colin on the backend of the project. 
+
+Week 4
+Getting started with Django and Rest framework with own APIs.
+Looking into the setups of the project and required dependencies.
+
+
+Week 5
+Still getting used to the Django framework and the APIs needed.
+Login page was done u. Catching up to Colin who did a lot of the back end work. 
+Tripta has also climbed on board to the back end side.
+
+Week 6 
+Attempted to write test case for back end implementation. 
+
+Week 7
+Switching over to the front-end and have to learn JS and Angular due to them being totally new for me.
+
+Week 8
+Having Lauren bring me up to speed with the front-end side of things. 
+Done up staff display to mangers only if they are active. 
+Implemented the case where managers cannot change the state of his/her own type. 
+
+Week 9
+Implemented Managers are able to archive the staffs in the front end. 
+Implemented the Assistance Request for the customers. 
+Found solutions to disable text box when the checkbox isn’t selected
+
+Week 10 
+Learning more about CSS and Angular animations and implementing them on the clients view pages. 
+On angular is is done by importing animations with a html tag that is provided and for the buttons are done on .css files.
+
+Week 11 
+Finalising certain changes on the front end of the project based on the feedback given from Rachid during the Q&A session of the demo. 
+Working on the Report
