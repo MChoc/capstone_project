@@ -5,7 +5,7 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 cd $DIR
 
 # install dependencies
-sudo apt install npm python3.8 libpq-dev python3-pip virtualenv
+sudo apt install npm python3.8 libpq-dev python3-pip virtualenv python3.8-dev
 cd front-end
 npm install
 
