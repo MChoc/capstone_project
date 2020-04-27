@@ -1,1 +1,17 @@
 
+Week 1:
+-formed group and chose to do the waiter project 
+-set up jira 
+-did individual research on the topic
+
+Week 2:
+-Started work on the draft proposal 
+-Created Epic stories for Jira and the proposal 
+
+Week 3:
+-Finalised epic and user stories 
+-Talked about which frameworks we are going to use 
+-Roles were finaliased and I am to work with Lauen on the front-end
+
+Week4: 
+-
