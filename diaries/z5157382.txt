@@ -28,3 +28,18 @@ something to do with the version of Angualar, however reinstalling doesn't work
 Week 7:
 -Worked on creating the menu feature for managers, however still facing issues with Angular 
 
+
+Week 8: 
+-Continued to work on menu feature for managers 
+
+Week 9: 
+-haven't managed to get past bug with Angualar however I've managed to sidestep it so to say
+however this means that merging and pulling for git will now take quite a bit longer and 
+certain files in my workspace will not be compadible with other. I don't expect this issue
+of compatibility to be a great problem
+-Started work on a search feature for the menu 
+
+Week 10:
+-finished work on search feature 
+-Completed another feature that combined and counted menu items in the front end
+-Polished the app for the final demo and wen tthrough final demo
