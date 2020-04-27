@@ -7,7 +7,7 @@ Ensure you have at least npm version 6.10.0 and node version 10.0.0 before start
 
 #### Using the Setup Script
 * Run `./setup.sh`
-* Note that the setup script has been tested and is known to work on linux systems and WSL. If you are using any other platform, please follow the manual setup instructions below.
+* Note that the setup script has been tested and is known to work on linux systems and Windows Subsystem for Linux. If you are using any other platform, please follow the manual setup instructions below.
 #### Manual Setup
 * install dependencies:
   * `sudo apt install npm python3.8 libpq-dev python3-pip virtualenv python3.8-dev`
