@@ -60,7 +60,7 @@ requiredver_node="10.00.0"
 currentver_node=${currentver_node:1}
 vercomp  $currentver_node $requiredver_node 
 if [ $? == 2 ]; then
-    echo -e "\e[31mThe minimum npm version requirement is 10.0.0, please upgrade your node version and try again.\e[39m"
+    echo -e "\e[31mThe minimum node version requirement is 10.0.0, please upgrade your node version and try again.\e[39m"
     exit 1
 else
     echo -e "\e[92mnode requirements met. Continuing..\e[39m"
